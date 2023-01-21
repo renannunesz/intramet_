@@ -1,0 +1,44 @@
+
+
+Tips- MVC
+
+- Controller
+    > Arquivo (classe) que recebe as requisições do usuário, requisições internas;
+    > Recebe os actions dos forms
+    > Contem a lógica do negócio
+    > Define o que vai ser feito
+
+- Model
+    > Fontes de dados
+    > Tratamento de queryes
+    > CURL, API....
+    > É convencionado ter um model para cada tabela
+
+- View
+    > Parte visual, o que o usuário vê
+    > HTML, Javascript
+    > Muito pouca lógica aqui, pouco PHP aqui
+
+ROUTES
+
+- As rotas de url passam pelo controller
+- o padrão da url é o prefixo / controler / metodo / parametro (opcional)
+- São configuradas no arquivo App/Config/Routes.php
+
+
+
+
+
+PAGINAÇÃO 
+
+/*
+'grid_reunioes' => $this->dadosReuniao(2)->paginate(10),
+'pager' => $this->dadosReuniao(2)->pager
+
+na view...
+<?php echo $pager->links(); ?>            
+*/
+
+
+
+
