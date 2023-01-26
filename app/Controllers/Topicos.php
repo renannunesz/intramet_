@@ -7,7 +7,7 @@ use App\Models\TbtopicosModel;
 
 class Topicos extends BaseController
 {
-    private $topicosModel;   
+    private $topicosModel;       
     
     public function __construct()
     {
@@ -36,7 +36,7 @@ class Topicos extends BaseController
         $builder->join('tbatas a', 'a.cod = t.codata');
         $builder->join('tbsetores st', 'st.cod = a.codsetor');
         $builder->where('st.cod', $codSetor);
-        $builder->orderBy('a.cod', 'ASC');
+        $builder->orderBy('t.cod', 'DESC');
         $query = $builder->get();
 
         return $query->getResultArray();
@@ -62,19 +62,39 @@ class Topicos extends BaseController
         return $query->getResultArray();
     }
 
+    public function dadosSetor($codTopico)
+    {
+        $db = db_connect();
+        $builder = $db->table('tbsetores s');
+        $builder->select('s.descricao');
+        $builder->join('tbatas a', 'a.codsetor = s.cod');
+        $builder->join('tbtopicos t', 't.codata = a.cod');
+        $builder->where('t.cod', $codTopico);
+        $query = $builder->get();
+
+        return $query->getResultArray();
+    }
+
     public function index()
     {
+        //Pegando dados da URL, pois não existe formulario
+        $url_anterior = $_SERVER['HTTP_REFERER'];
+        $url_partes = explode('/', $url_anterior);
+        $setor = substr($url_partes[6],7);
+
         return view('topicos',[
             'topicos_atas' => $this->dadosAtas(),
             'envolvidos'   => $this->dadosEnvolvidos(),
-            'status'       => $this->dadosStatus()
+            'status'       => $this->dadosStatus(),
+            'setor'        => $setor
         ]);
     }
 
     public function topicosComercial()
     {
         return view('grid_reunioes',[
-            'grid_reunioes' => $this->dadosReuniao(2)
+            'grid_reunioes' => $this->dadosReuniao(2),
+            'setor' => 'Comercial'
         ]);
 
     }
@@ -82,25 +102,57 @@ class Topicos extends BaseController
     public function topicosAudiplanner()
     {
         return view('grid_reunioes',[
-            'grid_reunioes' => $this->dadosReuniao(1)
+            'grid_reunioes' => $this->dadosReuniao(1),
+            'setor' => 'Audiplanner'
         ]);
     }
     
     public function topicosDiretoriaFinanceiro()
     {
         return view('grid_reunioes',[
-            'grid_reunioes' => $this->dadosReuniao(3)
+            'grid_reunioes' => $this->dadosReuniao(3),
+            'setor' => 'Diretoria/Financeiro'
         ]); 
     }    
 
     public function salvar()
     {
+
+        //Pegando dados do input, pois existe formulario    
+        //$request = \Config\Services::request();
+        $setor = $this->request->getVar('inpSetor');        
+
         $this->topicosModel->save($this->request->getPost());
-        return view('topicos',[
-            'topicos_atas' => $this->dadosAtas(),
-            'envolvidos'   => $this->dadosEnvolvidos(),
-            'status'       => $this->dadosStatus()
+
+        echo view('mensagens', [
+            'mensagem' => 'Tópico Salvo com Sucesso',
+            'tipoMensagem'  => 'is-success',
+            'link' => 'public/Topicos/topicos'.$setor.'/'
+        ]);
+
+    }
+
+    public function apagar($cod)
+    {
+        //Pegando dados da QRY, pois não existe formulario        
+        $setor = $this->dadosSetor($cod);
+
+        $this->topicosModel->where('cod', $cod)->delete();
+
+        echo view('mensagens', [
+            'mensagem' => 'Registro Excluído com Sucesso',
+            'tipoMensagem'  => 'is-success',
+            'link' => 'public/Topicos/topicos'.str_replace("/", "", $setor[0]['descricao']).'/'
         ]);
     }
 
+    public function editar($cod)
+    {
+        $setor = $this->dadosSetor($cod);
+
+        return view('topicos', [
+            'dados_topicos' => $this->topicosModel->find($cod),
+            'setor'         => str_replace("/", "", $setor[0]['descricao'])
+        ]);
+    }
 }

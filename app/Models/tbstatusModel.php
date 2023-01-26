@@ -15,6 +15,7 @@ class tbstatusModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'cod',
         'descricao'
     ];
 

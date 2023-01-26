@@ -1,0 +1,948 @@
+CRITICAL - 2023-01-25 11:05:49 --> Undefined array key "cod"
+in APPPATH\Views\grid_reunioes.php on line 64.
+ 1 APPPATH\Views\grid_reunioes.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "cod"', 'APPPATH\\Views\\grid_reunioes.php', 64)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\grid_reunioes.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('grid_reunioes', [], true)
+ 5 APPPATH\Controllers\Topicos.php(87): view('grid_reunioes', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->topicosAudiplanner()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-01-25 11:25:10 --> mysqli_sql_exception: Unknown column 'acodt' in 'order clause' in F:\Projetos\intramet\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\Projetos\intramet\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`dat...', 0)
+#1 F:\Projetos\intramet\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`dat...')
+#2 F:\Projetos\intramet\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`dat...')
+#3 F:\Projetos\intramet\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`dat...', Array, false)
+#4 F:\Projetos\intramet\app\Controllers\Topicos.php(40): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\Projetos\intramet\app\Controllers\Topicos.php(86): App\Controllers\Topicos->dadosReuniao(1)
+#6 F:\Projetos\intramet\system\CodeIgniter.php(934): App\Controllers\Topicos->topicosAudiplanner()
+#7 F:\Projetos\intramet\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+#8 F:\Projetos\intramet\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 F:\Projetos\intramet\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-01-25 11:25:10 --> Unknown column 'acodt' in 'order clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`data`, `st`.`descricao` as `descsetor`, `t`.`cod` as `codt`, `t`.`assunto`, `t`.`providencia`, `e`.`nome`, `s`.`descricao` as `descstatus`, `t`.`diretoria`, `a`.`cod` as `coda`, `a`.`descricao` as `descata`, `a`.`participantes`
+FROM `tbtopicos` `t`
+JOIN `tbenvolvidos` `e` ON `e`.`cod` = `t`.`codresponsavel`
+JOIN `tbstatus` `s` ON `s`.`cod` = `t`.`codstatus`
+JOIN `tbatas` `a` ON `a`.`cod` = `t`.`codata`
+JOIN `tbsetores` `st` ON `st`.`cod` = `a`.`codsetor`
+WHERE `st`.`cod` = :st.cod:
+ORDER BY `acodt` ASC', [...], false)
+ 2 APPPATH\Controllers\Topicos.php(40): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Topicos.php(86): App\Controllers\Topicos->dadosReuniao(1)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->topicosAudiplanner()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 11:34:58 --> Array to string conversion
+in APPPATH\Controllers\Topicos.php on line 106.
+ 1 APPPATH\Controllers\Topicos.php(106): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Controllers\\Topicos.php', 106)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 11:36:27 --> Array to string conversion
+in APPPATH\Controllers\Topicos.php on line 106.
+ 1 APPPATH\Controllers\Topicos.php(106): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Controllers\\Topicos.php', 106)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 11:37:53 --> Array to string conversion
+in APPPATH\Controllers\Topicos.php on line 106.
+ 1 APPPATH\Controllers\Topicos.php(106): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Controllers\\Topicos.php', 106)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 12:27:15 --> Undefined property: App\Controllers\Topicos::$input
+in APPPATH\Controllers\Topicos.php on line 67.
+ 1 APPPATH\Controllers\Topicos.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Topicos::$input', 'APPPATH\\Controllers\\Topicos.php', 67)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 12:54:21 --> Array callback must have exactly two elements
+in APPPATH\Controllers\Topicos.php on line 67.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 12:55:46 --> Undefined array key "btnNovoSetor"
+in APPPATH\Controllers\Topicos.php on line 67.
+ 1 APPPATH\Controllers\Topicos.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "btnNovoSetor"', 'APPPATH\\Controllers\\Topicos.php', 67)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 12:56:38 --> Undefined array key "btnNovoSetor"
+in APPPATH\Controllers\Topicos.php on line 67.
+ 1 APPPATH\Controllers\Topicos.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "btnNovoSetor"', 'APPPATH\\Controllers\\Topicos.php', 67)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 12:57:39 --> Undefined array key "btnNovoSetor"
+in APPPATH\Controllers\Topicos.php on line 67.
+ 1 APPPATH\Controllers\Topicos.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "btnNovoSetor"', 'APPPATH\\Controllers\\Topicos.php', 67)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 12:58:37 --> Undefined array key "btnNovoSetor"
+in APPPATH\Controllers\Topicos.php on line 67.
+ 1 APPPATH\Controllers\Topicos.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "btnNovoSetor"', 'APPPATH\\Controllers\\Topicos.php', 67)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:01:45 --> Array to string conversion
+in APPPATH\Controllers\Topicos.php on line 67.
+ 1 APPPATH\Controllers\Topicos.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Controllers\\Topicos.php', 67)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:02:01 --> Array to string conversion
+in APPPATH\Controllers\Topicos.php on line 67.
+ 1 APPPATH\Controllers\Topicos.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Controllers\\Topicos.php', 67)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:02:04 --> Array to string conversion
+in APPPATH\Controllers\Topicos.php on line 67.
+ 1 APPPATH\Controllers\Topicos.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Controllers\\Topicos.php', 67)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:12:48 --> Call to a member function getSegment() on string
+in APPPATH\Controllers\Topicos.php on line 69.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:14:19 --> Undefined array key 3
+in APPPATH\Controllers\Topicos.php on line 71.
+ 1 APPPATH\Controllers\Topicos.php(71): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 3', 'APPPATH\\Controllers\\Topicos.php', 71)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:14:28 --> Undefined array key 1
+in APPPATH\Controllers\Topicos.php on line 71.
+ 1 APPPATH\Controllers\Topicos.php(71): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 1', 'APPPATH\\Controllers\\Topicos.php', 71)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:14:48 --> Cannot use [] for reading
+in APPPATH\Controllers\Topicos.php on line 71.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2023-01-25 13:15:05 --> Array to string conversion
+in APPPATH\Views\topicos.php on line 21.
+ 1 APPPATH\Views\topicos.php(21): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Views\\topicos.php', 21)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\topicos.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('topicos', [], true)
+ 5 APPPATH\Controllers\Topicos.php(77): view('topicos', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:25:13 --> Undefined variable $setor_1
+in APPPATH\Controllers\Topicos.php on line 69.
+ 1 APPPATH\Controllers\Topicos.php(69): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $setor_1', 'APPPATH\\Controllers\\Topicos.php', 69)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-01-25 13:47:44 --> mysqli_sql_exception: Unknown column 'st.cod' in 'on clause' in F:\Projetos\intramet\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\Projetos\intramet\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `s`.`des...', 0)
+#1 F:\Projetos\intramet\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `s`.`des...')
+#2 F:\Projetos\intramet\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `s`.`des...')
+#3 F:\Projetos\intramet\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `s`.`des...', Array, false)
+#4 F:\Projetos\intramet\app\Controllers\Topicos.php(73): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\Projetos\intramet\app\Controllers\Topicos.php(131): App\Controllers\Topicos->dadosSetor('34')
+#6 F:\Projetos\intramet\system\CodeIgniter.php(934): App\Controllers\Topicos->apagar('34')
+#7 F:\Projetos\intramet\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+#8 F:\Projetos\intramet\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 F:\Projetos\intramet\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-01-25 13:47:44 --> Unknown column 'st.cod' in 'on clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `s`.`descricao`
+FROM `tbsetores` `s`
+JOIN `tbatas` `a` ON `a`.`codsetor` = `st`.`cod`
+JOIN `tbtopicos` `t` ON `t`.`codata` = `a`.`cod`
+WHERE `t`.`cod` = :t.cod:', [...], false)
+ 2 APPPATH\Controllers\Topicos.php(73): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Topicos.php(131): App\Controllers\Topicos->dadosSetor('34')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('34')
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:48:42 --> Array to string conversion
+in APPPATH\Controllers\Topicos.php on line 137.
+ 1 APPPATH\Controllers\Topicos.php(137): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Controllers\\Topicos.php', 137)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('34')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:50:33 --> Undefined array key "descricao"
+in APPPATH\Controllers\Topicos.php on line 137.
+ 1 APPPATH\Controllers\Topicos.php(137): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "descricao"', 'APPPATH\\Controllers\\Topicos.php', 137)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('33')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:54:03 --> Undefined array key "descricao"
+in APPPATH\Controllers\Topicos.php on line 139.
+ 1 APPPATH\Controllers\Topicos.php(139): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "descricao"', 'APPPATH\\Controllers\\Topicos.php', 139)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('32')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:54:49 --> Array to string conversion
+in APPPATH\Controllers\Topicos.php on line 139.
+ 1 APPPATH\Controllers\Topicos.php(139): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Controllers\\Topicos.php', 139)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('31')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:58:20 --> Object of class stdClass could not be converted to string
+in APPPATH\Controllers\Topicos.php on line 139.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('30')
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:58:45 --> Undefined array key "descricao"
+in APPPATH\Controllers\Topicos.php on line 139.
+ 1 APPPATH\Controllers\Topicos.php(139): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "descricao"', 'APPPATH\\Controllers\\Topicos.php', 139)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('29')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:59:04 --> Undefined array key "descricao"
+in APPPATH\Controllers\Topicos.php on line 139.
+ 1 APPPATH\Controllers\Topicos.php(139): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "descricao"', 'APPPATH\\Controllers\\Topicos.php', 139)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('28')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 13:59:31 --> Undefined array key 1
+in APPPATH\Controllers\Topicos.php on line 139.
+ 1 APPPATH\Controllers\Topicos.php(139): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 1', 'APPPATH\\Controllers\\Topicos.php', 139)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('27')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 14:00:15 --> Array to string conversion
+in APPPATH\Controllers\Topicos.php on line 139.
+ 1 APPPATH\Controllers\Topicos.php(139): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Controllers\\Topicos.php', 139)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('26')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 14:17:33 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Topicos.php on line 139.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('25')
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 14:19:05 --> implode(): Argument #2 ($array) must be of type ?array, stdClass given
+in APPPATH\Controllers\Topicos.php on line 137.
+ 1 APPPATH\Controllers\Topicos.php(137): implode('ROOTPATH\\public', Object(stdClass))
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('24')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 14:19:44 --> Array to string conversion
+in APPPATH\Controllers\Topicos.php on line 137.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Controllers\\Topicos.php', 137)
+ 2 APPPATH\Controllers\Topicos.php(137): implode('ROOTPATH\\public', [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('35')
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 14:25:15 --> Undefined array key 0
+in APPPATH\Controllers\Topicos.php on line 140.
+ 1 APPPATH\Controllers\Topicos.php(140): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Controllers\\Topicos.php', 140)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('39')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 14:26:37 --> Undefined array key 0
+in APPPATH\Controllers\Topicos.php on line 137.
+ 1 APPPATH\Controllers\Topicos.php(137): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Controllers\\Topicos.php', 137)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('40')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 14:27:44 --> Undefined array key 0
+in APPPATH\Controllers\Topicos.php on line 137.
+ 1 APPPATH\Controllers\Topicos.php(137): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Controllers\\Topicos.php', 137)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('41')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 14:29:46 --> Undefined array key 6
+in APPPATH\Controllers\Topicos.php on line 121.
+ 1 APPPATH\Controllers\Topicos.php(121): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 6', 'APPPATH\\Controllers\\Topicos.php', 121)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 14:30:16 --> Undefined array key 6
+in APPPATH\Controllers\Topicos.php on line 121.
+ 1 APPPATH\Controllers\Topicos.php(121): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 6', 'APPPATH\\Controllers\\Topicos.php', 121)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 14:30:32 --> Undefined array key 6
+in APPPATH\Controllers\Topicos.php on line 121.
+ 1 APPPATH\Controllers\Topicos.php(121): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 6', 'APPPATH\\Controllers\\Topicos.php', 121)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 14:31:07 --> Undefined array key 6
+in APPPATH\Controllers\Topicos.php on line 121.
+ 1 APPPATH\Controllers\Topicos.php(121): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 6', 'APPPATH\\Controllers\\Topicos.php', 121)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 15:18:52 --> Undefined variable $request
+in APPPATH\Controllers\Topicos.php on line 125.
+ 1 APPPATH\Controllers\Topicos.php(125): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $request', 'APPPATH\\Controllers\\Topicos.php', 125)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 15:47:59 --> Undefined variable $dados_topicos
+in APPPATH\Views\topicos.php on line 53.
+ 1 APPPATH\Views\topicos.php(53): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dados_topicos', 'APPPATH\\Views\\topicos.php', 53)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\topicos.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('topicos', [], true)
+ 5 APPPATH\Controllers\Topicos.php(89): view('topicos', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 17:19:32 --> Undefined variable $setor
+in APPPATH\Views\topicos.php on line 21.
+ 1 APPPATH\Views\topicos.php(21): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $setor', 'APPPATH\\Views\\topicos.php', 21)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\topicos.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('topicos', [], true)
+ 5 APPPATH\Controllers\Topicos.php(150): view('topicos', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->editar('46')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 17:31:50 --> Array to string conversion
+in APPPATH\Views\topicos.php on line 21.
+ 1 APPPATH\Views\topicos.php(21): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Views\\topicos.php', 21)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\topicos.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('topicos', [], true)
+ 5 APPPATH\Controllers\Topicos.php(153): view('topicos', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->editar('46')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 17:32:15 --> Undefined variable $topicos_atas
+in APPPATH\Views\topicos.php on line 36.
+ 1 APPPATH\Views\topicos.php(36): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $topicos_atas', 'APPPATH\\Views\\topicos.php', 36)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\topicos.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('topicos', [], true)
+ 5 APPPATH\Controllers\Topicos.php(153): view('topicos', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->editar('46')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 17:39:04 --> foreach() argument must be of type array|object, string given
+in APPPATH\Views\topicos.php on line 36.
+ 1 APPPATH\Views\topicos.php(36): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, string given', 'APPPATH\\Views\\topicos.php', 36)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\topicos.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('topicos', [], true)
+ 5 APPPATH\Controllers\Topicos.php(154): view('topicos', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->editar('46')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 17:48:51 --> syntax error, unexpected token "else", expecting end of file
+in APPPATH\Views\topicos.php on line 42.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('topicos', [], true)
+ 3 APPPATH\Controllers\Topicos.php(89): view('topicos', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 17:49:46 --> Undefined variable $envolvidos
+in APPPATH\Views\topicos.php on line 96.
+ 1 APPPATH\Views\topicos.php(96): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $envolvidos', 'APPPATH\\Views\\topicos.php', 96)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\topicos.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('topicos', [], true)
+ 5 APPPATH\Controllers\Topicos.php(153): view('topicos', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->editar('46')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 17:51:13 --> Undefined variable $status
+in APPPATH\Views\topicos.php on line 123.
+ 1 APPPATH\Views\topicos.php(123): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $status', 'APPPATH\\Views\\topicos.php', 123)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\topicos.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('topicos', [], true)
+ 5 APPPATH\Controllers\Topicos.php(153): view('topicos', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->editar('46')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-01-25 18:05:51 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_ata` FOREIGN KEY (`codata`) REFERENCES `tbatas` (`cod`)) in F:\Projetos\intramet\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\Projetos\intramet\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 F:\Projetos\intramet\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 F:\Projetos\intramet\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 F:\Projetos\intramet\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 F:\Projetos\intramet\system\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+#5 F:\Projetos\intramet\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 F:\Projetos\intramet\system\Model.php(729): CodeIgniter\BaseModel->insert(Array, false)
+#7 F:\Projetos\intramet\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 F:\Projetos\intramet\app\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save(Array)
+#9 F:\Projetos\intramet\system\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+#10 F:\Projetos\intramet\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+#11 F:\Projetos\intramet\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 F:\Projetos\intramet\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-01-25 18:05:51 --> Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_ata` FOREIGN KEY (`codata`) REFERENCES `tbatas` (`cod`))
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbtopicos` (`assunto`, `providencia`, `diretoria`) VALUES (:assunto:, :providencia:, :diretoria:)', [...], false)
+ 2 SYSTEMPATH\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(729): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-01-25 18:09:07 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_ata` FOREIGN KEY (`codata`) REFERENCES `tbatas` (`cod`)) in F:\Projetos\intramet\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\Projetos\intramet\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 F:\Projetos\intramet\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 F:\Projetos\intramet\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 F:\Projetos\intramet\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 F:\Projetos\intramet\system\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+#5 F:\Projetos\intramet\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 F:\Projetos\intramet\system\Model.php(729): CodeIgniter\BaseModel->insert(Array, false)
+#7 F:\Projetos\intramet\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 F:\Projetos\intramet\app\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save(Array)
+#9 F:\Projetos\intramet\system\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+#10 F:\Projetos\intramet\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+#11 F:\Projetos\intramet\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 F:\Projetos\intramet\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-01-25 18:09:07 --> Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_ata` FOREIGN KEY (`codata`) REFERENCES `tbatas` (`cod`))
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbtopicos` (`assunto`, `providencia`, `diretoria`) VALUES (:assunto:, :providencia:, :diretoria:)', [...], false)
+ 2 SYSTEMPATH\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(729): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-01-25 18:10:34 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_ata` FOREIGN KEY (`codata`) REFERENCES `tbatas` (`cod`)) in F:\Projetos\intramet\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\Projetos\intramet\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 F:\Projetos\intramet\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 F:\Projetos\intramet\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 F:\Projetos\intramet\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 F:\Projetos\intramet\system\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+#5 F:\Projetos\intramet\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 F:\Projetos\intramet\system\Model.php(729): CodeIgniter\BaseModel->insert(Array, false)
+#7 F:\Projetos\intramet\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 F:\Projetos\intramet\app\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save(Array)
+#9 F:\Projetos\intramet\system\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+#10 F:\Projetos\intramet\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+#11 F:\Projetos\intramet\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 F:\Projetos\intramet\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-01-25 18:10:34 --> Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_ata` FOREIGN KEY (`codata`) REFERENCES `tbatas` (`cod`))
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbtopicos` (`assunto`, `providencia`, `diretoria`) VALUES (:assunto:, :providencia:, :diretoria:)', [...], false)
+ 2 SYSTEMPATH\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(729): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-01-25 18:11:46 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_ata` FOREIGN KEY (`codata`) REFERENCES `tbatas` (`cod`)) in F:\Projetos\intramet\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\Projetos\intramet\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 F:\Projetos\intramet\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 F:\Projetos\intramet\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 F:\Projetos\intramet\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 F:\Projetos\intramet\system\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+#5 F:\Projetos\intramet\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 F:\Projetos\intramet\system\Model.php(729): CodeIgniter\BaseModel->insert(Array, false)
+#7 F:\Projetos\intramet\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 F:\Projetos\intramet\app\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save(Array)
+#9 F:\Projetos\intramet\system\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+#10 F:\Projetos\intramet\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+#11 F:\Projetos\intramet\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 F:\Projetos\intramet\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-01-25 18:11:46 --> Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_ata` FOREIGN KEY (`codata`) REFERENCES `tbatas` (`cod`))
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbtopicos` (`assunto`, `providencia`) VALUES (:assunto:, :providencia:)', [...], false)
+ 2 SYSTEMPATH\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(729): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-01-25 18:22:23 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_ata` FOREIGN KEY (`codata`) REFERENCES `tbatas` (`cod`)) in F:\Projetos\intramet\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\Projetos\intramet\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 F:\Projetos\intramet\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 F:\Projetos\intramet\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 F:\Projetos\intramet\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 F:\Projetos\intramet\system\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+#5 F:\Projetos\intramet\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 F:\Projetos\intramet\system\Model.php(729): CodeIgniter\BaseModel->insert(Array, false)
+#7 F:\Projetos\intramet\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 F:\Projetos\intramet\app\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save(Array)
+#9 F:\Projetos\intramet\system\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+#10 F:\Projetos\intramet\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+#11 F:\Projetos\intramet\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 F:\Projetos\intramet\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-01-25 18:22:23 --> Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_ata` FOREIGN KEY (`codata`) REFERENCES `tbatas` (`cod`))
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbtopicos` (`assunto`, `providencia`, `diretoria`) VALUES (:assunto:, :providencia:, :diretoria:)', [...], false)
+ 2 SYSTEMPATH\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(729): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-01-25 19:03:00 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_ata` FOREIGN KEY (`codata`) REFERENCES `tbatas` (`cod`)) in F:\Projetos\intramet\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\Projetos\intramet\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 F:\Projetos\intramet\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 F:\Projetos\intramet\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 F:\Projetos\intramet\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 F:\Projetos\intramet\system\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+#5 F:\Projetos\intramet\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 F:\Projetos\intramet\system\Model.php(729): CodeIgniter\BaseModel->insert(Array, false)
+#7 F:\Projetos\intramet\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 F:\Projetos\intramet\app\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save(Array)
+#9 F:\Projetos\intramet\system\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+#10 F:\Projetos\intramet\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+#11 F:\Projetos\intramet\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 F:\Projetos\intramet\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-01-25 19:03:00 --> Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_ata` FOREIGN KEY (`codata`) REFERENCES `tbatas` (`cod`))
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbtopicos` (`assunto`, `providencia`, `diretoria`) VALUES (:assunto:, :providencia:, :diretoria:)', [...], false)
+ 2 SYSTEMPATH\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(729): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-01-25 19:04:24 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_responsavel` FOREIGN KEY (`codresponsavel`) REFERENCES `tbenvolvidos` (`cod`)) in F:\Projetos\intramet\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\Projetos\intramet\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 F:\Projetos\intramet\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 F:\Projetos\intramet\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 F:\Projetos\intramet\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 F:\Projetos\intramet\system\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+#5 F:\Projetos\intramet\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 F:\Projetos\intramet\system\Model.php(729): CodeIgniter\BaseModel->insert(Array, false)
+#7 F:\Projetos\intramet\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 F:\Projetos\intramet\app\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save(Array)
+#9 F:\Projetos\intramet\system\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+#10 F:\Projetos\intramet\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+#11 F:\Projetos\intramet\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 F:\Projetos\intramet\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-01-25 19:04:24 --> Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_responsavel` FOREIGN KEY (`codresponsavel`) REFERENCES `tbenvolvidos` (`cod`))
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbtopicos` (`codata`, `assunto`, `providencia`, `diretoria`) VALUES (:codata:, :assunto:, :providencia:, :diretoria:)', [...], false)
+ 2 SYSTEMPATH\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(729): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-01-25 19:07:15 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_responsavel` FOREIGN KEY (`codresponsavel`) REFERENCES `tbenvolvidos` (`cod`)) in F:\Projetos\intramet\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\Projetos\intramet\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 F:\Projetos\intramet\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 F:\Projetos\intramet\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 F:\Projetos\intramet\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 F:\Projetos\intramet\system\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+#5 F:\Projetos\intramet\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 F:\Projetos\intramet\system\Model.php(729): CodeIgniter\BaseModel->insert(Array, false)
+#7 F:\Projetos\intramet\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 F:\Projetos\intramet\app\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save(Array)
+#9 F:\Projetos\intramet\system\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+#10 F:\Projetos\intramet\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+#11 F:\Projetos\intramet\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 F:\Projetos\intramet\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-01-25 19:07:15 --> Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_responsavel` FOREIGN KEY (`codresponsavel`) REFERENCES `tbenvolvidos` (`cod`))
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbtopicos` (`codata`, `assunto`, `providencia`, `codstatus`, `diretoria`) VALUES (:codata:, :assunto:, :providencia:, :codstatus:, :diretoria:)', [...], false)
+ 2 SYSTEMPATH\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(729): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\Topicos.php(125): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->salvar()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 19:36:54 --> Undefined array key 0
+in APPPATH\Controllers\Topicos.php on line 147.
+ 1 APPPATH\Controllers\Topicos.php(147): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Controllers\\Topicos.php', 147)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('45')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 19:38:54 --> Undefined array key 0
+in APPPATH\Controllers\Topicos.php on line 147.
+ 1 APPPATH\Controllers\Topicos.php(147): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Controllers\\Topicos.php', 147)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('58')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 19:40:12 --> Undefined array key 0
+in APPPATH\Controllers\Topicos.php on line 147.
+ 1 APPPATH\Controllers\Topicos.php(147): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Controllers\\Topicos.php', 147)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('59')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 19:47:31 --> Undefined array key 0
+in APPPATH\Controllers\Topicos.php on line 147.
+ 1 APPPATH\Controllers\Topicos.php(147): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Controllers\\Topicos.php', 147)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('60')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 20:22:53 --> Array to string conversion
+in APPPATH\Controllers\Topicos.php on line 137.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Controllers\\Topicos.php', 137)
+ 2 APPPATH\Controllers\Topicos.php(137): str_replace('F:\\', 'ROOTPATH\\public', [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('62')
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 20:25:05 --> Undefined array key 0
+in APPPATH\Controllers\Topicos.php on line 143.
+ 1 APPPATH\Controllers\Topicos.php(143): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Controllers\\Topicos.php', 143)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->apagar('62')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-01-25 21:36:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:37:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:39:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:39:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:39:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:40:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:41:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:41:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:41:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:41:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:42:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:42:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-01-25 21:42:39 --> Undefined array key "HTTP_REFERER"
+in APPPATH\Controllers\Topicos.php on line 81.
+ 1 APPPATH\Controllers\Topicos.php(81): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "HTTP_REFERER"', 'APPPATH\\Controllers\\Topicos.php', 81)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Topicos->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Topicos))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-01-25 21:42:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:43:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-01-25 21:43:43 --> Invalid file: "atas.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('atas.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('atas', [], true)
+ 3 APPPATH\Controllers\Home.php(9): view('atas')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 21:43:55 --> Undefined variable $setores
+in APPPATH\Views\ata.php on line 67.
+ 1 APPPATH\Views\ata.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $setores', 'APPPATH\\Views\\ata.php', 67)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\ata.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('ata', [], true)
+ 5 APPPATH\Controllers\Home.php(9): view('ata')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 21:44:11 --> Invalid file: "Atas.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Atas.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('Atas', [], true)
+ 3 APPPATH\Controllers\Home.php(9): view('Atas')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-01-25 21:44:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:45:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:45:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:45:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:46:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:47:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:53:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:53:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:53:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:53:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:53:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:53:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:54:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:54:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:54:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:55:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 21:56:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:01:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:01:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-01-25 22:08:39 --> syntax error, unexpected token "}", expecting ";"
+in APPPATH\Controllers\Login.php on line 12.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Controllers\\Login.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Login')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Login')
+ 4 SYSTEMPATH\CodeIgniter.php(892): class_exists('\\App\\Controllers\\Login', true)
+ 5 SYSTEMPATH\CodeIgniter.php(486): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 22:08:40 --> syntax error, unexpected token "}", expecting ";"
+in APPPATH\Controllers\Login.php on line 12.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Controllers\\Login.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Login')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Login')
+ 4 SYSTEMPATH\CodeIgniter.php(892): class_exists('\\App\\Controllers\\Login', true)
+ 5 SYSTEMPATH\CodeIgniter.php(486): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-01-25 22:09:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:22:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:22:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:23:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:23:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:23:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:24:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:24:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:25:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:25:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:26:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:26:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:26:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:27:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:27:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:27:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:27:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:27:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:27:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:27:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:28:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:28:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:28:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:28:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:28:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:28:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-01-25 22:28:48 --> Call to undefined method App\Models\TbusuariosModel::getByNome
+in SYSTEMPATH\Model.php on line 841.
+ 1 APPPATH\Controllers\Login.php(28): CodeIgniter\Model->__call('getByNome', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-01-25 22:30:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:30:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-01-25 22:30:09 --> Call to undefined method App\Models\TbusuariosModel::getByNome
+in SYSTEMPATH\Model.php on line 841.
+ 1 APPPATH\Controllers\Login.php(28): CodeIgniter\Model->__call('getByNome', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-01-25 22:31:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:31:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:31:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:32:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:32:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:32:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:35:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:35:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:35:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:35:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:38:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:38:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:38:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:38:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:38:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:39:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:39:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:40:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:40:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:40:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:40:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:40:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:40:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:40:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:41:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:41:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:41:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-01-25 22:41:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-01-25 22:51:26 --> Undefined variable $mensagem
+in APPPATH\Views\mensagens.php on line 29.
+ 1 APPPATH\Views\mensagens.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $mensagem', 'APPPATH\\Views\\mensagens.php', 29)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\mensagens.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('mensagens', [], true)
+ 5 APPPATH\Controllers\Login.php(44): view('mensagens', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 22:55:09 --> Array to string conversion
+in APPPATH\Controllers\Login.php on line 34.
+ 1 APPPATH\Controllers\Login.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Controllers\\Login.php', 34)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 23:52:01 --> Trying to access array offset on value of type null
+in APPPATH\Controllers\Login.php on line 33.
+ 1 APPPATH\Controllers\Login.php(33): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'APPPATH\\Controllers\\Login.php', 33)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 23:52:43 --> Undefined array key 3
+in APPPATH\Controllers\Login.php on line 32.
+ 1 APPPATH\Controllers\Login.php(32): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 3', 'APPPATH\\Controllers\\Login.php', 32)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 23:53:07 --> Undefined array key 3
+in APPPATH\Controllers\Login.php on line 34.
+ 1 APPPATH\Controllers\Login.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 3', 'APPPATH\\Controllers\\Login.php', 34)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 23:53:17 --> Undefined array key 3
+in APPPATH\Controllers\Login.php on line 34.
+ 1 APPPATH\Controllers\Login.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 3', 'APPPATH\\Controllers\\Login.php', 34)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 23:54:10 --> Undefined array key "senha"
+in APPPATH\Controllers\Login.php on line 34.
+ 1 APPPATH\Controllers\Login.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "senha"', 'APPPATH\\Controllers\\Login.php', 34)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 23:54:22 --> Undefined array key "senha"
+in APPPATH\Controllers\Login.php on line 34.
+ 1 APPPATH\Controllers\Login.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "senha"', 'APPPATH\\Controllers\\Login.php', 34)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 23:54:33 --> Undefined array key "senha"
+in APPPATH\Controllers\Login.php on line 34.
+ 1 APPPATH\Controllers\Login.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "senha"', 'APPPATH\\Controllers\\Login.php', 34)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 23:54:41 --> Undefined array key "senha"
+in APPPATH\Controllers\Login.php on line 34.
+ 1 APPPATH\Controllers\Login.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "senha"', 'APPPATH\\Controllers\\Login.php', 34)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 23:55:21 --> Undefined array key "senha"
+in APPPATH\Controllers\Login.php on line 34.
+ 1 APPPATH\Controllers\Login.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "senha"', 'APPPATH\\Controllers\\Login.php', 34)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 23:55:50 --> Undefined array key "senha"
+in APPPATH\Controllers\Login.php on line 34.
+ 1 APPPATH\Controllers\Login.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "senha"', 'APPPATH\\Controllers\\Login.php', 34)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 23:56:54 --> Undefined array key 0
+in APPPATH\Controllers\Login.php on line 34.
+ 1 APPPATH\Controllers\Login.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Controllers\\Login.php', 34)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 23:57:45 --> Undefined array key 0
+in APPPATH\Controllers\Login.php on line 34.
+ 1 APPPATH\Controllers\Login.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Controllers\\Login.php', 34)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 23:58:54 --> Undefined array key 0
+in APPPATH\Controllers\Login.php on line 34.
+ 1 APPPATH\Controllers\Login.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Controllers\\Login.php', 34)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Login->singIn()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

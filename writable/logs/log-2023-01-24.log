@@ -1,0 +1,106 @@
+CRITICAL - 2023-01-24 13:50:47 --> Undefined variable $atas
+in APPPATH\Views\grid_atas.php on line 39.
+ 1 APPPATH\Views\grid_atas.php(39): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $atas', 'APPPATH\\Views\\grid_atas.php', 39)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\grid_atas.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('grid_atas', [], true)
+ 5 APPPATH\Controllers\Home.php(10): view('grid_atas')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-24 13:51:02 --> Undefined variable $atas
+in APPPATH\Views\grid_atas.php on line 39.
+ 1 APPPATH\Views\grid_atas.php(39): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $atas', 'APPPATH\\Views\\grid_atas.php', 39)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\grid_atas.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('grid_atas', [], true)
+ 5 APPPATH\Controllers\Home.php(10): view('grid_atas')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-01-24 13:53:35 --> mysqli_sql_exception: Unknown column 'e.cod' in 'order clause' in F:\Projetos\intramet\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\Projetos\intramet\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`cod...', 0)
+#1 F:\Projetos\intramet\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`cod...')
+#2 F:\Projetos\intramet\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`cod...')
+#3 F:\Projetos\intramet\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`cod...', Array, false)
+#4 F:\Projetos\intramet\app\Controllers\Atas.php(24): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\Projetos\intramet\app\Controllers\Atas.php(32): App\Controllers\Atas->dadosAtas()
+#6 F:\Projetos\intramet\system\CodeIgniter.php(934): App\Controllers\Atas->listarAtas()
+#7 F:\Projetos\intramet\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Atas))
+#8 F:\Projetos\intramet\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 F:\Projetos\intramet\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-01-24 13:53:35 --> Unknown column 'e.cod' in 'order clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`cod`, `a`.`data`, `a`.`descricao`, `s`.`descricao` as `descsetor`, `a`.`participantes`
+FROM `tbatas` `a`
+JOIN `tbsetores` `s` ON `s`.`cod` = `a`.`codsetor`
+ORDER BY `e`.`cod` ASC', [], false)
+ 2 APPPATH\Controllers\Atas.php(24): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Atas.php(32): App\Controllers\Atas->dadosAtas()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Atas->listarAtas()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Atas))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-24 13:54:03 --> Undefined variable $reuniao
+in APPPATH\Views\grid_atas.php on line 44.
+ 1 APPPATH\Views\grid_atas.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $reuniao', 'APPPATH\\Views\\grid_atas.php', 44)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\grid_atas.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('grid_atas', [], true)
+ 5 APPPATH\Controllers\Atas.php(32): view('grid_atas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Atas->listarAtas()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Atas))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-24 14:05:54 --> Invalid file: "mensagem.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('mensagem.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('mensagem', [], true)
+ 3 APPPATH\Controllers\Atas.php(53): view('mensagem', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Atas->salvar()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Atas))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-24 14:10:43 --> Undefined variable $Ata
+in APPPATH\Views\grid_atas.php on line 51.
+ 1 APPPATH\Views\grid_atas.php(51): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $Ata', 'APPPATH\\Views\\grid_atas.php', 51)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\grid_atas.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('grid_atas', [], true)
+ 5 APPPATH\Controllers\Atas.php(39): view('grid_atas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Atas->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Atas))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-24 14:12:19 --> Too few arguments to function App\Controllers\Atas::apagar(), 0 passed in F:\Projetos\intramet\system\CodeIgniter.php on line 934 and exactly 1 expected
+in APPPATH\Controllers\Atas.php on line 58.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Atas->apagar()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Atas))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-24 14:25:31 --> Undefined variable $dadosSetores
+in APPPATH\Views\ata.php on line 67.
+ 1 APPPATH\Views\ata.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dadosSetores', 'APPPATH\\Views\\ata.php', 67)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\ata.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('ata', [], true)
+ 5 APPPATH\Controllers\Atas.php(55): view('ata')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Atas->cadastrar()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Atas))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-24 14:26:10 --> Undefined variable $dadosSetores
+in APPPATH\Views\ata.php on line 67.
+ 1 APPPATH\Views\ata.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dadosSetores', 'APPPATH\\Views\\ata.php', 67)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\ata.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('ata', [], true)
+ 5 APPPATH\Controllers\Atas.php(56): view('ata', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Atas->cadastrar()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Atas))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

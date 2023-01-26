@@ -18,9 +18,19 @@ class Atas extends BaseController
     {
         $db = db_connect();
         $builder = $db->table('tbatas a');
-        $builder->select('a.cod, a.data, a.descricao, s.descricao, a.participantes ');
+        $builder->select('a.cod, a.data, a.descricao, s.descricao as descsetor, a.participantes ');
         $builder->join('tbsetores s', 's.cod = a.codsetor');
-        $builder->orderBy('e.cod', 'ASC');
+        $builder->orderBy('a.cod', 'ASC');
+        $query = $builder->get();
+
+        return $query->getResultArray();
+    }
+
+    public function dadosSetores()
+    {
+        $db = db_connect();
+        $builder = $db->table('tbsetores s');
+        $builder->select('s.cod, s.descricao ');
         $query = $builder->get();
 
         return $query->getResultArray();
@@ -35,31 +45,43 @@ class Atas extends BaseController
 
     public function index()
     {
-        return view('ata');
+        return view('grid_atas', [
+            'atas' => $this->dadosAtas()
+        ]);
+    }
+
+    public function cadastrar()
+    {
+        return view('ata', [
+            'setores' => $this->dadosSetores()
+        ]);
     }
 
     public function salvar() 
     {
-        /*
-        if ($this->atasModel->save($this->request->getPost())) {
-            //return view('ata');
-            echo "Ata salva";
-        } else {
-            echo "Erro";
-        }
-        
-        $this->atasModel->save([
-            'data' => $this->request->getVar('data'),
-            'descricao' => $this->request->getVar('descricao'),
-            'codsetor' => $this->request->getVar('codsetor'),
-            'participantes' => $this->request->getVar('participantes'),
+        $this->atasModel->save($this->request->getPost());        
+        echo view('mensagens', [
+            'mensagem' => 'Usuário Salvo com Sucesso',
+            'tipoMensagem'  => 'is-success',
+            'link' => 'public/Atas'
         ]);
-
-        echo view('ata');
-        */
-
-        $this->atasModel->save($this->request->getPost());
-        return view('ata');
     }
 
+    public function apagar($cod)
+    {
+        $this->atasModel->where('cod', $cod)->delete();
+        echo view('mensagens', [
+            'mensagem' => 'Registro Excluído com Sucesso',
+            'tipoMensagem'  => 'is-success',
+            'link' => 'public/Atas'
+        ]);
+    }
+
+    public function editar($cod)
+    {
+        return view('ata', [
+            'dados_ata' => $this->atasModel->find($cod),
+            'setores' => $this->dadosSetores()
+        ]);        
+    }
 }

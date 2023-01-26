@@ -26,9 +26,6 @@ ROUTES
 - São configuradas no arquivo App/Config/Routes.php
 
 
-
-
-
 PAGINAÇÃO 
 
 /*
@@ -40,5 +37,8 @@ na view...
 */
 
 
+IMPLEM<NTAR
 
+$sessao = session()->get('user');
 
+var_dump(isset($sessao));

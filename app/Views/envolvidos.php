@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Intranet - G.MTDS</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/img/favicon/favicon.ico') ?>">
+    <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/img/favicon.ico') ?>">
 
 </head>
 
@@ -20,9 +20,9 @@
 
         <h1 class="title">Envolvidos</h1>
 
-        <button class="button is-small">Cadastrar</button>
+        <a href='Envolvidos/cadastrar'><button class="button is-small is-success">Novo</button></a>
 
-            <table class="table is-fullwidth is-hoverable is-striped">
+            <table class="table is-fullwidth is-hoverable is-striped ">
 
                 <thead>
 
@@ -44,8 +44,8 @@
                         <td><?php echo $envolvido['nome']; ?></td>
                         <td><?php echo $envolvido['descricao']; ?></td>
                         <td>
-                            <button class="button is-small">Editar</button>
-                            <button class="button is-small">Apagar</button>
+                            <a href='Envolvidos/editar/<?php echo $envolvido['cod']; ?>'><button class="button is-small is-warning" value="<?php echo $envolvido['cod']; ?>">Editar</button></a>
+                            <a href='Envolvidos/apagar/<?php echo $envolvido['cod']; ?>'><button class="button is-small is-danger" value="<?php echo $envolvido['cod']; ?>">Apagar</button></a>
                         </td>
 
                     </tr>

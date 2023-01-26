@@ -29,18 +29,45 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
-$routes->get('/Status', 'Status::index');
-$routes->get('/Setores', 'Setores::index');
-$routes->get('/Setores/cadastrar', 'Setores::cadastrar');
-$routes->get('/Envolvidos', 'Envolvidos::index');
-$routes->get('/Atas', 'Atas::index');
-$routes->get('/Topicos', 'Topicos::index');
-$routes->get('/Topicos/topicosComercial', 'Topicos::topicosComercial');
+//$routes->get('/', 'Home::index');
+$routes->get('/',       'Login::index');
+$routes->get('/Home',   'Home::index');
 
-$routes->post('/Setores/salvar', 'Setores::salvar');
-$routes->post('/Atas/salvar', 'Atas::salvar');
-$routes->post('/Topicos/salvar', 'Topicos::salvar');
+$routes->post('/Login/signIn',  'Login::signIn');
+$routes->get('/Login/signOut', 'Login::signOut');
+
+$routes->get('/Status',                 'Status::index');
+$routes->get('/Status/cadastrar',       'Status::cadastrar');
+$routes->post('/Status/salvar',         'Status::salvar');
+$routes->get('/Status/apagar/(:num)',   'Status::apagar/$1');
+$routes->get('/Status/editar/(:num)',   'Status::editar/$1');
+
+$routes->get('/Setores',                'Setores::index');
+$routes->get('/Setores/cadastrar',      'Setores::cadastrar');
+$routes->post('/Setores/salvar',        'Setores::salvar');
+$routes->get('/Setores/apagar/(:num)',  'Setores::apagar/$1');
+$routes->get('/Setores/editar/(:num)',  'Setores::editar/$1');
+
+$routes->get('/Envolvidos',                 'Envolvidos::index');
+$routes->get('/Envolvidos/cadastrar',       'Envolvidos::cadastrar');
+$routes->post('/Envolvidos/salvar',         'Envolvidos::salvar');
+$routes->get('/Envolvidos/apagar/(:num)',   'Envolvidos::apagar/$1');
+$routes->get('/Envolvidos/editar/(:num)',   'Envolvidos::editar/$1');
+
+$routes->get('/Atas',               'Atas::index');
+$routes->post('/Atas/salvar',       'Atas::salvar');
+$routes->get('/Atas/cadastrar',     'Atas::cadastrar');
+$routes->get('/Atas/apagar/(:num)', 'Atas::apagar/$1');
+$routes->get('/Atas/editar/(:num)', 'Atas::editar/$1');
+
+$routes->get('/Topicos',                            'Topicos::index');
+$routes->post('/Topicos/salvar',                    'Topicos::salvar');
+$routes->get('/Topicos/topicosComercial',           'Topicos::topicosComercial');
+$routes->get('/Topicos/topicosAudiplanner',         'Topicos::topicosAudiplanner');
+$routes->get('/Topicos/topicosDiretoriaFinanceiro', 'Topicos::topicosDiretoriaFinanceiro');
+$routes->get('/Topicos/apagar/(:num)',              'Topicos::apagar/$1');
+$routes->get('/Topicos/editar/(:num)',              'Topicos::editar/$1');
+
 
 /*
  * --------------------------------------------------------------------
