@@ -35,8 +35,7 @@
                         <th>Assunto</th>                        
                         <th>Responsável</th>
                         <th>Status</th>
-                        <th>Diretoria</th>
-                        <th>Nº Ata</th>                        
+                        <th>Diretoria</th>                
                         <th>Participantes</th>
                         <th>Opções</th>
 
@@ -52,8 +51,7 @@
                         <td><?php echo $topico['assunto'] ?></td>                        
                         <td><?php echo $topico['nome'] ?></td>
                         <td><?php echo $topico['descstatus'] ?></td>
-                        <td><?php echo $topico['diretoria'] == 1 ? "Sim" : "Não"; ?></td>
-                        <td><?php echo $topico['coda'] ?></td>                        
+                        <td><?php echo $topico['diretoria'] == 1 ? "Sim" : "Não"; ?></td>                  
                         <td><?php echo $topico['participantes'] ?></td>
                         <td rowspan="2" style="vertical-align : middle;text-align:center;">
                             <a href='editar/<?php echo $topico['codt']; ?>'><button class="button is-small is-warning" value="<?php echo $topico['descsetor']; ?>" name="btnEditar" id="btnEditar" >Editar</button></a>
