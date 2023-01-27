@@ -129,7 +129,7 @@
                             <div class="select">
                                 <select name="codstatus" id="codstatus">
                                     <option>Selecione o Status</option>
-                                    <?php foreach ($status as $stato) : ?>
+                                    <?php foreach ($status as $stato) :?>
                                         <option value="<?php echo $stato['cod']; ?>"><?php echo $stato['descricao']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
