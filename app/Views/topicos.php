@@ -92,7 +92,7 @@
                         <?php if (isset($dados_topicos)) : ?>
 
                             <div class="control">
-                                <input class="input" type="text" value="<?php echo $dados_topicos['codresponsavel']; ?>" name="codresponsavel" id="codresponsavel">
+                                <input class="input" type="text" value="<?php echo $responsavel[0]; ?>" name="codresponsavel" id="codresponsavel">
                             </div>
 
                         <?php else : ?>
@@ -121,7 +121,7 @@
                         <?php if (isset($dados_topicos)) : ?>
 
                             <div class="control">
-                                <input class="input" type="text" value="<?php echo $dados_topicos['codstatus']; ?>" name="codstatus" id="codstatus">
+                                <input class="input" type="text" value="<?php echo $dados_topicos['codstatus'] == 1 ? 'Sim' : 'Não' ; ?>" name="codstatus" id="codstatus">
                             </div>
 
                         <?php else : ?>

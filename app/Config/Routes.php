@@ -62,9 +62,17 @@ $routes->get('/Atas/editar/(:num)', 'Atas::editar/$1');
 
 $routes->get('/Topicos',                            'Topicos::index');
 $routes->post('/Topicos/salvar',                    'Topicos::salvar');
-$routes->get('/Topicos/topicosComercial',           'Topicos::topicosComercial');
 $routes->get('/Topicos/topicosAudiplanner',         'Topicos::topicosAudiplanner');
+$routes->get('/Topicos/topicosComercial',           'Topicos::topicosComercial');
 $routes->get('/Topicos/topicosDiretoriaFinanceiro', 'Topicos::topicosDiretoriaFinanceiro');
+$routes->get('/Topicos/topicosFiscon', 'Topicos::topicosFiscon');
+$routes->get('/Topicos/topicosKronos', 'Topicos::topicosKronos');
+$routes->get('/Topicos/topicosLegalizacao', 'Topicos::topicosLegalizacao');
+$routes->get('/Topicos/topicosSetPessoal', 'Topicos::topicosSetPessoal');
+$routes->get('/Topicos/topicosStartBI', 'Topicos::topicosStartBI');
+$routes->get('/Topicos/topicosTecnologia', 'Topicos::topicosTecnologia');
+$routes->get('/Topicos/topicosPublicidade', 'Topicos::topicosPublicidade');
+
 $routes->get('/Topicos/apagar/(:num)',              'Topicos::apagar/$1');
 $routes->get('/Topicos/editar/(:num)',              'Topicos::editar/$1');
 

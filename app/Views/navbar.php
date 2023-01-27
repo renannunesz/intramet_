@@ -34,6 +34,20 @@
 
           <a class="navbar-item" href="<?php echo base_url('public/Topicos/topicosDiretoriaFinanceiro'); ?>"> Diretoria/Financeiro </a>
 
+          <a class="navbar-item" href="<?php echo base_url('public/Topicos/topicosFiscon'); ?>"> Fiscon </a>
+
+          <a class="navbar-item" href="<?php echo base_url('public/Topicos/topicosKronos'); ?>"> Kronos </a>
+
+          <a class="navbar-item" href="<?php echo base_url('public/Topicos/topicosLegalizacao'); ?>"> Legalizacao </a>
+
+          <a class="navbar-item" href="<?php echo base_url('public/Topicos/topicosSetPessoal'); ?>"> Set. Pessoal </a>
+
+          <a class="navbar-item" href="<?php echo base_url('public/Topicos/topicosStartBI'); ?>"> Start BI </a>
+
+          <a class="navbar-item" href="<?php echo base_url('public/Topicos/topicosTecnologia'); ?>"> Tecnologia </a>
+
+          <a class="navbar-item" href="<?php echo base_url('public/Topicos/topicosPublicidade'); ?>"> Publicidade </a>
+
         </div>
 
       </div>

@@ -18,7 +18,9 @@
 
         <div class="section column">
 
-        <h1 class="title">Reuniões - <?php echo $setor; ?></h1>
+        <div class="box" style="background-color:#<?php echo $cor; ?>;">
+            <h3 class="title is-3">Reuniões - <?php echo $setor; ?></h3>
+        </div>
 
         <a href="<?php echo base_url('public/Topicos') ?>"><button class="button is-success is-small">Novo</button></a>
 

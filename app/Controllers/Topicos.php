@@ -3,15 +3,20 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\TbenvolvidosModel;
 use App\Models\TbtopicosModel;
 
 class Topicos extends BaseController
 {
     private $topicosModel;       
     
+    private $responsavel;
+
     public function __construct()
     {
         $this->topicosModel = new tbtopicosModel();
+
+        $this->responsavel = new tbenvolvidosModel();
     }
 
     public function dadosAtas()
@@ -90,20 +95,21 @@ class Topicos extends BaseController
         ]);
     }
 
-    public function topicosComercial()
-    {
-        return view('grid_reunioes',[
-            'grid_reunioes' => $this->dadosReuniao(2),
-            'setor' => 'Comercial'
-        ]);
-
-    }
-
     public function topicosAudiplanner()
     {
         return view('grid_reunioes',[
             'grid_reunioes' => $this->dadosReuniao(1),
-            'setor' => 'Audiplanner'
+            'setor' => 'Audiplanner',
+            'cor' => 'FFC000'
+        ]);
+    }
+
+    public function topicosComercial()
+    {
+        return view('grid_reunioes',[
+            'grid_reunioes' => $this->dadosReuniao(2),
+            'setor' => 'Comercial',
+            'cor' => 'FF7C80'
         ]);
     }
     
@@ -111,9 +117,73 @@ class Topicos extends BaseController
     {
         return view('grid_reunioes',[
             'grid_reunioes' => $this->dadosReuniao(3),
-            'setor' => 'Diretoria/Financeiro'
+            'setor' => 'Diretoria/Financeiro',
+            'cor' => 'F4B084'
         ]); 
-    }    
+    }  
+    
+    public function topicosFiscon()
+    {
+        return view('grid_reunioes',[
+            'grid_reunioes' => $this->dadosReuniao(4),
+            'setor' => 'Fiscon',
+            'cor' => '5B9BD5'
+        ]);
+    }
+
+    public function topicosKronos()
+    {
+        return view('grid_reunioes',[
+            'grid_reunioes' => $this->dadosReuniao(5),
+            'setor' => 'Kronos',
+            'cor' => '00B050'
+        ]);
+    }
+
+    public function topicosLegalizacao()
+    {
+        return view('grid_reunioes',[
+            'grid_reunioes' => $this->dadosReuniao(6),
+            'setor' => 'Legalizacao',
+            'cor' => 'F22816'
+        ]);
+    }
+
+    public function topicosSetPessoal()
+    {
+        return view('grid_reunioes',[
+            'grid_reunioes' => $this->dadosReuniao(7),
+            'setor' => 'Setor Pessoal',
+            'cor' => '7030A0'
+        ]);
+    }
+
+    public function topicosStartBI()
+    {
+        return view('grid_reunioes',[
+            'grid_reunioes' => $this->dadosReuniao(8),
+            'setor' => 'Start BI',
+            'cor' => 'F27F3D'
+        ]);
+    }
+
+    public function topicosTecnologia()
+    {
+        return view('grid_reunioes',[
+            'grid_reunioes' => $this->dadosReuniao(9),
+            'setor' => 'Tecnologia',
+            'cor' => '3805F2'
+        ]);
+    }
+
+    public function topicosPublicidade()
+    {
+        return view('grid_reunioes',[
+            'grid_reunioes' => $this->dadosReuniao(10),
+            'setor' => 'Publicidade',
+            'cor' => '694DE3'
+        ]);
+    }
 
     public function salvar()
     {
@@ -150,9 +220,16 @@ class Topicos extends BaseController
     {
         $setor = $this->dadosSetor($cod);
 
+        $codResp = $this->topicosModel->where('cod', $cod)->findColumn('codresponsavel');
+
+        $resp = $this->responsavel->where('cod', 24)->findColumn('nome');
+
+        //var_dump($resp);
+
         return view('topicos', [
             'dados_topicos' => $this->topicosModel->find($cod),
-            'setor'         => str_replace("/", "", $setor[0]['descricao'])
+            'setor'         => str_replace("/", "", $setor[0]['descricao']),
+            'responsavel'   => $this->responsavel->where('cod', $codResp)->findColumn('nome')
         ]);
     }
 }
