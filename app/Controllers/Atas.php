@@ -4,14 +4,17 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\TbatasModel;
+use App\Models\tbsetoresModel;
 
 class Atas extends BaseController
 {
     private $atasModel;
+    private $setoresModel;
 
     public function __construct()
     {
         $this->atasModel = new tbatasModel();
+        $this->setoresModel = new tbsetoresModel();
     }
 
     public function dadosAtas()
@@ -20,7 +23,7 @@ class Atas extends BaseController
         $builder = $db->table('tbatas a');
         $builder->select('a.cod, a.data, a.descricao, s.descricao as descsetor, a.participantes ');
         $builder->join('tbsetores s', 's.cod = a.codsetor');
-        $builder->orderBy('a.cod', 'ASC');
+        $builder->orderBy('a.cod', 'DESC');
         $query = $builder->get();
 
         return $query->getResultArray();
@@ -79,9 +82,11 @@ class Atas extends BaseController
 
     public function editar($cod)
     {
+        $codSetor = $this->atasModel->where('cod', $cod)->findColumn('codsetor');
+
         return view('ata', [
             'dados_ata' => $this->atasModel->find($cod),
-            'setores' => $this->dadosSetores()
+            'setores'   => $this->setoresModel->where('cod', $codSetor )->findColumn('descricao')
         ]);        
     }
 }

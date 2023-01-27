@@ -32,7 +32,7 @@
 
                         <div class="field">
                             <p class="control">
-                                <input class="input" type="date" name="data" id="data" placeholder="Data" value="<?php echo isset($dados_ata['data']) ? $dados_ata['data'] : '' ;?>">
+                                <input class="input" type="date" name="data" id="data" placeholder="Data" value="<?php echo isset($dados_ata['data']) ? $dados_ata['data'] : ''; ?>" required>
                             </p>
                         </div>
 
@@ -47,7 +47,7 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input class="input" type="text" name="descricao" id="descricao" placeholder="Breve descrição da Ata." value="<?php echo isset($dados_ata['descricao']) ? $dados_ata['descricao'] : '' ;?>">
+                                <input class="input" type="text" name="descricao" id="descricao" placeholder="Breve descrição da Ata." value="<?php echo isset($dados_ata['descricao']) ? $dados_ata['descricao'] : ''; ?>">
                             </div>
                         </div>
                     </div>
@@ -61,14 +61,24 @@
 
                     <div class="field-body">
 
-                        <div class="select">
-                            <select id="codsetor" name="codsetor">
-                                <option value="">Selecione o Setor</option>
-                                <?php foreach ($setores as $setor): ?>
-                                <option value="<?php echo $setor['cod']; ?>"><?php echo $setor['descricao']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
+                        <?php if (isset($dados_ata)) : ?>
+
+                            <div class="control">
+                                <input class="input has-background-grey-lighter" type="text" value="<?php echo $setores[0]; ?>" readonly>
+                            </div>
+
+                        <?php else : ?>
+
+                            <div class="select">
+                                <select id="codsetor" name="codsetor" required>
+                                    <option value="">Selecione o Setor</option>
+                                    <?php foreach ($setores as $setor) : ?>
+                                        <option value="<?php echo $setor['cod']; ?>"><?php echo $setor['descricao']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                        <?php endif; ?>
 
                     </div>
                 </div>
@@ -81,13 +91,13 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input class="input" type="text" name="participantes" id="participantes" placeholder="Envolvidos" value="<?php echo isset($dados_ata['participantes']) ? $dados_ata['participantes'] : '' ;?>">
+                                <input class="input" type="text" name="participantes" id="participantes" placeholder="Envolvidos" value="<?php echo isset($dados_ata['participantes']) ? $dados_ata['participantes'] : ''; ?>">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <input type="hidden" name="cod" id="cod" value="<?php echo isset($dados_ata['cod']) ? $dados_ata['cod'] : '' ;?>">
+                <input type="hidden" name="cod" id="cod" value="<?php echo isset($dados_ata['cod']) ? $dados_ata['cod'] : ''; ?>">
 
                 <!-- Salvar -->
                 <div class="field is-horizontal">

@@ -24,21 +24,19 @@
 
         <a href="<?php echo base_url('public/Topicos') ?>"><button class="button is-success is-small">Novo</button></a>
 
-            <table class="table is-fullwidth is-hoverable is-striped">
+            <table class="table is-fullwidth is-narrow is-hoverable">
 
-                <thead>
+                <thead >
 
                     <tr>
 
-                        <th>Data</th>
-                        <th>Setor</th>
-                        <th>Assunto</th>
-                        <th>Providencia</th>
+                        <th>Ata</th>
+                        <th>Data</th>                       
+                        <th>Assunto</th>                        
                         <th>Responsável</th>
                         <th>Status</th>
                         <th>Diretoria</th>
-                        <th>Nº Ata</th>
-                        <th>Descrição</th>
+                        <th>Nº Ata</th>                        
                         <th>Participantes</th>
                         <th>Opções</th>
 
@@ -48,22 +46,24 @@
                 <tbody>
                     <?php foreach($grid_reunioes as $topico):  ?>                    
                     <tr>
-
-                        <td><?php echo implode("/", array_reverse(explode("-", $topico['data']))); ?></td>
-                        <td><?php echo $topico['descsetor'] ?></td>
-                        <td><?php echo $topico['assunto'] ?></td>
-                        <td><?php echo $topico['providencia'] ?></td>
+                    
+                        <td rowspan="2" style="vertical-align : middle;text-align:center;"><?php echo $topico['descata'] ?></td>
+                        <td><?php echo implode("/", array_reverse(explode("-", $topico['data']))); ?></td>                        
+                        <td><?php echo $topico['assunto'] ?></td>                        
                         <td><?php echo $topico['nome'] ?></td>
                         <td><?php echo $topico['descstatus'] ?></td>
                         <td><?php echo $topico['diretoria'] == 1 ? "Sim" : "Não"; ?></td>
-                        <td><?php echo $topico['coda'] ?></td>
-                        <td><?php echo $topico['descata'] ?></td>
+                        <td><?php echo $topico['coda'] ?></td>                        
                         <td><?php echo $topico['participantes'] ?></td>
-                        <td>
+                        <td rowspan="2" style="vertical-align : middle;text-align:center;">
                             <a href='editar/<?php echo $topico['codt']; ?>'><button class="button is-small is-warning" value="<?php echo $topico['descsetor']; ?>" name="btnEditar" id="btnEditar" >Editar</button></a>
                             <a href='apagar/<?php echo $topico['codt']; ?>'><button class="button is-small is-danger"  value="<?php echo $topico['descsetor']; ?>" name="btnApagar" id="btnApagar" >Apagar</button></a>
                         </td>
 
+                    </tr>
+                    <tr>
+                        <td><strong>Descrição:</strong></td>
+                        <td colspan="6"><?php echo $topico['providencia'] ?></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

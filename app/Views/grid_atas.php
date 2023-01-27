@@ -49,7 +49,7 @@
                             <td><?php echo $ata['participantes'] ?></td>
                             <td>
                                 <a href='Atas/editar/<?php echo $ata['cod']; ?>'><button class="button is-small is-warning" value="<?php echo $ata['cod']; ?>">Editar</button></a>
-                                <a href='Atas/apagar/<?php echo $ata['cod']; ?>'><button class="button is-small is-danger" value="<?php echo $ata['cod']; ?>">Apagar</button></a>
+                                <!-- <a href='Atas/apagar/<?php echo $ata['cod']; ?>'><button class="button is-small is-danger" value="<?php echo $ata['cod']; ?>">Apagar</button></a> -->
                             </td>
 
                         </tr>

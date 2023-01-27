@@ -1,0 +1,27 @@
+>>>>>>>>>>>> A FAZER
+
+- IMPLEMENTAR A CONDIÇÃO DE APAGAR ATA SOMENTE SE NÂO HOUVER TOPICO VINCULADO = Botão apagar Ata
+
+Botão de pesquisa e ordenação
+Data de última alteração
+
+- > Direcionar para SETOR
+Remover responsável
+
+
+
+
+
+
+Criar validações
+Grid pra finalizados
+Div com barra de rolagem para os tópicos
+Atas somente do setor
+
+
+>>>>>>>>>>>> FEITO
+
+Tratar espaço de campo na tabela
+Remover da grid setor e responsável
+Descrição da ata 1 campo e remove data
+mudar o campo de providencia para descrição

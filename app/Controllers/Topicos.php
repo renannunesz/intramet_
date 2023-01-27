@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\TbenvolvidosModel;
+use App\Models\tbstatusModel;
 use App\Models\TbtopicosModel;
 
 class Topicos extends BaseController
@@ -12,11 +13,15 @@ class Topicos extends BaseController
     
     private $responsavel;
 
+    private $statusModel;
+
     public function __construct()
     {
         $this->topicosModel = new tbtopicosModel();
 
         $this->responsavel = new tbenvolvidosModel();
+
+        $this->statusModel = new tbstatusModel();
     }
 
     public function dadosAtas()
@@ -80,18 +85,43 @@ class Topicos extends BaseController
         return $query->getResultArray();
     }
 
+    public function corStatus($status)
+    {
+        switch ($status) {
+            case 'Finalizado':
+                echo 'has-background-success';
+                break;
+
+            case 'Em Andamento':
+                echo 'has-background-warning';
+                break;
+                    
+            case 'Diretoria':
+                echo 'has-background-primary';
+                break;
+
+            case 'Informativo':
+                echo 'has-background-info';
+                break;                              
+            
+            default:
+                echo 'has-background-danger';
+                break;
+        }
+    }
+
     public function index()
     {
         //Pegando dados da URL, pois não existe formulario
         $url_anterior = $_SERVER['HTTP_REFERER'];
         $url_partes = explode('/', $url_anterior);
-        $setor = substr($url_partes[6],7);
+        $setor = substr($url_partes[6],7);        
 
         return view('topicos',[
             'topicos_atas' => $this->dadosAtas(),
-            'envolvidos'   => $this->dadosEnvolvidos(),
-            'status'       => $this->dadosStatus(),
-            'setor'        => $setor
+            'envolvidos'   => $this->responsavel->find(),
+            'status'       => $this->statusModel->find(),
+            'setor'        => $setor            
         ]);
     }
 
@@ -219,17 +249,15 @@ class Topicos extends BaseController
     public function editar($cod)
     {
         $setor = $this->dadosSetor($cod);
-
-        $codResp = $this->topicosModel->where('cod', $cod)->findColumn('codresponsavel');
-
-        $resp = $this->responsavel->where('cod', 24)->findColumn('nome');
-
-        //var_dump($resp);
+        $codResp =      $this->topicosModel->where('cod', $cod)->findColumn('codresponsavel');
+        $codStatus =    $this->topicosModel->where('cod', $cod)->findColumn('codstatus');
 
         return view('topicos', [
             'dados_topicos' => $this->topicosModel->find($cod),
             'setor'         => str_replace("/", "", $setor[0]['descricao']),
-            'responsavel'   => $this->responsavel->where('cod', $codResp)->findColumn('nome')
+            'responsavel'   => $this->responsavel->where('cod', $codResp)->findColumn('nome'),
+            'status_atual'  => $this->statusModel->where('cod', $codStatus)->findColumn('descricao'),
+            'status'        => $this->statusModel->find()
         ]);
     }
 }

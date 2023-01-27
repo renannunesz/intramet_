@@ -35,16 +35,16 @@
                         <?php if (isset($dados_topicos)) : ?>
 
                             <div class="control">
-                                <input class="input has-background-grey-light" type="number" value="<?php echo $dados_topicos['codata']; ?>" name="codata" id="codata">
+                                <input class="input has-background-grey-lighter" type="number" value="<?php echo $dados_topicos['codata']; ?>" name="codata" id="codata" readonly>
                             </div>
 
                         <?php else : ?>
 
                             <div class="select">
-                                <select id="codata" name="codata">
+                                <select id="codata" name="codata" required>
                                     <option>Selecione a Ata</option>
                                     <?php foreach ($topicos_atas as $ata) : ?>
-                                        <option value="<?php echo $ata['cod']; ?>"><?php echo $ata['cod'] . " - " . $ata['data'] . " - " . $ata['descricao'] . " - " . $ata['descsetor']; ?></option>
+                                        <option value="<?php echo $ata['cod']; ?>"><?php echo implode("/", array_reverse(explode("-", $ata['data']))) . " - " . $ata['descricao'] . " - " . $ata['descsetor'] . " - " . $ata['cod'] ; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -98,7 +98,7 @@
                         <?php else : ?>
 
                             <div class="select">
-                                <select name="codresponsavel" id="codresponsavel">
+                                <select name="codresponsavel" id="codresponsavel" required>
                                     <option>Selecione o Responsável</option>
                                     <?php foreach ($envolvidos as $responsavel) : ?>
                                         <option value="<?php echo $responsavel['cod']; ?>"> <?php echo $responsavel['nome']; ?> </option>
@@ -117,26 +117,14 @@
                         <label class="label">Status</label>
                     </div>
                     <div class="field-body">
-
-                        <?php if (isset($dados_topicos)) : ?>
-
-                            <div class="control">
-                                <input class="input" type="text" value="<?php echo $dados_topicos['codstatus'] == 1 ? 'Sim' : 'Não' ; ?>" name="codstatus" id="codstatus">
-                            </div>
-
-                        <?php else : ?>
-
-                            <div class="select">
-                                <select name="codstatus" id="codstatus">
-                                    <option>Selecione o Status</option>
-                                    <?php foreach ($status as $stato) :?>
-                                        <option value="<?php echo $stato['cod']; ?>"><?php echo $stato['descricao']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-
-                        <?php endif; ?>
-
+                        <div class="select">
+                            <select name="codstatus" id="codstatus" required>
+                                <option> <?php echo isset($status_atual) ? 'Atual - ' . $status_atual[0] : 'Selecione o Status'; ?>    </option>
+                                <?php foreach ($status as $stato) : ?>
+                                    <option value="<?php echo $stato['cod']; ?>"><?php echo $stato['descricao']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -146,18 +134,30 @@
                         <label class="label">Enviar para Diretoria?</label>
                     </div>
                     <div class="field-body">
-                        <div class="field is-narrow">
+
+                        <?php if (isset($dados_topicos)) : ?>
+
                             <div class="control">
-                                <label class="radio">
-                                    <input type="radio" name="diretoria" value="1">
-                                    Sim
-                                </label>
-                                <label class="radio">
-                                    <input type="radio" name="diretoria" value="2">
-                                    Não
-                                </label>
+                                <input class="input" type="text" value="<?php echo $dados_topicos['codstatus'] == 1 ? 'Sim' : 'Não'; ?>" name="codstatus" id="codstatus">
                             </div>
-                        </div>
+
+                        <?php else : ?>
+
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <label class="radio">
+                                        <input type="radio" name="diretoria" value="1">
+                                        Sim
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="diretoria" value="2">
+                                        Não
+                                    </label>
+                                </div>
+                            </div>
+
+                        <?php endif; ?>
+
                     </div>
                 </div>
 
@@ -174,7 +174,7 @@
 
                                 <input class="button is-primary" type="submit" value="Salvar Topico">
 
-                                <a href="<?php echo base_url('public/Topicos/topicos'.$setor); ?>"><input type="button" value="Voltar" class="button has-background-grey-light"></a>
+                                <a href="<?php echo base_url('public/Topicos/topicos' . $setor); ?>"><input type="button" value="Voltar" class="button has-background-grey-light"></a>
 
                             </div>
                         </div>
