@@ -8,7 +8,7 @@ Data de última alteração
 - > Direcionar para SETOR
 Remover responsável
 
-
+Mudar cor do box tecnologia
 
 
 
