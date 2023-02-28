@@ -2,12 +2,8 @@
 
 namespace App\Controllers;
 
-spl_autoload_register(array("DevExtreme\LoadHelper", "LoadModule"));
-
 use App\Controllers\BaseController;
 use App\Models\tbsetoresModel;
-use DevExtreme\DbSet;
-use DevExtreme\DataSourceLoader;
 
 class Setores extends BaseController
 {
