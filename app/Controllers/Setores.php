@@ -2,8 +2,13 @@
 
 namespace App\Controllers;
 
+require_once("/Projetos/intramet/assets/DevExtreme/LoadHelper.php");
+spl_autoload_register(array("DevExtreme\LoadHelper", "LoadModule"));
+
 use App\Controllers\BaseController;
 use App\Models\tbsetoresModel;
+use DevExtreme\DbSet;
+use DevExtreme\DataSourceLoader;
 
 class Setores extends BaseController
 {
@@ -21,35 +26,43 @@ class Setores extends BaseController
         ]);
     }
 
-    public function cadastrar()
-    {
-        return view('cad_setor');
-    }
-
     public function salvar()
     {
         $this->setoresModel->save($this->request->getPost());
-        echo view('mensagens', [
-            'mensagem' => 'Setor Salvo com Sucesso',
-            'tipoMensagem'  => 'is-success',
-            'link' => 'public/Setores'
-        ]);    
+
+        return view('setores', [
+            'setores' => $this->setoresModel->findAll()
+        ]);
     }
 
     public function apagar($cod)
     {
-        $this->setoresModel->where('cod', $cod)->delete();   
-        echo view('mensagens', [
-            'mensagem' => 'Registro Excluído com Sucesso',
-            'tipoMensagem'  => 'is-success',
-            'link' => 'public/Setores'
+        $this->setoresModel->where('cod', $cod)->delete();
+
+        return view('setores', [
+            'setores' => $this->setoresModel->findAll()
         ]);
     }
 
     public function editar($cod)
     {
-        return view('cad_setor', [
+        return view('setor', [
             'setor' => $this->setoresModel->find($cod)
         ]);        
+    }
+
+    ######################### Funções em DESUSO #########################
+
+    public function cadastrar()
+    {
+        return view('cad_setor');
+    }
+
+    public function testevalid()
+    {
+        return view('setores_teste', [
+            'setores' => $this->setoresModel->find()
+        ]); 
+
     }
 }

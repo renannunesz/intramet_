@@ -20,10 +20,11 @@ class tbtopicosModel extends Model
         'cod',
         'codata',
         'assunto',
-        'providencia',
-        'codresponsavel',
+        'descricao',
+        'codset_origem',
+        'codset_destino',
         'codstatus',
-        'diretoria'
+        'participantes'
     ];
 
     // Dates

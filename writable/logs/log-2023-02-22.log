@@ -1,0 +1,56 @@
+INFO - 2023-02-22 00:13:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-02-22 00:13:14 --> Call to undefined method App\Models\tbtopicosModel::count
+in SYSTEMPATH\Model.php on line 841.
+ 1 APPPATH\Controllers\Atas.php(50): CodeIgniter\Model->__call('count', [])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Atas->apagar('24')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Atas))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-02-22 00:13:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-02-22 00:13:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-02-22 00:13:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-02-22 00:13:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-02-22 00:13:53 --> Undefined variable $envolvidos
+in APPPATH\Views\atas.php on line 71.
+ 1 APPPATH\Views\atas.php(71): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $envolvidos', 'APPPATH\\Views\\atas.php', 71)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\atas.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('atas', [], true)
+ 5 APPPATH\Controllers\Atas.php(57): view('atas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Atas->apagar('24')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Atas))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-02-22 00:14:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-02-22 00:14:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-02-22 00:14:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-02-22 00:14:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-02-22 00:15:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-02-22 00:15:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-02-22 00:15:06 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_ata` FOREIGN KEY (`codata`) REFERENCES `tbatas` (`cod`)) in F:\Projetos\intramet\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\Projetos\intramet\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `tb...', 0)
+#1 F:\Projetos\intramet\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `tb...')
+#2 F:\Projetos\intramet\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `tb...')
+#3 F:\Projetos\intramet\system\Database\BaseBuilder.php(2777): CodeIgniter\Database\BaseConnection->query('DELETE FROM `tb...', Array, false)
+#4 F:\Projetos\intramet\system\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+#5 F:\Projetos\intramet\system\BaseModel.php(1065): CodeIgniter\Model->doDelete(NULL, false)
+#6 F:\Projetos\intramet\app\Controllers\Atas.php(54): CodeIgniter\BaseModel->delete()
+#7 F:\Projetos\intramet\system\CodeIgniter.php(934): App\Controllers\Atas->apagar('22')
+#8 F:\Projetos\intramet\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Atas))
+#9 F:\Projetos\intramet\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 F:\Projetos\intramet\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-02-22 00:15:06 --> Cannot delete or update a parent row: a foreign key constraint fails (`intranet`.`tbtopicos`, CONSTRAINT `fk_ata` FOREIGN KEY (`codata`) REFERENCES `tbatas` (`cod`))
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2777): CodeIgniter\Database\BaseConnection->query('DELETE FROM `tbatas`
+WHERE `cod` = :cod:', [...], false)
+ 2 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 3 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete(null, false)
+ 4 APPPATH\Controllers\Atas.php(54): CodeIgniter\BaseModel->delete()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Atas->apagar('22')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Atas))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-02-22 19:57:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-02-22 19:57:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

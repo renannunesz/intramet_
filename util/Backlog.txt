@@ -19,9 +19,39 @@ Div com barra de rolagem para os tópicos
 Atas somente do setor
 
 
->>>>>>>>>>>> FEITO
+PAGINAÇÃO 
+
+/*
+'grid_reunioes' => $this->dadosReuniao(2)->paginate(10),
+'pager' => $this->dadosReuniao(2)->pager
+
+na view...
+<?php echo $pager->links(); ?>            
+*/
+
+
+IMPLEM<NTAR
+
+$sessao = session()->get('user');
+
+var_dump(isset($sessao));
+
+
+
+- Apagar campos
+> Tab atas - participantes e setor
+
+
+- Alterar campos
+> Tab topicos - providencia para descricao
+
+
+
+>>>>>>>>>>>> FEITO <<<<<<<<<<<<<<<<<
 
 Tratar espaço de campo na tabela
 Remover da grid setor e responsável
 Descrição da ata 1 campo e remove data
 mudar o campo de providencia para descrição
+
+

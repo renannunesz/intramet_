@@ -4,89 +4,79 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\TbatasModel;
-use App\Models\tbsetoresModel;
+use App\Models\TbenvolvidosModel;
+use App\Models\tbtopicosModel;
 
 class Atas extends BaseController
 {
     private $atasModel;
-    private $setoresModel;
+    private $envolvidosModel;
+    private $topicosModel;
 
     public function __construct()
     {
         $this->atasModel = new tbatasModel();
-        $this->setoresModel = new tbsetoresModel();
-    }
-
-    public function dadosAtas()
-    {
-        $db = db_connect();
-        $builder = $db->table('tbatas a');
-        $builder->select('a.cod, a.data, a.descricao, s.descricao as descsetor, a.participantes ');
-        $builder->join('tbsetores s', 's.cod = a.codsetor');
-        $builder->orderBy('a.cod', 'DESC');
-        $query = $builder->get();
-
-        return $query->getResultArray();
-    }
-
-    public function dadosSetores()
-    {
-        $db = db_connect();
-        $builder = $db->table('tbsetores s');
-        $builder->select('s.cod, s.descricao ');
-        $query = $builder->get();
-
-        return $query->getResultArray();
-    }
-
-    public function listarAtas()
-    {
-        return view('grid_atas', [
-            'atas' => $this->dadosAtas()
-        ]);
+        $this->envolvidosModel = new TbenvolvidosModel();
+        $this->topicosModel = new tbtopicosModel();
     }
 
     public function index()
     {
-        return view('grid_atas', [
-            'atas' => $this->dadosAtas()
-        ]);
-    }
 
-    public function cadastrar()
-    {
-        return view('ata', [
-            'setores' => $this->dadosSetores()
+        return view('atas', [
+            'atas'          => $this->atasModel->find(),
+            'envolvidos'    => $this->envolvidosModel->find(),
+            'topicos'       => $this->topicosModel->find()
         ]);
     }
 
     public function salvar() 
     {
-        $this->atasModel->save($this->request->getPost());        
-        echo view('mensagens', [
-            'mensagem' => 'Usuário Salvo com Sucesso',
-            'tipoMensagem'  => 'is-success',
-            'link' => 'public/Atas'
-        ]);
-    }
+        
+        foreach ($this->request->getPost('codenvolvidos') as $codigo) {
+            $cod[] = $codigo;
+        }
 
-    public function apagar($cod)
-    {
-        $this->atasModel->where('cod', $cod)->delete();
-        echo view('mensagens', [
-            'mensagem' => 'Registro Excluído com Sucesso',
-            'tipoMensagem'  => 'is-success',
-            'link' => 'public/Atas'
+        $dadosAta = [
+            'data' => $this->request->getPost('data'),
+            'descricao' => $this->request->getPost('descricao'),
+            'codenvolvidos' => implode(",", $cod),
+        ];
+
+        $this->atasModel->save($dadosAta);
+
+        return view('atas', [
+            'atas'          => $this->atasModel->find(),
+            'envolvidos'    => $this->envolvidosModel->find(),
+            'topicos'       => $this->topicosModel->find()
         ]);
     }
 
     public function editar($cod)
     {
-        $codSetor = $this->atasModel->where('cod', $cod)->findColumn('codsetor');
-
         return view('ata', [
-            'dados_ata' => $this->atasModel->find($cod),
-            'setores'   => $this->setoresModel->where('cod', $codSetor )->findColumn('descricao')
+            'atas'          => $this->atasModel->find($cod),
         ]);        
     }
+
+    public function apagar($cod)
+    {
+        $qtdAtasTopicos = count($this->topicosModel->where('codata', $cod)->find());
+
+        $this->atasModel->where('cod', $cod)->delete();
+        
+        return view('atas', [
+            'atas' => $this->atasModel->find(),
+            'envolvidos' => $this->envolvidosModel->find(),
+            'topicos'       => $this->topicosModel->find()
+        ]);        
+    }
+
+    ######################### Funções em DESUSO #########################
+    
+    public function cadastrar()
+    {
+        return view('cad_ata');
+    }
+
 }

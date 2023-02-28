@@ -21,36 +21,36 @@ class Status extends BaseController
         ]);
     }
 
-    public function cadastrar()
-    {
-        return view('cad_status');
-    }
-
     public function salvar()
     {
         $this->statusModel->save($this->request->getPost());
-        echo view('mensagens', [
-            'mensagem' => 'Status Salvo com Sucesso',
-            'tipoMensagem'  => 'is-success',
-            'link' => 'public/Status'
+
+        return view('status', [
+            'status' => $this->statusModel->findAll()
         ]);
     }
 
     public function apagar($cod)
     {
         $this->statusModel->where('cod', $cod)->delete();   
-        echo view('mensagens', [
-            'mensagem' => 'Registro Excluído com Sucesso',
-            'tipoMensagem'  => 'is-success',
-            'link' => 'public/Status'
+
+        return view('status', [
+            'status' => $this->statusModel->findAll()
         ]);
     }
 
     public function editar($cod)
     {
-        return view('cad_status', [
+        return view('state', [
             'status' => $this->statusModel->find($cod)
-        ]);
-        
-    }    
+        ]); 
+    }
+
+    ######################### Funções em DESUSO #########################
+
+    public function cadastrar()
+    {
+        return view('cad_status');
+    }
+
 }

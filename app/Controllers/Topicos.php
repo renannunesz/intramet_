@@ -3,17 +3,26 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\TbatasModel;
 use App\Models\TbenvolvidosModel;
+use App\Models\tbsetoresModel;
 use App\Models\tbstatusModel;
+use App\Models\tbtopicosdetalhesModel;
 use App\Models\TbtopicosModel;
 
 class Topicos extends BaseController
 {
-    private $topicosModel;       
-    
+    private $topicosModel;
+
     private $responsavel;
 
     private $statusModel;
+
+    private $setorModel;
+
+    private $atasModel;
+
+    private $topicosDetalhesModel;
 
     public function __construct()
     {
@@ -22,64 +31,255 @@ class Topicos extends BaseController
         $this->responsavel = new tbenvolvidosModel();
 
         $this->statusModel = new tbstatusModel();
+
+        $this->setorModel = new tbsetoresModel();
+
+        $this->atasModel = new TbatasModel();
+
+        $this->topicosDetalhesModel = new tbtopicosdetalhesModel();
     }
 
-    public function dadosAtas()
+    public function index()
     {
-        $db = db_connect();
-        $builder = $db->table('tbatas a');
-        $builder->select('a.cod, a.data, a.descricao, st.descricao as descsetor');
-        $builder->join('tbsetores st', 'st.cod = a.codsetor');
-        $builder->orderBy('a.cod', 'DESC');
-        $query = $builder->get();
-
-        return $query->getResultArray();
+        return view('topicos', [
+            'topicos'           => $this->topicosModel->find(),
+            'topicosdetalhes'   => $this->topicosDetalhesModel->find(),
+            'atas'              => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'        => $this->responsavel->find(),
+            'status'            => $this->statusModel->find(),
+            'setores'           => $this->setorModel->find()
+        ]);
     }
 
-    public function dadosReuniao($codSetor)
+    public function salvar()
+    {
+        $this->topicosModel->save($this->request->getPost());
+
+        return view('topicos', [
+            'topicos'       => $this->topicosModel->find(),
+            'topicosdetalhes'   => $this->topicosDetalhesModel->find(),
+            'atas'          => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'    => $this->responsavel->find(),
+            'status'        => $this->statusModel->find(),
+            'setores'       => $this->setorModel->find()
+        ]);
+    }
+
+    public function salvarDetalhes()
+    {
+        
+        //$this->topicosModel->save($this->request->getPost('codstatus'));
+        //$this->topicosModel->where('cod', $cod)->set(['codstatus' => $this->request->getPost('codstatus')])->update();
+        $codTopico = $this->request->getPost('codtopico');
+        $this->topicosDetalhesModel->save($this->request->getPost());
+
+        //var_dump(count($this->topicosDetalhesModel->where('codtopico', $codTopico)->find()));
+
+        if (count($this->topicosDetalhesModel->where('codtopico', $codTopico)->find()) >= 1) {
+            $this->topicosModel->where('cod', $codTopico)->set('codstatus', 2)->update();
+        }
+
+        return view('topico', [
+            'topicos'           => $this->topicosModel->find($codTopico),
+            'topicosdetalhes'   => $this->topicosDetalhesModel->find(),
+            'atas'              => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'        => $this->responsavel->find(),
+            'status'            => $this->statusModel->find(),
+            'setores'           => $this->setorModel->find()
+        ]);
+
+    }
+
+    public function apagar($cod)
+    {
+        $this->topicosModel->where('cod', $cod)->delete();
+
+        return view('topicos', [
+            'topicos'       => $this->topicosModel->find(),
+            'topicosdetalhes'   => $this->topicosDetalhesModel->find(),
+            'atas'          => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'    => $this->responsavel->find(),
+            'status'        => $this->statusModel->find(),
+            'setores'       => $this->setorModel->find()
+        ]);
+    }
+
+    public function apagarDetalhes($cod)
+    {
+        $codTopico = $this->topicosDetalhesModel->where('cod' , $cod)->findColumn('codtopico');    
+
+        $this->topicosDetalhesModel->where('cod' , $cod)->delete();
+
+        return view('topico', [
+            'topicos'           => $this->topicosModel->find($codTopico[0]),
+            'topicosdetalhes'   => $this->topicosDetalhesModel->find(),
+            'atas'              => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'        => $this->responsavel->find(),
+            'status'            => $this->statusModel->find(),
+            'setores'           => $this->setorModel->find()
+        ]);
+
+    }
+
+    public function editar($cod)
+    {
+        //$codResp =      $this->topicosModel->where('cod', $cod)->findColumn('codresponsavel');
+        //$codStatus =    $this->topicosModel->where('cod', $cod)->findColumn('codstatus');
+
+        return view('topico', [
+            'topicos'           => $this->topicosModel->find($cod),
+            'topicosdetalhes'   => $this->topicosDetalhesModel->find(),
+            'atas'              => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'        => $this->responsavel->find(),
+            'status'            => $this->statusModel->find(),
+            'setores'           => $this->setorModel->find()
+        ]);
+    }
+
+    public function finalizar($cod)
+    {
+        
+        //$this->topicosModel->where('cod', $cod)->set('codstatus', 1)->update();
+        var_dump($this->topicosModel->where('cod', $cod)->set('codstatus', 1)->update());
+
+        return view('topicos', [
+            'topicos'       => $this->topicosModel->find(),
+            'topicosdetalhes'   => $this->topicosDetalhesModel->find(),
+            'atas'          => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'    => $this->responsavel->find(),
+            'status'        => $this->statusModel->find(),
+            'setores'       => $this->setorModel->find()
+        ]);
+    }
+
+    public function topicosAudiplanner()
+    {
+        return view('topicos', [
+            'topicos'       => $this->topicosModel->where('codset_origem', 1)->find(),
+            'atas'          => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'    => $this->responsavel->find(),
+            'status'        => $this->statusModel->find(),
+            'setores'       => $this->setorModel->find()
+        ]);
+    }
+
+    public function topicosComercial()
+    {
+        return view('topicos', [
+            'topicos'       => $this->topicosModel->where('codset_origem', 2)->find(),
+            'atas'          => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'    => $this->responsavel->find(),
+            'status'        => $this->statusModel->find(),
+            'setores'       => $this->setorModel->find()
+        ]);
+    }
+
+    public function topicosDiretoriaFinanceiro()
+    {
+        return view('topicos', [
+            'topicos'       => $this->topicosModel->where('codset_origem', 3)->find(),
+            'atas'          => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'    => $this->responsavel->find(),
+            'status'        => $this->statusModel->find(),
+            'setores'       => $this->setorModel->find()
+        ]);
+    }
+
+    public function topicosFiscon()
+    {
+        return view('topicos', [
+            'topicos'       => $this->topicosModel->where('codset_origem', 4)->find(),
+            'atas'          => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'    => $this->responsavel->find(),
+            'status'        => $this->statusModel->find(),
+            'setores'       => $this->setorModel->find()
+        ]);
+    }
+
+    public function topicosKronos()
+    {
+        return view('topicos', [
+            'topicos'       => $this->topicosModel->where('codset_origem', 5)->find(),
+            'atas'          => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'    => $this->responsavel->find(),
+            'status'        => $this->statusModel->find(),
+            'setores'       => $this->setorModel->find()
+        ]);
+    }
+
+    public function topicosLegalizacao()
+    {
+        return view('topicos', [
+            'topicos'       => $this->topicosModel->where('codset_origem', 6)->find(),
+            'atas'          => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'    => $this->responsavel->find(),
+            'status'        => $this->statusModel->find(),
+            'setores'       => $this->setorModel->find()
+        ]);
+    }
+
+    public function topicosSetPessoal()
+    {
+        return view('topicos', [
+            'topicos'       => $this->topicosModel->where('codset_origem', 7)->find(),
+            'atas'          => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'    => $this->responsavel->find(),
+            'status'        => $this->statusModel->find(),
+            'setores'       => $this->setorModel->find()
+        ]);
+    }
+
+    public function topicosStartBI()
+    {
+        return view('topicos', [
+            'topicos'       => $this->topicosModel->where('codset_origem', 8)->find(),
+            'atas'          => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'    => $this->responsavel->find(),
+            'status'        => $this->statusModel->find(),
+            'setores'       => $this->setorModel->find()
+        ]);
+    }
+
+    public function topicosTecnologia()
+    {
+        return view('topicos', [
+            'topicos'       => $this->topicosModel->where('codset_origem', 9)->find(),
+            'atas'          => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'    => $this->responsavel->find(),
+            'status'        => $this->statusModel->find(),
+            'setores'       => $this->setorModel->find()
+        ]);
+    }
+
+    public function topicosPublicidade()
+    {
+        return view('topicos', [
+            'topicos'       => $this->topicosModel->where('codset_origem', 10)->find(),
+            'atas'          => $this->atasModel->orderBy('cod', 'desc')->find(),
+            'envolvidos'    => $this->responsavel->find(),
+            'status'        => $this->statusModel->find(),
+            'setores'       => $this->setorModel->find()
+        ]);
+    }
+
+    /*
+    1 - Responder
+    2 - Finalizar
+    3 - Aguardando Resposta
+    */
+
+    ######################### Funções em DESUSO #########################
+
+    public function dadosTopicos()
     {
         $db = db_connect();
         $builder = $db->table('tbtopicos t');
-        $builder->select('a.data, st.descricao as descsetor, t.cod as codt, t.assunto, t.providencia, e.nome, s.descricao as descstatus, t.diretoria, a.cod as coda, a.descricao as descata, a.participantes');
-        $builder->join('tbenvolvidos e', 'e.cod = t.codresponsavel');
-        $builder->join('tbstatus s', 's.cod = t.codstatus');
+        $builder->select('t.cod as codtopico , t.codata , t.assunto , t.descricao as desctopico , 
+        t.codset_origem, (select so.descricao from tbsetores so WHERE so.cod = t.codset_origem) as dessetorigem,
+        t.codset_destino, (select sd.descricao from tbsetores sd WHERE sd.cod = t.codset_destino) as dessetdestino,
+        t.codstatus, (select ss.descricao from tbstatus ss WHERE ss.cod = t.codstatus) as descstatus,
+        t.participantes , a.data , a.descricao as descata');
         $builder->join('tbatas a', 'a.cod = t.codata');
-        $builder->join('tbsetores st', 'st.cod = a.codsetor');
-        $builder->where('st.cod', $codSetor);
-        $builder->orderBy('t.cod', 'DESC');
-        $query = $builder->get();
-
-        return $query->getResultArray();
-    }
-
-    public function dadosEnvolvidos()
-    {
-        $db = db_connect();
-        $builder = $db->table('tbenvolvidos e');
-        $builder->select('e.cod, e.nome');
-        $query = $builder->get();
-
-        return $query->getResultArray();
-    }
-
-    public function dadosStatus()
-    {
-        $db = db_connect();
-        $builder = $db->table('tbstatus st');
-        $builder->select('st.cod, st.descricao ');
-        $query = $builder->get();
-
-        return $query->getResultArray();
-    }
-
-    public function dadosSetor($codTopico)
-    {
-        $db = db_connect();
-        $builder = $db->table('tbsetores s');
-        $builder->select('s.descricao');
-        $builder->join('tbatas a', 'a.codsetor = s.cod');
-        $builder->join('tbtopicos t', 't.codata = a.cod');
-        $builder->where('t.cod', $codTopico);
         $query = $builder->get();
 
         return $query->getResultArray();
@@ -95,169 +295,18 @@ class Topicos extends BaseController
             case 'Em Andamento':
                 echo 'has-background-warning';
                 break;
-                    
+
             case 'Diretoria':
                 echo 'has-background-primary';
                 break;
 
             case 'Informativo':
                 echo 'has-background-info';
-                break;                              
-            
+                break;
+
             default:
                 echo 'has-background-danger';
                 break;
         }
-    }
-
-    public function index()
-    {
-        //Pegando dados da URL, pois não existe formulario
-        $url_anterior = $_SERVER['HTTP_REFERER'];
-        $url_partes = explode('/', $url_anterior);
-        $setor = substr($url_partes[6],7);        
-
-        return view('topicos',[
-            'topicos_atas' => $this->dadosAtas(),
-            'envolvidos'   => $this->responsavel->find(),
-            'status'       => $this->statusModel->find(),
-            'setor'        => $setor            
-        ]);
-    }
-
-    public function topicosAudiplanner()
-    {
-        return view('grid_reunioes',[
-            'grid_reunioes' => $this->dadosReuniao(1),
-            'setor' => 'Audiplanner',
-            'cor' => 'FFC000'
-        ]);
-    }
-
-    public function topicosComercial()
-    {
-        return view('grid_reunioes',[
-            'grid_reunioes' => $this->dadosReuniao(2),
-            'setor' => 'Comercial',
-            'cor' => 'FF7C80'
-        ]);
-    }
-    
-    public function topicosDiretoriaFinanceiro()
-    {
-        return view('grid_reunioes',[
-            'grid_reunioes' => $this->dadosReuniao(3),
-            'setor' => 'Diretoria/Financeiro',
-            'cor' => 'F4B084'
-        ]); 
-    }  
-    
-    public function topicosFiscon()
-    {
-        return view('grid_reunioes',[
-            'grid_reunioes' => $this->dadosReuniao(4),
-            'setor' => 'Fiscon',
-            'cor' => '5B9BD5'
-        ]);
-    }
-
-    public function topicosKronos()
-    {
-        return view('grid_reunioes',[
-            'grid_reunioes' => $this->dadosReuniao(5),
-            'setor' => 'Kronos',
-            'cor' => '00B050'
-        ]);
-    }
-
-    public function topicosLegalizacao()
-    {
-        return view('grid_reunioes',[
-            'grid_reunioes' => $this->dadosReuniao(6),
-            'setor' => 'Legalizacao',
-            'cor' => 'F22816'
-        ]);
-    }
-
-    public function topicosSetPessoal()
-    {
-        return view('grid_reunioes',[
-            'grid_reunioes' => $this->dadosReuniao(7),
-            'setor' => 'Setor Pessoal',
-            'cor' => '7030A0'
-        ]);
-    }
-
-    public function topicosStartBI()
-    {
-        return view('grid_reunioes',[
-            'grid_reunioes' => $this->dadosReuniao(8),
-            'setor' => 'Start BI',
-            'cor' => 'F27F3D'
-        ]);
-    }
-
-    public function topicosTecnologia()
-    {
-        return view('grid_reunioes',[
-            'grid_reunioes' => $this->dadosReuniao(9),
-            'setor' => 'Tecnologia',
-            'cor' => '3805F2'
-        ]);
-    }
-
-    public function topicosPublicidade()
-    {
-        return view('grid_reunioes',[
-            'grid_reunioes' => $this->dadosReuniao(10),
-            'setor' => 'Publicidade',
-            'cor' => '694DE3'
-        ]);
-    }
-
-    public function salvar()
-    {
-
-        //Pegando dados do input, pois existe formulario    
-        //$request = \Config\Services::request();
-        $setor = $this->request->getVar('inpSetor');        
-
-        $this->topicosModel->save($this->request->getPost());
-
-        echo view('mensagens', [
-            'mensagem' => 'Tópico Salvo com Sucesso',
-            'tipoMensagem'  => 'is-success',
-            'link' => 'public/Topicos/topicos'.$setor.'/'
-        ]);
-
-    }
-
-    public function apagar($cod)
-    {
-        //Pegando dados da QRY, pois não existe formulario        
-        $setor = $this->dadosSetor($cod);
-
-        $this->topicosModel->where('cod', $cod)->delete();
-
-        echo view('mensagens', [
-            'mensagem' => 'Registro Excluído com Sucesso',
-            'tipoMensagem'  => 'is-success',
-            'link' => 'public/Topicos/topicos'.str_replace("/", "", $setor[0]['descricao']).'/'
-        ]);
-    }
-
-    public function editar($cod)
-    {
-        $setor = $this->dadosSetor($cod);
-        $codResp =      $this->topicosModel->where('cod', $cod)->findColumn('codresponsavel');
-        $codStatus =    $this->topicosModel->where('cod', $cod)->findColumn('codstatus');
-
-        return view('topicos', [
-            'dados_topicos' => $this->topicosModel->find($cod),
-            'setor'         => str_replace("/", "", $setor[0]['descricao']),
-            'responsavel'   => $this->responsavel->where('cod', $codResp)->findColumn('nome'),
-            'status_atual'  => $this->statusModel->where('cod', $codStatus)->findColumn('descricao'),
-            'status'        => $this->statusModel->find()
-        ]);
     }
 }

@@ -18,8 +18,7 @@ class TbatasModel extends Model
         'cod',
         'data',
         'descricao',
-        'codsetor',
-        'participantes'
+        'codenvolvidos'
     ];
 
     // Dates
