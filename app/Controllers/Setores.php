@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-require_once("/Projetos/intramet/assets/DevExtreme/LoadHelper.php");
 spl_autoload_register(array("DevExtreme\LoadHelper", "LoadModule"));
 
 use App\Controllers\BaseController;
