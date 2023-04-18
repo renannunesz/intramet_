@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class TbusuariosModel extends Model
+class TbusuariosniveisModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'tbusuarios';
+    protected $table            = 'tbusuariosniveis';
     protected $primaryKey       = 'cod';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -16,10 +16,7 @@ class TbusuariosModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'cod',
-        'nome',
-        'usuario',
-        'senha',
-        'codnivelusuario'
+        'nome'
     ];
 
     // Dates

@@ -55,6 +55,8 @@ $routes->get('/Envolvidos/apagar/(:num)',   'Envolvidos::apagar/$1');
 $routes->get('/Envolvidos/editar/(:num)',   'Envolvidos::editar/$1');
 $routes->get('/Envolvidos/modal',           'Envolvidos::modal');
 
+$routes->get('/Empresas',                 'Empresas::index');
+
 $routes->get('/Atas',               'Atas::index');
 $routes->post('/Atas/salvar',       'Atas::salvar');
 $routes->get('/Atas/cadastrar',     'Atas::cadastrar');
@@ -79,11 +81,16 @@ $routes->get('/Topicos/topicosStartBI',             'Topicos::topicosStartBI');
 $routes->get('/Topicos/topicosTecnologia',          'Topicos::topicosTecnologia');
 $routes->get('/Topicos/topicosPublicidade',         'Topicos::topicosPublicidade');
 
-
 ///apagar
-$routes->get('/Topicos/topicosNew',              'Topicos::topicosNew');
-$routes->get('/Topicos/topicoNew',              'Topicos::topicoNew');
-$routes->get('/Setores/testevalid',                  'Setores::testevalid');
+$routes->get('/Topicos/topicosNew',                 'Topicos::topicosNew');
+$routes->get('/Topicos/topicoNew',                  'Topicos::topicoNew');
+$routes->get('/Setores/testevalid',                 'Setores::testevalid');
+
+$routes->get('/Cronograma',                             'Cronograma::index');
+$routes->post('/Cronograma/salvaExecucao',              'Cronograma::salvaExecucao');
+$routes->post('/Cronograma/desfazExecucao',             'Cronograma::desfazExecucao');
+$routes->get('/Cronograma/acompanhamentoCronograma',    'Cronograma::acompanhamentoCronograma');
+
 
 /*
  * --------------------------------------------------------------------

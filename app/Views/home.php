@@ -16,11 +16,9 @@
     <?php include 'navbar.php' ?>
 
     <div class="card text-center">
-        <div class="card-header">
-            <p class="h1">Intranet - Grupo Métodos de Contabilidade e Assessoria Empresarial</p>
-        </div>
-        <div class="card-body">
-            <img class="is-centered" width="700" height="700" src="<?php echo base_url('assets/img/GMTDS_TI.jpg') ?>">
+
+        <div class="card-body" style="background-color:#F2C063">
+            <img class="is-centered" height="800" src="<?php echo base_url('assets/img/intranet-metodoscapa1.png') ?>">
         </div>
         <div class="card-footer text-muted">
             Grupo Métodos - Tecnologia 2023

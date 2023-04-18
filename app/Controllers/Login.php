@@ -25,16 +25,17 @@ class Login extends BaseController
         $usuario = $this->request->getPost('nomeUsuario');
         $senha = $this->request->getPost('senhaUsuario');
 
-        $user = $this->usuariosModel->where('usuario', $usuario)->findAll();
+        $user = $this->usuariosModel->where('usuario', $usuario)->first();
 
         if (empty($user) == false) {
 
-            if ($senha == $user[0]['senha']) {                
+            if ($senha == $user["senha"]) {                
 
                 session()->start();
-                session()->set('user' , $user[0]["nome"]);
+                session()->set('user' , $user['nome']);
+                session()->set('usernivel', $user['codnivelusuario']);
                 return view('home', [
-                    'usuario' => $user[0]["nome"]
+                    'usuario' => $user['nome']
                 ]);
 
             } else {

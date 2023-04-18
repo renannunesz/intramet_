@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class TbusuariosModel extends Model
+class tbfscncronogramaModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'tbusuarios';
+    protected $table            = 'tbfscncronograma';
     protected $primaryKey       = 'cod';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -16,14 +16,20 @@ class TbusuariosModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'cod',
-        'nome',
-        'usuario',
-        'senha',
-        'codnivelusuario'
+        'competencia',
+        'codempresa',
+        'codsetor',
+        'fiscalprodch',
+        'contabilprodch',
+        'contabilultimaatualizacao',
+        'contabilcompetenciaexecutar',
+        'statusexecucao',
+        'codresponsavel',
+        'updated_at'
     ];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
