@@ -1,32 +1,23 @@
-<!DOCTYPE html>
-<html lang="pt">
+<main class="d-flex " style="background-color:#dee6ed">
 
-<head>
+    <?php include 'sidebar.php'; ?>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Intranet - G.MTDS</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href='<?php echo base_url('assets/img/favicon.ico') ?>'>
+    <div class="mx-2 justify-content-center content-fluid ml-sm-auto pt-1 px-1">
 
-</head>
+        <div class="text-center">
 
-<body>
+            <img class="img-fluid is-centered rounded mx-auto" height="90%" width="90%" src="<?php echo base_url('assets/img/intranet-metodoscapa1.png') ?>">
 
-    <?php include 'navbar.php' ?>
-
-    <div class="card text-center">
-
-        <div class="card-body" style="background-color:#F2C063">
-            <img class="is-centered" height="800" src="<?php echo base_url('assets/img/intranet-metodoscapa1.png') ?>">
         </div>
-        <div class="card-footer text-muted">
-            Grupo Métodos - Tecnologia 2023
+
+        <div class="card text-center">
+
+            <div class="card-footer text-muted">
+                Grupo Métodos - Tecnologia 2023
+            </div>
+
         </div>
+
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>    
-
-</body>
-
-</html>
+</main>

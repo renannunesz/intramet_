@@ -10,7 +10,7 @@ class tbempresasModel extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'tbempresas';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'cod';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
@@ -23,7 +23,9 @@ class tbempresasModel extends Model
         'cnpj',
         'chcontabil',
         'chfiscal',
-        'atualizacaocontabil'
+        'atualizacaocontabil',
+        'codresponsavel',
+        'curva'
     ];
 
     // Dates

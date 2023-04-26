@@ -10,11 +10,7 @@ use App\Models\tbsetoresModel;
 use App\Models\tbusuariosModel;
 
 class Cronograma extends BaseController
-{
-
-    // Adicionar percentual de conclusão de cronograma para o responsável
-    // No perfil do gestor, ter acesso a informação geral e por responsável tbm.
-    // Registrar data (periodo) de ultima atualização contabil realizada pelo usuario        
+{ 
 
     private $tbfscncronogramaModel;
     private $tbEmpresas;
@@ -72,7 +68,9 @@ class Cronograma extends BaseController
 
         $filtros = array_merge($competenciaFiltro,$this->getEmpresasCronograma($codUserLogado));
 
-        return view('cronograma', [
+        return view('page head')
+        . view('navbar')
+        . view('cronograma', [
             'cronogramas'   => $this->tbfscncronogramaModel->where($filtros)->find(),
             'empresas'      => $this->tbEmpresas->find(),
             'responsaveis'  => $this->responsaveis->find(),
@@ -96,7 +94,9 @@ class Cronograma extends BaseController
 
         $filtros = array_merge($competenciaFiltro,$this->getEmpresasCronograma($codUserLogado));
 
-        return view('cronograma', [
+        return view('page head')
+        . view('navbar')
+        . view('cronograma', [
             'cronogramas'   => $this->tbfscncronogramaModel->where($filtros)->find(),
             'empresas'      => $this->tbEmpresas->find(),
             'responsaveis'  => $this->responsaveis->find(),
@@ -109,7 +109,9 @@ class Cronograma extends BaseController
 
     public function acompanhamentoCronograma()
     {
-        return view('cronoacompanhamento', [
+        return view('page head')
+        . view('navbar')
+        . view('cronoacompanhamento', [
             'cronogramas'   => $this->tbfscncronogramaModel->orderBy('updated_at')->find(),
             'empresas'      => $this->tbEmpresas->find(),
             'responsaveis'  => $this->responsaveis->find(),
@@ -123,11 +125,24 @@ class Cronograma extends BaseController
 
         $this->tbfscncronogramaModel->where('cod', $codRegistro)->set('statusexecucao', 0)->update();
 
-        return view('cronoacompanhamento', [
+        return view('page head')
+        . view('navbar')
+        . view('cronoacompanhamento', [
             'cronogramas'   => $this->tbfscncronogramaModel->find(),
             'empresas'      => $this->tbEmpresas->find(),
             'responsaveis'  => $this->responsaveis->find(),
             'setores'       => $this->setores->find()
         ]);
+    }
+
+    public function novaCompetencia()
+    {
+        $cronoAnterior = $this->tbfscncronogramaModel->where('competencia', '03/2023')->find();
+
+        foreach ($cronoAnterior as $crono) {
+            print_r($crono);
+        }
+
+        return count($cronoAnterior);
     }
 }

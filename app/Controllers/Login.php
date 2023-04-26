@@ -34,7 +34,10 @@ class Login extends BaseController
                 session()->start();
                 session()->set('user' , $user['nome']);
                 session()->set('usernivel', $user['codnivelusuario']);
-                return view('home', [
+                
+                return view('page head')
+                . view('navbar')
+                . view('home', [
                     'usuario' => $user['nome']
                 ]);
 

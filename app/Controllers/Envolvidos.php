@@ -21,26 +21,31 @@ class Envolvidos extends BaseController
 
     public function index()
     {
-        return view('envolvidos', [
-            'envolvidos' => $this->envolvidosModel->find(),
-            'setores' => $this->setoresModel->find(),
-        ]);
+        return view('page head')
+            . view('navbar')
+            . view('envolvidos', [
+                'envolvidos' => $this->envolvidosModel->find(),
+                'setores' => $this->setoresModel->find(),
+            ]);
     }
-    
+
     public function salvar()
     {
+
         $this->envolvidosModel->save($this->request->getPost());
 
-        echo view('envolvidos' , [
-            'envolvidos' => $this->envolvidosModel->find(),
-            'setores' => $this->setoresModel->find()
-        ]);
+        echo view('page head')
+            . view('navbar')
+            . view('envolvidos', [
+                'envolvidos' => $this->envolvidosModel->find(),
+                'setores' => $this->setoresModel->find()
+            ]);
     }
 
     public function apagar($cod)
     {
         $this->envolvidosModel->where('cod', $cod)->delete();
-        echo view('envolvidos' , [
+        echo view('envolvidos', [
             'envolvidos' => $this->envolvidosModel->find(),
             'setores' => $this->setoresModel->find()
         ]);
@@ -51,9 +56,8 @@ class Envolvidos extends BaseController
         return view('envolvido', [
             'envolvido' => $this->envolvidosModel->find($cod),
             'setores' => $this->setoresModel->find(),
-        ]);        
+        ]);
     }
-
 
     ######################### Funções em DESUSO #########################
 
@@ -79,7 +83,7 @@ class Envolvidos extends BaseController
         return $query->getResultArray();
     }
 
-    public function setorEnvolvido($codEnvolvido) 
+    public function setorEnvolvido($codEnvolvido)
     {
         $nomeSetor = $this->setoresModel->where('cod', $codEnvolvido)->findColumn('descricao');
 
@@ -88,9 +92,8 @@ class Envolvidos extends BaseController
 
     public function cadastrar()
     {
-        return view('cad_envolvido' , [
+        return view('cad_envolvido', [
             'setores' => $this->dadosSetores()
         ]);
     }
-    
 }

@@ -55,7 +55,9 @@ $routes->get('/Envolvidos/apagar/(:num)',   'Envolvidos::apagar/$1');
 $routes->get('/Envolvidos/editar/(:num)',   'Envolvidos::editar/$1');
 $routes->get('/Envolvidos/modal',           'Envolvidos::modal');
 
-$routes->get('/Empresas',                 'Empresas::index');
+$routes->get('/Empresas',                   'Empresas::index');
+$routes->get('/Empresas/editar/(:num)',     'Empresas::editar/$1');
+$routes->post('/Empresas/salvar',           'Empresas::salvar');
 
 $routes->get('/Atas',               'Atas::index');
 $routes->post('/Atas/salvar',       'Atas::salvar');
@@ -85,11 +87,13 @@ $routes->get('/Topicos/topicosPublicidade',         'Topicos::topicosPublicidade
 $routes->get('/Topicos/topicosNew',                 'Topicos::topicosNew');
 $routes->get('/Topicos/topicoNew',                  'Topicos::topicoNew');
 $routes->get('/Setores/testevalid',                 'Setores::testevalid');
+$routes->get('/Empresas/pageSide',                   'Empresas::pageSide');
 
 $routes->get('/Cronograma',                             'Cronograma::index');
 $routes->post('/Cronograma/salvaExecucao',              'Cronograma::salvaExecucao');
 $routes->post('/Cronograma/desfazExecucao',             'Cronograma::desfazExecucao');
 $routes->get('/Cronograma/acompanhamentoCronograma',    'Cronograma::acompanhamentoCronograma');
+$routes->get('/Cronograma/novaCompetencia',             'Cronograma::novaCompetencia');
 
 
 /*

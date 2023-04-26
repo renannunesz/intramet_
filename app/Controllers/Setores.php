@@ -16,9 +16,11 @@ class Setores extends BaseController
 
     public function index()
     {
-        return view('setores', [
-            'setores' => $this->setoresModel->findAll()
-        ]);
+        return view('page head')
+            . view('navbar')
+            . view('setores', [
+                'setores' => $this->setoresModel->findAll()
+            ]);
     }
 
     public function salvar()
@@ -43,7 +45,7 @@ class Setores extends BaseController
     {
         return view('setor', [
             'setor' => $this->setoresModel->find($cod)
-        ]);        
+        ]);
     }
 
     ######################### Funções em DESUSO #########################
@@ -57,7 +59,6 @@ class Setores extends BaseController
     {
         return view('setores_teste', [
             'setores' => $this->setoresModel->find()
-        ]); 
-
+        ]);
     }
 }
