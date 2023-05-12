@@ -55,7 +55,13 @@
                                     Conclusão - Exec. Contábil:
                                 </div>
                                 <div class="card-body">
-                                    <?php $percConclusao = number_format(count($empFinalizadasContabil) / (count($empPendentesContabil) + count($empFinalizadasContabil)), 2) * 100; ?>
+                                    <?php  
+                                    
+                                    $finalizadas = count($empFinalizadasContabil) == 0 ? 1 : count($empFinalizadasContabil);
+                                    $pendentes = count($empPendentesContabil) == 0 ? 1 : count($empPendentesContabil);
+                                    
+                                    $percConclusao = number_format( $finalizadas / ($pendentes + $finalizadas), 2) * 100; 
+                                    ?>
                                     <strong>
                                         <div class="progress" role="progressbar" aria-label="barra de progresso" aria-valuenow="<?php echo $percConclusao; ?>" aria-valuemin="0" aria-valuemax="100">
                                             <div class="progress-bar progress-bar-striped" style="width:<?php echo $percConclusao . "%"; ?>"><?php echo $percConclusao . "%"; ?></div>

@@ -35,13 +35,7 @@ class Cronograma extends BaseController
             'contabilcompetenciaexecutar <>' => 0
         ];
 
-        if ($this->tbfscncronogramaModel->where($filtros)->find() == 0) {
-            $qtdEmpresasPendentes = 1;
-        } else {
-            $qtdEmpresasPendentes = $this->tbfscncronogramaModel->where($filtros)->find();
-        }
-
-        return $qtdEmpresasPendentes; //$this->tbfscncronogramaModel->where($filtros)->find();
+        return $this->tbfscncronogramaModel->where($filtros)->find();
     }
 
     public function empresasFinalizadasContabil($codResponsavel)
@@ -52,13 +46,7 @@ class Cronograma extends BaseController
             'contabilcompetenciaexecutar <>' => 0
         ];
 
-        if ($this->tbfscncronogramaModel->where($filtros)->find() == 0) {
-            $qtdEmpresasFinalizadas = 1;
-        } else {
-            $qtdEmpresasFinalizadas = $this->tbfscncronogramaModel->where($filtros)->find();
-        }
-
-        return $qtdEmpresasFinalizadas; //$this->tbfscncronogramaModel->where($filtros)->find();
+        return $this->tbfscncronogramaModel->where($filtros)->find();
     }
 
     public function getEmpresasCronograma($codResponsavel)
