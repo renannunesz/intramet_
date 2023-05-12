@@ -92,8 +92,10 @@ $routes->get('/Empresas/pageSide',                   'Empresas::pageSide');
 $routes->get('/Cronograma',                             'Cronograma::index');
 $routes->post('/Cronograma/salvaExecucao',              'Cronograma::salvaExecucao');
 $routes->post('/Cronograma/desfazExecucao',             'Cronograma::desfazExecucao');
+$routes->post('/Cronograma/salvar',                     'Cronograma::salvar');
 $routes->get('/Cronograma/acompanhamentoCronograma',    'Cronograma::acompanhamentoCronograma');
 $routes->get('/Cronograma/novaCompetencia',             'Cronograma::novaCompetencia');
+$routes->get('/Cronograma/apagar/(:num)',               'Cronograma::apagar/$1');
 
 
 /*

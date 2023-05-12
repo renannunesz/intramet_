@@ -1,3 +1,5 @@
+<?php if(isset($usuario)) : ?>
+
 <main class="d-flex " style="background-color:#dee6ed">
 
     <?php include 'sidebar.php'; ?>
@@ -21,3 +23,9 @@
     </div>
 
 </main>
+
+<?php else: ?>
+
+<h3>Hi unknown user</h3>
+
+<?php endif ?>

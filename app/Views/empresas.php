@@ -125,7 +125,8 @@
                                     <td><?php echo $empresa['chcontabil']; ?></td>
                                     <td><?php echo $empresa['chfiscal']; ?></td>
                                     <td><?php echo $empresa['atualizacaocontabil']; ?></td>
-                                    <td><?php foreach ($responsaveis as $responsavel) if ($responsavel['cod'] == $empresa['codresponsavel'] ) : echo $responsavel['nome']; endif; ?></td>
+                                    <td><?php foreach ($responsaveis as $responsavel) if ($responsavel['cod'] == $empresa['codresponsavel']) : echo $responsavel['nome'];
+                                        endif; ?></td>
                                     <td><?php echo $empresa['curva']; ?></td>
                                     <td>
                                         <!--
@@ -165,17 +166,35 @@
 
                                                             <div class="container-fluid">
 
-                                                                <div class="row">
+                                                                <div class="row-cols-2">
 
-                                                                    <div class="input-group mb-3">
+                                                                    <div class="col">
+
+                                                                        <div class="input-group mb-3">
+                                                                            <label class="input-group-text" for="inputGroupSelect01">C.H. Contabil:</label>
+                                                                            <input type="text" class="form-control" name="empresaCHContabil" id="empresaCHContabil" value="<?php echo $empresa['chcontabil']; ?>">
+                                                                        </div>
+
+                                                                        <div class="input-group mb-3">
+                                                                            <label class="input-group-text" for="inputGroupSelect02">C.H. Fiscal:</label>
+                                                                            <input type="text" class="form-control" name="empresaCHFiscal" id="empresaCHFiscal" value="<?php echo $empresa['chfiscal']; ?>">
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="col input-group mb-3">
                                                                         <label class="input-group-text" for="inputGroupSelect01">C.H. Contabil:</label>
                                                                         <input type="text" class="form-control" name="empresaCHContabil" id="empresaCHContabil" value="<?php echo $empresa['chcontabil']; ?>">
                                                                     </div>
 
-                                                                    <div class="input-group mb-3">
+                                                                    <div class="col input-group mb-3">
                                                                         <label class="input-group-text" for="inputGroupSelect02">C.H. Fiscal:</label>
                                                                         <input type="text" class="form-control" name="empresaCHFiscal" id="empresaCHFiscal" value="<?php echo $empresa['chfiscal']; ?>">
                                                                     </div>
+
+                                                                </div>
+
+                                                                <div class="row">
 
                                                                     <div class="input-group mb-3">
                                                                         <label class="input-group-text" for="inputGroupSelect03">Responsável:</label>
@@ -184,19 +203,41 @@
                                                                             <?php foreach ($responsaveis as $responsavel) : ?>
                                                                                 <option value="<?php echo $responsavel['cod']; ?>"><?php echo $responsavel['nome']; ?></option>
                                                                             <?php endforeach; ?>
-                                                                        </select>                                                                    
+                                                                        </select>
                                                                     </div>
 
                                                                     <div class="input-group mb-3">
-                                                                        <label class="input-group-text" for="inputGroupSelect04">Curva:</label>                                                                        
+                                                                        <label class="input-group-text" for="inputGroupSelect04">Curva:</label>
                                                                         <select class="form-select" name="empresaCurva" id="empresaCurva" required>
                                                                             <option value="">Selecione...</option>
                                                                             <option value="A">A</option>
                                                                             <option value="B">B</option>
                                                                             <option value="C">C</option>
-                                                                        </select>                                                                        
+                                                                        </select>
                                                                     </div>
-                                                                    
+
+                                                                    <div class="input-group mb-3">
+                                                                        <label class="input-group-text" for="inputGroupSelect05">Tributação:</label>
+                                                                        <select class="form-select" name="empresaTributacao" id="empresaTributacao" required>
+                                                                            <option value="">Selecione...</option>
+                                                                            <option value="CEI">CEI</option>
+                                                                            <option value="Doméstico">Doméstico</option>
+                                                                            <option value="Imune">Imune</option>
+                                                                            <option value="Isenta">Isenta</option>
+                                                                            <option value="ITR">ITR</option>
+                                                                            <option value="Livro Caixa">Livro Caixa</option>
+                                                                            <option value="Lucro Presumido">Lucro Presumido</option>
+                                                                            <option value="MEI">MEI</option>
+                                                                            <option value="Não se aplica">Não se aplica</option>
+                                                                            <option value="Presumido">Presumido</option>
+                                                                            <option value="Real ">Real </option>
+                                                                            <option value="Real/Anual">Real/Anual</option>
+                                                                            <option value="Real/Trimestral">Real/Trimestral</option>
+                                                                            <option value="SIMEI">SIMEI</option>
+                                                                            <option value="Simples">Simples</option>
+                                                                        </select>
+                                                                    </div>
+
                                                                 </div>
 
                                                             </div>
