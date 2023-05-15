@@ -27,23 +27,25 @@ class Cronograma extends BaseController
         $this->usuarios = new tbusuariosModel();
     }
 
-    public function empresasPendentesContabil($codResponsavel)
+    public function empresasPendentesContabil($codResponsavel,$dataCompetencia)
     {
         $filtros = [
             'codresponsavel' => $codResponsavel,
             'statusexecucao' => 0,
-            'contabilcompetenciaexecutar <>' => 0
+            'contabilcompetenciaexecutar <>' => 0,
+            'competencia' => $dataCompetencia
         ];
 
         return $this->tbfscncronogramaModel->where($filtros)->find();
     }
 
-    public function empresasFinalizadasContabil($codResponsavel)
+    public function empresasFinalizadasContabil($codResponsavel,$dataCompetencia)
     {
         $filtros = [
             'codresponsavel' => $codResponsavel,
             'statusexecucao' => 1,
-            'contabilcompetenciaexecutar <>' => 0
+            'contabilcompetenciaexecutar <>' => 0,
+            'competencia' => $dataCompetencia
         ];
 
         return $this->tbfscncronogramaModel->where($filtros)->find();
@@ -76,8 +78,8 @@ class Cronograma extends BaseController
                 'responsaveis'  => $this->responsaveis->find(),
                 'setores'       => $this->setores->find(),
                 'competencia'   => $this->request->getGet('competencia'),
-                'empPendentesContabil'      => $this->empresasPendentesContabil($codUserLogado),
-                'empFinalizadasContabil'    => $this->empresasFinalizadasContabil($codUserLogado)
+                'empPendentesContabil'      => $this->empresasPendentesContabil($codUserLogado,$this->request->getGet('competencia')),
+                'empFinalizadasContabil'    => $this->empresasFinalizadasContabil($codUserLogado,$this->request->getGet('competencia'))
             ]);
     }
 
@@ -102,8 +104,8 @@ class Cronograma extends BaseController
                 'responsaveis'  => $this->responsaveis->find(),
                 'setores'       => $this->setores->find(),
                 'competencia'   => $this->request->getGet('competencia'),
-                'empPendentesContabil'      => $this->empresasPendentesContabil($codUserLogado),
-                'empFinalizadasContabil'    => $this->empresasFinalizadasContabil($codUserLogado)
+                'empPendentesContabil'      => $this->empresasPendentesContabil($codUserLogado,$this->request->getGet('competencia')),
+                'empFinalizadasContabil'    => $this->empresasFinalizadasContabil($codUserLogado,$this->request->getGet('competencia'))
             ]);
     }
 

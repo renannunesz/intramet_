@@ -57,10 +57,9 @@
                                 <div class="card-body">
                                     <?php  
                                     
-                                    $finalizadas = count($empFinalizadasContabil) == 0 ? 1 : count($empFinalizadasContabil);
                                     $pendentes = count($empPendentesContabil) == 0 ? 1 : count($empPendentesContabil);
                                     
-                                    $percConclusao = number_format( $finalizadas / ($pendentes + $finalizadas), 2) * 100; 
+                                    $percConclusao = number_format( count($empFinalizadasContabil) / ($pendentes + count($empFinalizadasContabil)), 2) * 100; 
                                     ?>
                                     <strong>
                                         <div class="progress" role="progressbar" aria-label="barra de progresso" aria-valuenow="<?php echo $percConclusao; ?>" aria-valuemin="0" aria-valuemax="100">
