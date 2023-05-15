@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-header">
 
-                <h5 class="card-title">Fiscon - Cronograma de Execução</h5>
+                <h5 class="card-title">Fiscon - Cronograma Contábil de Execução</h5>
 
             </div>
             <div class="card-body">
