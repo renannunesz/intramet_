@@ -87,8 +87,7 @@
               <div class="accordion-body">
 
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-2 small">
-                  
-                    <li><a class="list-group-item list-group-item-action pb-2" href='<?php echo base_url('#'); ?>'> - RDA </a></li>
+                                     
                     <li><a class="list-group-item list-group-item-action pb-2" href='<?php echo base_url('public/Cronograma'); ?>'> - Cronogramas </a></li>
 
                   <li>
@@ -97,6 +96,7 @@
 
                   <?php if (session()->get('usernivel') <= 2) : ?>
 
+                    <li><a class="list-group-item list-group-item-action pb-2" href='<?php echo base_url('#'); ?>'> - RDA </a></li>
                     <li><a class="list-group-item list-group-item-action pb-2" href='<?php echo base_url('public/Cronograma/acompanhamentoCronograma'); ?>'> - Status Cronogramas </a></li>
                     <li><a class="list-group-item list-group-item-action pb-2" href='<?php echo base_url('#'); ?>'> - Acompanhamento RDA </a></li>
 
