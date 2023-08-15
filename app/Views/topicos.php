@@ -229,7 +229,7 @@
                         <?php foreach ($topicos as $topico) : ?>
                             <tr>
                                 <td><?php echo $topico['codata']; ?></td>
-                                <td><?php foreach ($atas as $ata) if ($ata['cod'] == $topico['codata']) : echo implode("/", array_reverse(explode("-", $ata['data'])));
+                                <td><?php foreach ($atas as $ata) if ($ata['cod'] == $topico['codata']) : echo implode("/", array_reverse(explode("-", $ata['data']))) ;
                                     endif; ?></td>
                                 <td><?php echo $topico['assunto']; ?></td>
                                 <td><?php foreach ($setores as $setor) if ($setor['cod'] == $topico['codset_origem']) : echo $setor['descricao'];

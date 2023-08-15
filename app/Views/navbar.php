@@ -1,33 +1,98 @@
-<nav class="navbar navbar-expand-sm py-0">
+<!-- Topbar -->
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-  <div class="d-flex">
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button>
 
-    <div class="mx-4 p-1">
+    <!-- 
+    Topbar Search 
+    <form
+        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    -->
 
-      <div class="text-center" style="width: 200px; height:100%;">
-        <a class="navbar-item" href='<?php echo base_url('public/Home'); ?>'>
-          <img src='<?php echo base_url('assets/img/logo.png') ?>' width="50" height="40">
-        </a>
-      </div>
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
 
-    </div>
+        <!-- 
+        Nav Item - Search Dropdown (Visible Only XS) 
+        <li class="nav-item dropdown no-arrow d-sm-none">
+            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+            </a>
+            
+            Dropdown - Messages 
+            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small"
+                            placeholder="Search for..." aria-label="Search"
+                            aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </li>
+        -->
 
-    <div class="d-flex align-items-end p-1">
-      <h4 class="">Intranet - Grupo Métodos Soluções Empresariais</h4>
-    </div>
+        <!-- Nav Item - Alerts -->
 
-    <div class="d-flex position-absolute end-0 me-3 p-1 align-items-center" id="">
+        <!-- Nav Item - Messages -->
 
-      <div class="mx-2 d-flex align-self-end">
-        <h5 class="text-center "><?php echo session()->get('user'); ?> </h5>
-      </div>
+        <div class="topbar-divider d-none d-sm-block"></div>
 
-      <div class="">
-        <a class="btn is-link btn-warning " href='<?php echo base_url('public/Login/signOut'); ?>'> <strong>Sair</strong> </a>
-      </div>
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> Usuário </span>
+                <img class="img-profile rounded-circle" src="../assets/theme/img/undraw_profile.svg">
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Sair
+                </a>
+            </div>
+        </li>
 
-    </div>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  </div>
+    </ul>
 
 </nav>
+<!-- End of Topbar -->
