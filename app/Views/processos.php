@@ -262,8 +262,8 @@
                                                                     <input type="hidden" name="codEditProcesso" id="codEditProcesso" value='<?php echo $processo['cod']; ?>'>
 
                                                                     <div class="form-group">
-                                                                        <label for="inputEditObservacao">Trâmite</label>
-                                                                        <textarea class="form-control" id="inputEditObservacao" name="inputEditObservacao" rows="3" placeholder="Descrever observação."></textarea>
+                                                                        <label for="inputEditObservacao">Trâmite (Atual)</label>
+                                                                        <textarea class="form-control" id="inputEditObservacao" name="inputEditObservacao" rows="3"><?php echo $processo['observacao']; ?></textarea>
                                                                     </div>
 
                                                                     <div class="form-row">
@@ -278,7 +278,7 @@
                                                                         </div>
                                                                         <div class="form-group col-md-6">
                                                                             <label for="inputEditNProcesso">Nº Processo</label>
-                                                                            <input type="text" class="form-control" id="inputEditNProcesso" name="inputEditNProcesso">
+                                                                            <input type="text" class="form-control" id="inputEditNProcesso" name="inputEditNProcesso" value="<?php echo $processo['numeroprocesso']; ?>">
                                                                         </div>
                                                                     </div>
 
