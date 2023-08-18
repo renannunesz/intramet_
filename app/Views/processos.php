@@ -155,7 +155,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-sm table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Cod.</th>
@@ -207,10 +207,31 @@
                                                 <td><?php foreach ($envolvidos as $envolvido) if ($envolvido['cod'] == $processo['codenvolvido']) : echo $envolvido['nome'];
                                                     endif; ?></td>
                                                 <td><?php echo $processo['contato']; ?></td>
-                                                <td><?php foreach ($status as $stato) if ($stato['cod'] == $processo['codstatus']) : echo $stato['nome'];
-                                                    endif; ?></td>
+                                                <td>
+                                                    <?php foreach ($status as $stato) : ?>
+                                                        <?php if ($stato['cod'] == $processo['codstatus']) : ?>
+                                                            <?php switch ($stato['nome']) {
+                                                                case "Novo":
+                                                                    $varCor = "primary";
+                                                                    break;
+                                                                case "Em Andamento":
+                                                                    $varCor = "info";
+                                                                    break;
+                                                                case "Pendente com Cliente":
+                                                                    $varCor = "warning";
+                                                                    break;
+                                                                case "Finalizado":
+                                                                    $varCor = "success";
+                                                                    break;
+                                                            } ?>
+                                                            <div class="alert alert-<?php echo $varCor; ?>" role="alert">
+                                                            <?php echo $stato['nome']; ?>
+                                                            </div>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </td>
                                                 <td><?php echo $processo['observacao']; ?></td>
-                                                <td><?php 
+                                                <td><?php
                                                     if ($processo['financeiro'] == 1) {
                                                         echo "Faturado";
                                                     } elseif ($processo['financeiro'] == 2) {
@@ -220,7 +241,7 @@
                                                     } ?></td>
                                                 <td><?php echo $processo['numeroprocesso']; ?></td>
                                                 <td><?php echo $diasDecorridos->d . " Dia(s)"; ?></td>
-                                                <td><?php echo $processo['codstatus'] == 1 ? implode("/", array_reverse(explode("-", $processo['datafim']))) : "" ; ?></td>
+                                                <td><?php echo $processo['codstatus'] == 1 ? implode("/", array_reverse(explode("-", $processo['datafim']))) : ""; ?></td>
                                                 <td>
                                                     <a data-toggle="modal" data-target="#editProcessoModal-<?php echo $processo['cod']; ?>" class="btn btn-warning btn-circle btn-sm">
                                                         <i class="fas fa-pen"></i>
@@ -241,7 +262,7 @@
                                                                     <input type="hidden" name="codEditProcesso" id="codEditProcesso" value='<?php echo $processo['cod']; ?>'>
 
                                                                     <div class="form-group">
-                                                                        <label for="inputEditObservacao">Trâmite</label>                                                                        
+                                                                        <label for="inputEditObservacao">Trâmite</label>
                                                                         <textarea class="form-control" id="inputEditObservacao" name="inputEditObservacao" rows="3" placeholder="Descrever observação."></textarea>
                                                                     </div>
 
@@ -259,7 +280,7 @@
                                                                             <label for="inputEditNProcesso">Nº Processo</label>
                                                                             <input type="text" class="form-control" id="inputEditNProcesso" name="inputEditNProcesso">
                                                                         </div>
-                                                                    </div>                                                                                                                    
+                                                                    </div>
 
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
