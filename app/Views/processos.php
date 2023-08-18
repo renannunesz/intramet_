@@ -88,8 +88,8 @@
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label for="inputServico">Serviço</label>
-                                                            <select id="inputServico" name="inputServico" class="form-control">
-                                                                <option selected>Selecione...</option>
+                                                            <select id="inputServico" name="inputServico" class="form-control" required>
+                                                                <option value="">Selecione...</option>
                                                                 <?php foreach ($servicos as $servico) : ?>
                                                                     <option value='<?php echo (int)$servico['cod']; ?>'><?php echo $servico['nome']; ?></option>
                                                                 <?php endforeach; ?>
@@ -99,8 +99,8 @@
 
                                                     <div class="form-group">
                                                         <label for="inputCliente">Cliente</label>
-                                                        <select id="inputCliente" name="inputCliente" class="form-control">
-                                                            <option selected>Selecione...</option>
+                                                        <select id="inputCliente" name="inputCliente" class="form-control" required>
+                                                            <option value="">Selecione...</option>
                                                             <?php foreach ($clientes as $cliente) : ?>
                                                                 <option value='<?php echo $cliente['cod']; ?>'><?php echo $cliente['nome']; ?></option>
                                                             <?php endforeach; ?>
@@ -212,13 +212,13 @@
                                                         <?php if ($stato['cod'] == $processo['codstatus']) : ?>
                                                             <?php switch ($stato['nome']) {
                                                                 case "Novo":
-                                                                    $varCor = "primary";
+                                                                    $varCor = "light";
                                                                     break;
                                                                 case "Em Andamento":
-                                                                    $varCor = "info";
+                                                                    $varCor = "warning";
                                                                     break;
                                                                 case "Pendente com Cliente":
-                                                                    $varCor = "warning";
+                                                                    $varCor = "danger";
                                                                     break;
                                                                 case "Finalizado":
                                                                     $varCor = "success";
@@ -269,8 +269,8 @@
                                                                     <div class="form-row">
                                                                         <div class="form-group col-md-6">
                                                                             <label for="inputEditStatus">Status</label>
-                                                                            <select id="inputEditStatus" name="inputEditStatus" class="form-control">
-                                                                                <option selected>Selecione...</option>
+                                                                            <select id="inputEditStatus" name="inputEditStatus" class="form-control" required>
+                                                                                <option value="">Selecione...</option>
                                                                                 <option value="2">Em Andamento</option>
                                                                                 <option value="12">Pendente com Cliente</option>
                                                                                 <option value="1">Finalizado</option>
