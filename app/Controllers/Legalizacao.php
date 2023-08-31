@@ -33,8 +33,10 @@ class Legalizacao extends BaseController
 
     public function processos()
     {
+        $filtroStatus = ['1'];
+
         return view('processos', [
-            'processos'     => $this->tbprocessos->find(),
+            'processos'     => $this->tbprocessos->whereNotIn('codstatus', $filtroStatus)->find(),
             'empresas'      => $this->tbempresas->find(),
             'clientes'      => $this->tbclientes->find(),
             'servicos'      => $this->tbprocessosservicos->orderBy('nome','ASC')->find(),
