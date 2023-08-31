@@ -223,6 +223,9 @@
                                                                 case "Finalizado":
                                                                     $varCor = "success";
                                                                     break;
+                                                                case "Tramitando no Órgão":
+                                                                    $varCor = "primary";
+                                                                    break;
                                                             } ?>
                                                             <div class="alert alert-<?php echo $varCor; ?>" role="alert">
                                                             <?php echo $stato['nome']; ?>
@@ -274,6 +277,7 @@
                                                                                 <option value="2">Em Andamento</option>
                                                                                 <option value="12">Pendente com Cliente</option>
                                                                                 <option value="1">Finalizado</option>
+                                                                                <option value="13">Tramitando no Órgão</option>
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group col-md-6">
