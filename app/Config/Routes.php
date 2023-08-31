@@ -35,11 +35,12 @@ $routes->get('/Home',   'Home::index');
 $routes->post('/Login/signIn',  'Login::signIn');
 $routes->get('/Login/signOut',  'Login::signOut');
 
-$routes->get('/Status',                 'Status::index');
-$routes->get('/Status/cadastrar',       'Status::cadastrar');
-$routes->post('/Status/salvar',         'Status::salvar');
-$routes->get('/Status/apagar/(:num)',   'Status::apagar/$1');
-$routes->get('/Status/editar/(:num)',   'Status::editar/$1');
+//Status
+$routes->get('/Cadastros/Status',           'Status::index');
+$routes->get('/Status/cadastrar',           'Status::cadastrar');
+$routes->post('/Status/addStatus',          'Status::addStatus');
+$routes->get('/Status/delStatus/(:num)',    'Status::delStatus/$1');
+$routes->post('/Status/editStatus/(:num)',       'Status::editStatus/$1');
 
 $routes->get('/Setores',                'Setores::index');
 $routes->get('/Setores/cadastrar',      'Setores::cadastrar');

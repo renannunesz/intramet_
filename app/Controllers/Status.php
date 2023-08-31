@@ -21,29 +21,37 @@ class Status extends BaseController
         ]);
     }
 
-    public function salvar()
+    public function addStatus()
     {
-        $this->statusModel->save($this->request->getPost());
+        $novoStatus = $this->request->getPost('inputStatus');
+        
+        $dados = [
+            'nome' => $novoStatus,
+        ];
 
-        return view('status', [
-            'status' => $this->statusModel->findAll()
-        ]);
+        $this->statusModel->save($dados);
+
+        return redirect()->to(base_url('/Cadastros/Status'));
     }
 
-    public function apagar($cod)
+    public function delStatus($cod)
     {
         $this->statusModel->where('cod', $cod)->delete();   
 
-        return view('status', [
-            'status' => $this->statusModel->findAll()
-        ]);
+        return redirect()->to(base_url('/Cadastros/Status'));
     }
 
-    public function editar($cod)
+    public function editStatus()
     {
-        return view('state', [
-            'status' => $this->statusModel->find($cod)
-        ]); 
+
+        $codEditStatus = $this->request->getPost('codEditStatus');
+        $nomeEditStatus = $this->request->getPost('inputEditStatus');            
+
+        $this->statusModel->set('nome', $nomeEditStatus);
+        $this->statusModel->where('cod', $codEditStatus);
+        $this->statusModel->update();
+        
+        return redirect()->to(base_url('/Cadastros/Status'));
     }
 
     ######################### Funções em DESUSO #########################

@@ -16,7 +16,7 @@ class tbstatusModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'cod',
-        'descricao'
+        'nome'
     ];
 
     // Dates

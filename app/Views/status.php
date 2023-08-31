@@ -4,127 +4,199 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Intranet - G.MTDS</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Métodos - Intranet</title>
     <link rel="icon" type="image/x-icon" href='<?php echo base_url('assets/img/favicon.ico') ?>'>
+
+    <!-- Custom fonts for this template-->
+    <link href="../assets/theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../assets/theme/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="../assets/theme/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
-<body style="background-color:#78AED3">
+<body id="page-top">
 
-    <?php include 'navbar.php' ?>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-    <div class="container-md d-flex justify-content-center pt-3" id="" name="">
+        <?php include 'sidebar.php'; ?>
 
-        <div class="card" style="width: 50rem;">
-            <div class="card-header">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Novo
-                </button>
+            <!-- Main Content -->
+            <div id="content">
 
-                <form action="<?php echo base_url('public/Status/salvar') ?>" method="post">
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <?php include 'navbar.php'; ?>
 
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de Status</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
 
-                                    <div class="container-fluid">
+                    <nav aria-label="Page breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page"> Cadastros </li>
+                            <li class="breadcrumb-item"> Status </li>
+                        </ol>
+                    </nav>
 
-                                        <div class="row">
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800"> Status </h1>
 
-                                            <div class="input-group mb-3">
-                                                <label class="input-group-text" for="inputGroupSelect04">Descrição</label>
-                                                <input type="text" class="form-control" name="descricao" id="descricao">
+                    <!-- Collapsable Card -->
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Accordion -->
+                        <a href="#collapseCard" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCard">
+                            <h6 class="m-0 font-weight-bold text-primary">Opções</h6>
+                        </a>
+                        <!-- Card Content - Collapse -->
+                        <div class="collapse" id="collapseCard">
+                            <div class="card-body">
+
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#novoStatusModal">
+                                    Novo Status
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="novoStatusModal" tabindex="-1" role="dialog" aria-labelledby="novoStatusModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-primary" id="novoStatusModalLabel">Incluir Status</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                             </div>
+                                            <div class="modal-body">
 
+                                                <form action="<?php echo base_url('Status/addStatus') ?>" method="post">
+
+                                                    <div class="form-group">
+                                                        <label for="inputStatus">Status</label>
+                                                        <input type="text" class="form-control" id="inputStatus" name="inputStatus" placeholder="Nome">
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                                    </div>
+
+                                                </form>
+
+                                            </div>
                                         </div>
-
                                     </div>
+                                </div>
 
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Salvar</button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                </div>
                             </div>
                         </div>
                     </div>
-                </form>
 
-            </div>
+                    <!-- Tab Status -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Listagem de Status</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Cod.</th>
+                                            <th>Nome</th>
+                                            <th>Opções</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Cod.</th>
+                                            <th>Nome</th>
+                                            <th>Opções</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <?php foreach ($status as $stato) : ?>
+                                            <tr>
+                                                <td><?php echo $stato['cod']; ?></td>
+                                                <td><?php echo $stato['nome']; ?></td>
+                                                <td>
+                                                    <a data-toggle="modal" data-target="#editStatusModal-<?php echo $stato['cod']; ?>" class="btn btn-warning btn-circle btn-sm">
+                                                        <i class="fas fa-pen"></i>
+                                                    </a>
+                                                    <a href='<?php echo base_url('Status/delStatus') . '/' . $stato['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
 
-            <div class="card-body">
+                                                <div class="modal fade" id="editStatusModal-<?php echo $stato['cod']; ?>" tabindex="-1" role="dialog" aria-labelledby="editStatusModalLabel" aria-hidden="true">
 
-                <h5 class="card-title">Status</h5>
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
 
-                <div class="row">
+                                                                <form action='<?php echo base_url('Status/editStatus') . '/' . $stato['cod']; ?>' method="post">
 
-                    <p>Status cadastrados: <?php echo count($status); ?></p>
+                                                                    <input type="hidden" name="codEditStatus" id="codEditStatus" value='<?php echo $stato['cod']; ?>'>
 
+                                                                    <div class="form-row">
+                                                                        <div class="form-group col-md-6">
+                                                                            <label for="inputEditStatus">Nome</label>
+                                                                            <input type="text" class="form-control" id="inputEditStatus" name="inputEditStatus" placeholder="Nome" value='<?php echo $stato['nome']; ?>'>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                                                    </div>
+
+                                                                </form>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="container-fluid pt-3" id="" name="" style="width: 50rem;">
-
-        <div class="card">
-            <div class="card-body">
-
-                <table class="table table-sm align-middle compact stripe hover" name="gridstatus" id="gridstatus">
-                    <thead class="bg-light">
-                        <tr>
-                            <th scope="col">Cod</th>
-                            <th scope="col">Descrição</th>
-                            <th scope="col">Opções</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider">
-                        <?php foreach ($status as $state) : ?>
-                            <tr>
-                                <td><?php echo $state['cod'] ?></td>
-                                <td><?php echo $state['descricao'] ?></td>
-                                <td>
-                                    <a href='<?php echo base_url('public/Status/editar') . '/' . $state['cod']; ?>'><button class="btn btn-warning btn-sm" value="<?php echo $state['cod']; ?>">Editar</button></a>
-                                    <a href='<?php echo base_url('public/Status/apagar') . '/' . $state['cod']; ?>'><button class="btn btn-danger btn-sm" value="<?php echo $state['cod']; ?>">Apagar</button></a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
 
             </div>
-        </div>
 
-    </div>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="../assets/theme/vendor/jquery/jquery.min.js"></script>
+            <script src="../assets/theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+            <!-- Core plugin JavaScript-->
+            <script src="../assets/theme/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+            <!-- Custom scripts for all pages-->
+            <script src="../assets/theme/js/sb-admin-2.min.js"></script>
+
+            <!-- Page level plugins -->
+            <script src="../assets/theme/vendor/datatables/jquery.dataTables.min.js"></script>
+            <script src="../assets/theme/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+            <!-- Page level custom scripts -->
+            <script src="../assets/theme/js/demo/datatables-demo.js"></script>
 
 </body>
 
 </html>
-
-<script>
-    $(document).ready(function() {
-        $('#gridstatus').DataTable({
-            language: {
-            url: 'https://cdn.datatables.net/plug-ins/1.13.2/i18n/pt-BR.json'
-            }
-        }); 
-    });
-</script>
