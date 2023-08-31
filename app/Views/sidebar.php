@@ -41,7 +41,7 @@
                 <a class="collapse-item" href="#">Envolvidos</a>
                 <a class="collapse-item" href="#">Setores</a>
                 <a class="collapse-item" href="#">Status</a>
-                <a class="collapse-item" href="#">Serviços Processos</a>
+                <a class="collapse-item" href='<?php echo base_url('Cadastros/Servicos'); ?>'>Serviços Processos</a>
             </div>
         </div>
     </li>

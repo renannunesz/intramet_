@@ -16,7 +16,7 @@ class TbprocessosservicosModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'cod',
-        'servico'
+        'nome'
     ];
 
     // Dates

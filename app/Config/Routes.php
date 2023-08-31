@@ -32,7 +32,6 @@ $routes->set404Override();
 //$routes->get('/', 'Home::index');
 $routes->get('/',       'Login::index');
 $routes->get('/Home',   'Home::index');
-
 $routes->post('/Login/signIn',  'Login::signIn');
 $routes->get('/Login/signOut',  'Login::signOut');
 
@@ -105,10 +104,15 @@ $routes->post('/Legalizacao/editProcesso/(:num)', 'Legalizacao::editProcesso/$1'
 
 //Cadastro - Clientes
 $routes->get('/Cadastros/Clientes', 'Clientes::index');
-
 $routes->post('/Clientes/addCliente', 'Clientes::addCliente');
 $routes->post('/Clientes/editCliente/(:num)', 'Clientes::editCliente/$1');
 $routes->get('/Clientes/delCliente/(:num)', 'Clientes::delCliente/$1');
+
+//Serviços
+$routes->get('/Cadastros/Servicos', 'Servicos::index');
+$routes->post('/Servicos/addServico', 'Servicos::addServico');
+$routes->post('/Servicos/editServico/(:num)', 'Servicos::editServico/$1');
+$routes->get('/Servicos/delServico/(:num)', 'Servicos::delServico/$1');
 
 /*
  * --------------------------------------------------------------------
