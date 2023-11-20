@@ -1,3 +1,10 @@
+<?php
+// Inclua o arquivo que contém a definição da função tempoDecorrido
+include 'app/Helpers/legalizacao_helper.php';
+
+// Restante do seu código PHP
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -192,11 +199,7 @@
                                     </tfoot>
                                     <tbody>
                                         <?php foreach ($processos as $processo) : ?>
-                                            <?php
-                                            $dtINI = new DateTime($processo['datainicio']);
-                                            $dtFim = new DateTime('now');
-                                            $diasDecorridos = $dtINI->diff($dtFim);
-                                            ?>
+
                                             <tr>
                                                 <td><?php echo $processo['cod']; ?></td>
                                                 <td><?php echo implode("/", array_reverse(explode("-", $processo['datainicio']))); ?></td>
@@ -228,7 +231,7 @@
                                                                     break;
                                                             } ?>
                                                             <div class="alert alert-<?php echo $varCor; ?>" role="alert">
-                                                            <?php echo $stato['nome']; ?>
+                                                                <?php echo $stato['nome']; ?>
                                                             </div>
                                                         <?php endif; ?>
                                                     <?php endforeach; ?>
@@ -243,7 +246,7 @@
                                                         echo "A Definir";
                                                     } ?></td>
                                                 <td><?php echo $processo['numeroprocesso']; ?></td>
-                                                <td><?php echo $diasDecorridos->d . " Dia(s)"; ?></td>
+                                                <td><?php echo tempoDecorrido($processo['datainicio'], date('Y-m-d')) ." Dia(s)"; ?></td>
                                                 <td><?php echo $processo['codstatus'] == 1 ? implode("/", array_reverse(explode("-", $processo['datafim']))) : ""; ?></td>
                                                 <td>
                                                     <a data-toggle="modal" data-target="#editProcessoModal-<?php echo $processo['cod']; ?>" class="btn btn-warning btn-circle btn-sm">
