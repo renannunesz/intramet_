@@ -1,8 +1,6 @@
 <?php
-// Inclua o arquivo que contém a definição da função tempoDecorrido
+// Helpers
 include 'app/Helpers/legalizacao_helper.php';
-
-// Restante do seu código PHP
 ?>
 
 <!DOCTYPE html>
@@ -246,15 +244,21 @@ include 'app/Helpers/legalizacao_helper.php';
                                                         echo "A Definir";
                                                     } ?></td>
                                                 <td><?php echo $processo['numeroprocesso']; ?></td>
-                                                <td><?php echo tempoDecorrido($processo['datainicio'], date('Y-m-d')) ." Dia(s)"; ?></td>
+                                                <td><?php echo tempoDecorrido($processo['datainicio'], date('Y-m-d')) . " Dia(s)"; ?></td>
                                                 <td><?php echo $processo['codstatus'] == 1 ? implode("/", array_reverse(explode("-", $processo['datafim']))) : ""; ?></td>
                                                 <td>
+
                                                     <a data-toggle="modal" data-target="#editProcessoModal-<?php echo $processo['cod']; ?>" class="btn btn-warning btn-circle btn-sm">
                                                         <i class="fas fa-pen"></i>
+                                                    </a>
+                                                    <!--pagina de consulta-->
+                                                    <a href='<?php echo base_url('Legalizacao/processosDetalhes') . '/' . $processo['cod']; ?>' class="btn btn-primary btn-circle btn-sm">
+                                                        <i class="fas fa-search"></i>
                                                     </a>
                                                     <a href='<?php echo base_url('Legalizacao/delProcesso') . '/' . $processo['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
+
                                                 </td>
 
                                                 <div class="modal fade" id="editProcessoModal-<?php echo $processo['cod']; ?>" tabindex="-1" role="dialog" aria-labelledby="editProcessoModalLabel" aria-hidden="true">

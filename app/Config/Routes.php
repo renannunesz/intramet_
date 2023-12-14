@@ -98,10 +98,11 @@ $routes->get('/Cronograma/novaCompetencia',             'Cronograma::novaCompete
 $routes->get('/Cronograma/apagar/(:num)',               'Cronograma::apagar/$1');
 
 //Legalização
-$routes->get('/Legalizacao/Processos', 'Legalizacao::processos');
-$routes->post('/Legalizacao/addProcesso', 'Legalizacao::addProcesso');
-$routes->get('/Legalizacao/delProcesso/(:num)', 'Legalizacao::delProcesso/$1');
-$routes->post('/Legalizacao/editProcesso/(:num)', 'Legalizacao::editProcesso/$1');
+$routes->get('/Legalizacao/Processos',                  'Legalizacao::processos');
+$routes->post('/Legalizacao/addProcesso',               'Legalizacao::addProcesso');
+$routes->get('/Legalizacao/delProcesso/(:num)',         'Legalizacao::delProcesso/$1');
+$routes->get('/Legalizacao/processosDetalhes/(:num)',   'Legalizacao::processosDetalhes/$1');
+$routes->post('/Legalizacao/editProcesso/(:num)',       'Legalizacao::editProcesso/$1');
 
 //Cadastro - Clientes
 $routes->get('/Cadastros/Clientes', 'Clientes::index');

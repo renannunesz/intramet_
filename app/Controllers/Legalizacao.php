@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\tbclientesModel;
 use App\Models\tbempresasModel;
 use App\Models\tbenvolvidosModel;
+use App\Models\TbprocessosdetalhesModel;
 use App\Models\TbprocessosModel;
 use App\Models\tbprocessosservicosModel;
 use App\Models\tbstatusModel;
@@ -20,6 +21,7 @@ class Legalizacao extends BaseController
     private $tbenvolvidos;
     private $tbstatus;
     private $tbclientes;
+    private $tbprocessosdetalhes;
 
     public function __construct()
     {
@@ -29,6 +31,7 @@ class Legalizacao extends BaseController
         $this->tbprocessosservicos = new tbprocessosservicosModel();
         $this->tbenvolvidos = new tbenvolvidosModel();
         $this->tbstatus = new tbstatusModel();
+        $this->tbprocessosdetalhes = new TbprocessosdetalhesModel();
     }
 
     public function processos()
@@ -42,6 +45,20 @@ class Legalizacao extends BaseController
             'servicos'      => $this->tbprocessosservicos->orderBy('nome','ASC')->find(),
             'envolvidos'    => $this->tbenvolvidos->find(),
             'status'        => $this->tbstatus->find()
+        ]);
+    }
+
+    public function processosDetalhes($cod)
+    {    
+
+        return view('processosdetalhes', [
+            'processo'      => $this->tbprocessos->where('cod', $cod)->first(),
+            'empresas'      => $this->tbempresas->find(),
+            'clientes'      => $this->tbclientes->find(),
+            'servicos'      => $this->tbprocessosservicos->orderBy('nome','ASC')->find(),
+            'envolvidos'    => $this->tbenvolvidos->find(),
+            'status'        => $this->tbstatus->find(),            
+            'processosdetalhes' => $this->tbprocessosdetalhes->where('codprocesso', $cod)->find()            
         ]);
     }
 
