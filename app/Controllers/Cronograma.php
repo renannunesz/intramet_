@@ -27,7 +27,7 @@ class Cronograma extends BaseController
         $this->usuarios = new tbusuariosModel();
     }
 
-    public function empresasPendentesContabil($codResponsavel,$dataCompetencia)
+    public function empresasPendentesContabil($codResponsavel, $dataCompetencia)
     {
         $filtros = [
             'codresponsavel' => $codResponsavel,
@@ -39,7 +39,7 @@ class Cronograma extends BaseController
         return $this->tbfscncronogramaModel->where($filtros)->find();
     }
 
-    public function empresasFinalizadasContabil($codResponsavel,$dataCompetencia)
+    public function empresasFinalizadasContabil($codResponsavel, $dataCompetencia)
     {
         $filtros = [
             'codresponsavel' => $codResponsavel,
@@ -64,23 +64,30 @@ class Cronograma extends BaseController
     public function index()
     {
 
-        $codUserLogado = $this->responsaveis->where('nome', session()->get('user'))->findColumn('cod');
+        $status = session()->get('Logado');
 
-        $this->request->getGet('competencia') == null ? $competenciaFiltro = [] : $competenciaFiltro = ['competencia' => $this->request->getGet('competencia')];
+        if (is_null($status)) {
+            return view('login');
+        } else {
 
-        $filtros = array_merge($competenciaFiltro, $this->getEmpresasCronograma($codUserLogado));
+            $codUserLogado = $this->responsaveis->where('nome', session()->get('user'))->findColumn('cod');
 
-        return view('page head')
-            . view('navbar')
-            . view('cronograma', [
-                'cronogramas'   => $this->tbfscncronogramaModel->where($filtros)->find(),
-                'empresas'      => $this->tbEmpresas->find(),
-                'responsaveis'  => $this->responsaveis->find(),
-                'setores'       => $this->setores->find(),
-                'competencia'   => $this->request->getGet('competencia'),
-                'empPendentesContabil'      => $this->empresasPendentesContabil($codUserLogado,$this->request->getGet('competencia')),
-                'empFinalizadasContabil'    => $this->empresasFinalizadasContabil($codUserLogado,$this->request->getGet('competencia'))
-            ]);
+            $this->request->getGet('competencia') == null ? $competenciaFiltro = [] : $competenciaFiltro = ['competencia' => $this->request->getGet('competencia')];
+
+            $filtros = array_merge($competenciaFiltro, $this->getEmpresasCronograma($codUserLogado));
+
+            return view('page head')
+                . view('navbar')
+                . view('cronograma', [
+                    'cronogramas'   => $this->tbfscncronogramaModel->where($filtros)->find(),
+                    'empresas'      => $this->tbEmpresas->find(),
+                    'responsaveis'  => $this->responsaveis->find(),
+                    'setores'       => $this->setores->find(),
+                    'competencia'   => $this->request->getGet('competencia'),
+                    'empPendentesContabil'      => $this->empresasPendentesContabil($codUserLogado, $this->request->getGet('competencia')),
+                    'empFinalizadasContabil'    => $this->empresasFinalizadasContabil($codUserLogado, $this->request->getGet('competencia'))
+                ]);
+        }
     }
 
     public function salvaExecucao()
@@ -104,8 +111,8 @@ class Cronograma extends BaseController
                 'responsaveis'  => $this->responsaveis->find(),
                 'setores'       => $this->setores->find(),
                 'competencia'   => $this->request->getGet('competencia'),
-                'empPendentesContabil'      => $this->empresasPendentesContabil($codUserLogado,$this->request->getGet('competencia')),
-                'empFinalizadasContabil'    => $this->empresasFinalizadasContabil($codUserLogado,$this->request->getGet('competencia'))
+                'empPendentesContabil'      => $this->empresasPendentesContabil($codUserLogado, $this->request->getGet('competencia')),
+                'empFinalizadasContabil'    => $this->empresasFinalizadasContabil($codUserLogado, $this->request->getGet('competencia'))
             ]);
     }
 
@@ -119,7 +126,7 @@ class Cronograma extends BaseController
                 'responsaveis'  => $this->responsaveis->find(),
                 'setores'       => $this->setores->find(),
                 'finalizadas'   => $this->tbfscncronogramaModel->where('statusexecucao', '1')->findAll(),
-                'abertas'       => $this->tbfscncronogramaModel->where('statusexecucao', '0')->findAll(),               
+                'abertas'       => $this->tbfscncronogramaModel->where('statusexecucao', '0')->findAll(),
             ]);
     }
 
@@ -158,7 +165,7 @@ class Cronograma extends BaseController
     }
 
     public function salvar()
-    {        
+    {
 
         $cod = $this->request->getPost('codregistro');
 
@@ -168,9 +175,8 @@ class Cronograma extends BaseController
             'md_contabilcompetenciaexecutar'   => $this->request->getPost('contabilcompetenciaexecutar'),
         ];
 
-        $this->tbfscncronogramaModel->update($cod,$dados);
+        $this->tbfscncronogramaModel->update($cod, $dados);
 
         return $this->acompanhamentoCronograma();
     }
-
 }

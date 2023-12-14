@@ -7,7 +7,7 @@ use App\Models\TbclientesModel;
 
 class Clientes extends BaseController
 {
-    
+
     private $tbclientes;
 
     public function __construct()
@@ -17,9 +17,15 @@ class Clientes extends BaseController
 
     public function index()
     {
-        return view('clientes', [
-            'clientes' => $this->tbclientes->find(),
-        ]);
+        $status = session()->get('Logado');
+
+        if (is_null($status)) {
+            return view('login');
+        } else {
+            return view('clientes', [
+                'clientes' => $this->tbclientes->find(),
+            ]);
+        }
     }
 
     public function addCliente()
@@ -47,7 +53,7 @@ class Clientes extends BaseController
         $this->tbclientes->set('cpfcnpj', $cpfcnpjEditCliente);
         $this->tbclientes->where('cod', $codEditCliente);
         $this->tbclientes->update();
-        
+
         return redirect()->to(base_url('/Cadastros/Clientes'));
     }
 
@@ -57,6 +63,4 @@ class Clientes extends BaseController
 
         return redirect()->to(base_url('/Cadastros/Clientes'));
     }
-
-
 }

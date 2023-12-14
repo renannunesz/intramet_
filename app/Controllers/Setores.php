@@ -16,11 +16,18 @@ class Setores extends BaseController
 
     public function index()
     {
-        return view('page head')
-            . view('navbar')
-            . view('setores', [
-                'setores' => $this->setoresModel->findAll()
-            ]);
+
+        $status = session()->get('Logado');
+
+        if (is_null($status)) {
+            return view('login');
+        } else {
+            return view('page head')
+                . view('navbar')
+                . view('setores', [
+                    'setores' => $this->setoresModel->findAll()
+                ]);
+        }
     }
 
     public function salvar()

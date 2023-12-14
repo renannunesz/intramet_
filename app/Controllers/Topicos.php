@@ -41,14 +41,20 @@ class Topicos extends BaseController
 
     public function index()
     {
-        return view('topicos', [
-            'topicos'           => $this->topicosModel->find(),
-            'topicosdetalhes'   => $this->topicosDetalhesModel->find(),
-            'atas'              => $this->atasModel->orderBy('cod', 'desc')->find(),
-            'envolvidos'        => $this->responsavel->find(),
-            'status'            => $this->statusModel->find(),
-            'setores'           => $this->setorModel->find()
-        ]);
+        $status = session()->get('Logado');
+
+        if (is_null($status)) {
+            return view('login');
+        } else {
+            return view('topicos', [
+                'topicos'           => $this->topicosModel->find(),
+                'topicosdetalhes'   => $this->topicosDetalhesModel->find(),
+                'atas'              => $this->atasModel->orderBy('cod', 'desc')->find(),
+                'envolvidos'        => $this->responsavel->find(),
+                'status'            => $this->statusModel->find(),
+                'setores'           => $this->setorModel->find()
+            ]);
+        }
     }
 
     public function salvar()
@@ -67,7 +73,7 @@ class Topicos extends BaseController
 
     public function salvarDetalhes()
     {
-        
+
         //$this->topicosModel->save($this->request->getPost('codstatus'));
         //$this->topicosModel->where('cod', $cod)->set(['codstatus' => $this->request->getPost('codstatus')])->update();
         $codTopico = $this->request->getPost('codtopico');
@@ -87,7 +93,6 @@ class Topicos extends BaseController
             'status'            => $this->statusModel->find(),
             'setores'           => $this->setorModel->find()
         ]);
-
     }
 
     public function apagar($cod)
@@ -106,9 +111,9 @@ class Topicos extends BaseController
 
     public function apagarDetalhes($cod)
     {
-        $codTopico = $this->topicosDetalhesModel->where('cod' , $cod)->findColumn('codtopico');    
+        $codTopico = $this->topicosDetalhesModel->where('cod', $cod)->findColumn('codtopico');
 
-        $this->topicosDetalhesModel->where('cod' , $cod)->delete();
+        $this->topicosDetalhesModel->where('cod', $cod)->delete();
 
         return view('topico', [
             'topicos'           => $this->topicosModel->find($codTopico[0]),
@@ -118,7 +123,6 @@ class Topicos extends BaseController
             'status'            => $this->statusModel->find(),
             'setores'           => $this->setorModel->find()
         ]);
-
     }
 
     public function editar($cod)
@@ -138,7 +142,7 @@ class Topicos extends BaseController
 
     public function finalizar($cod)
     {
-        
+
         //$this->topicosModel->where('cod', $cod)->set('codstatus', 1)->update();
         var_dump($this->topicosModel->where('cod', $cod)->set('codstatus', 1)->update());
 

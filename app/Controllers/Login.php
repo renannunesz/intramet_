@@ -27,38 +27,30 @@ class Login extends BaseController
 
         $user = $this->usuariosModel->where('usuario', $usuario)->first();
 
-        if (empty($user) == false) {
+        if (is_null($user)) {
 
-            if ($senha == $user["senha"]) {                
+            session()->setFlashdata('msg', 'Usuário Invalido!');
 
-                session()->start();
-                session()->set('user' , $user['nome']);
-                session()->set('usernivel', $user['codnivelusuario']);             
-                
-                return view('page head')
-                . view('navbar')
-                . view('home', [
-                    'usuario' => $user['nome']
-                ]);
-
-            } else {
-
-                return view('mensagens', [
-                    'mensagem' => 'Senha Inválida',
-                    'tipoMensagem'  => 'is-warning',
-                    'link' => 'public/'
-                ]);
-
-            }
+            return redirect('Login');
             
         } else {
 
-            return view('mensagens', [
-                'mensagem'      => 'Usuario Inválido',
-                'tipoMensagem'  => 'is-warning',
-                'link'          => 'public/'
-            ]);
+            if ($senha == $user['senha']) {
+
+                session()->set('Logado', true);
+                session()->set('nome', $user['nome']);
+
+                return redirect('Home');
+
+            } else {
+
+                session()->setFlashdata('msg', 'Senha Invalida!');
+
+                return redirect('Login');
+            }
+            
         }
+
     }
 
     public function signOut()
@@ -66,6 +58,6 @@ class Login extends BaseController
         session()->set('user' , '');    
         session_unset();
         session_destroy();
-        return view('/Login');
+        return redirect('Login');
     }
 }

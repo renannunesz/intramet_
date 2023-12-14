@@ -17,9 +17,15 @@ class Servicos extends BaseController
 
     public function index()
     {
-        return view('processosservicos',[
-            'servicos' => $this->tbservicos->orderBy('nome', 'ASC')->find(),
-        ]);
+        $status = session()->get('Logado');
+
+        if (is_null($status)) {
+            return view('login');
+        } else {
+            return view('processosservicos', [
+                'servicos' => $this->tbservicos->orderBy('nome', 'ASC')->find(),
+            ]);
+        }
     }
 
     public function addServico()
@@ -27,7 +33,7 @@ class Servicos extends BaseController
         $nomeServico = $this->request->getPost('inputServico');
 
         $dadosServico = [
-            'nome' => $nomeServico,        
+            'nome' => $nomeServico,
         ];
 
         $this->tbservicos->save($dadosServico);
@@ -35,10 +41,10 @@ class Servicos extends BaseController
         return redirect()->to(base_url('/Cadastros/Servicos'));
     }
 
-    public function editServico($cod) 
+    public function editServico($cod)
     {
         $nomeServico = $this->request->getPost('inputEditServico');
-        
+
         $this->tbservicos->set('nome', $nomeServico)->where('cod', $cod)->update();
 
         return redirect()->to(base_url('/Cadastros/Servicos'));

@@ -23,16 +23,22 @@ class Atas extends BaseController
     public function index()
     {
 
-        return view('atas', [
-            'atas'          => $this->atasModel->find(),
-            'envolvidos'    => $this->envolvidosModel->find(),
-            'topicos'       => $this->topicosModel->find()
-        ]);
+        $status = session()->get('Logado');
+
+        if (is_null($status)) {
+            return view('login');
+        } else {
+            return view('atas', [
+                'atas'          => $this->atasModel->find(),
+                'envolvidos'    => $this->envolvidosModel->find(),
+                'topicos'       => $this->topicosModel->find()
+            ]);
+        }
     }
 
-    public function salvar() 
+    public function salvar()
     {
-        
+
         foreach ($this->request->getPost('codenvolvidos') as $codigo) {
             $cod[] = $codigo;
         }
@@ -56,7 +62,7 @@ class Atas extends BaseController
     {
         return view('ata', [
             'atas'          => $this->atasModel->find($cod),
-        ]);        
+        ]);
     }
 
     public function apagar($cod)
@@ -64,19 +70,18 @@ class Atas extends BaseController
         $qtdAtasTopicos = count($this->topicosModel->where('codata', $cod)->find());
 
         $this->atasModel->where('cod', $cod)->delete();
-        
+
         return view('atas', [
             'atas' => $this->atasModel->find(),
             'envolvidos' => $this->envolvidosModel->find(),
             'topicos'       => $this->topicosModel->find()
-        ]);        
+        ]);
     }
 
     ######################### Funções em DESUSO #########################
-    
+
     public function cadastrar()
     {
         return view('cad_ata');
     }
-
 }

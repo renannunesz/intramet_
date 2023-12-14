@@ -12,19 +12,25 @@ class Status extends BaseController
     public function __construct()
     {
         $this->statusModel = new tbstatusModel();
-    }    
-    
+    }
+
     public function index()
     {
-        return view('status', [
-            'status' => $this->statusModel->findAll()
-        ]);
+        $status = session()->get('Logado');
+
+        if (is_null($status)) {
+            return view('login');
+        } else {
+            return view('status', [
+                'status' => $this->statusModel->findAll()
+            ]);
+        }
     }
 
     public function addStatus()
     {
         $novoStatus = $this->request->getPost('inputStatus');
-        
+
         $dados = [
             'nome' => $novoStatus,
         ];
@@ -36,7 +42,7 @@ class Status extends BaseController
 
     public function delStatus($cod)
     {
-        $this->statusModel->where('cod', $cod)->delete();   
+        $this->statusModel->where('cod', $cod)->delete();
 
         return redirect()->to(base_url('/Cadastros/Status'));
     }
@@ -45,12 +51,12 @@ class Status extends BaseController
     {
 
         $codEditStatus = $this->request->getPost('codEditStatus');
-        $nomeEditStatus = $this->request->getPost('inputEditStatus');            
+        $nomeEditStatus = $this->request->getPost('inputEditStatus');
 
         $this->statusModel->set('nome', $nomeEditStatus);
         $this->statusModel->where('cod', $codEditStatus);
         $this->statusModel->update();
-        
+
         return redirect()->to(base_url('/Cadastros/Status'));
     }
 
@@ -60,5 +66,4 @@ class Status extends BaseController
     {
         return view('cad_status');
     }
-
 }

@@ -1,31 +1,96 @@
-<?php if(isset($usuario)) : ?>
+<!DOCTYPE html>
+<html lang="pt">
 
-<main class="d-flex " style="background-color:#dee6ed">
+<head>
 
-    <?php include 'sidebar.php'; ?>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <div class="mx-2 justify-content-center content-fluid ml-sm-auto pt-1 px-1">
+    <title>Métodos - Intranet</title>
+    <link rel="icon" type="image/x-icon" href='<?php echo base_url('assets/img/favicon.ico') ?>'>
 
-        <div class="text-center">
+    <!-- Custom fonts for this template-->
+    <link href="<?php echo base_url() . "/assets/theme/vendor/fontawesome-free/css/all.min.css"; ?>" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-            <img class="img-fluid is-centered rounded mx-auto" height="90%" width="90%" src="<?php echo base_url('assets/img/intranet-metodoscapa1.png') ?>">
+    <!-- Custom styles for this template-->
+    <link href="<?php echo base_url() . "/assets/theme/css/sb-admin-2.min.css" ?>" rel="stylesheet">
 
-        </div>
+    <!-- Custom styles for this page -->
+    <link href="<?php echo base_url() . "/assets/theme/vendor/datatables/dataTables.bootstrap4.min.css"; ?>" rel="stylesheet">
 
-        <div class="card text-center">
+</head>
 
-            <div class="card-footer text-muted">
-                Grupo Métodos - Tecnologia 2023
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <?php include 'sidebar.php'; ?>
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <?php include 'navbar.php'; ?>
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <nav aria-label="Page breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page"> Home </li>
+                            <li class="breadcrumb-item"> Intranet Grupo Métodos </li>
+                        </ol>
+                    </nav>
+
+                    <!-- Page Heading -->
+                    <div class="row marcador align-items-center">
+                        <div class="col mx-auto text-center">
+                            <img class="img-responsive" src="<?php echo base_url('assets/img/grupoMetodos.png') ?>">
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
             </div>
+            <!-- End of Main Content -->
+
 
         </div>
+        <!-- End of Content Wrapper -->
 
     </div>
+    <!-- End of Page Wrapper -->
 
-</main>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-<?php else: ?>
+    <!-- Bootstrap core JavaScript-->
+    <script src="<?php echo base_url() . "/assets/theme/vendor/jquery/jquery.min.js"; ?>"></script>
+    <script src="<?php echo base_url() . "/assets/theme/vendor/bootstrap/js/bootstrap.bundle.min.js"; ?>"></script>
 
-<h3>Hi unknown user</h3>
+    <!-- Core plugin JavaScript-->
+    <script src="<?php echo base_url() . "/assets/theme/vendor/jquery-easing/jquery.easing.min.js"; ?>"></script>
 
-<?php endif ?>
+    <!-- Custom scripts for all pages-->
+    <script src="<?php echo base_url() . "/assets/theme/js/sb-admin-2.min.js"; ?>"></script>
+
+    <!-- Page level plugins -->
+    <script src="<?php echo base_url() . "/assets/theme/vendor/datatables/jquery.dataTables.min.js"; ?>"></script>
+    <script src="<?php echo base_url() . "/assets/theme/vendor/datatables/dataTables.bootstrap4.min.js"; ?>"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="<?php echo base_url() . "/assets/theme/js/demo/datatables-demo.js"; ?>"></script>
+
+</body>
+
+</html>

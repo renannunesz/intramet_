@@ -21,12 +21,19 @@ class Envolvidos extends BaseController
 
     public function index()
     {
-        return view('page head')
-            . view('navbar')
-            . view('envolvidos', [
-                'envolvidos' => $this->envolvidosModel->find(),
-                'setores' => $this->setoresModel->find(),
-            ]);
+
+        $status = session()->get('Logado');
+
+        if (is_null($status)) {
+            return view('login');
+        } else {
+            return view('page head')
+                . view('navbar')
+                . view('envolvidos', [
+                    'envolvidos' => $this->envolvidosModel->find(),
+                    'setores' => $this->setoresModel->find(),
+                ]);
+        }
     }
 
     public function salvar()

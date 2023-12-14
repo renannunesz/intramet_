@@ -38,27 +38,33 @@ class Legalizacao extends BaseController
     {
         $filtroStatus = ['1'];
 
-        return view('processos', [
-            'processos'     => $this->tbprocessos->whereNotIn('codstatus', $filtroStatus)->find(),
-            'empresas'      => $this->tbempresas->find(),
-            'clientes'      => $this->tbclientes->find(),
-            'servicos'      => $this->tbprocessosservicos->orderBy('nome','ASC')->find(),
-            'envolvidos'    => $this->tbenvolvidos->find(),
-            'status'        => $this->tbstatus->find()
-        ]);
+        $status = session()->get('Logado');
+
+        if (is_null($status)) {
+            return view('login');
+        } else {
+            return view('processos', [
+                'processos'     => $this->tbprocessos->whereNotIn('codstatus', $filtroStatus)->find(),
+                'empresas'      => $this->tbempresas->find(),
+                'clientes'      => $this->tbclientes->find(),
+                'servicos'      => $this->tbprocessosservicos->orderBy('nome', 'ASC')->find(),
+                'envolvidos'    => $this->tbenvolvidos->find(),
+                'status'        => $this->tbstatus->find()
+            ]);
+        }
     }
 
     public function processosDetalhes($cod)
-    {    
+    {
 
         return view('processosdetalhes', [
             'processo'      => $this->tbprocessos->where('cod', $cod)->first(),
             'empresas'      => $this->tbempresas->find(),
             'clientes'      => $this->tbclientes->find(),
-            'servicos'      => $this->tbprocessosservicos->orderBy('nome','ASC')->find(),
+            'servicos'      => $this->tbprocessosservicos->orderBy('nome', 'ASC')->find(),
             'envolvidos'    => $this->tbenvolvidos->find(),
-            'status'        => $this->tbstatus->find(),            
-            'processosdetalhes' => $this->tbprocessosdetalhes->where('codprocesso', $cod)->find()            
+            'status'        => $this->tbstatus->find(),
+            'processosdetalhes' => $this->tbprocessosdetalhes->where('codprocesso', $cod)->find()
         ]);
     }
 
@@ -84,7 +90,7 @@ class Legalizacao extends BaseController
             'codservico' => $codServico,
             'codempresa' => $codCliente,
             'codenvolvido' => $codResponsavel,
-            'contato' => $dadosContato . " - " . $dadosFone, 
+            'contato' => $dadosContato . " - " . $dadosFone,
             'codstatus' => $codStatus,
             'observacao' => $dadosObs,
             'numeroprocesso' => $numProcesso,
@@ -93,8 +99,8 @@ class Legalizacao extends BaseController
             'tempodecorrido' => $tempoDecorrido,
             'created_at' => $createAt
         ];
-        
-        $this->tbprocessos->save($dadosProcesso);    
+
+        $this->tbprocessos->save($dadosProcesso);
 
         return redirect()->to(base_url('/Legalizacao/Processos'));
     }
@@ -116,7 +122,6 @@ class Legalizacao extends BaseController
         $this->tbprocessos->update();
 
         return redirect()->to(base_url('/Legalizacao/Processos'));
-
     }
 
     public function delProcesso($cod)
@@ -124,10 +129,9 @@ class Legalizacao extends BaseController
         $this->tbprocessos->where('cod', $cod)->delete();
 
         return redirect()->to(base_url('/Legalizacao/Processos'));
-
     }
 
-    public function tempoDecorrido($data1,$data2)
+    public function tempoDecorrido($data1, $data2)
     {
         $dtINI = new DateTime($data1);
         $dtFIM = new DateTime($data2);

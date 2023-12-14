@@ -45,14 +45,26 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
+
+                                        <?php if (session()->getFlashdata('msg') !== null) : ?>
+
+                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                <?php echo session()->getFlashdata('msg'); ?>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                        <?php endif ?>
+
                                         <h1 class="h4 text-gray-900 mb-4">Intranet Grupo Métodos</h1>
                                     </div>
                                     <form class="user" action="<?php echo base_url('Login/signIn') ?>" method="POST">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="exampleInputUsuario" aria-describedby="UsuarioHelp" placeholder="Usuário">
+                                            <input type="text" class="form-control form-control-user" id="nomeUsuario" name="nomeUsuario" aria-describedby="UsuarioHelp" placeholder="Usuário">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="inputSenha" placeholder="Senha">
+                                            <input type="password" class="form-control form-control-user" id="senhaUsuario" name="senhaUsuario" placeholder="Senha">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -60,9 +72,8 @@
                                                 <label class="custom-control-label" for="customCheck">Lembrar</label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+
+                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="Login">
 
                                     </form>
                                     <hr>

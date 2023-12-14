@@ -6,8 +6,14 @@ class Home extends BaseController
 {
     public function index()
     {
-        return view('page head')
-            . view('navbar')
-            . view('home');
+        
+        $status = session()->get('Logado');
+        
+        if (is_null($status)) {            
+            return view('login');
+        } else {
+            return view('home');
+        }
+        
     }
 }

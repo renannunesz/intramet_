@@ -4,7 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon">
-            <img src='<?php echo "../assets/img/logo.png"; ?>' alt="" width="40" height="40" class="me-2">
+            <img src='<?php echo base_url() . "/assets/img/logo.png"; ?>' alt="" width="40" height="40" class="me-2">
         </div>
         <div class="sidebar-brand-text mx-2"> Intranet G.MTDS </div>
     </a>

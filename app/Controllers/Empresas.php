@@ -20,12 +20,18 @@ class Empresas extends BaseController
 
     public function index()
     {
-        return view('page head')
-            . view('navbar')
-            . view('empresas', [
-                'empresas' => $this->tbEmpresas->find(),
-                'responsaveis' => $this->responsaveis->where('codsetor', 4)->find()
-            ]);
+        $status = session()->get('Logado');
+
+        if (is_null($status)) {
+            return view('login');
+        } else {
+            return view('page head')
+                . view('navbar')
+                . view('empresas', [
+                    'empresas' => $this->tbEmpresas->find(),
+                    'responsaveis' => $this->responsaveis->where('codsetor', 4)->find()
+                ]);
+        }
     }
 
     public function editar($cod)
@@ -67,6 +73,6 @@ class Empresas extends BaseController
             . view('m_empresas', [
                 'empresas' => $this->tbEmpresas->find(),
                 'responsaveis' => $this->responsaveis->find()
-            ]);        
+            ]);
     }
 }
