@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href='<?php echo base_url('Home'); ?>'>
             <i class="fas fa-fw fa-bookmark"></i>
             <span> Inicio </span></a>
     </li>
