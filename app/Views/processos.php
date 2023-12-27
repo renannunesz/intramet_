@@ -271,11 +271,6 @@ include 'app/Helpers/legalizacao_helper.php';
 
                                                                     <input type="hidden" name="codEditProcesso" id="codEditProcesso" value='<?php echo $processo['cod']; ?>'>
 
-                                                                    <div class="form-group">
-                                                                        <label for="inputEditObservacao">Trâmite (Atual)</label>
-                                                                        <textarea class="form-control" id="inputEditObservacao" name="inputEditObservacao" rows="3"><?php echo $processo['observacao']; ?></textarea>
-                                                                    </div>
-
                                                                     <div class="form-row">
                                                                         <div class="form-group col-md-6">
                                                                             <label for="inputEditStatus">Status</label>

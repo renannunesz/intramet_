@@ -103,6 +103,8 @@ $routes->post('/Legalizacao/addProcesso',               'Legalizacao::addProcess
 $routes->get('/Legalizacao/delProcesso/(:num)',         'Legalizacao::delProcesso/$1');
 $routes->get('/Legalizacao/processosDetalhes/(:num)',   'Legalizacao::processosDetalhes/$1');
 $routes->post('/Legalizacao/editProcesso/(:num)',       'Legalizacao::editProcesso/$1');
+$routes->post('/Legalizacao/addTramiteProcesso',        'Legalizacao::addTramiteProcesso');
+$routes->get('/Legalizacao/delTramiteProcesso/(:num)',  'Legalizacao::delTramiteProcesso/$1');
 
 //Cadastro - Clientes
 $routes->get('/Cadastros/Clientes', 'Clientes::index');

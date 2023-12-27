@@ -11,6 +11,7 @@ use App\Models\TbprocessosModel;
 use App\Models\tbprocessosservicosModel;
 use App\Models\tbstatusModel;
 use CodeIgniter\Commands\Utilities\Routes\FilterFinder;
+use CodeIgniter\Database\BaseUtils;
 use DateTime;
 
 class Legalizacao extends BaseController
@@ -137,5 +138,36 @@ class Legalizacao extends BaseController
         $dtFIM = new DateTime($data2);
 
         return $dtINI->diff($dtFIM);
+    }
+
+    public function addTramiteProcesso()
+    {
+
+        $codProcesso = $this->request->getPost('codProcesso');
+        $tituloTramite = $this->request->getPost('inputTituloTramite');
+        $dataTramite = $this->request->getPost('inputData');
+        $descTramite = $this->request->getPost('inputTramite');
+
+        $dadosTramite = [
+            'codprocesso' => intval($codProcesso),
+            'titulotramite' => $tituloTramite,
+            'datatramite' => $dataTramite,
+            'desctramite' => $descTramite
+        ];
+
+        //dd($dadosTramite);
+        $this->tbprocessosdetalhes->save($dadosTramite);
+
+        return redirect()->to(base_url('/Legalizacao/processosDetalhes/' . $codProcesso));
+
+    }
+
+    public function delTramiteProcesso($cod) {
+
+        $codProcesso = $this->tbprocessosdetalhes->where('cod', $cod)->findColumn('codprocesso');
+        
+        $this->tbprocessosdetalhes->where('cod', $cod)->delete();
+
+        return redirect()->to(base_url('/Legalizacao/processosDetalhes/' . $codProcesso[0]));
     }
 }
