@@ -55,6 +55,25 @@ class Legalizacao extends BaseController
         }
     }
 
+    public function processosFinalizados()
+    {
+
+        $status = session()->get('Logado');
+
+        if (is_null($status)) {
+            return view('login');
+        } else {
+            return view('processos_finalizados', [
+                'processos'     => $this->tbprocessos->where('codstatus', 1)->find(),
+                'empresas'      => $this->tbempresas->find(),
+                'clientes'      => $this->tbclientes->find(),
+                'servicos'      => $this->tbprocessosservicos->orderBy('nome', 'ASC')->find(),
+                'envolvidos'    => $this->tbenvolvidos->find(),
+                'status'        => $this->tbstatus->find()
+            ]);
+        }
+    }    
+
     public function processosDetalhes($cod)
     {
 

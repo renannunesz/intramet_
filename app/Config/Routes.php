@@ -99,6 +99,7 @@ $routes->get('/Cronograma/apagar/(:num)',               'Cronograma::apagar/$1')
 
 //Legalização
 $routes->get('/Legalizacao/Processos',                  'Legalizacao::processos');
+$routes->get('/Legalizacao/Finalizados',                'Legalizacao::processosFinalizados');
 $routes->post('/Legalizacao/addProcesso',               'Legalizacao::addProcesso');
 $routes->get('/Legalizacao/delProcesso/(:num)',         'Legalizacao::delProcesso/$1');
 $routes->get('/Legalizacao/processosDetalhes/(:num)',   'Legalizacao::processosDetalhes/$1');

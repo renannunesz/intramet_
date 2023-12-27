@@ -125,8 +125,13 @@ include 'app/Helpers/legalizacao_helper.php';
 
                     <!--Trâmite do Processo-->
                     <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#processoModal">
-                        Novo Trâmite
+                        <i class="fas fa-plus"></i> Novo Trâmite
                     </button>
+
+                    <a href='<?php echo base_url('Legalizacao/Processos'); ?>' class="btn btn-warning mb-4">
+                        <i class="fas fa-reply"></i> Voltar
+                    </a>
+
                     <!-- Modal -->
                     <div class="modal fade" id="processoModal" tabindex="-1" role="dialog" aria-labelledby="processoModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
