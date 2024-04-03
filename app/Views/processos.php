@@ -170,11 +170,10 @@ include 'app/Helpers/legalizacao_helper.php';
                                             <th>Origem Demanda</th>
                                             <th>Contato (Nome/Fone)</th>
                                             <th>Status</th>
-                                            <th>Trâmite</th>
+                                            <th>Ult. Trâmite</th>
                                             <th>Financeiro</th>
                                             <th>Nº Processo</th>
                                             <th>Tempo Decorrido</th>
-                                            <th>Data Fim</th>
                                             <th>Opções</th>
                                         </tr>
                                     </thead>
@@ -187,17 +186,15 @@ include 'app/Helpers/legalizacao_helper.php';
                                             <th>Origem Demanda</th>
                                             <th>Contato (Nome/Fone)</th>
                                             <th>Status</th>
-                                            <th>Trâmite</th>
+                                            <th>Ult. Trâmite</th>
                                             <th>Financeiro</th>
                                             <th>Nº Processo</th>
                                             <th>Tempo Decorrido</th>
-                                            <th>Data Fim</th>
                                             <th>Opções</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <?php foreach ($processos as $processo) : ?>
-
                                             <tr>
                                                 <td><?php echo $processo['cod']; ?></td>
                                                 <td><?php echo implode("/", array_reverse(explode("-", $processo['datainicio']))); ?></td>
@@ -234,7 +231,16 @@ include 'app/Helpers/legalizacao_helper.php';
                                                         <?php endif; ?>
                                                     <?php endforeach; ?>
                                                 </td>
-                                                <td><?php echo $processo['observacao']; ?></td>
+                                                <td>
+                                                    <?php
+                                                    $ultTramite = array();
+                                                    foreach ($processosdetalhes as $processosdetalhe)
+                                                        if ($processosdetalhe['codprocesso'] == $processo['cod']) :
+                                                            array_push($ultTramite, $processosdetalhe['desctramite']);
+                                                        endif;
+                                                    echo end($ultTramite);
+                                                    ?>
+                                                </td>
                                                 <td><?php
                                                     if ($processo['financeiro'] == 1) {
                                                         echo "Faturado";
@@ -245,13 +251,11 @@ include 'app/Helpers/legalizacao_helper.php';
                                                     } ?></td>
                                                 <td><?php echo $processo['numeroprocesso']; ?></td>
                                                 <td><?php echo tempoDecorrido($processo['datainicio'], date('Y-m-d')) . " Dia(s)"; ?></td>
-                                                <td><?php echo $processo['codstatus'] == 1 ? implode("/", array_reverse(explode("-", $processo['datafim']))) : ""; ?></td>
                                                 <td>
 
                                                     <a data-toggle="modal" data-target="#editProcessoModal-<?php echo $processo['cod']; ?>" class="btn btn-warning btn-circle btn-sm">
                                                         <i class="fas fa-pen"></i>
                                                     </a>
-                                                    <!--pagina de consulta-->
                                                     <a href='<?php echo base_url('Legalizacao/processosDetalhes') . '/' . $processo['cod']; ?>' class="btn btn-primary btn-circle btn-sm">
                                                         <i class="fas fa-search"></i>
                                                     </a>
@@ -280,11 +284,21 @@ include 'app/Helpers/legalizacao_helper.php';
                                                                                 <option value="12">Pendente com Cliente</option>
                                                                                 <option value="1">Finalizado</option>
                                                                                 <option value="13">Tramitando no Órgão</option>
+                                                                                <option value="14">Cliente Não deu Retorno</option>
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group col-md-6">
                                                                             <label for="inputEditNProcesso">Nº Processo</label>
                                                                             <input type="text" class="form-control" id="inputEditNProcesso" name="inputEditNProcesso" value="<?php echo $processo['numeroprocesso']; ?>">
+                                                                        </div>
+                                                                        <div class="form-group col-md-6">
+                                                                            <label for="inputServico">Serviço</label>
+                                                                            <select id="inputServico" name="inputServico" class="form-control" required>
+                                                                                <option value="">Selecione...</option>
+                                                                                <?php foreach ($servicos as $servico) : ?>
+                                                                                    <option value='<?php echo (int)$servico['cod']; ?>'><?php echo $servico['nome']; ?></option>
+                                                                                <?php endforeach; ?>
+                                                                            </select>
                                                                         </div>
                                                                     </div>
 

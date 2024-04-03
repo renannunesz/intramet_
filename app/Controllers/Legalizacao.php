@@ -35,6 +35,7 @@ class Legalizacao extends BaseController
         $this->tbprocessosdetalhes = new TbprocessosdetalhesModel();
     }
 
+
     public function processos()
     {
         $filtroStatus = ['1'];
@@ -50,7 +51,8 @@ class Legalizacao extends BaseController
                 'clientes'      => $this->tbclientes->find(),
                 'servicos'      => $this->tbprocessosservicos->orderBy('nome', 'ASC')->find(),
                 'envolvidos'    => $this->tbenvolvidos->find(),
-                'status'        => $this->tbstatus->find()
+                'status'        => $this->tbstatus->find(),
+                'processosdetalhes' => $this->tbprocessosdetalhes->OrderBy('cod','ACS')->find()
             ]);
         }
     }
@@ -64,7 +66,7 @@ class Legalizacao extends BaseController
             return view('login');
         } else {
             return view('processos_finalizados', [
-                'processos'     => $this->tbprocessos->where('codstatus', 1)->find(),
+                'processosFinalizados'  => $this->tbprocessos->where('codstatus', 1)->orderBy('datafim', 'DESC')->find(),
                 'empresas'      => $this->tbempresas->find(),
                 'clientes'      => $this->tbclientes->find(),
                 'servicos'      => $this->tbprocessosservicos->orderBy('nome', 'ASC')->find(),
@@ -132,12 +134,14 @@ class Legalizacao extends BaseController
         $obsProcesso = $this->request->getPost('inputEditObservacao');
         $statusProcesso = $this->request->getPost('inputEditStatus');
         $numProcesso = $this->request->getPost('inputEditNProcesso');
+        $codServico = $this->request->getPost('inputServico');
         $dataFimProcesso = date("Y-m-d");
 
         $this->tbprocessos->set('datafim', $dataFimProcesso);
         $this->tbprocessos->set('observacao', $obsProcesso);
         $this->tbprocessos->set('codstatus', $statusProcesso);
         $this->tbprocessos->set('numeroprocesso', $numProcesso);
+        $this->tbprocessos->set('codservico', $codServico);
         $this->tbprocessos->where('cod', $codProcesso);
         $this->tbprocessos->update();
 
@@ -163,8 +167,8 @@ class Legalizacao extends BaseController
     {
 
         $codProcesso = $this->request->getPost('codProcesso');
-        $tituloTramite = $this->request->getPost('inputTituloTramite');
-        $dataTramite = $this->request->getPost('inputData');
+        $tituloTramite = "Trâmite em: " . date("d/m/y");
+        $dataTramite = date("y-m-d");
         $descTramite = $this->request->getPost('inputTramite');
 
         $dadosTramite = [

@@ -51,6 +51,18 @@ include 'app/Helpers/legalizacao_helper.php';
                         <h1 class="h2 mb-0 text-dark"><strong>Processo Nº <?php echo $processo['cod']; ?> </strong></h1>
                     </div>
 
+
+                    <!-- Tab Cab Tramite -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Listagem de Processos</h6>
+                        </div>
+                        <div class="card-body">
+                            <h1>AQUIIII</h1>
+                        </div>
+                    </div>
+
+
                     <!--Tabela-->
                     <table class="table text-dark table-bordered table-light">
                         <tbody>
@@ -147,17 +159,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                     <form action='<?php echo base_url('Legalizacao/addTramiteProcesso'); ?>' method="post">
 
                                         <input type="hidden" name="codProcesso" id="codProcesso" value='<?php echo $processo['cod']; ?>'>
-
-                                        <div class="form-row">
-                                            <div class="form-group col-8">
-                                                <label for="inputTituloTramite">Titulo do Trâmite</label>
-                                                <input type="text" class="form-control" id="inputTituloTramite" name="inputTituloTramite" placeholder=" Titulo do Trâmite">
-                                            </div>
-                                            <div class="col-4">
-                                                <label for="inputData">Data</label>
-                                                <input type="date" class="form-control" id="inputData" name="inputData" placeholder="data">
-                                            </div>
-                                        </div>
+                                        
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <label for="inputTramite">Trâmite</label>
