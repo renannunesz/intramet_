@@ -182,11 +182,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                     <form action='<?php echo base_url('Legalizacao/addTramiteProcesso'); ?>' method="post">
 
                                         <input type="hidden" name="codProcesso" id="codProcesso" value='<?php echo $processo['cod']; ?>'>
-<<<<<<< HEAD
-
-=======
                                         
->>>>>>> a06f623cfce3b007f0dda664c10970a8b4a54afc
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <label for="inputTramite">Trâmite</label>
