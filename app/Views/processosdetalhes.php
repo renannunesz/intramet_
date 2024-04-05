@@ -51,8 +51,6 @@ include 'app/Helpers/legalizacao_helper.php';
                         <h1 class="h2 mb-0 text-dark"><strong>Processo Nº: <?php echo $processo['cod']; ?> </strong></h1>                        
                     </div>
 
-<<<<<<< HEAD
-=======
 
                     <!-- Tab Cab Tramite -->
                     <div class="card shadow mb-4">
@@ -76,7 +74,6 @@ include 'app/Helpers/legalizacao_helper.php';
                                 </td>
                             </tr>
                             <tr>
->>>>>>> a06f623cfce3b007f0dda664c10970a8b4a54afc
 
                     <!-- Tab Processos -->
                     <div class="card shadow mb-4">
