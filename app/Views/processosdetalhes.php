@@ -45,83 +45,95 @@ include 'app/Helpers/legalizacao_helper.php';
                 <?php include 'navbar.php'; ?>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+        
                     <!-- Dados Gerais -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h2 mb-0 text-dark"><strong>Processo Nº <?php echo $processo['cod']; ?> </strong></h1>
+                        <h1 class="h2 mb-0 text-dark"><strong>Processo Nº: <?php echo $processo['cod']; ?> </strong></h1>                        
                     </div>
 
-                    <!--Tabela-->
-                    <table class="table text-dark table-bordered table-light">
-                        <tbody>
-                            <tr>
-                                <th scope="row">Cliente:</th>
-                                <td colspan="5">
-                                    <?php foreach ($clientes as $cliente) if ($cliente['cod'] == $processo['codempresa']) : echo $cliente['nome'];
-                                    endif; ?>
-                                </td>
-                            </tr>
-                            <tr>
 
-                                <th scope="row" class="col-1">Serviço:</th>
-                                <td class="col-3"><?php foreach ($servicos as $servico) if ($servico['cod'] == $processo['codservico']) : echo $servico['nome'];
-                                                    endif; ?></td>
-                                <th scope="row" class="col-2">Origem da Demanda:</th>
-                                <td class="col-2"> <?php foreach ($envolvidos as $envolvido) if ($envolvido['cod'] == $processo['codenvolvido']) : echo $envolvido['nome'];
-                                                    endif; ?> </td>
-                                <th scope="row" class="col-1">Contato:</th>
-                                <td class="col-3"> <?php echo $processo['contato']; ?> </td>
+                    <!-- Tab Processos -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Listagem de Processos</h6>
+                        </div>
+                        <div class="card-body">
 
-                            </tr>
-                            <tr>
+                            <div class="conteiner">
+                                <div class="row mb-4">
+                                    <div class="col">
+                                        <span class="font-weight-bold">Cliente: </span>
+                                        <?php foreach ($clientes as $cliente) if ($cliente['cod'] == $processo['codempresa']) : echo $cliente['nome'];
+                                        endif; ?>
+                                    </div>
+                                </div>
+                                <div class="row my-4">
+                                    <div class="col">
+                                        <span class="font-weight-bold">Serviço: </span>
+                                        <?php foreach ($servicos as $servico) if ($servico['cod'] == $processo['codservico']) : echo $servico['nome'];
+                                        endif; ?>
+                                    </div>
+                                    <div class="col">
+                                        <span class="font-weight-bold">Origem da Demanda: </span>
+                                        <?php foreach ($envolvidos as $envolvido) if ($envolvido['cod'] == $processo['codenvolvido']) : echo $envolvido['nome'];
+                                        endif; ?>
+                                    </div>
+                                    <div class="col">
+                                        <span class="font-weight-bold">Contato: </span>
+                                        <?php echo $processo['contato']; ?>
+                                    </div>
+                                </div>
+                                <div class="row my-4">
+                                    <div class="col">
+                                        <span class="font-weight-bold">Financeiro: </span>
+                                        <?php
+                                        if ($processo['financeiro'] == 1) {
+                                            echo "Faturado";
+                                        } elseif ($processo['financeiro'] == 2) {
+                                            echo "Bonificado";
+                                        } else {
+                                            echo "A Definir";
+                                        } ?>
+                                    </div>
+                                </div>
+                                <div class="row my-4">
+                                    <div class="col">
+                                        <span class="font-weight-bold">Status: </span>
+                                        <?php foreach ($status as $stato) : ?>
+                                                <?php if ($stato['cod'] == $processo['codstatus']) : ?>
+                                                    <?php switch ($stato['nome']) {
+                                                        case "Novo":
+                                                            $varCor = "light";
+                                                            break;
+                                                        case "Em Andamento":
+                                                            $varCor = "warning";
+                                                            break;
+                                                        case "Pendente com Cliente":
+                                                            $varCor = "danger";
+                                                            break;
+                                                        case "Finalizado":
+                                                            $varCor = "success";
+                                                            break;
+                                                        case "Tramitando no Órgão":
+                                                            $varCor = "primary";
+                                                            break;
+                                                    } ?>
+                                                    <span class="alert alert-<?php echo $varCor; ?> mb-1" role="alert"><?php echo $stato['nome']; ?></span> 
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                    </div>
+                                    <div class="col">
+                                        <span class="font-weight-bold">Tempo Decorrido: </span>
+                                        <?php echo tempoDecorrido($processo['datainicio'], date('Y-m-d')) . " Dia(s)"; ?>
+                                    </div>
+                                    <div class="col">
+                                        <span class="font-weight-bold">Data da Finalização: </span>
+                                    </div>
+                                </div>
+                            </div>
 
-                                <th scope="row" class="col-1">Financeiro:</th>
-                                <td class="col-3"> <?php
-                                                    if ($processo['financeiro'] == 1) {
-                                                        echo "Faturado";
-                                                    } elseif ($processo['financeiro'] == 2) {
-                                                        echo "Bonificado";
-                                                    } else {
-                                                        echo "A Definir";
-                                                    } ?> </td>
-
-                            </tr>
-                            <tr>
-
-                                <th scope="row" class="col-1">Status:</th>
-                                <td class="col-3 mb-0 pb-0">
-                                    <?php foreach ($status as $stato) : ?>
-                                        <?php if ($stato['cod'] == $processo['codstatus']) : ?>
-                                            <?php switch ($stato['nome']) {
-                                                case "Novo":
-                                                    $varCor = "light";
-                                                    break;
-                                                case "Em Andamento":
-                                                    $varCor = "warning";
-                                                    break;
-                                                case "Pendente com Cliente":
-                                                    $varCor = "danger";
-                                                    break;
-                                                case "Finalizado":
-                                                    $varCor = "success";
-                                                    break;
-                                                case "Tramitando no Órgão":
-                                                    $varCor = "primary";
-                                                    break;
-                                            } ?>
-                                            <div class="alert alert-<?php echo $varCor; ?> mb-1" role="alert">
-                                                <?php echo $stato['nome']; ?>
-                                            </div>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                </td>
-                                <th scope="row" class="col-2">Tempo Decorrido:</th>
-                                <td class="col-2"> <?php echo tempoDecorrido($processo['datainicio'], date('Y-m-d')) . " Dia(s)"; ?> </td>
-                                <th scope="row" class="col-2">Data da Finalização:</th>
-                                <td class="col-2"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        </div>
+                    </div>
 
                     <!--Trâmite do Processo-->
                     <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#processoModal">
@@ -149,16 +161,6 @@ include 'app/Helpers/legalizacao_helper.php';
                                         <input type="hidden" name="codProcesso" id="codProcesso" value='<?php echo $processo['cod']; ?>'>
 
                                         <div class="form-row">
-                                            <div class="form-group col-8">
-                                                <label for="inputTituloTramite">Titulo do Trâmite</label>
-                                                <input type="text" class="form-control" id="inputTituloTramite" name="inputTituloTramite" placeholder=" Titulo do Trâmite">
-                                            </div>
-                                            <div class="col-4">
-                                                <label for="inputData">Data</label>
-                                                <input type="date" class="form-control" id="inputData" name="inputData" placeholder="data">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
                                             <div class="form-group col-12">
                                                 <label for="inputTramite">Trâmite</label>
                                                 <textarea class="form-control" id="inputTramite" name="inputTramite" rows="3" placeholder="Descreva o novo trâmite."></textarea>
@@ -178,37 +180,42 @@ include 'app/Helpers/legalizacao_helper.php';
                         </div>
                     </div>
 
-                    <div class="d-sm-flex align-items-center justify-content-between mb-1">
-                        <h1 class="h2 mb-1 text-dark"><strong>Trâmites</strong></h1>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h2 mb-1 text-dark"><strong>Trâmites: </strong></h1>
                     </div>
 
-                </div>
+                    <!--Tabela dos trâmites executados-->
+                    <?php foreach ($processosdetalhes as $processodetalhe) : ?>
 
-                <!--Tabela dos trâmites executados-->
-                <?php foreach ($processosdetalhes as $processodetalhe) : ?>
-
-                    <div class="card text-dark border-primary mb-3 container-fluid" style="max-width: 1600px;">
-                        <div class="row g-0">
-                            <div class="col-12">
+                        <!-- Trâmites executados-->
+                        <div class="mb-2">
+                            <div class="card border-left-primary shadow h-100">
                                 <div class="card-body">
-                                    <div class="row">
 
-                                        <h3 class="card-title col-8"><?php echo $processodetalhe['titulotramite']; ?></h3>
-                                        <p class="card-text col-4">
-                                            <small class="text">Criado em <?php echo implode("/", array_reverse(explode("-", $processodetalhe['datatramite']))); ?></small>
-                                            <a href='<?php echo base_url('Legalizacao/delTramiteProcesso') . '/' . $processodetalhe['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </p>
+                                    <table class="w-100">
+                                        <thead>
+                                            <th><?php echo $processodetalhe['titulotramite']; ?></th>
+                                            <th class="text-right">
+                                                <small class="text">Criado em <?php echo implode("/", array_reverse(explode("-", $processodetalhe['datatramite']))); ?></small>
+                                                <a href='<?php echo base_url('Legalizacao/delTramiteProcesso') . '/' . $processodetalhe['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                            <td colspan="2">
+                                                <p class="card-text"><?php echo $processodetalhe['desctramite']; ?></p>
+                                            </td>
+                                        </tbody>
+                                    </table>
 
-                                    </div>
-                                    <p class="card-text"><?php echo $processodetalhe['desctramite']; ?></p>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+
+                </div>
 
             </div>
             <br>

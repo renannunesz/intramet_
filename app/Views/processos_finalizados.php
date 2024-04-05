@@ -196,7 +196,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <?php foreach ($processos as $processo) : ?>
+                                        <?php foreach ($processosFinalizados as $processo) : ?>
 
                                             <tr>
                                                 <td><?php echo $processo['cod']; ?></td>
