@@ -119,6 +119,11 @@ $routes->post('/Servicos/addServico', 'Servicos::addServico');
 $routes->post('/Servicos/editServico/(:num)', 'Servicos::editServico/$1');
 $routes->get('/Servicos/delServico/(:num)', 'Servicos::delServico/$1');
 
+//Utilitários
+$routes->get('/Utilitarios', 'Utilitarios::index');
+$routes->post('/Utilitarios', 'Utilitarios::index');
+$routes->post('/Utilitarios/exportaBPM', 'Utilitarios::exportaBPM');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

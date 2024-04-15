@@ -128,7 +128,24 @@
                 <a class="collapse-item" href="#">Propostas</a>
             </div>
         </div>
-    </li>    
+    </li> 
+    
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtil" aria-expanded="true" aria-controls="collapseUtil">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Utilitários</span>
+        </a>
+        <div id="collapseUtil" class="collapse" aria-labelledby="headingCRM" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Arquivos:</h6>
+                <a class="collapse-item" href='<?php echo base_url('Utilitarios'); ?>'>ANTAQ - BPM</a>
+                <a class="collapse-item" href="#">ANTAQ - DPM</a>
+                <a class="collapse-item" href="#">ANTAQ - BP</a>
+                <a class="collapse-item" href="#">ANTAQ - DR</a>
+            </div>
+        </div>
+    </li> 
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
