@@ -120,9 +120,12 @@ $routes->post('/Servicos/editServico/(:num)', 'Servicos::editServico/$1');
 $routes->get('/Servicos/delServico/(:num)', 'Servicos::delServico/$1');
 
 //Utilitários
-$routes->get('/Utilitarios', 'Utilitarios::index');
-$routes->post('/Utilitarios', 'Utilitarios::index');
-$routes->post('/Utilitarios/exportaBPM', 'Utilitarios::exportaBPM');
+$routes->get('/Utilitarios/arqAntaqMensais', 'Utilitarios::arqAntaqMensais');
+$routes->post('/Utilitarios/arqAntaqMensais', 'Utilitarios::arqAntaqMensais');
+$routes->post('/Utilitarios/expAntaqMensais', 'Utilitarios::expAntaqMensais');
+$routes->get('/Utilitarios/arqAntaqAnuais', 'Utilitarios::arqAntaqAnuais');
+$routes->post('/Utilitarios/arqAntaqAnuais', 'Utilitarios::arqAntaqAnuais');
+$routes->post('/Utilitarios/expAntaqAnuais', 'Utilitarios::expAntaqAnuais');
 
 /*
  * --------------------------------------------------------------------

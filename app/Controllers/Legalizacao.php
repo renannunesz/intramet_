@@ -48,11 +48,11 @@ class Legalizacao extends BaseController
             return view('processos', [
                 'processos'     => $this->tbprocessos->whereNotIn('codstatus', $filtroStatus)->find(),
                 'empresas'      => $this->tbempresas->find(),
-                'clientes'      => $this->tbclientes->find(),
+                'clientes'      => $this->tbclientes->orderBy('nome','ASC')->find(),
                 'servicos'      => $this->tbprocessosservicos->orderBy('nome', 'ASC')->find(),
                 'envolvidos'    => $this->tbenvolvidos->find(),
                 'status'        => $this->tbstatus->find(),
-                'processosdetalhes' => $this->tbprocessosdetalhes->OrderBy('cod','ACS')->find()
+                'processosdetalhes' => $this->tbprocessosdetalhes->OrderBy('cod','ASC')->find()
             ]);
         }
     }
@@ -68,7 +68,7 @@ class Legalizacao extends BaseController
             return view('processos_finalizados', [
                 'processosFinalizados'  => $this->tbprocessos->where('codstatus', 1)->orderBy('datafim', 'DESC')->find(),
                 'empresas'      => $this->tbempresas->find(),
-                'clientes'      => $this->tbclientes->find(),
+                'clientes'      => $this->tbclientes->orderBy('nome','ASC')->find(),
                 'servicos'      => $this->tbprocessosservicos->orderBy('nome', 'ASC')->find(),
                 'envolvidos'    => $this->tbenvolvidos->find(),
                 'status'        => $this->tbstatus->find()
@@ -82,11 +82,11 @@ class Legalizacao extends BaseController
         return view('processosdetalhes', [
             'processo'      => $this->tbprocessos->where('cod', $cod)->first(),
             'empresas'      => $this->tbempresas->find(),
-            'clientes'      => $this->tbclientes->find(),
+            'clientes'      => $this->tbclientes->orderBy('nome','ASC')->find(),
             'servicos'      => $this->tbprocessosservicos->orderBy('nome', 'ASC')->find(),
             'envolvidos'    => $this->tbenvolvidos->find(),
             'status'        => $this->tbstatus->find(),
-            'processosdetalhes' => $this->tbprocessosdetalhes->where('codprocesso', $cod)->find()
+            'processosdetalhes' => $this->tbprocessosdetalhes->where('codprocesso', $cod)->orderBy('cod','DESC')->find()
         ]);
     }
 

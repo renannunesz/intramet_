@@ -139,10 +139,8 @@
         <div id="collapseUtil" class="collapse" aria-labelledby="headingCRM" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Arquivos:</h6>
-                <a class="collapse-item" href='<?php echo base_url('Utilitarios'); ?>'>ANTAQ - BPM</a>
-                <a class="collapse-item" href="#">ANTAQ - DPM</a>
-                <a class="collapse-item" href="#">ANTAQ - BP</a>
-                <a class="collapse-item" href="#">ANTAQ - DR</a>
+                <a class="collapse-item" href='<?php echo base_url('/Utilitarios/arqAntaqMensais'); ?>'>ANTAQ - BP/DRE Mensal</a>
+                <a class="collapse-item" href='<?php echo base_url('/Utilitarios/arqAntaqAnuais'); ?>'>ANTAQ - BP/DRE Anual</a>
             </div>
         </div>
     </li> 

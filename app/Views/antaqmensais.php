@@ -46,12 +46,12 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item active" aria-current="page"> Utilitáris </li>
                             <li class="breadcrumb-item"> Arquivos </li>
-                            <li class="breadcrumb-item"> ANTAQ - BPM </li>
+                            <li class="breadcrumb-item"> ANTAQ - Mensais </li>
                         </ol>
                     </nav>
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800"> ANTAQ - Balanço Patrimonial Mensal </h1>
+                    <h1 class="h3 mb-4 text-gray-800"> ANTAQ - Balanço Patrimonial e DRE Mensal </h1>
 
                     <!-- Collapsable Card Example -->
                     <div class="card shadow mb-4">
@@ -80,7 +80,7 @@
                                             </div>
                                             <div class="modal-body">
 
-                                                <form action='<?php echo base_url('Utilitarios') ?>' method="post" enctype="multipart/form-data">
+                                                <form action='<?php echo base_url('Utilitarios/arqAntaqMensais') ?>' method="post" enctype="multipart/form-data">
 
                                                     <div class="form-group">
                                                         <label for="">Caminho do arquivo:</label>
@@ -110,7 +110,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Dados - Demonstração de Resultados Mensal (BPM)</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Dados - DCRs Mensais</h6>
                         </div>
                         <div class="card-body">
                             <?php if (isset($dadosexcel)) : ?>
@@ -134,7 +134,7 @@
                                                 </div>
                                                 <div class="modal-body">
 
-                                                    <form action='<?php echo base_url('Utilitarios/exportaBPM') ?>' method="post" enctype="multipart/form-data">
+                                                    <form action='<?php echo base_url('Utilitarios/expAntaqMensais') ?>' method="post" enctype="multipart/form-data">
 
                                                         <div class="form-row">
                                                             <div class="form-group col-md-6">
@@ -161,21 +161,18 @@
                                         </div>
                                     </div>
 
-
-
-
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <?php foreach ($dadosexcel[0] as $cabecalho) : ?>
-                                                    <th><?php echo $cabecalho; ?></th>
-                                                <?php endforeach; ?>
+                                                <th>Classificação</th>
+                                                <th>Descrição</th>
+                                                <th>Saldo</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php for ($i = 1; $i < count($dadosexcel); $i++) : ?>
+                                            <?php for ($i = 0; $i < count($dadosexcel); $i++) : ?>
                                                 <tr>
                                                     <?php foreach ($dadosexcel[$i] as $valor) : ?>
                                                         <td><?php echo $valor; ?></td>
