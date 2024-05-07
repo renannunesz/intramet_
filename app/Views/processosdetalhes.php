@@ -45,10 +45,10 @@ include 'app/Helpers/legalizacao_helper.php';
                 <?php include 'navbar.php'; ?>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-        
+
                     <!-- Dados Gerais -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h2 mb-0 text-dark"><strong>Processo Nº: <?php echo $processo['cod']; ?> </strong></h1>                        
+                        <h1 class="h2 mb-0 text-dark"><strong>Processo Nº: <?php echo $processo['cod']; ?> </strong></h1>
                     </div>
 
                     <!-- Tab Processos -->
@@ -99,27 +99,27 @@ include 'app/Helpers/legalizacao_helper.php';
                                     <div class="col">
                                         <span class="font-weight-bold">Status: </span>
                                         <?php foreach ($status as $stato) : ?>
-                                                <?php if ($stato['cod'] == $processo['codstatus']) : ?>
-                                                    <?php switch ($stato['nome']) {
-                                                        case "Novo":
-                                                            $varCor = "light";
-                                                            break;
-                                                        case "Em Andamento":
-                                                            $varCor = "warning";
-                                                            break;
-                                                        case "Pendente com Cliente":
-                                                            $varCor = "danger";
-                                                            break;
-                                                        case "Finalizado":
-                                                            $varCor = "success";
-                                                            break;
-                                                        case "Tramitando no Órgão":
-                                                            $varCor = "primary";
-                                                            break;
-                                                    } ?>
-                                                    <span class="alert alert-<?php echo $varCor; ?> mb-1" role="alert"><?php echo $stato['nome']; ?></span> 
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
+                                            <?php if ($stato['cod'] == $processo['codstatus']) : ?>
+                                                <?php switch ($stato['nome']) {
+                                                    case "Novo":
+                                                        $varCor = "light";
+                                                        break;
+                                                    case "Em Andamento":
+                                                        $varCor = "warning";
+                                                        break;
+                                                    case "Pendente com Cliente":
+                                                        $varCor = "danger";
+                                                        break;
+                                                    case "Finalizado":
+                                                        $varCor = "success";
+                                                        break;
+                                                    case "Tramitando no Órgão":
+                                                        $varCor = "primary";
+                                                        break;
+                                                } ?>
+                                                <span class="alert alert-<?php echo $varCor; ?> mb-1" role="alert"><?php echo $stato['nome']; ?></span>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
                                     </div>
                                     <div class="col">
                                         <span class="font-weight-bold">Tempo Decorrido: </span>
@@ -195,9 +195,11 @@ include 'app/Helpers/legalizacao_helper.php';
                                             <th><?php echo $processodetalhe['titulotramite']; ?></th>
                                             <th class="text-right">
                                                 <small class="text">Criado em <?php echo implode("/", array_reverse(explode("-", $processodetalhe['datatramite']))); ?></small>
-                                                <a href='<?php echo base_url('Legalizacao/delTramiteProcesso') . '/' . $processodetalhe['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
+                                                <?php if (session()->get('nivel') <> 3) :  ?>
+                                                    <a href='<?php echo base_url('Legalizacao/delTramiteProcesso') . '/' . $processodetalhe['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                <?php endif; ?>
                                             </th>
                                         </thead>
                                         <tbody>

@@ -139,7 +139,7 @@ include 'app/Helpers/legalizacao_helper.php';
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                        <button type="submit" class="btn btn-primary" >Salvar</button>
+                                                        <button type="submit" class="btn btn-primary">Salvar</button>
                                                     </div>
 
                                                 </form>
@@ -260,7 +260,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                                         <i class="fas fa-search"></i>
                                                     </a>
 
-                                                    <?php if (session()->get('nivel') <> 3):  ?>
+                                                    <?php if (session()->get('nivel') <> 3) :  ?>
                                                         <a href='<?php echo base_url('Legalizacao/delProcesso') . '/' . $processo['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
