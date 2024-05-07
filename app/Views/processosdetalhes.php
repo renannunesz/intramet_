@@ -54,7 +54,7 @@ include 'app/Helpers/legalizacao_helper.php';
                     <!-- Tab Processos -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Listagem de Processos</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Dados do Processos</h6>
                         </div>
                         <div class="card-body">
 
@@ -120,6 +120,46 @@ include 'app/Helpers/legalizacao_helper.php';
                                                 <span class="alert alert-<?php echo $varCor; ?> mb-1" role="alert"><?php echo $stato['nome']; ?></span>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
+
+                                        <a data-toggle="modal" data-target="#editProcessoModal-<?php echo $processo['cod']; ?>" class="btn btn-warning btn-circle btn-sm">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+
+                                        <div class="modal fade" id="editProcessoModal-<?php echo $processo['cod']; ?>" tabindex="-1" role="dialog" aria-labelledby="editProcessoModalLabel" aria-hidden="true">
+
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+
+                                                        <form action='<?php echo base_url('Legalizacao/editStatusProcesso') . '/' . $processo['cod']; ?>' method="post">
+
+                                                            <input type="hidden" name="codEditProcesso" id="codEditProcesso" value='<?php echo $processo['cod']; ?>'>
+
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="inputEditStatus">Status</label>
+                                                                    <select id="inputEditStatus" name="inputEditStatus" class="form-control" required>
+                                                                        <option value="">Selecione...</option>
+                                                                        <option value="2">Em Andamento</option>
+                                                                        <option value="12">Pendente com Cliente</option>
+                                                                        <option value="1">Finalizado</option>
+                                                                        <option value="13">Tramitando no Órgão</option>
+                                                                        <option value="14">Cliente Não deu Retorno</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                                <button type="submit" class="btn btn-primary">Salvar</button>
+                                                            </div>
+
+                                                        </form>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col">
                                         <span class="font-weight-bold">Tempo Decorrido: </span>

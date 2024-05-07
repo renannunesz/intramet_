@@ -148,6 +148,20 @@ class Legalizacao extends BaseController
         return redirect()->to(base_url('/Legalizacao/Processos'));
     }
 
+    public function editStatusProcesso()
+    {
+
+        $codProcesso = $this->request->getPost('codEditProcesso');
+        $statusProcesso = $this->request->getPost('inputEditStatus');
+
+        $this->tbprocessos->set('codstatus', $statusProcesso);
+        $this->tbprocessos->where('cod', $codProcesso);
+        $this->tbprocessos->update();
+
+        return redirect()->to(base_url('Legalizacao/processosDetalhes') . '/' . $codProcesso);
+
+    }
+
     public function delProcesso($cod)
     {
         $this->tbprocessos->where('cod', $cod)->delete();
