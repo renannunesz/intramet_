@@ -39,6 +39,7 @@ class Login extends BaseController
 
                 session()->set('Logado', true);
                 session()->set('nome', $user['nome']);
+                session()->set('nivel', $user['codnivelusuario']);
 
                 return redirect('Home');
 

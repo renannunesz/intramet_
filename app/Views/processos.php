@@ -259,9 +259,12 @@ include 'app/Helpers/legalizacao_helper.php';
                                                     <a href='<?php echo base_url('Legalizacao/processosDetalhes') . '/' . $processo['cod']; ?>' class="btn btn-primary btn-circle btn-sm">
                                                         <i class="fas fa-search"></i>
                                                     </a>
-                                                    <a href='<?php echo base_url('Legalizacao/delProcesso') . '/' . $processo['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
+
+                                                    <?php if (session()->get('nivel') <> 3):  ?>
+                                                        <a href='<?php echo base_url('Legalizacao/delProcesso') . '/' . $processo['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    <?php endif; ?>
 
                                                 </td>
 
