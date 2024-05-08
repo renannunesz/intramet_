@@ -198,6 +198,8 @@ include 'app/Helpers/legalizacao_helper.php';
                                     <form action='<?php echo base_url('Legalizacao/addTramiteProcesso'); ?>' method="post">
 
                                         <input type="hidden" name="codProcesso" id="codProcesso" value='<?php echo $processo['cod']; ?>'>
+                                        <input type="hidden" name="codUsuario" id="codUsuario" value='<?php echo session()->get('codigousuario'); ?>'>
+                                        
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <label for="inputTramite">Trâmite</label>
@@ -234,7 +236,10 @@ include 'app/Helpers/legalizacao_helper.php';
                                         <thead>
                                             <th><?php echo $processodetalhe['titulotramite']; ?></th>
                                             <th class="text-right">
-                                                <small class="text">Criado em <?php echo implode("/", array_reverse(explode("-", $processodetalhe['datatramite']))); ?></small>
+                                                <small class="text">
+                                                    Data: <?php echo implode("/", array_reverse(explode("-", $processodetalhe['datatramite']))); ?> 
+                                                    | 
+                                                    Usuário: <?php foreach ($usuarios as $usuario) if ($usuario['cod'] == $processodetalhe['codusuariotramite']) : echo $usuario['nome']; endif; ?></small>
                                                 <?php if (session()->get('nivel') <> 3) :  ?>
                                                     <a href='<?php echo base_url('Legalizacao/delTramiteProcesso') . '/' . $processodetalhe['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
                                                         <i class="fas fa-trash"></i>

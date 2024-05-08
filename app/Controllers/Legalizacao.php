@@ -10,6 +10,7 @@ use App\Models\TbprocessosdetalhesModel;
 use App\Models\TbprocessosModel;
 use App\Models\tbprocessosservicosModel;
 use App\Models\tbstatusModel;
+use App\Models\tbusuariosModel;
 use CodeIgniter\Commands\Utilities\Routes\FilterFinder;
 use CodeIgniter\Database\BaseUtils;
 use DateTime;
@@ -23,6 +24,7 @@ class Legalizacao extends BaseController
     private $tbstatus;
     private $tbclientes;
     private $tbprocessosdetalhes;
+    private $tbusuarios;
 
     public function __construct()
     {
@@ -33,8 +35,8 @@ class Legalizacao extends BaseController
         $this->tbenvolvidos = new tbenvolvidosModel();
         $this->tbstatus = new tbstatusModel();
         $this->tbprocessosdetalhes = new TbprocessosdetalhesModel();
+        $this->tbusuarios = new tbusuariosModel();
     }
-
 
     public function processos()
     {
@@ -86,7 +88,8 @@ class Legalizacao extends BaseController
             'servicos'      => $this->tbprocessosservicos->orderBy('nome', 'ASC')->find(),
             'envolvidos'    => $this->tbenvolvidos->find(),
             'status'        => $this->tbstatus->find(),
-            'processosdetalhes' => $this->tbprocessosdetalhes->where('codprocesso', $cod)->orderBy('cod','DESC')->find()
+            'processosdetalhes' => $this->tbprocessosdetalhes->where('codprocesso', $cod)->orderBy('cod','DESC')->find(),
+            'usuarios'      => $this->tbusuarios->find()
         ]);
     }
 
@@ -184,12 +187,14 @@ class Legalizacao extends BaseController
         $tituloTramite = "Trâmite em: " . date("d/m/y");
         $dataTramite = date("y-m-d");
         $descTramite = $this->request->getPost('inputTramite');
+        $codUsuario = $this->request->getPost('codUsuario');
 
         $dadosTramite = [
-            'codprocesso' => intval($codProcesso),
-            'titulotramite' => $tituloTramite,
-            'datatramite' => $dataTramite,
-            'desctramite' => $descTramite
+            'codprocesso'       => intval($codProcesso),
+            'titulotramite'     => $tituloTramite,
+            'datatramite'       => $dataTramite,
+            'desctramite'       => $descTramite,
+            'codusuariotramite' => $codUsuario
         ];
 
         //dd($dadosTramite);

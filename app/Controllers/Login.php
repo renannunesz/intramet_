@@ -24,7 +24,6 @@ class Login extends BaseController
     {
         $usuario = $this->request->getPost('nomeUsuario');
         $senha = $this->request->getPost('senhaUsuario');
-
         $user = $this->usuariosModel->where('usuario', $usuario)->first();
 
         if (is_null($user)) {
@@ -40,6 +39,7 @@ class Login extends BaseController
                 session()->set('Logado', true);
                 session()->set('nome', $user['nome']);
                 session()->set('nivel', $user['codnivelusuario']);
+                session()->set('codigousuario', $user['cod']);
 
                 return redirect('Home');
 

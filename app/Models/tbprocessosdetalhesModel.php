@@ -19,7 +19,8 @@ class TbprocessosdetalhesModel extends Model
         'codprocesso',
         'titulotramite',
         'datatramite',
-        'desctramite'
+        'desctramite',
+        'codusuariotramite'
     ];
 
     // Dates
