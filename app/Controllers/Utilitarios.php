@@ -45,8 +45,11 @@ class Utilitarios extends BaseController
                 'dadosexcel' => $this->ler_excel($caminho_arquivo),
                 'caminho_arquivo' => $caminho_arquivo
             ]);
+
         } else {
+            
             return view('antaqmensais');
+            
         }
 
     }

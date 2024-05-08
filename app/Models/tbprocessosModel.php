@@ -26,7 +26,9 @@ class TbprocessosModel extends Model
         'numeroprocesso',
         'financeiro',
         'datafim',
-        'tempodecorrido'
+        'tempodecorrido',
+        'caminhodocprocesso',
+        'nomedocprocesso'
     ];
 
     // Dates

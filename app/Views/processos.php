@@ -256,8 +256,13 @@ include 'app/Helpers/legalizacao_helper.php';
                                                     <a data-toggle="modal" data-target="#editProcessoModal-<?php echo $processo['cod']; ?>" class="btn btn-warning btn-circle btn-sm">
                                                         <i class="fas fa-pen"></i>
                                                     </a>
+
                                                     <a href='<?php echo base_url('Legalizacao/processosDetalhes') . '/' . $processo['cod']; ?>' class="btn btn-primary btn-circle btn-sm">
                                                         <i class="fas fa-search"></i>
+                                                    </a>
+
+                                                    <a data-toggle="modal" data-target="#docsProcessoModal-<?php echo $processo['cod']; ?>" class="btn btn-info btn-circle btn-sm">
+                                                        <i class="fas fa-file-alt"></i>
                                                     </a>
 
                                                     <?php if (session()->get('nivel') <> 3) :  ?>
@@ -274,12 +279,13 @@ include 'app/Helpers/legalizacao_helper.php';
                                                         <div class="modal-content">
                                                             <div class="modal-body">
 
-                                                                <form action='<?php echo base_url('Legalizacao/editProcesso') . '/' . $processo['cod']; ?>' method="post">
+                                                                <form action='<?php echo base_url('Legalizacao/editProcesso') . '/' . $processo['cod']; ?>' method="post" enctype="multipart/form-data">
 
                                                                     <input type="hidden" name="codEditProcesso" id="codEditProcesso" value='<?php echo $processo['cod']; ?>'>
 
-                                                                    <div class="form-row">
-                                                                        <div class="form-group col-md-6">
+                                                                    <div class="">
+
+                                                                        <div class="form-group">
                                                                             <label for="inputEditStatus">Status</label>
                                                                             <select id="inputEditStatus" name="inputEditStatus" class="form-control" required>
                                                                                 <option value="">Selecione...</option>
@@ -290,11 +296,13 @@ include 'app/Helpers/legalizacao_helper.php';
                                                                                 <option value="14">Cliente Não deu Retorno</option>
                                                                             </select>
                                                                         </div>
-                                                                        <div class="form-group col-md-6">
+
+                                                                        <div class="form-group">
                                                                             <label for="inputEditNProcesso">Nº Processo</label>
                                                                             <input type="text" class="form-control" id="inputEditNProcesso" name="inputEditNProcesso" value="<?php echo $processo['numeroprocesso']; ?>">
                                                                         </div>
-                                                                        <div class="form-group col-md-6">
+
+                                                                        <div class="form-group">
                                                                             <label for="inputServico">Serviço</label>
                                                                             <select id="inputServico" name="inputServico" class="form-control" required>
                                                                                 <option value="">Selecione...</option>
@@ -303,6 +311,15 @@ include 'app/Helpers/legalizacao_helper.php';
                                                                                 <?php endforeach; ?>
                                                                             </select>
                                                                         </div>
+
+                                                                        <div class="form-group">
+                                                                            <label for="">Caminho do arquivo:</label>
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="customFile" name="arqcaminho">
+                                                                                <label class="custom-file-label" for="customFile" data-browse="Procurar">Selecione o Arquivo</label>
+                                                                            </div>
+                                                                        </div>
+
                                                                     </div>
 
                                                                     <div class="modal-footer">
@@ -311,6 +328,44 @@ include 'app/Helpers/legalizacao_helper.php';
                                                                     </div>
 
                                                                 </form>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal fade" id="docsProcessoModal-<?php echo $processo['cod']; ?>" tabindex="-1" role="dialog" aria-labelledby="docsProcessoModalLabel" aria-hidden="true">
+
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+
+                                                                <div class="container">
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <label for=""><strong>Arquivo Nome:</strong></label>
+                                                                            <p>
+                                                                                <?php echo $processo['nomedocprocesso']; ?>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <label for=""><strong>Opções:</strong></label>
+                                                                            <p>
+                                                                                <a href='<?php echo base_url() . '/' . $processo['caminhodocprocesso']; ?>' class="btn btn-info btn-circle btn-sm">
+                                                                                    <i class="fas fa-download"></i>
+                                                                                </a>
+
+                                                                                <a href='<?php echo base_url('Legalizacao/delArqProcesso') . '/' . $processo['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
+                                                                                    <i class="fas fa-trash"></i>
+                                                                                </a>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                                </div>
 
                                                             </div>
                                                         </div>
@@ -382,3 +437,11 @@ include 'app/Helpers/legalizacao_helper.php';
 </body>
 
 </html>
+<script>
+    $('#customFile').on('change', function() {
+        //get the file name
+        var fileName = $(this).val().replace('C:\\fakepath\\', " ");
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>

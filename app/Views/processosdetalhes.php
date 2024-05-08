@@ -199,10 +199,10 @@ include 'app/Helpers/legalizacao_helper.php';
 
                                         <input type="hidden" name="codProcesso" id="codProcesso" value='<?php echo $processo['cod']; ?>'>
                                         <input type="hidden" name="codUsuario" id="codUsuario" value='<?php echo session()->get('codigousuario'); ?>'>
-                                        
+
                                         <div class="form-row">
                                             <div class="form-group col-12">
-                                                <label for="inputTramite">Trâmite</label>
+                                                <label for="inputTramite">Trâmite:</label>
                                                 <textarea class="form-control" id="inputTramite" name="inputTramite" rows="3" placeholder="Descreva o novo trâmite."></textarea>
                                             </div>
                                         </div>
@@ -237,9 +237,10 @@ include 'app/Helpers/legalizacao_helper.php';
                                             <th><?php echo $processodetalhe['titulotramite']; ?></th>
                                             <th class="text-right">
                                                 <small class="text">
-                                                    Data: <?php echo implode("/", array_reverse(explode("-", $processodetalhe['datatramite']))); ?> 
-                                                    | 
-                                                    Usuário: <?php foreach ($usuarios as $usuario) if ($usuario['cod'] == $processodetalhe['codusuariotramite']) : echo $usuario['nome']; endif; ?></small>
+                                                    Data: <?php echo implode("/", array_reverse(explode("-", $processodetalhe['datatramite']))); ?>
+                                                    |
+                                                    Usuário: <?php foreach ($usuarios as $usuario) if ($usuario['cod'] == $processodetalhe['codusuariotramite']) : echo $usuario['nome'];
+                                                                endif; ?></small>
                                                 <?php if (session()->get('nivel') <> 3) :  ?>
                                                     <a href='<?php echo base_url('Legalizacao/delTramiteProcesso') . '/' . $processodetalhe['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
                                                         <i class="fas fa-trash"></i>
@@ -295,3 +296,11 @@ include 'app/Helpers/legalizacao_helper.php';
 </body>
 
 </html>
+<script>
+    $('#customFile').on('change', function() {
+        //get the file name
+        var fileName = $(this).val().replace('C:\\fakepath\\', " ");
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>

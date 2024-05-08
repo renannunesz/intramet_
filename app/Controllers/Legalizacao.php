@@ -133,6 +133,13 @@ class Legalizacao extends BaseController
     public function editProcesso()
     {
 
+        $arquivo = $this->request->getFile('arqcaminho');
+        $caminhoPasta = ROOTPATH . 'assets\uploads';
+        if (isset($arquivo)) {
+            $arquivo->move(ROOTPATH . 'assets/uploads');
+            $caminho_arquivo = 'assets/uploads/' . $arquivo->getName();
+        } 
+
         $codProcesso = $this->request->getPost('codEditProcesso');
         $obsProcesso = $this->request->getPost('inputEditObservacao');
         $statusProcesso = $this->request->getPost('inputEditStatus');
@@ -145,6 +152,8 @@ class Legalizacao extends BaseController
         $this->tbprocessos->set('codstatus', $statusProcesso);
         $this->tbprocessos->set('numeroprocesso', $numProcesso);
         $this->tbprocessos->set('codservico', $codServico);
+        $this->tbprocessos->set('caminhodocprocesso', $caminho_arquivo);
+        $this->tbprocessos->set('nomedocprocesso', $arquivo->getName());
         $this->tbprocessos->where('cod', $codProcesso);
         $this->tbprocessos->update();
 
@@ -211,5 +220,32 @@ class Legalizacao extends BaseController
         $this->tbprocessosdetalhes->where('cod', $cod)->delete();
 
         return redirect()->to(base_url('/Legalizacao/processosDetalhes/' . $codProcesso[0]));
+    }
+
+    public function arqProcesso()
+    {
+
+        $arquivo = $this->request->getFile('arqcaminho');
+        dd($arquivo);
+
+        $caminhoPasta = ROOTPATH . 'assets\uploads';
+
+        if (isset($arquivo)) {
+
+            $arquivo->move(ROOTPATH . 'assets/uploads');
+            $caminho_arquivo = $caminhoPasta . '/' . $arquivo->getName();
+
+        } 
+
+    }
+
+    public function delArqProcesso($cod)
+    {
+        $this->tbprocessos->set('nomedocprocesso', '');
+        $this->tbprocessos->set('caminhodocprocesso', '');
+        $this->tbprocessos->where('cod', $cod);
+        $this->tbprocessos->update();
+        return redirect()->to(base_url('/Legalizacao/Processos'));
+        
     }
 }
