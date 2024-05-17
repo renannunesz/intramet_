@@ -233,9 +233,16 @@ include 'app/Helpers/legalizacao_helper.php';
                                                     $ultTramite = array();
                                                     foreach ($processosdetalhes as $processosdetalhe)
                                                         if ($processosdetalhe['codprocesso'] == $processo['cod']) :
-                                                            array_push($ultTramite, $processosdetalhe['desctramite']);
-                                                        endif;
-                                                    echo end($ultTramite);
+                                                            array_push($ultTramite, $processosdetalhe['datatramite'] . '|' . $processosdetalhe['codusuariotramite'] . '|' . $processosdetalhe['desctramite']);
+                                                        endif;                                                                                                        
+                                                    $dadosTramite = explode('|', end($ultTramite));
+                                                    if (count($dadosTramite) > 1) :
+                                                        $dataFormatada = implode('/', array_reverse(explode('-', $dadosTramite[0])));
+                                                        foreach ($usuarios as $usuario)
+                                                            if ($usuario['cod'] == $dadosTramite[1]) :
+                                                                echo  $dataFormatada . " | " . $usuario['nome'] . " | " . $dadosTramite[2];
+                                                            endif;
+                                                    endif;                                                
                                                     ?>
                                                 </td>
                                                 <td><?php

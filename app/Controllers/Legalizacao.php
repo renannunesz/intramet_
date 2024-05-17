@@ -50,11 +50,12 @@ class Legalizacao extends BaseController
             return view('processos', [
                 'processos'     => $this->tbprocessos->whereNotIn('codstatus', $filtroStatus)->find(),
                 'empresas'      => $this->tbempresas->find(),
-                'clientes'      => $this->tbclientes->orderBy('nome','ASC')->find(),
+                'clientes'      => $this->tbclientes->orderBy('nome', 'ASC')->find(),
                 'servicos'      => $this->tbprocessosservicos->orderBy('nome', 'ASC')->find(),
                 'envolvidos'    => $this->tbenvolvidos->find(),
                 'status'        => $this->tbstatus->find(),
-                'processosdetalhes' => $this->tbprocessosdetalhes->OrderBy('cod','ASC')->find()
+                'processosdetalhes' => $this->tbprocessosdetalhes->OrderBy('cod', 'ASC')->find(),
+                'usuarios' => $this->tbusuarios->find()
             ]);
         }
     }
@@ -70,13 +71,13 @@ class Legalizacao extends BaseController
             return view('processos_finalizados', [
                 'processosFinalizados'  => $this->tbprocessos->where('codstatus', 1)->orderBy('datafim', 'DESC')->find(),
                 'empresas'      => $this->tbempresas->find(),
-                'clientes'      => $this->tbclientes->orderBy('nome','ASC')->find(),
+                'clientes'      => $this->tbclientes->orderBy('nome', 'ASC')->find(),
                 'servicos'      => $this->tbprocessosservicos->orderBy('nome', 'ASC')->find(),
                 'envolvidos'    => $this->tbenvolvidos->find(),
                 'status'        => $this->tbstatus->find()
             ]);
         }
-    }    
+    }
 
     public function processosDetalhes($cod)
     {
@@ -84,11 +85,11 @@ class Legalizacao extends BaseController
         return view('processosdetalhes', [
             'processo'      => $this->tbprocessos->where('cod', $cod)->first(),
             'empresas'      => $this->tbempresas->find(),
-            'clientes'      => $this->tbclientes->orderBy('nome','ASC')->find(),
+            'clientes'      => $this->tbclientes->orderBy('nome', 'ASC')->find(),
             'servicos'      => $this->tbprocessosservicos->orderBy('nome', 'ASC')->find(),
             'envolvidos'    => $this->tbenvolvidos->find(),
             'status'        => $this->tbstatus->find(),
-            'processosdetalhes' => $this->tbprocessosdetalhes->where('codprocesso', $cod)->orderBy('cod','DESC')->find(),
+            'processosdetalhes' => $this->tbprocessosdetalhes->where('codprocesso', $cod)->orderBy('cod', 'DESC')->find(),
             'usuarios'      => $this->tbusuarios->find()
         ]);
     }
@@ -138,7 +139,7 @@ class Legalizacao extends BaseController
         if (isset($arquivo)) {
             $arquivo->move(ROOTPATH . 'assets/uploads');
             $caminho_arquivo = 'assets/uploads/' . $arquivo->getName();
-        } 
+        }
 
         $codProcesso = $this->request->getPost('codEditProcesso');
         $obsProcesso = $this->request->getPost('inputEditObservacao');
@@ -171,7 +172,6 @@ class Legalizacao extends BaseController
         $this->tbprocessos->update();
 
         return redirect()->to(base_url('Legalizacao/processosDetalhes') . '/' . $codProcesso);
-
     }
 
     public function delProcesso($cod)
@@ -210,13 +210,13 @@ class Legalizacao extends BaseController
         $this->tbprocessosdetalhes->save($dadosTramite);
 
         return redirect()->to(base_url('/Legalizacao/processosDetalhes/' . $codProcesso));
-
     }
 
-    public function delTramiteProcesso($cod) {
+    public function delTramiteProcesso($cod)
+    {
 
         $codProcesso = $this->tbprocessosdetalhes->where('cod', $cod)->findColumn('codprocesso');
-        
+
         $this->tbprocessosdetalhes->where('cod', $cod)->delete();
 
         return redirect()->to(base_url('/Legalizacao/processosDetalhes/' . $codProcesso[0]));
@@ -234,9 +234,7 @@ class Legalizacao extends BaseController
 
             $arquivo->move(ROOTPATH . 'assets/uploads');
             $caminho_arquivo = $caminhoPasta . '/' . $arquivo->getName();
-
-        } 
-
+        }
     }
 
     public function delArqProcesso($cod)
@@ -246,6 +244,5 @@ class Legalizacao extends BaseController
         $this->tbprocessos->where('cod', $cod);
         $this->tbprocessos->update();
         return redirect()->to(base_url('/Legalizacao/Processos'));
-        
     }
 }
