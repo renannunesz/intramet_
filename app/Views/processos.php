@@ -57,99 +57,96 @@ include 'app/Helpers/legalizacao_helper.php';
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800"> Processos </h1>
 
-                    <!-- Collapsable Card Example -->
+
+                    <!-- Basic Card -->
                     <div class="card shadow mb-4">
-                        <!-- Card Header - Accordion -->
-                        <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                        <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Opções</h6>
-                        </a>
-                        <!-- Card Content - Collapse -->
-                        <div class="collapse" id="collapseCardExample">
-                            <div class="card-body">
+                        </div>
+                        <div class="card-body">
 
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#processoModal">
-                                    Novo Processo
-                                </button>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#processoModal">
+                                Novo Processo
+                            </button>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="processoModal" tabindex="-1" role="dialog" aria-labelledby="processoModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title text-primary" id="processoModalLabel">Incluir Processo</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
+                            <!-- Modal -->
+                            <div class="modal fade" id="processoModal" tabindex="-1" role="dialog" aria-labelledby="processoModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-primary" id="processoModalLabel">Incluir Processo</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
 
-                                                <form action="<?php echo base_url('Legalizacao/addProcesso') ?>" method="post">
+                                            <form action="<?php echo base_url('Legalizacao/addProcesso') ?>" method="post">
 
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <label for="inputDataInicio">Data Inicio</label>
-                                                            <input type="date" class="form-control" id="inputDataInicio" name="inputDataInicio" placeholder="Email">
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label for="inputServico">Serviço</label>
-                                                            <select id="inputServico" name="inputServico" class="form-control" required>
-                                                                <option value="">Selecione...</option>
-                                                                <?php foreach ($servicos as $servico) : ?>
-                                                                    <option value='<?php echo (int)$servico['cod']; ?>'><?php echo $servico['nome']; ?></option>
-                                                                <?php endforeach; ?>
-                                                            </select>
-                                                        </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="inputDataInicio">Data Inicio</label>
+                                                        <input type="date" class="form-control" id="inputDataInicio" name="inputDataInicio" placeholder="Email">
                                                     </div>
-
-                                                    <div class="form-group">
-                                                        <label for="inputCliente">Cliente</label>
-                                                        <select id="inputCliente" name="inputCliente" class="form-control" required>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="inputServico">Serviço</label>
+                                                        <select id="inputServico" name="inputServico" class="form-control" required>
                                                             <option value="">Selecione...</option>
-                                                            <?php foreach ($clientes as $cliente) : ?>
-                                                                <option value='<?php echo $cliente['cod']; ?>'><?php echo $cliente['nome']; ?></option>
+                                                            <?php foreach ($servicos as $servico) : ?>
+                                                                <option value='<?php echo (int)$servico['cod']; ?>'><?php echo $servico['nome']; ?></option>
                                                             <?php endforeach; ?>
                                                         </select>
                                                     </div>
+                                                </div>
 
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-3">
-                                                            <label for="inputContato">Contato</label>
-                                                            <input type="text" class="form-control" id="inputContato" name="inputContato" placeholder="Nome">
-                                                        </div>
-                                                        <div class="form-group col-md-3">
-                                                            <label for="inputFone">Fone</label>
-                                                            <input type="text" class="form-control" id="inputFone" name="inputFone" placeholder="Nº Telefone">
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label for="inputResponsavel">Origem Demanda</label>
-                                                            <select id="inputResponsavel" name="inputResponsavel" class="form-control">
-                                                                <option selected>Selecione...</option>
-                                                                <?php foreach ($envolvidos as $envolvido) : ?>
-                                                                    <option value='<?php echo $envolvido['cod']; ?>'><?php echo $envolvido['nome']; ?></option>
-                                                                <?php endforeach; ?>
-                                                            </select>
-                                                        </div>
+                                                <div class="form-group">
+                                                    <label for="inputCliente">Cliente</label>
+                                                    <select id="inputCliente" name="inputCliente" class="form-control" required>
+                                                        <option value="">Selecione...</option>
+                                                        <?php foreach ($clientes as $cliente) : ?>
+                                                            <option value='<?php echo $cliente['cod']; ?>'><?php echo $cliente['nome']; ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-3">
+                                                        <label for="inputContato">Contato</label>
+                                                        <input type="text" class="form-control" id="inputContato" name="inputContato" placeholder="Nome">
                                                     </div>
-
-                                                    <div class="form-group">
-                                                        <label for="inputObservacao">Trâmite</label>
-                                                        <textarea class="form-control" id="inputObservacao" name="inputObservacao" rows="3" placeholder="Descrever observação."></textarea>
+                                                    <div class="form-group col-md-3">
+                                                        <label for="inputFone">Fone</label>
+                                                        <input type="text" class="form-control" id="inputFone" name="inputFone" placeholder="Nº Telefone">
                                                     </div>
-
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="inputResponsavel">Origem Demanda</label>
+                                                        <select id="inputResponsavel" name="inputResponsavel" class="form-control">
+                                                            <option selected>Selecione...</option>
+                                                            <?php foreach ($envolvidos as $envolvido) : ?>
+                                                                <option value='<?php echo $envolvido['cod']; ?>'><?php echo $envolvido['nome']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>
                                                     </div>
+                                                </div>
 
-                                                </form>
+                                                <div class="form-group">
+                                                    <label for="inputObservacao">Trâmite</label>
+                                                    <textarea class="form-control" id="inputObservacao" name="inputObservacao" rows="3" placeholder="Descrever observação."></textarea>
+                                                </div>
 
-                                            </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                                </div>
+
+                                            </form>
+
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
+
                         </div>
                     </div>
 
