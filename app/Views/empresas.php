@@ -1,286 +1,291 @@
-<main class="d-flex " style="background-color:#dee6ed">
+<!DOCTYPE html>
+<html lang="pt">
 
-    <?php include 'sidebar.php'; ?>
+<head>
 
-    <div class="mx-2 justify-content-center content-fluid" style="width: 100%;">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <div class=" mx-2 pt-3 justify-content-center " id="cardHeaderEmpresas" name="">
+    <title>Métodos - Intranet</title>
+    <link rel="icon" type="image/x-icon" href='<?php echo base_url('assets/img/favicon.ico') ?>'>
 
-            <div class="card justify-content-center">
+    <!-- Custom fonts for this template-->
+    <link href="../assets/theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-                <div class="card-header">
+    <!-- Custom styles for this template-->
+    <link href="../assets/theme/css/sb-admin-2.min.css" rel="stylesheet">
 
-                    <h5 class="card-title">Cadastro de Empresas</h5>
+    <!-- Custom styles for this page -->
+    <link href="../assets/theme/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#empresaModal">
-                        Nova
-                    </button>
+</head>
 
-                    <form action="<?php echo base_url('#') ?>" method="post">
-                        <!-- Modal -->
-                        <div class="modal fade" id="empresaModal" tabindex="-1" aria-labelledby="empresaModalLabel" aria-hidden="true">
+<body id="page-top">
 
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="empresaModalLabel">Cadastro de Empresa</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-                                        <div class="container-fluid">
+        <?php include 'sidebar.php'; ?>
 
-                                            <div class="row">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-                                                <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect01">Cod. Athenas:</label>
-                                                    <input type="text" class="form-control" name="empresaCodAthenas" id="empresaCodAthenas">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect02">Nome:</label>
-                                                    <input type="text" class="form-control" name="empresaNome" id="empresaNome">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect03">CNPJ:</label>
-                                                    <input type="text" class="form-control" name="empresaCNPJ" id="empresaCNPJ">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect04">C.H. Contabil:</label>
-                                                    <input type="text" class="form-control" name="empresaCHContabil" id="empresaCHContabil">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect05">C.H. Fiscal:</label>
-                                                    <input type="text" class="form-control" name="empresaCHFiscal" id="empresaCHFiscal">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect06">Atualização Contabil:</label>
-                                                    <input type="text" class="form-control" name="empresaAtualizacaoContabil" id="empresaAtualizacaoContabil">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect07">Curva:</label>
-                                                    <input type="text" class="form-control" name="empresaCurva" id="empresaCurva">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect08">Responsável:</label>
-                                                    <input type="text" class="form-control" name="empresaResponsavel" id="descricao">
-                                                </div>
+            <!-- Main Content -->
+            <div id="content">
 
+                <?php include 'navbar.php'; ?>
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <nav aria-label="Page breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page"> Cadastros </li>
+                            <li class="breadcrumb-item"> Empresas </li>
+                        </ol>
+                    </nav>
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800"> Empresas (Cronograma) </h1>
+
+                    <!-- Collapsable Card Example -->
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Accordion -->
+                        <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                            <h6 class="m-0 font-weight-bold text-primary">Opções</h6>
+                        </a>
+                        <!-- Card Content - Collapse -->
+                        <div class="collapse" id="collapseCardExample">
+                            <div class="card-body">
+
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#clienteModal">
+                                    Nova Empresa
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="clienteModal" tabindex="-1" role="dialog" aria-labelledby="clienteModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-primary" id="clienteModalLabel">Incluir Cliente</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                             </div>
+                                            <div class="modal-body">
 
-                                        </div>
+                                                <form action="<?php echo base_url('Clientes/addCliente') ?>" method="post">
 
-                                    </div>
-                                    <div class="modal-footer">
-                                        <input type="submit" class="btn btn-primary" value="Salvar">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </form>
-
-                </div>
-
-                <div class="card-body">
-
-                    <div class="row">
-
-                        <p>Empresas cadastradas: <?php echo count($empresas); ?></p>
-
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=" mx-2 pt-3 justify-content-center " id="tabEmpresas" name="">
-
-            <div class="card justify-content-center">
-
-                <div class="card-body">
-
-                    <table class="table table-sm align-middle compact stripe hover" name="gridEmpresas" id="gridEmpresas">
-                        <thead class="bg-light">
-                            <tr>
-                                <th scope="col">Cod</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">CNPJ</th>
-                                <th scope="col">C.H. Contabil</th>
-                                <th scope="col">C.H. Fiscal</th>
-                                <th scope="col">Atualização Contabil</th>
-                                <th scope="col">Responsável</th>
-                                <th scope="col">Curva</th>
-                                <th scope="col">Opções</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-group-divider">
-                            <?php foreach ($empresas as $empresa) : ?>
-                                <tr>
-                                    <td><?php echo $empresa['codathenas']; ?></td>
-                                    <td><?php echo $empresa['nome']; ?></td>
-                                    <td><?php echo $empresa['cnpj']; ?></td>
-                                    <td><?php echo $empresa['chcontabil']; ?></td>
-                                    <td><?php echo $empresa['chfiscal']; ?></td>
-                                    <td><?php echo $empresa['atualizacaocontabil']; ?></td>
-                                    <td><?php foreach ($responsaveis as $responsavel) if ($responsavel['cod'] == $empresa['codresponsavel']) : echo $responsavel['nome'];
-                                        endif; ?></td>
-                                    <td><?php echo $empresa['curva']; ?></td>
-                                    <td>
-                                        <!--
-                                        <a href='<?php echo base_url('public/Empresas/editar') . '/' . $empresa['cod']; ?>'>
-                                            <button class="btn btn-warning btn-sm" value="<?php echo $empresa['cod']; ?>">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                                                </svg>
-                                            </button>
-                                        </a>
-                                        -->
-
-                                        <form action="<?php echo base_url('public/Empresas/salvar') ?>" method="post">
-
-                                            <input type="hidden" name="empresaCod" id="empresaCod" value="<?php echo $empresa['cod']; ?>">
-
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#empresaModal-<?php echo $empresa['cod']; ?>">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                                                </svg>
-                                            </button>
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="empresaModal-<?php echo $empresa['cod']; ?>" aria-labelledby="empresaModalLabel" aria-hidden="true">
-
-                                                <div class="modal-dialog modal-xl">
-
-                                                    <div class="modal-content">
-
-                                                        <div class="modal-header bg-light">
-                                                            <h5 class="card-title">Editar Empresa - <?php echo $empresa['nome']; ?></h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label for="inputDataInicio">Nome</label>
+                                                            <input type="text" class="form-control" id="inputNomeCliente" name="inputNomeCliente" placeholder="Nome Cliente">
                                                         </div>
-
-                                                        <div class="modal-body">
-
-                                                            <div class="container-fluid">
-
-                                                                <div class="row-cols-2">
-
-                                                                    <div class="col">
-
-                                                                        <div class="input-group mb-3">
-                                                                            <label class="input-group-text" for="inputGroupSelect01">C.H. Contabil:</label>
-                                                                            <input type="text" class="form-control" name="empresaCHContabil" id="empresaCHContabil" value="<?php echo $empresa['chcontabil']; ?>">
-                                                                        </div>
-
-                                                                        <div class="input-group mb-3">
-                                                                            <label class="input-group-text" for="inputGroupSelect02">C.H. Fiscal:</label>
-                                                                            <input type="text" class="form-control" name="empresaCHFiscal" id="empresaCHFiscal" value="<?php echo $empresa['chfiscal']; ?>">
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                    <div class="col input-group mb-3">
-                                                                        <label class="input-group-text" for="inputGroupSelect01">C.H. Contabil:</label>
-                                                                        <input type="text" class="form-control" name="empresaCHContabil" id="empresaCHContabil" value="<?php echo $empresa['chcontabil']; ?>">
-                                                                    </div>
-
-                                                                    <div class="col input-group mb-3">
-                                                                        <label class="input-group-text" for="inputGroupSelect02">C.H. Fiscal:</label>
-                                                                        <input type="text" class="form-control" name="empresaCHFiscal" id="empresaCHFiscal" value="<?php echo $empresa['chfiscal']; ?>">
-                                                                    </div>
-
-                                                                </div>
-
-                                                                <div class="row">
-
-                                                                    <div class="input-group mb-3">
-                                                                        <label class="input-group-text" for="inputGroupSelect03">Responsável:</label>
-                                                                        <select class="form-select" name="empresaResponsavel" id="empresaResponsavel" required>
-                                                                            <option selected value="">Selecione...</option>
-                                                                            <?php foreach ($responsaveis as $responsavel) : ?>
-                                                                                <option value="<?php echo $responsavel['cod']; ?>"><?php echo $responsavel['nome']; ?></option>
-                                                                            <?php endforeach; ?>
-                                                                        </select>
-                                                                    </div>
-
-                                                                    <div class="input-group mb-3">
-                                                                        <label class="input-group-text" for="inputGroupSelect04">Curva:</label>
-                                                                        <select class="form-select" name="empresaCurva" id="empresaCurva" required>
-                                                                            <option value="">Selecione...</option>
-                                                                            <option value="A">A</option>
-                                                                            <option value="B">B</option>
-                                                                            <option value="C">C</option>
-                                                                        </select>
-                                                                    </div>
-
-                                                                    <div class="input-group mb-3">
-                                                                        <label class="input-group-text" for="inputGroupSelect05">Tributação:</label>
-                                                                        <select class="form-select" name="empresaTributacao" id="empresaTributacao" required>
-                                                                            <option value="">Selecione...</option>
-                                                                            <option value="CEI">CEI</option>
-                                                                            <option value="Doméstico">Doméstico</option>
-                                                                            <option value="Imune">Imune</option>
-                                                                            <option value="Isenta">Isenta</option>
-                                                                            <option value="ITR">ITR</option>
-                                                                            <option value="Livro Caixa">Livro Caixa</option>
-                                                                            <option value="Lucro Presumido">Lucro Presumido</option>
-                                                                            <option value="MEI">MEI</option>
-                                                                            <option value="Não se aplica">Não se aplica</option>
-                                                                            <option value="Presumido">Presumido</option>
-                                                                            <option value="Real ">Real </option>
-                                                                            <option value="Real/Anual">Real/Anual</option>
-                                                                            <option value="Real/Trimestral">Real/Trimestral</option>
-                                                                            <option value="SIMEI">SIMEI</option>
-                                                                            <option value="Simples">Simples</option>
-                                                                        </select>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-
+                                                        <div class="form-group col-md-6">
+                                                            <label for="inputServico">CPF / CNPJ</label>
+                                                            <input type="text" class="form-control" id="inputCPFCNPJCliente" name="inputCPFCNPJCliente">
                                                         </div>
-
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                            <button type="submit" class="btn btn-primary">Salvar</button>
-                                                        </div>
-
                                                     </div>
 
-                                                </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                                    </div>
+
+                                                </form>
 
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                        </form>
+                            </div>
+                        </div>
+                    </div>
 
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                    <!-- Tab clientes -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Listagem de Empresas</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Cod.</th>
+                                            <th>Cod. Athenas</th>
+                                            <th>Nome</th>
+                                            <th>CNPJ</th>
+                                            <th>C.H. Contábil</th>
+                                            <th>C.H. Fiscal</th>
+                                            <th>Curva</th>
+                                            <th>Resp. Contábil</th>
+                                            <th>Resp. Fiscal</th>
+                                            <th>Ult. Att Contábil</th>
+                                            <th>Opções</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Cod.</th>
+                                            <th>Cod. Athenas</th>
+                                            <th>Nome</th>
+                                            <th>CNPJ</th>
+                                            <th>C.H. Contábil</th>
+                                            <th>C.H. Fiscal</th>
+                                            <th>Curva</th>
+                                            <th>Resp. Contábil</th>
+                                            <th>Resp. Fiscal</th>
+                                            <th>Ult. Att Contábil</th>
+                                            <th>Opções</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <?php foreach ($empresas as $empresa) : ?>
+                                            <tr>
+                                                <td><?php echo $empresa['cod']; ?></td>
+                                                <td><?php echo $empresa['codathenas']; ?></td>
+                                                <td><?php echo $empresa['nome']; ?></td>
+                                                <td><?php echo $empresa['cnpj']; ?></td>
+                                                <td><?php echo $empresa['chcontabil']; ?></td>
+                                                <td><?php echo $empresa['chfiscal']; ?></td>
+                                                <td><?php echo $empresa['curva']; ?></td>
+                                                <td> <?php foreach ($usuarios as $usuario) if ($usuario['cod'] == $empresa['codresponsavelctb']) : echo $usuario['nome'];
+                                                        endif; ?> </td>
+                                                <td> <?php foreach ($usuarios as $usuario) if ($usuario['cod'] == $empresa['codresponsavelfsc']) : echo $usuario['nome'];
+                                                        endif; ?> </td>
+                                                <td><?php echo $empresa['atualizacaocontabil']; ?></td>
+                                                <td>
+                                                    <a data-toggle="modal" data-target="#editEmpresaModal-<?php echo $empresa['cod']; ?>" class="btn btn-warning btn-circle btn-sm">
+                                                        <i class="fas fa-pen"></i>
+                                                    </a>
+                                                    <a href='<?php echo base_url('Clientes/delCliente') . '/' . $empresa['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+
+                                                <div class="modal fade" id="editEmpresaModal-<?php echo $empresa['cod']; ?>" tabindex="-1" role="dialog" aria-labelledby="editEmpresaModalLabel" aria-hidden="true">
+
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+
+                                                                <form action='<?php echo base_url('Fiscon/editEmpresa') . '/' . $empresa['cod']; ?>' method="post">
+
+                                                                    <input type="hidden" name="codEditEmpresa" id="codEditEmpresa" value='<?php echo $empresa['cod']; ?>'>
+
+                                                                    <div class="form-row">
+                                                                        <div class="form-group col-md-4">
+                                                                            <label for="inputCodAthenasCliente">Cod. Athenas</label>
+                                                                            <input type="text" class="form-control" id="inputCodAthenasEmpresa" name="inputCodAthenasEmpresa" placeholder='<?php echo $empresa['codathenas']; ?>'>
+                                                                        </div>
+                                                                        <div class="form-group col-md-4">
+                                                                            <label for="inputEditCNPJEmpresa">CNPJ</label>
+                                                                            <input type="text" class="form-control" id="inputEditCNPJEmpresa" name="inputEditCNPJEmpresa" placeholder='<?php echo $empresa['cnpj']; ?>'>
+                                                                        </div>
+                                                                        <div class="form-group col-md-4">
+                                                                            <label for="inputEditCurvaEmpresa">Curva</label>
+                                                                            <input type="text" class="form-control" id="inputEditCurvaEmpresa" name="inputEditCurvaEmpresa" placeholder='<?php echo $empresa['curva']; ?>'>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-row">
+                                                                        <div class="form-group col-md">
+                                                                            <label for="inputEditNomeEmpresa">Nome</label>
+                                                                            <input type="text" class="form-control" id="inputEditNomeEmpresa" name="inputEditNomeEmpresa" placeholder='<?php echo $empresa['nome']; ?>'>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-row">
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="inputEditCHContabilEmpresa">C.H. Contábil</label>
+                                                                            <input type="text" class="form-control" id="inputEditCHContabilEmpresa" name="inputEditCHContabilEmpresa" placeholder='<?php echo $empresa['chcontabil']; ?>'>
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="inputRespCTB">Resp. Contábil</label>
+                                                                            <select id="inputRespCTB" name="inputRespCTB" class="form-control" required>
+                                                                                <option value="">Selecione...</option>
+                                                                                <?php foreach ($usuarios as $usuario) : ?>
+                                                                                    <option value='<?php echo (int)$usuario['cod']; ?>'><?php echo $usuario['nome']; ?></option>
+                                                                                <?php endforeach; ?>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="inputEditCHFiscalEmpresa">C.H. Fiscal</label>
+                                                                            <input type="text" class="form-control" id="inputEditCHFiscalEmpresa" name="inputEditCHFiscalEmpresa" placeholder='<?php echo $empresa['chfiscal']; ?>'>
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="inputRespFSC">Resp. Fiscal</label>
+                                                                            <select id="inputRespFSC" name="inputRespFSC" class="form-control" required>
+                                                                                <option value="">Selecione...</option>
+                                                                                <?php foreach ($usuarios as $usuario) : ?>
+                                                                                    <option value='<?php echo (int)$usuario['cod']; ?>'><?php echo $usuario['nome']; ?></option>
+                                                                                <?php endforeach; ?>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                                                    </div>
+
+                                                                </form>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
+                <!-- /.container-fluid -->
 
             </div>
+            <!-- End of Main Content -->
+
 
         </div>
+        <!-- End of Content Wrapper -->
 
     </div>
+    <!-- End of Page Wrapper -->
 
-    <script>
-        $(document).ready(function() {
-            $('#gridEmpresas').DataTable({
-                "responsive": true,
-                "pageLength": 25,
-                language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.13.2/i18n/pt-BR.json'
-                }
-            });
-        });
-    </script>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-</main>
+    <!-- Bootstrap core JavaScript-->
+    <script src="../assets/theme/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../assets/theme/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../assets/theme/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="../assets/theme/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../assets/theme/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="../assets/theme/js/demo/datatables-demo.js"></script>
+
+</body>
+
+</html>

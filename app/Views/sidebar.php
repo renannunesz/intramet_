@@ -36,8 +36,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Cadastros Gerais:</h6>
-                <a class="collapse-item" href='<?php echo base_url('Cadastros/Clientes'); ?>'>Clientes</a>
-                <a class="collapse-item" href="#">Empresas (Cronograma)</a>
+                <a class="collapse-item" href='<?php echo base_url('Cadastros/Clientes'); ?>'>Clientes</a>                
                 <a class="collapse-item" href="#">Envolvidos</a>
                 <a class="collapse-item" href="#">Setores</a>
                 <a class="collapse-item" href='<?php echo base_url('Cadastros/Status'); ?>'>Status</a>
@@ -65,6 +64,7 @@
         <div id="collapseFisCon" class="collapse" aria-labelledby="headingFisCon" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Cronogramas:</h6>
+                <a class="collapse-item" href='<?php echo base_url('Fiscon/Empresas'); ?>'>Empresas (Cronograma)</a>
                 <a class="collapse-item" href="#">Contábil</a>
                 <a class="collapse-item" href="#">Fiscal</a>
                 <div class="collapse-divider"></div>

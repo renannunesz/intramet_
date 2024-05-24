@@ -24,6 +24,8 @@ class tbempresasModel extends Model
         'chcontabil',
         'chfiscal',
         'atualizacaocontabil',
+        'codresponsavelctb',
+        'codresponsavelfsc',
         'codresponsavel',
         'curva'
     ];
