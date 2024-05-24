@@ -50,7 +50,7 @@ class Empresas extends BaseController
         $CHCTBEmpresa = $this->request->getPost('inputEditCHContabilEmpresa');
         $CHFSCEmpresa = $this->request->getPost('inputEditCHFiscalEmpresa');
         
-        //dd($codEmpresa,$codAthenasEmpresa,$cnpjEmpresa,$nomeEmpresa,(int)$codRespCTBEmpresa,(int)$codRespFSCEmpresa,$CHCTBEmpresa,$CHFSCEmpresa);    
+        dd($codEmpresa,$codAthenasEmpresa,$cnpjEmpresa,$nomeEmpresa,(int)$codRespCTBEmpresa,(int)$codRespFSCEmpresa,$CHCTBEmpresa,$CHFSCEmpresa);    
 
         $this->tbEmpresas->set('codathenas ', $codAthenasEmpresa);
         $this->tbEmpresas->set('cnpj', $cnpjEmpresa);

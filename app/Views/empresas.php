@@ -183,29 +183,29 @@
                                                                     <div class="form-row">
                                                                         <div class="form-group col-md-4">
                                                                             <label for="inputCodAthenasCliente">Cod. Athenas</label>
-                                                                            <input type="text" class="form-control" id="inputCodAthenasEmpresa" name="inputCodAthenasEmpresa" placeholder='<?php echo $empresa['codathenas']; ?>'>
+                                                                            <input type="text" class="form-control" id="inputCodAthenasEmpresa" name="inputCodAthenasEmpresa" value='<?php echo $empresa['codathenas']; ?>'>
                                                                         </div>
                                                                         <div class="form-group col-md-4">
                                                                             <label for="inputEditCNPJEmpresa">CNPJ</label>
-                                                                            <input type="text" class="form-control" id="inputEditCNPJEmpresa" name="inputEditCNPJEmpresa" placeholder='<?php echo $empresa['cnpj']; ?>'>
+                                                                            <input type="text" class="form-control" id="inputEditCNPJEmpresa" name="inputEditCNPJEmpresa" value='<?php echo $empresa['cnpj']; ?>'>
                                                                         </div>
                                                                         <div class="form-group col-md-4">
                                                                             <label for="inputEditCurvaEmpresa">Curva</label>
-                                                                            <input type="text" class="form-control" id="inputEditCurvaEmpresa" name="inputEditCurvaEmpresa" placeholder='<?php echo $empresa['curva']; ?>'>
+                                                                            <input type="text" class="form-control" id="inputEditCurvaEmpresa" name="inputEditCurvaEmpresa" value='<?php echo $empresa['curva']; ?>'>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="form-row">
                                                                         <div class="form-group col-md">
                                                                             <label for="inputEditNomeEmpresa">Nome</label>
-                                                                            <input type="text" class="form-control" id="inputEditNomeEmpresa" name="inputEditNomeEmpresa" placeholder='<?php echo $empresa['nome']; ?>'>
+                                                                            <input type="text" class="form-control" id="inputEditNomeEmpresa" name="inputEditNomeEmpresa" value='<?php echo $empresa['nome']; ?>'>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="form-row">
                                                                         <div class="form-group col-md-3">
                                                                             <label for="inputEditCHContabilEmpresa">C.H. Contábil</label>
-                                                                            <input type="text" class="form-control" id="inputEditCHContabilEmpresa" name="inputEditCHContabilEmpresa" placeholder='<?php echo $empresa['chcontabil']; ?>'>
+                                                                            <input type="text" class="form-control" id="inputEditCHContabilEmpresa" name="inputEditCHContabilEmpresa" value='<?php echo $empresa['chcontabil']; ?>'>
                                                                         </div>
                                                                         <div class="form-group col-md-3">
                                                                             <label for="inputRespCTB">Resp. Contábil</label>
@@ -218,7 +218,7 @@
                                                                         </div>
                                                                         <div class="form-group col-md-3">
                                                                             <label for="inputEditCHFiscalEmpresa">C.H. Fiscal</label>
-                                                                            <input type="text" class="form-control" id="inputEditCHFiscalEmpresa" name="inputEditCHFiscalEmpresa" placeholder='<?php echo $empresa['chfiscal']; ?>'>
+                                                                            <input type="text" class="form-control" id="inputEditCHFiscalEmpresa" name="inputEditCHFiscalEmpresa" value='<?php echo $empresa['chfiscal']; ?>'>
                                                                         </div>
                                                                         <div class="form-group col-md-3">
                                                                             <label for="inputRespFSC">Resp. Fiscal</label>
