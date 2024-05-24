@@ -136,10 +136,11 @@ class Legalizacao extends BaseController
 
         $arquivo = $this->request->getFile('arqcaminho');
         $caminhoPasta = ROOTPATH . 'assets\uploads';
-        if (isset($arquivo)) {
+        
+        if ( $arquivo->getSize() > 0) {
             $arquivo->move(ROOTPATH . 'assets/uploads');
             $caminho_arquivo = 'assets/uploads/' . $arquivo->getName();
-        }
+        } 
 
         $codProcesso = $this->request->getPost('codEditProcesso');
         $obsProcesso = $this->request->getPost('inputEditObservacao');
@@ -158,7 +159,9 @@ class Legalizacao extends BaseController
         $this->tbprocessos->where('cod', $codProcesso);
         $this->tbprocessos->update();
 
-        return redirect()->to(base_url('/Legalizacao/Processos'));
+        //return redirect()->to(base_url('/Legalizacao/Processos'));
+        return redirect()->to(base_url('Legalizacao/processosDetalhes') . '/' . $codProcesso);
+
     }
 
     public function editStatusProcesso()
@@ -222,19 +225,26 @@ class Legalizacao extends BaseController
         return redirect()->to(base_url('/Legalizacao/processosDetalhes/' . $codProcesso[0]));
     }
 
-    public function arqProcesso()
+    public function addDocProcesso()
     {
 
         $arquivo = $this->request->getFile('arqcaminho');
-        dd($arquivo);
-
+        $codProcesso = $this->request->getPost('codEditProcesso');
+        //dd($arquivo,$codProcesso);
         $caminhoPasta = ROOTPATH . 'assets\uploads';
-
+        
         if (isset($arquivo)) {
 
             $arquivo->move(ROOTPATH . 'assets/uploads');
             $caminho_arquivo = $caminhoPasta . '/' . $arquivo->getName();
-        }
+        }     
+        
+        $this->tbprocessos->set('caminhodocprocesso', $caminho_arquivo);
+        $this->tbprocessos->set('nomedocprocesso', $arquivo->getName());
+        $this->tbprocessos->where('cod', $codProcesso);
+        $this->tbprocessos->update();
+        
+        return redirect()->to(base_url('Legalizacao/processosDetalhes') . '/' . $codProcesso);
     }
 
     public function delArqProcesso($cod)
@@ -243,6 +253,7 @@ class Legalizacao extends BaseController
         $this->tbprocessos->set('caminhodocprocesso', '');
         $this->tbprocessos->where('cod', $cod);
         $this->tbprocessos->update();
-        return redirect()->to(base_url('/Legalizacao/Processos'));
+        //return redirect()->to(base_url('/Legalizacao/Processos'));
+        return redirect()->to(base_url('Legalizacao/processosDetalhes') . '/' . $cod);
     }
 }
