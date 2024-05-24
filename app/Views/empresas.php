@@ -152,7 +152,7 @@
                                                 <td><?php echo $empresa['cod']; ?></td>
                                                 <td><?php echo $empresa['codathenas']; ?></td>
                                                 <td><?php echo $empresa['nome']; ?></td>
-                                                <td><?php echo $empresa['cnpj']; ?></td>
+                                                <td><?php echo substr($empresa['cnpj'], 0, 2) . '.' . substr($empresa['cnpj'], 2, 3) . '.' . substr($empresa['cnpj'], 5, 3) . '/' . substr($empresa['cnpj'], 8, 4) . '-' . substr($empresa['cnpj'], 12, 2); ?></td>
                                                 <td><?php echo $empresa['chcontabil']; ?></td>
                                                 <td><?php echo $empresa['chfiscal']; ?></td>
                                                 <td><?php echo $empresa['curva']; ?></td>
