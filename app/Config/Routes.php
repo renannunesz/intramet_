@@ -125,6 +125,7 @@ $routes->get('/Servicos/delServico/(:num)', 'Servicos::delServico/$1');
 //FisCon
 $routes->get('/Fiscon/Empresas',            'Empresas::index');
 $routes->post('/Fiscon/editEmpresa/(:num)', 'Empresas::editEmpresa/$1');
+$routes->post('/Fiscon/addEmpresa',         'Empresas::addEmpresa');
 
 //Utilitários
 $routes->get('/Utilitarios/arqAntaqMensais', 'Utilitarios::arqAntaqMensais');

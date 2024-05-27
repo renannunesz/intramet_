@@ -68,6 +68,37 @@ class Empresas extends BaseController
 
     }
 
+    public function addEmpresa()
+    {
+
+        $codAthenasEmpresa = $this->request->getPost('inputCodAthenasEmpresa');
+        $cnpjEmpresa = $this->request->getPost('inputaddCNPJEmpresa');
+        $nomeEmpresa = $this->request->getPost('inputaddNomeEmpresa');
+        $curvaEmpresa = $this->request->getPost('inputaddCurvaEmpresa');
+        $codRespCTBEmpresa = $this->request->getPost('inputRespCTB');
+        $codRespFSCEmpresa = $this->request->getPost('inputRespFSC');
+        $CHCTBEmpresa = $this->request->getPost('inputaddCHContabilEmpresa');
+        $CHFSCEmpresa = $this->request->getPost('inputaddCHFiscalEmpresa');
+        
+        //dd($codAthenasEmpresa,$cnpjEmpresa,$nomeEmpresa,$curvaEmpresa,(int)$codRespCTBEmpresa,(int)$codRespFSCEmpresa,$CHCTBEmpresa,$CHFSCEmpresa);    
+
+        $dadosEmpresa = [
+            'codathenas' => $codAthenasEmpresa,
+            'cnpj' => $cnpjEmpresa,
+            'nome' => $nomeEmpresa,
+            'curva' => $curvaEmpresa,
+            'codresponsavelctb' => (int)$codRespCTBEmpresa,
+            'codresponsavelfsc' => (int)$codRespFSCEmpresa,
+            'chcontabil' => $CHCTBEmpresa,
+            'chfiscal' => $CHFSCEmpresa,
+        ];
+
+        $this->tbEmpresas->save($dadosEmpresa);
+
+        return redirect()->to(base_url('/Fiscon/Empresas'));
+
+    }
+
     public function salvar()
     {
 

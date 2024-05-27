@@ -72,23 +72,63 @@
                                     <div class="modal-dialog modal-lg" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title text-primary" id="clienteModalLabel">Incluir Cliente</h5>
+                                                <h5 class="modal-title text-primary" id="clienteModalLabel">Incluir Empresa</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
 
-                                                <form action="<?php echo base_url('Clientes/addCliente') ?>" method="post">
+                                                <form action="<?php echo base_url('Fiscon/addEmpresa') ?>" method="post">
 
                                                     <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <label for="inputDataInicio">Nome</label>
-                                                            <input type="text" class="form-control" id="inputNomeCliente" name="inputNomeCliente" placeholder="Nome Cliente">
+                                                        <div class="form-group col-md-4">
+                                                            <label for="inputCodAthenasCliente">Cod. Athenas</label>
+                                                            <input type="text" class="form-control" id="inputCodAthenasEmpresa" name="inputCodAthenasEmpresa">
                                                         </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label for="inputServico">CPF / CNPJ</label>
-                                                            <input type="text" class="form-control" id="inputCPFCNPJCliente" name="inputCPFCNPJCliente">
+                                                        <div class="form-group col-md-4">
+                                                            <label for="inputaddCNPJEmpresa">CNPJ</label>
+                                                            <input type="text" class="form-control" id="inputaddCNPJEmpresa" name="inputaddCNPJEmpresa">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="inputaddCurvaEmpresa">Curva</label>
+                                                            <input type="text" class="form-control" id="inputaddCurvaEmpresa" name="inputaddCurvaEmpresa">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md">
+                                                            <label for="inputaddNomeEmpresa">Nome</label>
+                                                            <input type="text" class="form-control" id="inputaddNomeEmpresa" name="inputaddNomeEmpresa">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-3">
+                                                            <label for="inputaddCHContabilEmpresa">C.H. Contábil</label>
+                                                            <input type="text" class="form-control" id="inputaddCHContabilEmpresa" name="inputaddCHContabilEmpresa">
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="inputRespCTB">Resp. Contábil</label>
+                                                            <select id="inputRespCTB" name="inputRespCTB" class="form-control" required>
+                                                                <option value="">Selecione...</option>
+                                                                <?php foreach ($usuarios as $usuario) : ?>
+                                                                    <option value='<?php echo (int)$usuario['cod']; ?>'><?php echo $usuario['nome']; ?></option>
+                                                                <?php endforeach; ?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="inputaddCHFiscalEmpresa">C.H. Fiscal</label>
+                                                            <input type="text" class="form-control" id="inputaddCHFiscalEmpresa" name="inputaddCHFiscalEmpresa">
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="inputRespFSC">Resp. Fiscal</label>
+                                                            <select id="inputRespFSC" name="inputRespFSC" class="form-control" required>
+                                                                <option value="">Selecione...</option>
+                                                                <?php foreach ($usuarios as $usuario) : ?>
+                                                                    <option value='<?php echo (int)$usuario['cod']; ?>'><?php echo $usuario['nome']; ?></option>
+                                                                <?php endforeach; ?>
+                                                            </select>
                                                         </div>
                                                     </div>
 
@@ -241,6 +281,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                 </div>
 
                                             </tr>
