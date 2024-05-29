@@ -14,7 +14,7 @@ class Cronograma extends BaseController
 
     private $tbfscncronogramaModel;
     private $tbEmpresas;
-    private $responsaveis;
+    private $tbResponsaveis;
     private $setores;
     private $usuarios;
 
@@ -22,7 +22,7 @@ class Cronograma extends BaseController
     {
         $this->tbfscncronogramaModel = new tbfscncronogramaModel();
         $this->tbEmpresas = new tbempresasModel();
-        $this->responsaveis = new tbenvolvidosModel();
+        $this->tbResponsaveis = new tbenvolvidosModel();
         $this->setores = new tbsetoresModel();
         $this->usuarios = new tbusuariosModel();
     }
@@ -51,14 +51,40 @@ class Cronograma extends BaseController
         return $this->tbfscncronogramaModel->where($filtros)->find();
     }
 
+    public function empresasFinalizadasFiscal($codResponsavel, $dataCompetencia)
+    {
+        $filtros = [
+            'codresponsavel' => $codResponsavel,
+            'statusexecucao' => 0,
+            //'contabilcompetenciaexecutar <>' => 0,
+            'competencia' => $dataCompetencia,
+            'tipo' => "FSC"
+        ];
+
+        return $this->tbfscncronogramaModel->where($filtros)->find();
+    }    
+
+    public function empresasPendentesFiscal($codResponsavel, $dataCompetencia)
+    {
+        $filtros = [
+            'codresponsavel' => $codResponsavel,
+            'statusexecucao' => 1,
+            //'contabilcompetenciaexecutar <>' => 0,
+            'competencia' => $dataCompetencia,
+            'tipo' => "FSC"
+        ];
+
+        return $this->tbfscncronogramaModel->where($filtros)->find();
+    }        
+
     public function getEmpresasCronograma($codResponsavel)
     {
         $filtros = [
             'codresponsavel' => $codResponsavel,
-            'statusexecucao' => 0
+            'tipo' => "FSC"
         ];
 
-        return $filtros;
+        return $this->tbfscncronogramaModel->where($filtros)->find();;
     }
 
     public function index()
@@ -70,7 +96,7 @@ class Cronograma extends BaseController
             return view('login');
         } else {
 
-            $codUserLogado = $this->responsaveis->where('nome', session()->get('user'))->findColumn('cod');
+            $codUserLogado = $this->tbResponsaveis->where('nome', session()->get('user'))->findColumn('cod');
 
             $this->request->getGet('competencia') == null ? $competenciaFiltro = [] : $competenciaFiltro = ['competencia' => $this->request->getGet('competencia')];
 
@@ -81,7 +107,7 @@ class Cronograma extends BaseController
                 . view('cronograma', [
                     'cronogramas'   => $this->tbfscncronogramaModel->where($filtros)->find(),
                     'empresas'      => $this->tbEmpresas->find(),
-                    'responsaveis'  => $this->responsaveis->find(),
+                    'responsaveis'  => $this->tbResponsaveis->find(),
                     'setores'       => $this->setores->find(),
                     'competencia'   => $this->request->getGet('competencia'),
                     'empPendentesContabil'      => $this->empresasPendentesContabil($codUserLogado, $this->request->getGet('competencia')),
@@ -90,6 +116,58 @@ class Cronograma extends BaseController
         }
     }
 
+    public function cronoFiscal()
+    {
+
+        $status = session()->get('Logado');
+
+        if (is_null($status)) {
+            return view('login');
+        } else {
+
+            $codUserLogado = $this->tbResponsaveis->where('nome', session()->get('nome'))->findColumn('cod');        
+            $this->request->getGet('competencia') == null ? $competenciaFiltro = [] : $competenciaFiltro = ['competencia' => $this->request->getGet('competencia')];
+
+            $competencia = "06/2024";
+            $codUserLogado = "16";
+
+            $filtros = array_merge(
+                $competenciaFiltro, 
+                $this->getEmpresasCronograma($codUserLogado)
+            );
+
+            return view('cronogramafsc', [
+                    'cronogramasfsc'   => $this->tbfscncronogramaModel->where('tipo',"FSC")->find(), //$this->tbfscncronogramaModel->where($filtros)->find(),
+                    'empresas'      => $this->tbEmpresas->find(),
+                    'responsaveis'  => $this->tbResponsaveis->find(),
+                    'setores'       => $this->setores->find(),
+                    'competencia'   => $this->request->getGet('competencia'),
+                    'empPendentes'      => count($this->empresasPendentesFiscal($codUserLogado, $competencia)),
+                    'empFinalizadas'    => count($this->empresasFinalizadasFiscal($codUserLogado, $competencia)),
+                    'percentualFinalizadas' => (count($this->empresasFinalizadasFiscal($codUserLogado, $competencia)) / (count($this->empresasFinalizadasFiscal($codUserLogado, $competencia)) + count($this->empresasPendentesFiscal($codUserLogado, $competencia))))*100,
+                    'percentualPendentes' => (count($this->empresasPendentesFiscal($codUserLogado, $competencia)) / (count($this->empresasFinalizadasFiscal($codUserLogado, $competencia)) + count($this->empresasPendentesFiscal($codUserLogado, $competencia))))*100,
+                ]);
+        }
+    }
+
+    public function setExecCronoFiscal()
+    {
+        $codRegistroCronograma = $this->request->getPost('setExecCronoFiscal');
+
+        $this->tbfscncronogramaModel->where('cod', $codRegistroCronograma)->set('statusexecucao', 0)->update();
+
+        return redirect()->to(base_url('Fiscon/CronoFiscal'));
+    }
+
+    public function unsetExecCronoFiscal()
+    {
+        $codRegistroCronograma = $this->request->getPost('unsetExecCronoFiscal');
+
+        $this->tbfscncronogramaModel->where('cod', $codRegistroCronograma)->set('statusexecucao', 1)->update();
+
+        return redirect()->to(base_url('Fiscon/CronoFiscal'));
+    }    
+
     public function salvaExecucao()
     {
         $dadosRegCronograma = $this->request->getVar();
@@ -97,7 +175,7 @@ class Cronograma extends BaseController
         $this->tbfscncronogramaModel->where('cod', $dadosRegCronograma['codregistro'])->set('statusexecucao', 1)->update();
         $this->tbEmpresas->where('codathenas', $dadosRegCronograma['codEmpresaAthenas'])->set('atualizacaocontabil', $dadosRegCronograma['atualizacaoContabil'])->update();
 
-        $codUserLogado = $this->responsaveis->where('nome', session()->get('user'))->findColumn('cod');
+        $codUserLogado = $this->tbResponsaveis->where('nome', session()->get('user'))->findColumn('cod');
 
         $this->request->getGet('competencia') == null ? $competenciaFiltro = [] : $competenciaFiltro = ['competencia' => $this->request->getGet('competencia')];
 
@@ -108,7 +186,7 @@ class Cronograma extends BaseController
             . view('cronograma', [
                 'cronogramas'   => $this->tbfscncronogramaModel->where($filtros)->find(),
                 'empresas'      => $this->tbEmpresas->find(),
-                'responsaveis'  => $this->responsaveis->find(),
+                'responsaveis'  => $this->tbResponsaveis->find(),
                 'setores'       => $this->setores->find(),
                 'competencia'   => $this->request->getGet('competencia'),
                 'empPendentesContabil'      => $this->empresasPendentesContabil($codUserLogado, $this->request->getGet('competencia')),
@@ -123,7 +201,7 @@ class Cronograma extends BaseController
             . view('cronoacompanhamento', [
                 'cronogramas'   => $this->tbfscncronogramaModel->orderBy('updated_at')->find(),
                 'empresas'      => $this->tbEmpresas->orderBy('nome', 'asc')->find(),
-                'responsaveis'  => $this->responsaveis->find(),
+                'responsaveis'  => $this->tbResponsaveis->find(),
                 'setores'       => $this->setores->find(),
                 'finalizadas'   => $this->tbfscncronogramaModel->where('statusexecucao', '1')->findAll(),
                 'abertas'       => $this->tbfscncronogramaModel->where('statusexecucao', '0')->findAll(),
@@ -141,7 +219,7 @@ class Cronograma extends BaseController
             . view('cronoacompanhamento', [
                 'cronogramas'   => $this->tbfscncronogramaModel->find(),
                 'empresas'      => $this->tbEmpresas->find(),
-                'responsaveis'  => $this->responsaveis->find(),
+                'responsaveis'  => $this->tbResponsaveis->find(),
                 'setores'       => $this->setores->find()
             ]);
     }

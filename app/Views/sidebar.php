@@ -66,7 +66,7 @@
                 <h6 class="collapse-header">Cronogramas:</h6>
                 <a class="collapse-item" href='<?php echo base_url('Fiscon/Empresas'); ?>'>Empresas (Cronograma)</a>
                 <a class="collapse-item" href="#">Contábil</a>
-                <a class="collapse-item" href="#">Fiscal</a>
+                <a class="collapse-item" href='<?php echo base_url('Fiscon/CronoFiscal'); ?>'>Fiscal</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Acompanhamentos:</h6>
                 <a class="collapse-item" href="#">RDA</a>
