@@ -134,13 +134,14 @@ class Legalizacao extends BaseController
     public function editProcesso()
     {
 
-        $arquivo = $this->request->getFile('arqcaminho');
+        /*$arquivo = $this->request->getFile('arqcaminho');
         $caminhoPasta = ROOTPATH . 'assets\uploads';
         
         if ( $arquivo->getSize() > 0) {
             $arquivo->move(ROOTPATH . 'assets/uploads');
             $caminho_arquivo = 'assets/uploads/' . $arquivo->getName();
         } 
+        */
 
         $codProcesso = $this->request->getPost('codEditProcesso');
         $obsProcesso = $this->request->getPost('inputEditObservacao');
@@ -154,8 +155,8 @@ class Legalizacao extends BaseController
         $this->tbprocessos->set('codstatus', $statusProcesso);
         $this->tbprocessos->set('numeroprocesso', $numProcesso);
         $this->tbprocessos->set('codservico', $codServico);
-        $this->tbprocessos->set('caminhodocprocesso', $caminho_arquivo);
-        $this->tbprocessos->set('nomedocprocesso', $arquivo->getName());
+        //$this->tbprocessos->set('caminhodocprocesso', $caminho_arquivo);
+        //$this->tbprocessos->set('nomedocprocesso', $arquivo->getName());
         $this->tbprocessos->where('cod', $codProcesso);
         $this->tbprocessos->update();
 
