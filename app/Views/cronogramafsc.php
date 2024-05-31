@@ -230,7 +230,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                                         endif; ?></td>
                                                     <td><?php foreach ($empresas as $empresa) if ($empresa['codathenas'] == $registro['codempresa']) : echo $empresa['chfiscal'];
                                                         endif; ?></td>
-                                                    <td><?php foreach ($responsaveis as $responsavel) if ($responsavel['cod'] == $registro['codresponsavel']) : echo $responsavel['nome'];
+                                                    <td><?php foreach ($usuarios as $usuario) if ($usuario['cod'] == $registro['codresponsavel']) : echo $usuario['nome'];
                                                         endif; ?></td>
                                                     <td><?php echo $registro['competencia']; ?></td>
                                                     <?php switch ($registro['statusexecucao']) {

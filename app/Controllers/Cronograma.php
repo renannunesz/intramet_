@@ -148,7 +148,7 @@ class Cronograma extends BaseController
             return view('cronogramafsc', [
                     'cronogramasfsc'   => $this->tbfscncronogramaModel->where($filtros)->find(),
                     'empresas'      => $this->tbEmpresas->find(),
-                    'responsaveis'  => $this->usuarios->find(),
+                    'usuarios'  => $this->usuarios->find(),
                     'setores'       => $this->setores->find(),
                     'competencia'   => $this->request->getGet('competenciaCronoFiscal') == null ? $compCronoRet : $this->request->getGet('competenciaCronoFiscal'),
                     'empPendentes'      => count($this->empresasPendentesFiscal($codUserLogado['codresponsavel'], $competenciaFiltro["competencia"])),
