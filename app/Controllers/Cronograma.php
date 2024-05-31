@@ -135,11 +135,12 @@ class Cronograma extends BaseController
             return view('login');
         } else {
 
-            $codUserLogado = $this->tbResponsaveis->where('nome', session()->get('nome'))->findColumn('cod');  
+            $codUserLogado = ['codresponsavel' => $this->tbResponsaveis->where('nome', session()->get('nome'))->findColumn('cod')];  
             $competenciaCronoFiscal == null ? $competenciaFiltro = ['competencia' => $compCronoRet] : $competenciaFiltro = ['competencia' => $this->request->getGet('competenciaCronoFiscal')];
             $tipoCronoFiltro = ['tipo' => 'FSC'];
 
             $filtros = array_merge(
+                $codUserLogado,
                 $competenciaFiltro,
                 $tipoCronoFiltro
             );           
@@ -150,10 +151,10 @@ class Cronograma extends BaseController
                     'responsaveis'  => $this->tbResponsaveis->find(),
                     'setores'       => $this->setores->find(),
                     'competencia'   => $this->request->getGet('competenciaCronoFiscal') == null ? $compCronoRet : $this->request->getGet('competenciaCronoFiscal'),
-                    'empPendentes'      => count($this->empresasPendentesFiscal($codUserLogado, $competenciaFiltro["competencia"])),
-                    'empFinalizadas'    => count($this->empresasFinalizadasFiscal($codUserLogado, $competenciaFiltro["competencia"])),
-                    'percentualFinalizadas' => $this->validaDivisao(count($this->empresasFinalizadasFiscal($codUserLogado, $competenciaFiltro["competencia"])), (count($this->empresasFinalizadasFiscal($codUserLogado, $competenciaFiltro["competencia"])) + count($this->empresasPendentesFiscal($codUserLogado, $competenciaFiltro["competencia"])))) * 100,
-                    'percentualPendentes' => $this->validaDivisao(count($this->empresasPendentesFiscal($codUserLogado, $competenciaFiltro["competencia"])), (count($this->empresasFinalizadasFiscal($codUserLogado, $competenciaFiltro["competencia"])) + count($this->empresasPendentesFiscal($codUserLogado, $competenciaFiltro["competencia"])))) * 100,
+                    'empPendentes'      => count($this->empresasPendentesFiscal($codUserLogado['codresponsavel'], $competenciaFiltro["competencia"])),
+                    'empFinalizadas'    => count($this->empresasFinalizadasFiscal($codUserLogado['codresponsavel'], $competenciaFiltro["competencia"])),
+                    'percentualFinalizadas' => $this->validaDivisao(count($this->empresasFinalizadasFiscal($codUserLogado['codresponsavel'], $competenciaFiltro["competencia"])), (count($this->empresasFinalizadasFiscal($codUserLogado['codresponsavel'], $competenciaFiltro["competencia"])) + count($this->empresasPendentesFiscal($codUserLogado['codresponsavel'], $competenciaFiltro["competencia"])))) * 100,
+                    'percentualPendentes' => $this->validaDivisao(count($this->empresasPendentesFiscal($codUserLogado['codresponsavel'], $competenciaFiltro["competencia"])), (count($this->empresasFinalizadasFiscal($codUserLogado['codresponsavel'], $competenciaFiltro["competencia"])) + count($this->empresasPendentesFiscal($codUserLogado['codresponsavel'], $competenciaFiltro["competencia"])))) * 100,
                 ]);
         }
     }
