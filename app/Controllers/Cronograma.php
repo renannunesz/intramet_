@@ -87,6 +87,14 @@ class Cronograma extends BaseController
         return $this->tbfscncronogramaModel->where($filtros)->find();;
     }
 
+    function validaDivisao($numerator, $denominator) {
+        if ($denominator == 0) {
+            return 0;
+        } else {
+            return $numerator / $denominator;
+        }
+    }
+
     public function index()
     {
 
@@ -120,32 +128,32 @@ class Cronograma extends BaseController
     {
 
         $status = session()->get('Logado');
+        $compCronoRet = session()->getFlashdata('compExecCrono');
+        $competenciaCronoFiscal = $this->request->getGet('competenciaCronoFiscal');
 
         if (is_null($status)) {
             return view('login');
         } else {
 
-            $codUserLogado = $this->tbResponsaveis->where('nome', session()->get('nome'))->findColumn('cod');        
-            $this->request->getGet('competencia') == null ? $competenciaFiltro = [] : $competenciaFiltro = ['competencia' => $this->request->getGet('competencia')];
-
-            $competencia = "06/2024";
-            $codUserLogado = "16";
+            $codUserLogado = $this->tbResponsaveis->where('nome', session()->get('nome'))->findColumn('cod');  
+            $competenciaCronoFiscal == null ? $competenciaFiltro = ['competencia' => $compCronoRet] : $competenciaFiltro = ['competencia' => $this->request->getGet('competenciaCronoFiscal')];
+            $tipoCronoFiltro = ['tipo' => 'FSC'];
 
             $filtros = array_merge(
-                $competenciaFiltro, 
-                $this->getEmpresasCronograma($codUserLogado)
-            );
+                $competenciaFiltro,
+                $tipoCronoFiltro
+            );           
 
             return view('cronogramafsc', [
-                    'cronogramasfsc'   => $this->tbfscncronogramaModel->where('tipo',"FSC")->find(), //$this->tbfscncronogramaModel->where($filtros)->find(),
+                    'cronogramasfsc'   => $this->tbfscncronogramaModel->where($filtros)->find(),
                     'empresas'      => $this->tbEmpresas->find(),
                     'responsaveis'  => $this->tbResponsaveis->find(),
                     'setores'       => $this->setores->find(),
-                    'competencia'   => $this->request->getGet('competencia'),
-                    'empPendentes'      => count($this->empresasPendentesFiscal($codUserLogado, $competencia)),
-                    'empFinalizadas'    => count($this->empresasFinalizadasFiscal($codUserLogado, $competencia)),
-                    'percentualFinalizadas' => (count($this->empresasFinalizadasFiscal($codUserLogado, $competencia)) / (count($this->empresasFinalizadasFiscal($codUserLogado, $competencia)) + count($this->empresasPendentesFiscal($codUserLogado, $competencia))))*100,
-                    'percentualPendentes' => (count($this->empresasPendentesFiscal($codUserLogado, $competencia)) / (count($this->empresasFinalizadasFiscal($codUserLogado, $competencia)) + count($this->empresasPendentesFiscal($codUserLogado, $competencia))))*100,
+                    'competencia'   => $this->request->getGet('competenciaCronoFiscal') == null ? $compCronoRet : $this->request->getGet('competenciaCronoFiscal'),
+                    'empPendentes'      => count($this->empresasPendentesFiscal($codUserLogado, $competenciaFiltro["competencia"])),
+                    'empFinalizadas'    => count($this->empresasFinalizadasFiscal($codUserLogado, $competenciaFiltro["competencia"])),
+                    'percentualFinalizadas' => $this->validaDivisao(count($this->empresasFinalizadasFiscal($codUserLogado, $competenciaFiltro["competencia"])), (count($this->empresasFinalizadasFiscal($codUserLogado, $competenciaFiltro["competencia"])) + count($this->empresasPendentesFiscal($codUserLogado, $competenciaFiltro["competencia"])))) * 100,
+                    'percentualPendentes' => $this->validaDivisao(count($this->empresasPendentesFiscal($codUserLogado, $competenciaFiltro["competencia"])), (count($this->empresasFinalizadasFiscal($codUserLogado, $competenciaFiltro["competencia"])) + count($this->empresasPendentesFiscal($codUserLogado, $competenciaFiltro["competencia"])))) * 100,
                 ]);
         }
     }
@@ -153,6 +161,7 @@ class Cronograma extends BaseController
     public function setExecCronoFiscal()
     {
         $codRegistroCronograma = $this->request->getPost('setExecCronoFiscal');
+        session()->setFlashdata('compExecCrono', $this->request->getPost('compCrono'));
 
         $this->tbfscncronogramaModel->where('cod', $codRegistroCronograma)->set('statusexecucao', 0)->update();
 
@@ -162,6 +171,7 @@ class Cronograma extends BaseController
     public function unsetExecCronoFiscal()
     {
         $codRegistroCronograma = $this->request->getPost('unsetExecCronoFiscal');
+        session()->setFlashdata('compExecCrono', $this->request->getPost('compCrono'));
 
         $this->tbfscncronogramaModel->where('cod', $codRegistroCronograma)->set('statusexecucao', 1)->update();
 

@@ -66,143 +66,120 @@ include 'app/Helpers/legalizacao_helper.php';
                         </div>
                         <div class="card-body">
 
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CronoFiscalModal">
-                                Filtros
-                            </button>
+                            <form action='<?php echo base_url('Fiscon/CronoFiscal'); ?>' method="get" enctype="multipart/form-data">
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="CronoFiscalModal" tabindex="-1" role="dialog" aria-labelledby="CronoFiscalModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-primary" id="CronoFiscalModalLabel">Incluir CronoFiscal</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <form action="<?php echo base_url('Legalizacao/addCronoFiscal') ?>" method="post">
-
-                                                <div class="form-group">
-                                                    <label for="inputCliente">Cliente</label>
-                                                    <select id="inputCliente" name="inputCliente" class="form-control" required>
-                                                        <option value="">Selecione...</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                    <button type="submit" class="btn btn-primary">Salvar</button>
-                                                </div>
-
-                                            </form>
-
-                                        </div>
+                                <div class="form-row">
+                                    <div class="form-group col-auto">
+                                        <label for="competenciaCronoFiscal">Competência:</label>
+                                        <input type="text" class="form-control" id="competenciaCronoFiscal" name="competenciaCronoFiscal" required>
                                     </div>
                                 </div>
-                            </div>
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+
+                            </form>
 
                         </div>
                     </div>
 
-                    <!-- Basic Card -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Cronograma Fiscal - 06/2024 - Renan Nunes</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
+                    <?php if ($competencia <> null) :  ?>
 
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card border-left-success shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                        Finalizadas</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                        <?php echo $empFinalizadas; ?>
+                        <!-- Basic Card -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Cronograma Fiscal - <?php echo $competencia; ?> - <?php echo session()->get('nome'); ?></h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-xl-3 col-md-6 mb-4">
+                                        <div class="card border-left-success shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            Finalizadas</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            <?php echo $empFinalizadas; ?>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-check fa-2x text-gray-300"></i>
+                                                    <div class="col-auto">
+                                                        <i class="fas fa-check fa-2x text-gray-300"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card border-left-success shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Finalizadas (%)
-                                                    </div>
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col-auto">
-                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                                <?php echo $percentualFinalizadas . "%"; ?>
+                                    <div class="col-xl-3 col-md-6 mb-4">
+                                        <div class="card border-left-success shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Finalizadas (%)
+                                                        </div>
+                                                        <div class="row no-gutters align-items-center">
+                                                            <div class="col-auto">
+                                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                                    <?php echo $percentualFinalizadas . "%"; ?>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="progress progress-sm mr-2">
+                                                                    <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentualFinalizadas; ?>%" aria-valuenow="<?php echo $percentualFinalizadas; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col">
-                                                            <div class="progress progress-sm mr-2">
-                                                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentualFinalizadas; ?>%" aria-valuenow="<?php echo $percentualFinalizadas; ?>" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-check-double fa-2x text-gray-300"></i>
+                                                    <div class="col-auto">
+                                                        <i class="fas fa-check-double fa-2x text-gray-300"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card border-left-warning shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                        Pendentes</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                        <?php echo $empPendentes; ?>
+                                    <div class="col-xl-3 col-md-6 mb-4">
+                                        <div class="card border-left-warning shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                            Pendentes</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            <?php echo $empPendentes; ?>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-exclamation fa-2x text-gray-300"></i>
+                                                    <div class="col-auto">
+                                                        <i class="fas fa-exclamation fa-2x text-gray-300"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card border-left-warning shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pendentes (%)
-                                                    </div>
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col-auto">
-                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                                <?php echo $percentualPendentes . "%"; ?>
+                                    <div class="col-xl-3 col-md-6 mb-4">
+                                        <div class="card border-left-warning shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pendentes (%)
+                                                        </div>
+                                                        <div class="row no-gutters align-items-center">
+                                                            <div class="col-auto">
+                                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                                    <?php echo $percentualPendentes . "%"; ?>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="progress progress-sm mr-2">
+                                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <?php echo $percentualPendentes; ?>%" aria-valuenow="<?php echo $percentualPendentes; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col">
-                                                            <div class="progress progress-sm mr-2">
-                                                                <div class="progress-bar bg-warning" role="progressbar" style="width: <?php echo $percentualPendentes; ?>%" aria-valuenow="<?php echo $percentualPendentes; ?>" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
+                                                    <div class="col-auto">
+                                                        <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -210,153 +187,159 @@ include 'app/Helpers/legalizacao_helper.php';
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Tab CronoFiscals -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"> Cronograma de Execução Fiscal </h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-sm table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Cod.</th>
-                                            <th>Empresa</th>
-                                            <th>Curva</th>
-                                            <th>Tempo Execução</th>
-                                            <th>Responsável</th>
-                                            <th>Status</th>
-                                            <th>Opções</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Cod.</th>
-                                            <th>Empresa</th>
-                                            <th>Curva</th>
-                                            <th>Tempo Execução</th>
-                                            <th>Responsável</th>
-                                            <th>Status</th>
-                                            <th>Opções</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <?php foreach ($cronogramasfsc as $registro) : ?>
-                                            <tr class="align-middle text-center">
-                                                <td><?php echo $registro['codempresa']; ?></td>
-                                                <td><?php foreach ($empresas as $empresa) if ($empresa['codathenas'] == $registro['codempresa']) : echo $empresa['nome'];
-                                                    endif; ?></td>
-                                                <td><?php foreach ($empresas as $empresa) if ($empresa['codathenas'] == $registro['codempresa']) : echo $empresa['curva'];
-                                                    endif; ?></td>
-                                                <td><?php foreach ($empresas as $empresa) if ($empresa['codathenas'] == $registro['codempresa']) : echo $empresa['chfiscal'];
-                                                    endif; ?></td>
-                                                <td><?php foreach ($responsaveis as $responsavel) if ($responsavel['cod'] == $registro['codresponsavel']) : echo $responsavel['nome'];
-                                                    endif; ?></td>
-                                                <?php switch ($registro['statusexecucao']) {
-                                                    case 0:
-                                                        $varCor = "success";
-                                                        $desStatus = "Finalizado";
-                                                        break;
-                                                    case 1:
-                                                        $varCor = "warning";
-                                                        $desStatus = "Pendente";
-                                                        break;
-                                                } ?>
-                                                <td class="table-<?php echo $varCor; ?>">
-                                                    <?php echo $desStatus; ?>
-                                                </td>
-                                                <td>
-
-                                                    <?php if ($registro['statusexecucao'] == 1) :  ?>
-
-                                                        <a title="Finalizar" data-toggle="modal" data-target="#FinalizaCronoFiscalModal-<?php echo $registro['cod']; ?>" class="btn btn-success btn-circle btn-sm">
-                                                            <i class="fas fa-check-double"></i>
-                                                        </a>
-
-                                                    <?php else : ?>
-
-                                                        <a title="Desfazer Finalização" data-toggle="modal" data-target="#DesfazFinalizacaoCronoFiscalModal-<?php echo $registro['cod']; ?>" class="btn btn-warning btn-circle btn-sm">
-                                                            <i class="fas fa-exclamation-triangle"></i>
-                                                        </a>
-
-                                                    <?php endif; ?>
-
-                                                </td>
-
-                                                <div class="modal fade" id="FinalizaCronoFiscalModal-<?php echo $registro['cod']; ?>" tabindex="-1" role="dialog" aria-labelledby="FinalizaCronoFiscalModalLabel" aria-hidden="true">
-
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Finalizar Cronograma Fiscal</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-
-                                                            <div class="modal-body">
-
-                                                                <form action='<?php echo base_url('Fiscon/setExecCronoFiscal') . '/' . $registro['cod']; ?>' method="post" enctype="multipart/form-data">
-
-                                                                    <input type="hidden" name="setExecCronoFiscal" id="setExecCronoFiscal" value='<?php echo $registro['cod']; ?>'>
-
-                                                                    <p>Finalizar empresa <?php foreach ($empresas as $empresa) if ($empresa['codathenas'] == $registro['codempresa']) : echo $empresa['nome'];
-                                                                                            endif; ?> competência <?php echo $registro['competencia']; ?> ? </p>
-
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                                        <button type="submit" class="btn btn-primary">Finalizar</button>
-                                                                    </div>
-
-                                                                </form>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="modal fade" id="DesfazFinalizacaoCronoFiscalModal-<?php echo $registro['cod']; ?>" tabindex="-1" role="dialog" aria-labelledby="DesfazFinalizacaoCronoFiscalModal" aria-hidden="true">
-
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Desfaz Finalização Cronograma Fiscal</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-
-                                                            <div class="modal-body">
-
-                                                                <form action='<?php echo base_url('Fiscon/unsetExecCronoFiscal') . '/' . $registro['cod']; ?>' method="post" enctype="multipart/form-data">
-
-                                                                    <input type="hidden" name="unsetExecCronoFiscal" id="unsetExecCronoFiscal" value='<?php echo $registro['cod']; ?>'>
-
-                                                                    <p>Desfazer Finalização Empresa <?php foreach ($empresas as $empresa) if ($empresa['codathenas'] == $registro['codempresa']) : echo $empresa['nome'];
-                                                                                            endif; ?> competência <?php echo $registro['competencia']; ?> ? </p>
-
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                                        <button type="submit" class="btn btn-primary">Desfazer Finalização</button>
-                                                                    </div>
-
-                                                                </form>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                        <!-- Tab CronoFiscals -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary"> Cronograma de Execução Fiscal </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Cod.</th>
+                                                <th>Empresa</th>
+                                                <th>Curva</th>
+                                                <th>Tempo Execução</th>
+                                                <th>Responsável</th>
+                                                <th>Competência</th>
+                                                <th>Status</th>
+                                                <th>Opções</th>
                                             </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Cod.</th>
+                                                <th>Empresa</th>
+                                                <th>Curva</th>
+                                                <th>Tempo Execução</th>
+                                                <th>Responsável</th>
+                                                <th>Competência</th>
+                                                <th>Status</th>
+                                                <th>Opções</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <?php foreach ($cronogramasfsc as $registro) : ?>
+                                                <tr class="align-middle text-center">
+                                                    <td><?php echo $registro['codempresa']; ?></td>
+                                                    <td><?php foreach ($empresas as $empresa) if ($empresa['codathenas'] == $registro['codempresa']) : echo $empresa['nome'];
+                                                        endif; ?></td>
+                                                    <td><?php foreach ($empresas as $empresa) if ($empresa['codathenas'] == $registro['codempresa']) : echo $empresa['curva'];
+                                                        endif; ?></td>
+                                                    <td><?php foreach ($empresas as $empresa) if ($empresa['codathenas'] == $registro['codempresa']) : echo $empresa['chfiscal'];
+                                                        endif; ?></td>
+                                                    <td><?php foreach ($responsaveis as $responsavel) if ($responsavel['cod'] == $registro['codresponsavel']) : echo $responsavel['nome'];
+                                                        endif; ?></td>
+                                                    <td><?php echo $registro['competencia']; ?></td>
+                                                    <?php switch ($registro['statusexecucao']) {
+                                                        case 0:
+                                                            $varCor = "success";
+                                                            $desStatus = "Finalizado";
+                                                            break;
+                                                        case 1:
+                                                            $varCor = "warning";
+                                                            $desStatus = "Pendente";
+                                                            break;
+                                                    } ?>
+                                                    <td class="table-<?php echo $varCor; ?>">
+                                                        <?php echo $desStatus; ?>
+                                                    </td>
+                                                    <td>
+
+                                                        <?php if ($registro['statusexecucao'] == 1) :  ?>
+
+                                                            <a title="Finalizar" data-toggle="modal" data-target="#FinalizaCronoFiscalModal-<?php echo $registro['cod']; ?>" class="btn btn-success btn-circle btn-sm">
+                                                                <i class="fas fa-check-double"></i>
+                                                            </a>
+
+                                                        <?php else : ?>
+
+                                                            <a title="Desfazer Finalização" data-toggle="modal" data-target="#DesfazFinalizacaoCronoFiscalModal-<?php echo $registro['cod']; ?>" class="btn btn-warning btn-circle btn-sm">
+                                                                <i class="fas fa-exclamation-triangle"></i>
+                                                            </a>
+
+                                                        <?php endif; ?>
+
+                                                    </td>
+
+                                                    <div class="modal fade" id="FinalizaCronoFiscalModal-<?php echo $registro['cod']; ?>" tabindex="-1" role="dialog" aria-labelledby="FinalizaCronoFiscalModalLabel" aria-hidden="true">
+
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Finalizar Cronograma Fiscal</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="modal-body">
+
+                                                                    <form action='<?php echo base_url('Fiscon/setExecCronoFiscal') . '/' . $registro['cod']; ?>' method="post" enctype="multipart/form-data">
+
+                                                                        <input type="hidden" name="setExecCronoFiscal" id="setExecCronoFiscal" value='<?php echo $registro['cod']; ?>'>
+                                                                        <input type="hidden" name="compCrono" id="compCrono" value='<?php echo $competencia; ?>'>
+
+                                                                        <p>Finalizar empresa <?php foreach ($empresas as $empresa) if ($empresa['codathenas'] == $registro['codempresa']) : echo $empresa['nome'];
+                                                                                                endif; ?> competência <?php echo $registro['competencia']; ?> ? </p>
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                                            <button type="submit" class="btn btn-primary">Finalizar</button>
+                                                                        </div>
+
+                                                                    </form>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal fade" id="DesfazFinalizacaoCronoFiscalModal-<?php echo $registro['cod']; ?>" tabindex="-1" role="dialog" aria-labelledby="DesfazFinalizacaoCronoFiscalModal" aria-hidden="true">
+
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Desfaz Finalização Cronograma Fiscal</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="modal-body">
+
+                                                                    <form action='<?php echo base_url('Fiscon/unsetExecCronoFiscal') . '/' . $registro['cod']; ?>' method="post" enctype="multipart/form-data">
+
+                                                                        <input type="hidden" name="unsetExecCronoFiscal" id="unsetExecCronoFiscal" value='<?php echo $registro['cod']; ?>'>
+                                                                        <input type="hidden" name="compCrono" id="compCrono" value='<?php echo $competencia; ?>'>
+
+                                                                        <p>Desfazer Finalização Empresa <?php foreach ($empresas as $empresa) if ($empresa['codathenas'] == $registro['codempresa']) : echo $empresa['nome'];
+                                                                                                        endif; ?> competência <?php echo $registro['competencia']; ?> ? </p>
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                                            <button type="submit" class="btn btn-primary">Desfazer Finalização</button>
+                                                                        </div>
+
+                                                                    </form>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                    <?php endif; ?>
 
                 </div>
                 <!-- /.container-fluid -->
