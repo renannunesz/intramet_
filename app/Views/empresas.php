@@ -166,6 +166,7 @@
                                             <th>C.H. Contábil</th>
                                             <th>C.H. Fiscal</th>
                                             <th>Curva</th>
+                                            <th>Equipe</th>
                                             <th>Resp. Contábil</th>
                                             <th>Resp. Fiscal</th>
                                             <th>Ult. Att Contábil</th>
@@ -181,6 +182,7 @@
                                             <th>C.H. Contábil</th>
                                             <th>C.H. Fiscal</th>
                                             <th>Curva</th>
+                                            <th>Equipe</th>
                                             <th>Resp. Contábil</th>
                                             <th>Resp. Fiscal</th>
                                             <th>Ult. Att Contábil</th>
@@ -197,6 +199,7 @@
                                                 <td><?php echo $empresa['chcontabil']; ?></td>
                                                 <td><?php echo $empresa['chfiscal']; ?></td>
                                                 <td><?php echo $empresa['curva']; ?></td>
+                                                <td><?php echo $empresa['equipe'] == "C" ? "Comércio" : "Serviço"; ?></td>
                                                 <td> <?php foreach ($usuarios as $usuario) if ($usuario['cod'] == $empresa['codresponsavelctb']) : echo $usuario['nome'];
                                                         endif; ?> </td>
                                                 <td> <?php foreach ($usuarios as $usuario) if ($usuario['cod'] == $empresa['codresponsavelfsc']) : echo $usuario['nome'];
@@ -222,17 +225,25 @@
                                                                     <input type="hidden" name="codEditEmpresa" id="codEditEmpresa" value='<?php echo $empresa['cod']; ?>'>
 
                                                                     <div class="form-row">
-                                                                        <div class="form-group col-md-4">
+                                                                        <div class="form-group col-md-3">
                                                                             <label for="inputCodAthenasCliente">Cod. Athenas</label>
                                                                             <input type="text" class="form-control" id="inputCodAthenasEmpresa" name="inputCodAthenasEmpresa" value='<?php echo $empresa['codathenas']; ?>'>
                                                                         </div>
-                                                                        <div class="form-group col-md-4">
+                                                                        <div class="form-group col-md-3">
                                                                             <label for="inputEditCNPJEmpresa">CNPJ</label>
                                                                             <input type="text" class="form-control" id="inputEditCNPJEmpresa" name="inputEditCNPJEmpresa" value='<?php echo $empresa['cnpj']; ?>'>
                                                                         </div>
-                                                                        <div class="form-group col-md-4">
+                                                                        <div class="form-group col-md-3">
                                                                             <label for="inputEditCurvaEmpresa">Curva</label>
                                                                             <input type="text" class="form-control" id="inputEditCurvaEmpresa" name="inputEditCurvaEmpresa" value='<?php echo $empresa['curva']; ?>'>
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="inputEditEquipeEmpresa">Equipe</label>
+                                                                            <select name="inputEditEquipeEmpresa" id="inputEditEquipeEmpresa" class="form-control" required>
+                                                                                <option value="">Selecione...</option>
+                                                                                <option value="S">Serviço</option>
+                                                                                <option value="C">Comércio</option>
+                                                                            </select>
                                                                         </div>
                                                                     </div>
 

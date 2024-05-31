@@ -27,7 +27,8 @@ class tbempresasModel extends Model
         'codresponsavelctb',
         'codresponsavelfsc',
         'codresponsavel',
-        'curva'
+        'curva',
+        'equipe'
     ];
 
     // Dates

@@ -45,6 +45,7 @@ class Empresas extends BaseController
         $cnpjEmpresa = $this->request->getPost('inputEditCNPJEmpresa');
         $nomeEmpresa = $this->request->getPost('inputEditNomeEmpresa');
         $curvaEmpresa = $this->request->getPost('inputEditCurvaEmpresa');
+        $equipeEmpresa = $this->request->getPost('inputEditEquipeEmpresa');
         $codRespCTBEmpresa = $this->request->getPost('inputRespCTB');
         $codRespFSCEmpresa = $this->request->getPost('inputRespFSC');
         $CHCTBEmpresa = $this->request->getPost('inputEditCHContabilEmpresa');
@@ -56,6 +57,7 @@ class Empresas extends BaseController
         $this->tbEmpresas->set('cnpj', $cnpjEmpresa);
         $this->tbEmpresas->set('nome', $nomeEmpresa);
         $this->tbEmpresas->set('curva', $curvaEmpresa);
+        $this->tbEmpresas->set('equipe', $equipeEmpresa);
         $this->tbEmpresas->set('codresponsavelctb', (int)$codRespCTBEmpresa);
         $this->tbEmpresas->set('codresponsavelfsc', (int)$codRespFSCEmpresa);
         $this->tbEmpresas->set('chcontabil', $CHCTBEmpresa);
