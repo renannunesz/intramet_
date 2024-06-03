@@ -129,6 +129,7 @@ $routes->post('/Fiscon/addEmpresa',         'Empresas::addEmpresa');
 $routes->get('/Fiscon/CronoFiscal',          'Cronograma::cronoFiscal');
 $routes->post('/Fiscon/setExecCronoFiscal/(:num)', 'Cronograma::setExecCronoFiscal/$1');
 $routes->post('/Fiscon/unsetExecCronoFiscal/(:num)', 'Cronograma::unsetExecCronoFiscal/$1');
+$routes->get('/Fiscon/Acompanhamentos/CronoFiscal',  'Cronograma::acompCronoFiscal');
 
 //Utilitários
 $routes->get('/Utilitarios/arqAntaqMensais', 'Utilitarios::arqAntaqMensais');

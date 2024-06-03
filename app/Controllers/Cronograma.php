@@ -159,6 +159,67 @@ class Cronograma extends BaseController
         }
     }
 
+    public function acompCronoFiscal()
+    {
+        $db = db_connect();
+        $status = session()->get('Logado');
+        $competenciaFiltro = $this->request->getGet('competenciaCronoFiscal');
+
+        if (is_null($status)) {
+            return view('login');
+        } else {
+
+            $competenciaFiltro == null ? $competenciaCronoFiscal = [] : $competenciaCronoFiscal = ['competencia' => $this->request->getGet('competenciaCronoFiscal')];
+            $statusFinalizadoCronoFiscal = ['statusexecucao' => 0];
+            $statusPendentesCronoFiscal = ['statusexecucao' => 1];
+            $tipoCronoFiscal = ['tipo' => 'FSC'];
+
+            $filtros = array_merge(
+                $competenciaCronoFiscal,
+                $tipoCronoFiscal
+            );            
+
+            $filtrosFinalizadas = array_merge(
+                $competenciaCronoFiscal,
+                $statusFinalizadoCronoFiscal,
+                $tipoCronoFiscal
+            );            
+            
+            $filtrosPendentes = array_merge(
+                $competenciaCronoFiscal,
+                $statusPendentesCronoFiscal,
+                $tipoCronoFiscal
+            );
+                
+            $qtdEmpresasFinalizadas = count($this->tbfscncronogramaModel->where($filtrosFinalizadas)->find());
+            $qtdEmpresasFinalizadasServico = $db->query('SELECT COUNT(c.codempresa) as qtdEmpresas FROM tbfscncronograma c LEFT JOIN tbempresas e on e.codathenas = c.codempresa where c.competencia = "'.$competenciaFiltro.'" and c.statusexecucao = 0 and c.tipo = "FSC" and e.equipe = "C"')->getRowArray();
+            $qtdEmpresasFinalizadasComercio = $db->query('SELECT COUNT(c.codempresa) as qtdEmpresas FROM tbfscncronograma c LEFT JOIN tbempresas e on e.codathenas = c.codempresa where c.competencia = "'.$competenciaFiltro.'" and c.statusexecucao = 0 and c.tipo = "FSC" and e.equipe = "S"')->getRowArray();
+            $qtdEmpresasPendentes = count($this->tbfscncronogramaModel->where($filtrosPendentes)->find());
+            $qtdEmpresasPendentesServico = $db->query('SELECT COUNT(c.codempresa) as qtdEmpresas FROM tbfscncronograma c LEFT JOIN tbempresas e on e.codathenas = c.codempresa where c.competencia = "'.$competenciaFiltro.'" and c.statusexecucao = 1 and c.tipo = "FSC" and e.equipe = "C"')->getRowArray();
+            $qtdEmpresasPendentesComercio = $db->query('SELECT COUNT(c.codempresa) as qtdEmpresas FROM tbfscncronograma c LEFT JOIN tbempresas e on e.codathenas = c.codempresa where c.competencia = "'.$competenciaFiltro.'" and c.statusexecucao = 1 and c.tipo = "FSC" and e.equipe = "S"')->getRowArray();
+
+            return view('acompcronogramafsc', [
+                    'cronogramasfsc'   => $this->tbfscncronogramaModel->where($filtros)->find(),
+                    'empresas'      => $this->tbEmpresas->find(),
+                    'usuarios'  => $this->tbEnvolvidos->find(),
+                    'setores'       => $this->setores->find(),
+                    'competencia'   => $this->request->getGet('competenciaCronoFiscal'),
+                    'empFinalizadas'    => $qtdEmpresasFinalizadas,
+                    'empFinalizadasServico' => $qtdEmpresasFinalizadasServico,
+                    'empFinalizadasComercio' => $qtdEmpresasFinalizadasComercio,
+                    'empPendentes'      => $qtdEmpresasPendentes,
+                    'empPendentesServico' => $qtdEmpresasPendentesServico,
+                    'empPendentesComercio' => $qtdEmpresasPendentesComercio,
+                    'percentualFinalizadas' => $this->validaDivisao($qtdEmpresasFinalizadas, ($qtdEmpresasFinalizadas + $qtdEmpresasPendentes)) * 100,
+                    'percentualFinalizadasServico' => $this->validaDivisao($qtdEmpresasFinalizadasServico['qtdEmpresas'], ($qtdEmpresasFinalizadas + $qtdEmpresasPendentes)) * 100,
+                    'percentualFinalizadasComercio' => $this->validaDivisao($qtdEmpresasFinalizadasComercio['qtdEmpresas'], ($qtdEmpresasFinalizadas + $qtdEmpresasPendentes)) * 100,
+                    'percentualPendentes' =>   $this->validaDivisao($qtdEmpresasPendentes, ($qtdEmpresasFinalizadas + $qtdEmpresasPendentes)) * 100,
+                    'percentualPendentesServico' =>   $this->validaDivisao($qtdEmpresasPendentesServico['qtdEmpresas'], ($qtdEmpresasFinalizadas + $qtdEmpresasPendentes)) * 100,
+                    'percentualPendentesComercio' =>   $this->validaDivisao($qtdEmpresasPendentesComercio['qtdEmpresas'], ($qtdEmpresasFinalizadas + $qtdEmpresasPendentes)) * 100,
+                ]);
+        }
+    }    
+
     public function setExecCronoFiscal()
     {
         $codRegistroCronograma = $this->request->getPost('setExecCronoFiscal');
