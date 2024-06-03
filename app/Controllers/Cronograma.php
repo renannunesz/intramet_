@@ -91,7 +91,7 @@ class Cronograma extends BaseController
         if ($denominator == 0) {
             return 0;
         } else {
-            return $numerator / $denominator;
+            return round($numerator / $denominator, 2);
         }
     }
 
