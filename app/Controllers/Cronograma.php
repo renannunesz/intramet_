@@ -164,58 +164,77 @@ class Cronograma extends BaseController
         $db = db_connect();
         $status = session()->get('Logado');
         $competenciaFiltro = $this->request->getGet('competenciaCronoFiscal');
+        $equipeFiltro = $this->request->getGet('equipeCronoFiscal');
+        $responsavelFiltro = $this->request->getGet('responsavelCronoFiscal');                     
 
         if (is_null($status)) {
             return view('login');
         } else {
 
-            $competenciaFiltro == null ? $competenciaCronoFiscal = [] : $competenciaCronoFiscal = ['competencia' => $this->request->getGet('competenciaCronoFiscal')];
-            $statusFinalizadoCronoFiscal = ['statusexecucao' => 0];
-            $statusPendentesCronoFiscal = ['statusexecucao' => 1];
-            $tipoCronoFiscal = ['tipo' => 'FSC'];
+            $competenciaFiltro == null ? $competenciaCronoFiscalQry = "" : $competenciaCronoFiscalQry = ' and c.competencia = "'.$competenciaFiltro.'"';            
+            $equipeFiltro      == null ? $equipeCronoFiscalQry = ""      : $equipeCronoFiscalQry = ' and e.equipe = "'.$equipeFiltro.'"';
+            $responsavelFiltro == null ? $responsavelCronoFiscalQry = "" : $responsavelCronoFiscalQry = ' and c.codresponsavel = "'.$responsavelFiltro.'"';
+                    
+            $empresasCrono = $db->query(
+                'SELECT * FROM tbfscncronograma c 
+                LEFT JOIN tbempresas e on e.codathenas = c.codempresa 
+                where c.tipo = "FSC" ' . $competenciaCronoFiscalQry . $responsavelCronoFiscalQry . $equipeCronoFiscalQry  
+            )->getResult('array'); //Retorna Valores com um Array
 
-            $filtros = array_merge(
-                $competenciaCronoFiscal,
-                $tipoCronoFiscal
-            );            
+            $empresasCronoFinalizadas = $db->query(
+                'SELECT * FROM tbfscncronograma c 
+                LEFT JOIN tbempresas e on e.codathenas = c.codempresa 
+                where c.tipo = "FSC" and c.statusexecucao = 0 ' . $competenciaCronoFiscalQry . $responsavelCronoFiscalQry . $equipeCronoFiscalQry  
+            )->getNumRows(); //Retorna Quantidade de Linhas
 
-            $filtrosFinalizadas = array_merge(
-                $competenciaCronoFiscal,
-                $statusFinalizadoCronoFiscal,
-                $tipoCronoFiscal
-            );            
+            $empresasCronoFinalizadasServico = $db->query(
+                'SELECT * FROM tbfscncronograma c 
+                LEFT JOIN tbempresas e on e.codathenas = c.codempresa 
+                where c.tipo = "FSC" and c.statusexecucao = 0 and e.equipe = "S"' . $competenciaCronoFiscalQry . $responsavelCronoFiscalQry
+            )->getNumRows();            
+
+            $empresasCronoFinalizadasComercio = $db->query(
+                'SELECT * FROM tbfscncronograma c 
+                LEFT JOIN tbempresas e on e.codathenas = c.codempresa 
+                where c.tipo = "FSC" and c.statusexecucao = 0 and e.equipe = "C"' . $competenciaCronoFiscalQry . $responsavelCronoFiscalQry
+            )->getNumRows();           
+
+            $empresasCronoPendentes = $db->query(
+                'SELECT * FROM tbfscncronograma c 
+                LEFT JOIN tbempresas e on e.codathenas = c.codempresa 
+                where c.tipo = "FSC" and c.statusexecucao = 1 ' . $competenciaCronoFiscalQry . $responsavelCronoFiscalQry . $equipeCronoFiscalQry  
+            )->getNumRows();   
             
-            $filtrosPendentes = array_merge(
-                $competenciaCronoFiscal,
-                $statusPendentesCronoFiscal,
-                $tipoCronoFiscal
-            );
-                
-            $qtdEmpresasFinalizadas = count($this->tbfscncronogramaModel->where($filtrosFinalizadas)->find());
-            $qtdEmpresasFinalizadasServico = $db->query('SELECT COUNT(c.codempresa) as qtdEmpresas FROM tbfscncronograma c LEFT JOIN tbempresas e on e.codathenas = c.codempresa where c.competencia = "'.$competenciaFiltro.'" and c.statusexecucao = 0 and c.tipo = "FSC" and e.equipe = "C"')->getRowArray();
-            $qtdEmpresasFinalizadasComercio = $db->query('SELECT COUNT(c.codempresa) as qtdEmpresas FROM tbfscncronograma c LEFT JOIN tbempresas e on e.codathenas = c.codempresa where c.competencia = "'.$competenciaFiltro.'" and c.statusexecucao = 0 and c.tipo = "FSC" and e.equipe = "S"')->getRowArray();
-            $qtdEmpresasPendentes = count($this->tbfscncronogramaModel->where($filtrosPendentes)->find());
-            $qtdEmpresasPendentesServico = $db->query('SELECT COUNT(c.codempresa) as qtdEmpresas FROM tbfscncronograma c LEFT JOIN tbempresas e on e.codathenas = c.codempresa where c.competencia = "'.$competenciaFiltro.'" and c.statusexecucao = 1 and c.tipo = "FSC" and e.equipe = "C"')->getRowArray();
-            $qtdEmpresasPendentesComercio = $db->query('SELECT COUNT(c.codempresa) as qtdEmpresas FROM tbfscncronograma c LEFT JOIN tbempresas e on e.codathenas = c.codempresa where c.competencia = "'.$competenciaFiltro.'" and c.statusexecucao = 1 and c.tipo = "FSC" and e.equipe = "S"')->getRowArray();
+            $empresasCronoPendentesServico = $db->query(
+                'SELECT * FROM tbfscncronograma c 
+                LEFT JOIN tbempresas e on e.codathenas = c.codempresa 
+                where c.tipo = "FSC" and c.statusexecucao = 1 and e.equipe = "S"' . $competenciaCronoFiscalQry . $responsavelCronoFiscalQry
+            )->getNumRows();            
+
+            $empresasCronoPendentesComercio = $db->query(
+                'SELECT * FROM tbfscncronograma c 
+                LEFT JOIN tbempresas e on e.codathenas = c.codempresa 
+                where c.tipo = "FSC" and c.statusexecucao = 1 and e.equipe = "C"' . $competenciaCronoFiscalQry . $responsavelCronoFiscalQry
+            )->getNumRows();
 
             return view('acompcronogramafsc', [
-                    'cronogramasfsc'   => $this->tbfscncronogramaModel->where($filtros)->find(),
-                    'empresas'      => $this->tbEmpresas->find(),
-                    'usuarios'  => $this->tbEnvolvidos->find(),
-                    'setores'       => $this->setores->find(),
-                    'competencia'   => $this->request->getGet('competenciaCronoFiscal'),
-                    'empFinalizadas'    => $qtdEmpresasFinalizadas,
-                    'empFinalizadasServico' => $qtdEmpresasFinalizadasServico,
-                    'empFinalizadasComercio' => $qtdEmpresasFinalizadasComercio,
-                    'empPendentes'      => $qtdEmpresasPendentes,
-                    'empPendentesServico' => $qtdEmpresasPendentesServico,
-                    'empPendentesComercio' => $qtdEmpresasPendentesComercio,
-                    'percentualFinalizadas' => $this->validaDivisao($qtdEmpresasFinalizadas, ($qtdEmpresasFinalizadas + $qtdEmpresasPendentes)) * 100,
-                    'percentualFinalizadasServico' => $this->validaDivisao($qtdEmpresasFinalizadasServico['qtdEmpresas'], ($qtdEmpresasFinalizadas + $qtdEmpresasPendentes)) * 100,
-                    'percentualFinalizadasComercio' => $this->validaDivisao($qtdEmpresasFinalizadasComercio['qtdEmpresas'], ($qtdEmpresasFinalizadas + $qtdEmpresasPendentes)) * 100,
-                    'percentualPendentes' =>   $this->validaDivisao($qtdEmpresasPendentes, ($qtdEmpresasFinalizadas + $qtdEmpresasPendentes)) * 100,
-                    'percentualPendentesServico' =>   $this->validaDivisao($qtdEmpresasPendentesServico['qtdEmpresas'], ($qtdEmpresasFinalizadas + $qtdEmpresasPendentes)) * 100,
-                    'percentualPendentesComercio' =>   $this->validaDivisao($qtdEmpresasPendentesComercio['qtdEmpresas'], ($qtdEmpresasFinalizadas + $qtdEmpresasPendentes)) * 100,
+                    'cronogramasfsc'                => $empresasCrono,
+                    'empresas'                      => $this->tbEmpresas->find(),
+                    'setores'                       => $this->setores->find(),
+                    'usuarios'                      => $this->tbEnvolvidos->where('codsetor', 4)->find(),                    
+                    'competencia'                   => $this->request->getGet('competenciaCronoFiscal'),
+                    'empFinalizadas'                => $empresasCronoFinalizadas,
+                    'empFinalizadasServico'         => $empresasCronoFinalizadasServico,
+                    'empFinalizadasComercio'        => $empresasCronoFinalizadasComercio,
+                    'empPendentes'                  => $empresasCronoPendentes,
+                    'empPendentesServico'           => $empresasCronoPendentesServico,
+                    'empPendentesComercio'          => $empresasCronoPendentesComercio,
+                    'percentualFinalizadas'         => $this->validaDivisao($empresasCronoFinalizadas, ($empresasCronoFinalizadas + $empresasCronoPendentes)) * 100,
+                    'percentualFinalizadasServico'  => $this->validaDivisao($empresasCronoFinalizadasServico, ($empresasCronoFinalizadas + $empresasCronoPendentes)) * 100,
+                    'percentualFinalizadasComercio' => $this->validaDivisao($empresasCronoFinalizadasComercio, ($empresasCronoFinalizadas + $empresasCronoPendentes)) * 100,
+                    'percentualPendentes'           =>   $this->validaDivisao($empresasCronoPendentes, ($empresasCronoFinalizadas + $empresasCronoPendentes)) * 100,
+                    'percentualPendentesServico'    =>   $this->validaDivisao($empresasCronoPendentesServico, ($empresasCronoFinalizadas + $empresasCronoPendentes)) * 100,
+                    'percentualPendentesComercio'   =>   $this->validaDivisao($empresasCronoPendentesComercio, ($empresasCronoFinalizadas + $empresasCronoPendentes)) * 100,
                 ]);
         }
     }    

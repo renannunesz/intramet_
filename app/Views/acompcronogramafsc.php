@@ -73,7 +73,25 @@ include 'app/Helpers/legalizacao_helper.php';
                                         <label for="competenciaCronoFiscal">Competência:</label>
                                         <input type="text" class="form-control" id="competenciaCronoFiscal" name="competenciaCronoFiscal" required>
                                     </div>
+                                    <div class="form-group col-auto">
+                                        <label for="equipeCronoFiscal">Equipe:</label>
+                                        <select class="form-control" id="equipeCronoFiscal" name="equipeCronoFiscal">
+                                            <option value="">Selecione...</option>
+                                            <option value="S">Serviço</option>
+                                            <option value="C">Comércio</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-auto">
+                                        <label for="responsavelCronoFiscal">Responsável:</label>
+                                        <select class="form-control" id="responsavelCronoFiscal" name="responsavelCronoFiscal">
+                                            <option value="" selected>Selecione...</option>
+                                            <?php foreach ($usuarios as $usuario) : ?>
+                                                <option value='<?php echo (int)$usuario['cod']; ?>'><?php echo $usuario['nome']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
                                 </div>
+
                                 <button type="submit" class="btn btn-primary">Buscar</button>
 
                             </form>
@@ -102,7 +120,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                                             <?php echo $empFinalizadas; ?>
                                                         </div>
                                                         <div class="text-xs font-weight-bold text-body text-uppercase mb-1">
-                                                            Serviço: <?php echo $empFinalizadasServico['qtdEmpresas']; ?> | Comércio: <?php echo $empFinalizadasComercio['qtdEmpresas']; ?>
+                                                            Serviço: <?php echo $empFinalizadasServico; ?> | Comércio: <?php echo $empFinalizadasComercio; ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-auto">
@@ -155,7 +173,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                                             <?php echo $empPendentes; ?>
                                                         </div>
                                                         <div class="text-xs font-weight-bold text-body text-uppercase mb-1">
-                                                            Serviço: <?php echo $empPendentesServico['qtdEmpresas']; ?> | Comércio: <?php echo $empPendentesComercio['qtdEmpresas']; ?>
+                                                            Serviço: <?php echo $empPendentesServico; ?> | Comércio: <?php echo $empPendentesComercio; ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-auto">
