@@ -221,7 +221,7 @@ class Cronograma extends BaseController
                     'cronogramasfsc'                => $empresasCrono,
                     'empresas'                      => $this->tbEmpresas->find(),
                     'setores'                       => $this->setores->find(),
-                    'usuarios'                      => $this->tbEnvolvidos->where('codsetor', 4)->find(),                    
+                    'usuarios'                      => $this->tbUsuarios->find(),//$this->tbEnvolvidos->where('codsetor', 4)->find(),                    
                     'competencia'                   => $this->request->getGet('competenciaCronoFiscal'),
                     'empFinalizadas'                => $empresasCronoFinalizadas,
                     'empFinalizadasServico'         => $empresasCronoFinalizadasServico,
