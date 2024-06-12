@@ -42,12 +42,14 @@ $routes->post('/Status/addStatus',          'Status::addStatus');
 $routes->get('/Status/delStatus/(:num)',    'Status::delStatus/$1');
 $routes->post('/Status/editStatus/(:num)',       'Status::editStatus/$1');
 
+//Setores
 $routes->get('/Setores',                'Setores::index');
 $routes->get('/Setores/cadastrar',      'Setores::cadastrar');
 $routes->post('/Setores/salvar',        'Setores::salvar');
 $routes->get('/Setores/apagar/(:num)',  'Setores::apagar/$1');
 $routes->get('/Setores/editar/(:num)',  'Setores::editar/$1');
 
+//Envolvidos
 $routes->get('/Envolvidos',                 'Envolvidos::index');
 $routes->get('/Envolvidos/cadastrar',       'Envolvidos::cadastrar');
 $routes->post('/Envolvidos/salvar',         'Envolvidos::salvar');
@@ -55,16 +57,19 @@ $routes->get('/Envolvidos/apagar/(:num)',   'Envolvidos::apagar/$1');
 $routes->get('/Envolvidos/editar/(:num)',   'Envolvidos::editar/$1');
 $routes->get('/Envolvidos/modal',           'Envolvidos::modal');
 
+//Empresas
 $routes->get('/Empresas',                   'Empresas::index');
 $routes->get('/Empresas/editar/(:num)',     'Empresas::editar/$1');
 $routes->post('/Empresas/salvar',           'Empresas::salvar');
 
+//Atas
 $routes->get('/Atas',               'Atas::index');
 $routes->post('/Atas/salvar',       'Atas::salvar');
 $routes->get('/Atas/cadastrar',     'Atas::cadastrar');
 $routes->get('/Atas/apagar/(:num)', 'Atas::apagar/$1');
 $routes->get('/Atas/editar/(:num)', 'Atas::editar/$1');
 
+//Topicos
 $routes->get('/Topicos',                            'Topicos::index');
 $routes->post('/Topicos/salvar',                    'Topicos::salvar');
 $routes->post('/Topicos/salvarDetalhes',            'Topicos::salvarDetalhes');
@@ -89,6 +94,7 @@ $routes->get('/Topicos/topicoNew',                  'Topicos::topicoNew');
 $routes->get('/Setores/testevalid',                 'Setores::testevalid');
 $routes->get('/Empresas/pageSide',                   'Empresas::pageSide');
 
+//Cronograma
 $routes->get('/Cronograma',                             'Cronograma::index');
 $routes->post('/Cronograma/salvaExecucao',              'Cronograma::salvaExecucao');
 $routes->post('/Cronograma/desfazExecucao',             'Cronograma::desfazExecucao');
@@ -122,7 +128,7 @@ $routes->post('/Servicos/addServico', 'Servicos::addServico');
 $routes->post('/Servicos/editServico/(:num)', 'Servicos::editServico/$1');
 $routes->get('/Servicos/delServico/(:num)', 'Servicos::delServico/$1');
 
-//FisCon
+//FisCon - Crono Fiscal
 $routes->get('/Fiscon/Empresas',            'Empresas::index');
 $routes->post('/Fiscon/editEmpresa/(:num)', 'Empresas::editEmpresa/$1');
 $routes->post('/Fiscon/addEmpresa',         'Empresas::addEmpresa');
@@ -138,6 +144,11 @@ $routes->post('/Utilitarios/expAntaqMensais', 'Utilitarios::expAntaqMensais');
 $routes->get('/Utilitarios/arqAntaqAnuais', 'Utilitarios::arqAntaqAnuais');
 $routes->post('/Utilitarios/arqAntaqAnuais', 'Utilitarios::arqAntaqAnuais');
 $routes->post('/Utilitarios/expAntaqAnuais', 'Utilitarios::expAntaqAnuais');
+
+//Usuários
+$routes->get('/Cadastros/Usuarios',            'Usuarios::index');
+$routes->post('/Usuarios/AlterarSenha',         'Usuarios::editSenha');
+
 
 /*
  * --------------------------------------------------------------------

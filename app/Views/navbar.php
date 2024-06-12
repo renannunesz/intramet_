@@ -61,10 +61,14 @@
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?php echo session()->get('nome'); ?></span>                      
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?php echo session()->get('nome'); ?></span>
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#alterarSenhaModal">
+                    <i class="fas fa-pen-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Alterar Senha
+                </a>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Sair
@@ -85,8 +89,50 @@
                     <div class="modal-body">Selecione "Logout" abaixo se você está pronto para finalizar essa sessão.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href='<?php echo base_url('Login/signOut'); ?>'>Logout</a> 
+                        <a class="btn btn-primary" href='<?php echo base_url('Login/signOut'); ?>'>Logout</a>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="alterarSenhaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Alterar Senha</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form action='<?php echo base_url('/Usuarios/AlterarSenha'); ?>' method="post">
+                        <input type="hidden" id="codUsuarioSenha" name="codUsuarioSenha" value='<?php echo session()->get('codigousuario'); ?>'>
+                        <div class="modal-body">
+                            <?php if (session()->getFlashdata('msg') !== null) : ?>
+
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <?php echo session()->getFlashdata('msg'); ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                            <?php endif ?>
+                            <div class="form row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputNovaSenha">Nova Senha</label>
+                                    <input type="password" class="form-control" id="inputNovaSenha" name="inputNovaSenha" placeholder="Senha">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputNovaSenhaConfirmar">Confirmar Senha</label>
+                                    <input type="password" class="form-control" id="inputNovaSenhaConfirmar" name="inputNovaSenhaConfirmar" placeholder="Repetir">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

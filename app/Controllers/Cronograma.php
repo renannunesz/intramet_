@@ -16,7 +16,7 @@ class Cronograma extends BaseController
     private $tbEmpresas;
     private $tbEnvolvidos;
     private $setores;
-    private $usuarios;
+    private $tbUsuarios;
 
     public function __construct()
     {
@@ -24,7 +24,7 @@ class Cronograma extends BaseController
         $this->tbEmpresas = new tbempresasModel();
         $this->tbEnvolvidos = new tbenvolvidosModel();
         $this->setores = new tbsetoresModel();
-        $this->usuarios = new tbusuariosModel();
+        $this->tbUsuarios = new tbusuariosModel();
     }
 
     public function empresasPendentesContabil($codResponsavel, $dataCompetencia)
@@ -135,7 +135,7 @@ class Cronograma extends BaseController
             return view('login');
         } else {
 
-            $codUserLogado = ['codresponsavel' => $this->tbEnvolvidos->where('nome', session()->get('nome'))->findColumn('cod')];  
+            $codUserLogado = ['codresponsavel' => $this->tbUsuarios->where('nome', session()->get('nome'))->findColumn('cod')];  
             $competenciaCronoFiscal == null ? $competenciaFiltro = ['competencia' => $compCronoRet] : $competenciaFiltro = ['competencia' => $this->request->getGet('competenciaCronoFiscal')];
             $tipoCronoFiltro = ['tipo' => 'FSC'];
 
@@ -148,7 +148,7 @@ class Cronograma extends BaseController
             return view('cronogramafsc', [
                     'cronogramasfsc'   => $this->tbfscncronogramaModel->where($filtros)->find(),
                     'empresas'      => $this->tbEmpresas->find(),
-                    'usuarios'  => $this->tbEnvolvidos->find(),
+                    'usuarios'  => $this->tbUsuarios->find(),
                     'setores'       => $this->setores->find(),
                     'competencia'   => $this->request->getGet('competenciaCronoFiscal') == null ? $compCronoRet : $this->request->getGet('competenciaCronoFiscal'),
                     'empPendentes'      => count($this->empresasPendentesFiscal($codUserLogado['codresponsavel'], $competenciaFiltro["competencia"])),
@@ -266,7 +266,7 @@ class Cronograma extends BaseController
         $this->tbfscncronogramaModel->where('cod', $dadosRegCronograma['codregistro'])->set('statusexecucao', 1)->update();
         $this->tbEmpresas->where('codathenas', $dadosRegCronograma['codEmpresaAthenas'])->set('atualizacaocontabil', $dadosRegCronograma['atualizacaoContabil'])->update();
 
-        $codUserLogado = $this->tbEnvolvidos->where('nome', session()->get('user'))->findColumn('cod');
+        $codUserLogado = $this->tbUsuarios->where('nome', session()->get('user'))->findColumn('cod');
 
         $this->request->getGet('competencia') == null ? $competenciaFiltro = [] : $competenciaFiltro = ['competencia' => $this->request->getGet('competencia')];
 
@@ -277,7 +277,7 @@ class Cronograma extends BaseController
             . view('cronograma', [
                 'cronogramas'   => $this->tbfscncronogramaModel->where($filtros)->find(),
                 'empresas'      => $this->tbEmpresas->find(),
-                'responsaveis'  => $this->tbEnvolvidos->find(),
+                'responsaveis'  => $this->tbUsuarios->find(),
                 'setores'       => $this->setores->find(),
                 'competencia'   => $this->request->getGet('competencia'),
                 'empPendentesContabil'      => $this->empresasPendentesContabil($codUserLogado, $this->request->getGet('competencia')),
@@ -292,7 +292,7 @@ class Cronograma extends BaseController
             . view('cronoacompanhamento', [
                 'cronogramas'   => $this->tbfscncronogramaModel->orderBy('updated_at')->find(),
                 'empresas'      => $this->tbEmpresas->orderBy('nome', 'asc')->find(),
-                'responsaveis'  => $this->tbEnvolvidos->find(),
+                'responsaveis'  => $this->tbUsuarios->find(),
                 'setores'       => $this->setores->find(),
                 'finalizadas'   => $this->tbfscncronogramaModel->where('statusexecucao', '1')->findAll(),
                 'abertas'       => $this->tbfscncronogramaModel->where('statusexecucao', '0')->findAll(),
@@ -310,7 +310,7 @@ class Cronograma extends BaseController
             . view('cronoacompanhamento', [
                 'cronogramas'   => $this->tbfscncronogramaModel->find(),
                 'empresas'      => $this->tbEmpresas->find(),
-                'responsaveis'  => $this->tbEnvolvidos->find(),
+                'responsaveis'  => $this->tbUsuarios->find(),
                 'setores'       => $this->setores->find()
             ]);
     }
