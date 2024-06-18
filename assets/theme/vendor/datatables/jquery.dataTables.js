@@ -13343,7 +13343,7 @@
 		 *  @type array
 		 *  @todo These inner arrays should really be objects
 		 */
-		"aaSorting": null,
+		"aaSorting": [[0,'asc']],
 	
 		/**
 		 * Sorting that is always applied to the table (i.e. prefixed in front of

@@ -48,7 +48,7 @@ class Legalizacao extends BaseController
             return view('login');
         } else {
             return view('processos', [
-                'processos'     => $this->tbprocessos->whereNotIn('codstatus', $filtroStatus)->find(),
+                'processos'     => $this->tbprocessos->whereNotIn('codstatus', $filtroStatus)->orderBy('cod', 'DESC')->find(),
                 'empresas'      => $this->tbempresas->find(),
                 'clientes'      => $this->tbclientes->orderBy('nome', 'ASC')->find(),
                 'servicos'      => $this->tbprocessosservicos->orderBy('nome', 'ASC')->find(),
@@ -103,7 +103,7 @@ class Legalizacao extends BaseController
         $dadosContato = $this->request->getPost('inputContato');
         $dadosFone = $this->request->getPost('inputFone');
         $codResponsavel = $this->request->getPost('inputResponsavel');
-        $dadosObs = $this->request->getPost('inputObservacao');
+        //$dadosObs = $this->request->getPost('inputObservacao');
         $codStatus = "9";
         $codFiancneiro = "3";
         $numProcesso = 0;
@@ -118,7 +118,7 @@ class Legalizacao extends BaseController
             'codenvolvido' => $codResponsavel,
             'contato' => $dadosContato . " - " . $dadosFone,
             'codstatus' => $codStatus,
-            'observacao' => $dadosObs,
+            'observacao' => "Novo Processo", //$dadosObs,
             'numeroprocesso' => $numProcesso,
             'financeiro' => $codFiancneiro,
             'datafim' => $dataFim,

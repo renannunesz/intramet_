@@ -9,6 +9,7 @@ $(document).ready(function () {
   $('#dataTable').DataTable(
     {
       "pageLength": 50,
+      "order": [[ 0, "desc" ]],
       language: {
         "emptyTable": "Nenhum registro encontrado",
         "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -258,7 +259,7 @@ $(document).ready(function () {
       fixedHeader: true,
       initComplete: function () {
         var api = this.api();
-  
+
         // For each column
         api
           .columns()
@@ -270,7 +271,7 @@ $(document).ready(function () {
             );
             var title = $(cell).text();
             $(cell).html('<input type="text" class="form-control" placeholder="' + title + '" />');
-  
+
             // On every keypress in this input
             $(
               'input',
@@ -281,7 +282,7 @@ $(document).ready(function () {
                 // Get the search value
                 $(this).attr('title', $(this).val());
                 var regexr = '({search})'; //$(this).parents('th').find('select').val();
-  
+
                 var cursorPosition = this.selectionStart;
                 // Search the column for that value
                 api
@@ -297,7 +298,7 @@ $(document).ready(function () {
               })
               .on('keyup', function (e) {
                 e.stopPropagation();
-  
+
                 $(this).trigger('change');
                 $(this)
                   .focus()[0]

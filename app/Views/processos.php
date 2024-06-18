@@ -130,10 +130,12 @@ include 'app/Helpers/legalizacao_helper.php';
                                                     </div>
                                                 </div>
 
+                                                <!--
                                                 <div class="form-group">
                                                     <label for="inputObservacao">Trâmite</label>
                                                     <textarea class="form-control" id="inputObservacao" name="inputObservacao" rows="3" placeholder="Descrever observação."></textarea>
                                                 </div>
+                                                -->
 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -234,7 +236,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                                     foreach ($processosdetalhes as $processosdetalhe)
                                                         if ($processosdetalhe['codprocesso'] == $processo['cod']) :
                                                             array_push($ultTramite, $processosdetalhe['datatramite'] . '|' . $processosdetalhe['codusuariotramite'] . '|' . $processosdetalhe['desctramite']);
-                                                        endif;                                                                                                        
+                                                        endif;
                                                     $dadosTramite = explode('|', end($ultTramite));
                                                     if (count($dadosTramite) > 1) :
                                                         $dataFormatada = implode('/', array_reverse(explode('-', $dadosTramite[0])));
@@ -242,7 +244,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                                             if ($usuario['cod'] == $dadosTramite[1]) :
                                                                 echo  $dataFormatada . " | " . $usuario['nome'] . " | " . $dadosTramite[2];
                                                             endif;
-                                                    endif;                                                
+                                                    endif;
                                                     ?>
                                                 </td>
                                                 <td><?php
@@ -431,12 +433,12 @@ include 'app/Helpers/legalizacao_helper.php';
     <!-- Custom scripts for all pages-->
     <script src="<?php echo base_url() . "/assets/theme/js/sb-admin-2.min.js"; ?>"></script>
 
-    <!-- Page level plugins -->
+    <!-- Page level plugins--> 
     <script src="<?php echo base_url() . "/assets/theme/vendor/datatables/jquery.dataTables.min.js"; ?>"></script>
     <script src="<?php echo base_url() . "/assets/theme/vendor/datatables/dataTables.bootstrap4.min.js"; ?>"></script>
 
     <!-- Page level custom scripts -->
-    <script src="<?php echo base_url() . "/assets/theme/js/demo/datatables-demo.js"; ?>"></script>
+    <script src="<?php echo base_url() . "/assets/theme/js/demo/datatables-demo.js"; ?>"></script>    
 
 </body>
 
@@ -447,5 +449,5 @@ include 'app/Helpers/legalizacao_helper.php';
         var fileName = $(this).val().replace('C:\\fakepath\\', " ");
         //replace the "Choose a file" label
         $(this).next('.custom-file-label').html(fileName);
-    })
+    });
 </script>
