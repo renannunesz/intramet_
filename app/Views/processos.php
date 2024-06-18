@@ -277,6 +277,12 @@ include 'app/Helpers/legalizacao_helper.php';
                                                         </a>
                                                     <?php endif; ?>
 
+                                                    <?php if (strlen($processo['nomedocprocesso']) > 0) : ?>
+                                                        <a href='<?php echo base_url('#') . '/' . $processo['cod']; ?>' class="btn btn-info btn-circle btn-sm">
+                                                            <i class="fas fa-file-alt"></i>
+                                                        </a>
+                                                    <?php endif; ?>
+
                                                 </td>
 
                                                 <div class="modal fade" id="editProcessoModal-<?php echo $processo['cod']; ?>" tabindex="-1" role="dialog" aria-labelledby="editProcessoModalLabel" aria-hidden="true">
@@ -433,12 +439,12 @@ include 'app/Helpers/legalizacao_helper.php';
     <!-- Custom scripts for all pages-->
     <script src="<?php echo base_url() . "/assets/theme/js/sb-admin-2.min.js"; ?>"></script>
 
-    <!-- Page level plugins--> 
+    <!-- Page level plugins-->
     <script src="<?php echo base_url() . "/assets/theme/vendor/datatables/jquery.dataTables.min.js"; ?>"></script>
     <script src="<?php echo base_url() . "/assets/theme/vendor/datatables/dataTables.bootstrap4.min.js"; ?>"></script>
 
     <!-- Page level custom scripts -->
-    <script src="<?php echo base_url() . "/assets/theme/js/demo/datatables-demo.js"; ?>"></script>    
+    <script src="<?php echo base_url() . "/assets/theme/js/demo/datatables-demo.js"; ?>"></script>
 
 </body>
 
