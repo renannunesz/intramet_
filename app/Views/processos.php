@@ -278,7 +278,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                                     <?php endif; ?>
 
                                                     <?php if (strlen($processo['nomedocprocesso']) > 0) : ?>
-                                                        <a href='<?php echo base_url('#') . '/' . $processo['cod']; ?>' class="btn btn-info btn-circle btn-sm">
+                                                        <a href='<?php echo base_url('#') . '/' . $processo['cod']; ?>' class="btn btn-secondary btn-circle btn-sm">
                                                             <i class="fas fa-file-alt"></i>
                                                         </a>
                                                     <?php endif; ?>
