@@ -105,7 +105,8 @@ class Legalizacao extends BaseController
             'envolvidos'    => $this->tbenvolvidos->find(),
             'status'        => $this->tbstatus->find(),
             'processosdetalhes' => $this->tbprocessosdetalhes->where('codprocesso', $cod)->orderBy('cod', 'DESC')->find(),
-            'usuarios'      => $this->tbusuarios->find()
+            'usuarios'      => $this->tbusuarios->find(),
+            'processodocumentos' => $this->tbprocessosdocumentos->find()
         ]);
     }
 
