@@ -152,6 +152,7 @@ include 'app/Helpers/legalizacao_helper.php';
 
                                                             <div class="">
 
+                                                                <!--
                                                                 <div class="form-group">
                                                                     <label for="inputEditStatus">Status</label>
                                                                     <select id="inputEditStatus" name="inputEditStatus" class="form-control" required>
@@ -163,6 +164,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                                                         <option value="14">Cliente Não deu Retorno</option>
                                                                     </select>
                                                                 </div>
+                                                                -->
 
                                                                 <div class="form-group">
                                                                     <label for="inputEditNProcesso">Nº Processo</label>

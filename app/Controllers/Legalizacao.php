@@ -178,14 +178,14 @@ class Legalizacao extends BaseController
 
         $codProcesso = $this->request->getPost('codEditProcesso');
         $obsProcesso = $this->request->getPost('inputEditObservacao');
-        $statusProcesso = $this->request->getPost('inputEditStatus');
+        //$statusProcesso = $this->request->getPost('inputEditStatus');
         $numProcesso = $this->request->getPost('inputEditNProcesso');
         $codServico = $this->request->getPost('inputServico');
         $dataFimProcesso = date("Y-m-d");
 
         $this->tbprocessos->set('datafim', $dataFimProcesso);
         $this->tbprocessos->set('observacao', $obsProcesso);
-        $this->tbprocessos->set('codstatus', $statusProcesso);
+        //$this->tbprocessos->set('codstatus', $statusProcesso);
         $this->tbprocessos->set('numeroprocesso', $numProcesso);
         $this->tbprocessos->set('codservico', $codServico);
         //$this->tbprocessos->set('caminhodocprocesso', $caminho_arquivo);
