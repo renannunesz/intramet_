@@ -230,28 +230,32 @@ include 'app/Helpers/legalizacao_helper.php';
                                                 <div class="modal-content">
                                                     <div class="modal-body">
 
-                                                        <div class="container">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <label for=""><strong>Arquivo Nome:</strong></label>
-                                                                    <p>
-                                                                        <?php echo $processo['nomedocprocesso']; ?>
-                                                                    </p>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <label for=""><strong>Opções:</strong></label>
-                                                                    <p>
-                                                                        <a href='<?php echo base_url() . '/' . $processo['caminhodocprocesso']; ?>' class="btn btn-info btn-circle btn-sm">
-                                                                            <i class="fas fa-download"></i>
-                                                                        </a>
+                                                        <?php foreach ($processodocumentos as $documentos) if ($documentos['codprocesso'] == $processo['cod']) : ?>
 
-                                                                        <a href='<?php echo base_url('Legalizacao/delArqProcesso') . '/' . $processo['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
-                                                                            <i class="fas fa-trash"></i>
-                                                                        </a>
-                                                                    </p>
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <label for=""><strong>Arquivo:</strong></label>
+                                                                        <p>
+                                                                            <?php echo $documentos['nomedocprocesso']; ?>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-md-auto">
+                                                                        <label for=""><strong>Opções:</strong></label>
+                                                                        <p>
+                                                                            <a href='<?php echo base_url() . '/' . $documentos['caminhodocprocesso']; ?>' class="btn btn-info btn-circle btn-sm">
+                                                                                <i class="fas fa-download"></i>
+                                                                            </a>
+
+                                                                            <a href='<?php echo base_url('Legalizacao/delArqProcesso') . '/' . $documentos['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
+                                                                                <i class="fas fa-trash"></i>
+                                                                            </a>
+                                                                        </p>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+
+                                                        <?php endif; ?>
 
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>

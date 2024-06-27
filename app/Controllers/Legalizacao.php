@@ -11,6 +11,7 @@ use App\Models\TbprocessosModel;
 use App\Models\tbprocessosservicosModel;
 use App\Models\tbstatusModel;
 use App\Models\tbusuariosModel;
+use App\Models\TbprocessosdocumentosModel; 
 use CodeIgniter\Commands\Utilities\Routes\FilterFinder;
 use CodeIgniter\Database\BaseUtils;
 use DateTime;
@@ -25,6 +26,7 @@ class Legalizacao extends BaseController
     private $tbclientes;
     private $tbprocessosdetalhes;
     private $tbusuarios;
+    private $tbprocessosdocumentos;
 
     public function __construct()
     {
@@ -36,6 +38,17 @@ class Legalizacao extends BaseController
         $this->tbstatus = new tbstatusModel();
         $this->tbprocessosdetalhes = new TbprocessosdetalhesModel();
         $this->tbusuarios = new tbusuariosModel();
+        $this->tbprocessosdocumentos = new TbprocessosdocumentosModel();
+    }
+
+    public function codNovoProcesso()
+    {
+        
+        $codUltProcesso = $this->tbprocessos->selectMax('cod')->find();
+        $codNovoProcesso = intval($codUltProcesso[0]["cod"]) + 1;
+
+        return $codNovoProcesso;
+
     }
 
     public function processos()
@@ -55,7 +68,9 @@ class Legalizacao extends BaseController
                 'envolvidos'    => $this->tbenvolvidos->find(),
                 'status'        => $this->tbstatus->find(),
                 'processosdetalhes' => $this->tbprocessosdetalhes->OrderBy('cod', 'ASC')->find(),
-                'usuarios' => $this->tbusuarios->find()
+                'usuarios' => $this->tbusuarios->find(),
+                'codnovoprocesso' => $this->codNovoProcesso(),
+                'processodocumentos' => $this->tbprocessosdocumentos->find()
             ]);
         }
     }
@@ -127,6 +142,23 @@ class Legalizacao extends BaseController
         ];
 
         $this->tbprocessos->save($dadosProcesso);
+        
+        $codProcesso = $this->request->getPost('codProcesso');
+        $tituloTramite = "Trâmite em: " . date("d/m/y");
+        $dataTramite = date("y-m-d");
+        $descTramite = $this->request->getPost('inputTramite');
+        $codUsuario = $this->request->getPost('codUsuario');
+
+        $dadosTramite = [
+            'codprocesso'       => intval($codProcesso),
+            'titulotramite'     => $tituloTramite,
+            'datatramite'       => $dataTramite,
+            'desctramite'       => $descTramite,
+            'codusuariotramite' => $codUsuario
+        ];
+
+        //dd($dadosTramite);
+        $this->tbprocessosdetalhes->save($dadosTramite);        
 
         return redirect()->to(base_url('/Legalizacao/Processos'));
     }
@@ -244,6 +276,14 @@ class Legalizacao extends BaseController
         $this->tbprocessos->set('nomedocprocesso', $arquivo->getName());
         $this->tbprocessos->where('cod', $codProcesso);
         $this->tbprocessos->update();
+
+        $documentosProcesso = [
+            'codprocesso' => $codProcesso,
+            'caminhodocprocesso' => $caminho_arquivo,
+            'nomedocprocesso' => $arquivo->getName()
+        ];
+
+        $this->tbprocessosdocumentos->save($documentosProcesso);
         
         return redirect()->to(base_url('Legalizacao/processosDetalhes') . '/' . $codProcesso);
     }
@@ -254,6 +294,8 @@ class Legalizacao extends BaseController
         $this->tbprocessos->set('caminhodocprocesso', '');
         $this->tbprocessos->where('cod', $cod);
         $this->tbprocessos->update();
+
+        $this->tbprocessosdocumentos->where('cod', $cod)->delete();
         //return redirect()->to(base_url('/Legalizacao/Processos'));
         return redirect()->to(base_url('Legalizacao/processosDetalhes') . '/' . $cod);
     }
