@@ -1,0 +1,77 @@
+INFO - 2024-06-27 18:38:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 18:38:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 18:39:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 18:41:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 18:50:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 18:51:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 18:51:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 18:52:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 18:52:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-06-27 19:03:33 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbprocessos`, CONSTRAINT `fk_codservico` FOREIGN KEY (`codservico`) REFERENCES `tbprocessosservicos` (`cod`)) in D:\Projetos\intramet\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 D:\Projetos\intramet\system\Database\MySQLi\Connection.php(295): mysqli->query('UPDATE `tbproce...', 0)
+#1 D:\Projetos\intramet\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `tbproce...')
+#2 D:\Projetos\intramet\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `tbproce...')
+#3 D:\Projetos\intramet\system\Database\BaseBuilder.php(2462): CodeIgniter\Database\BaseConnection->query('UPDATE `tbproce...', Array, false)
+#4 D:\Projetos\intramet\system\Model.php(395): CodeIgniter\Database\BaseBuilder->update()
+#5 D:\Projetos\intramet\system\BaseModel.php(943): CodeIgniter\Model->doUpdate(NULL, Array)
+#6 D:\Projetos\intramet\system\Model.php(755): CodeIgniter\BaseModel->update(NULL, Array)
+#7 D:\Projetos\intramet\app\Controllers\Legalizacao.php(194): CodeIgniter\Model->update()
+#8 D:\Projetos\intramet\system\CodeIgniter.php(934): App\Controllers\Legalizacao->editProcesso('154')
+#9 D:\Projetos\intramet\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Legalizacao))
+#10 D:\Projetos\intramet\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 D:\Projetos\intramet\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2024-06-27 19:03:33 --> Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbprocessos`, CONSTRAINT `fk_codservico` FOREIGN KEY (`codservico`) REFERENCES `tbprocessosservicos` (`cod`))
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2462): CodeIgniter\Database\BaseConnection->query('UPDATE `tbprocessos` SET `datafim` = :datafim:, `observacao` = :observacao:, `codstatus` = :codstatus:, `numeroprocesso` = :numeroprocesso:, `codservico` = :codservico:
+WHERE `cod` = :cod:', [...], false)
+ 2 SYSTEMPATH\Model.php(395): CodeIgniter\Database\BaseBuilder->update()
+ 3 SYSTEMPATH\BaseModel.php(943): CodeIgniter\Model->doUpdate(null, [...])
+ 4 SYSTEMPATH\Model.php(755): CodeIgniter\BaseModel->update(null, [...])
+ 5 APPPATH\Controllers\Legalizacao.php(194): CodeIgniter\Model->update()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Legalizacao->editProcesso('154')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Legalizacao))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2024-06-27 19:04:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 19:04:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 19:04:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 19:04:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 19:04:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-06-27 19:04:45 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbprocessos`, CONSTRAINT `fk_codstatus` FOREIGN KEY (`codstatus`) REFERENCES `tbstatus` (`cod`)) in D:\Projetos\intramet\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 D:\Projetos\intramet\system\Database\MySQLi\Connection.php(295): mysqli->query('UPDATE `tbproce...', 0)
+#1 D:\Projetos\intramet\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `tbproce...')
+#2 D:\Projetos\intramet\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `tbproce...')
+#3 D:\Projetos\intramet\system\Database\BaseBuilder.php(2462): CodeIgniter\Database\BaseConnection->query('UPDATE `tbproce...', Array, false)
+#4 D:\Projetos\intramet\system\Model.php(395): CodeIgniter\Database\BaseBuilder->update()
+#5 D:\Projetos\intramet\system\BaseModel.php(943): CodeIgniter\Model->doUpdate(NULL, Array)
+#6 D:\Projetos\intramet\system\Model.php(755): CodeIgniter\BaseModel->update(NULL, Array)
+#7 D:\Projetos\intramet\app\Controllers\Legalizacao.php(209): CodeIgniter\Model->update()
+#8 D:\Projetos\intramet\system\CodeIgniter.php(934): App\Controllers\Legalizacao->editStatusProcesso('154')
+#9 D:\Projetos\intramet\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Legalizacao))
+#10 D:\Projetos\intramet\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 D:\Projetos\intramet\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2024-06-27 19:04:45 --> Cannot add or update a child row: a foreign key constraint fails (`intranet`.`tbprocessos`, CONSTRAINT `fk_codstatus` FOREIGN KEY (`codstatus`) REFERENCES `tbstatus` (`cod`))
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2462): CodeIgniter\Database\BaseConnection->query('UPDATE `tbprocessos` SET `codstatus` = :codstatus:
+WHERE `cod` = :cod:', [...], false)
+ 2 SYSTEMPATH\Model.php(395): CodeIgniter\Database\BaseBuilder->update()
+ 3 SYSTEMPATH\BaseModel.php(943): CodeIgniter\Model->doUpdate(null, [...])
+ 4 SYSTEMPATH\Model.php(755): CodeIgniter\BaseModel->update(null, [...])
+ 5 APPPATH\Controllers\Legalizacao.php(209): CodeIgniter\Model->update()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Legalizacao->editStatusProcesso('154')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Legalizacao))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2024-06-27 19:05:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 19:05:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 19:05:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 19:05:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 19:05:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 19:06:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 19:18:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 19:19:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-27 19:19:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
