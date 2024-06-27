@@ -132,6 +132,9 @@ include 'app/Helpers/legalizacao_helper.php';
                                                     case "Tramitando no Órgão":
                                                         $varCor = "primary";
                                                         break;
+                                                    case "Cliente Não deu Retorno":
+                                                        $varCor = "danger";
+                                                        break;
                                                 } ?>
                                                 <span class="alert alert-<?php echo $varCor; ?> mb-1" role="alert"><?php echo $stato['nome']; ?></span>
                                             <?php endif; ?>
@@ -285,16 +288,21 @@ include 'app/Helpers/legalizacao_helper.php';
                         <i class="fas fa-plus"></i> Novo Trâmite
                     </button>
 
-                    <a href='<?php echo base_url('Legalizacao/Processos'); ?>' class="btn btn-warning mb-4">
+                    <!--Mudar Status-->
+                    <button type="button" class="btn btn-warning mb-4" data-toggle="modal" data-target="#processoModalMudaStatus">
+                        <i class="fas fa-pen"></i> Mudar Status
+                    </button>
+
+                    <a href='<?php echo base_url('Legalizacao/Processos'); ?>' class="btn btn-info mb-4">
                         <i class="fas fa-reply"></i> Voltar
                     </a>
 
-                    <!-- Modal -->
+                    <!-- Modal Trâmite do Processo-->
                     <div class="modal fade" id="processoModal" tabindex="-1" role="dialog" aria-labelledby="processoModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title text-primary" id="processoModalLabel">Incluir Processo</h5>
+                                    <h5 class="modal-title text-primary" id="processoModalLabel">Novo Trâmite</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -325,6 +333,53 @@ include 'app/Helpers/legalizacao_helper.php';
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal Trâmite do Processo-->
+                    <div class="modal fade" id="processoModalMudaStatus" tabindex="-1" role="dialog" aria-labelledby="processoModalMudaStatusLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-primary" id="processoModalLabel">Mudar Status</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form action='<?php echo base_url('Legalizacao/editStatusProcesso') . '/' . $processo['cod']; ?>' method="post" enctype="multipart/form-data">
+
+                                        <input type="hidden" name="codEditProcesso" id="codEditProcesso" value='<?php echo $processo['cod']; ?>'>
+
+                                        <div class="">
+
+                                            <div class="form-group">
+                                                <label for="inputEditStatus">Status:</label>
+                                                <select id="inputEditStatus" name="inputEditStatus" class="form-control" required>
+                                                    <option value="">Selecione...</option>
+                                                    <option value="2">Em Andamento</option>
+                                                    <option value="12">Pendente com Cliente</option>
+                                                    <option value="1">Finalizado</option>
+                                                    <option value="13">Tramitando no Órgão</option>
+                                                    <option value="14">Cliente Não deu Retorno</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                            <button type="submit" class="btn btn-primary">Salvar</button>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
 
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h2 mb-1 text-dark"><strong>Trâmites: </strong></h1>
