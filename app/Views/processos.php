@@ -224,6 +224,9 @@ include 'app/Helpers/legalizacao_helper.php';
                                                                 case "Tramitando no Órgão":
                                                                     $varCor = "primary";
                                                                     break;
+                                                                case "Cliente Não deu Retorno":
+                                                                    $varCor = "danger";
+                                                                    break;
                                                             } ?>
                                                             <div class="alert alert-<?php echo $varCor; ?>" role="alert">
                                                                 <?php echo $stato['nome']; ?>
