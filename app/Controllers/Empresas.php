@@ -4,8 +4,8 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\tbempresasModel;
-use App\Models\TbenvolvidosModel;
-use App\Models\TbusuariosModel;
+use App\Models\tbenvolvidosModel;
+use App\Models\tbusuariosModel;
 
 class Empresas extends BaseController
 {
@@ -17,8 +17,8 @@ class Empresas extends BaseController
     public function __construct()
     {
         $this->tbEmpresas = new tbempresasModel();
-        $this->responsaveis = new TbenvolvidosModel();
-        $this->tbUsuarios = new TbusuariosModel();
+        $this->responsaveis = new tbenvolvidosModel();
+        $this->tbUsuarios = new tbusuariosModel();
 
     }
 

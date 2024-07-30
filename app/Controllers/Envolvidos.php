@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\TbenvolvidosModel;
+use App\Models\tbenvolvidosModel;
 use App\Models\tbsetoresModel;
 
 class Envolvidos extends BaseController

@@ -89,7 +89,7 @@
                     <div class="modal-body">Selecione "Logout" abaixo se você está pronto para finalizar essa sessão.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href='<?php echo base_url('Login/signOut'); ?>'>Logout</a>
+                        <a class="btn btn-primary" href='<?php echo site_url('Login/signOut'); ?>'>Logout</a>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <form action='<?php echo base_url('/Usuarios/AlterarSenha'); ?>' method="post">
+                    <form action='<?php echo site_url('/Usuarios/AlterarSenha'); ?>' method="post">
                         <input type="hidden" id="codUsuarioSenha" name="codUsuarioSenha" value='<?php echo session()->get('codigousuario'); ?>'>
                         <div class="modal-body">
                             <?php if (session()->getFlashdata('msg') !== null) : ?>

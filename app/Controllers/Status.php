@@ -37,14 +37,14 @@ class Status extends BaseController
 
         $this->statusModel->save($dados);
 
-        return redirect()->to(base_url('/Cadastros/Status'));
+        return redirect()->to(site_url('/Cadastros/Status'));
     }
 
     public function delStatus($cod)
     {
         $this->statusModel->where('cod', $cod)->delete();
 
-        return redirect()->to(base_url('/Cadastros/Status'));
+        return redirect()->to(site_url('/Cadastros/Status'));
     }
 
     public function editStatus()
@@ -57,7 +57,7 @@ class Status extends BaseController
         $this->statusModel->where('cod', $codEditStatus);
         $this->statusModel->update();
 
-        return redirect()->to(base_url('/Cadastros/Status'));
+        return redirect()->to(site_url('/Cadastros/Status'));
     }
 
     ######################### Funções em DESUSO #########################

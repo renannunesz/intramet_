@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\TbprocessosservicosModel;
+use App\Models\tbprocessosservicosModel;
 
 class Servicos extends BaseController
 {
@@ -11,7 +11,7 @@ class Servicos extends BaseController
 
     public function __construct()
     {
-        $this->tbservicos = new TbprocessosservicosModel();
+        $this->tbservicos = new tbprocessosservicosModel();
     }
 
 

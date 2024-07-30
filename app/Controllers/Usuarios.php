@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\TbusuariosModel;
-use App\Models\TbusuariosniveisModel;
+use App\Models\tbusuariosModel;
+use App\Models\tbusuariosniveisModel;
 
 class Usuarios extends BaseController
 {
@@ -13,8 +13,8 @@ class Usuarios extends BaseController
 
     public function __construct()
     {
-        $this->cadUsuarios = new TbusuariosModel();
-        $this->nivelUsuarios = new TbusuariosniveisModel();
+        $this->cadUsuarios = new tbusuariosModel();
+        $this->nivelUsuarios = new tbusuariosniveisModel();
     }
 
     public function index()
@@ -27,24 +27,30 @@ class Usuarios extends BaseController
 
     }
 
-    public function addStatus()
+    public function addUser()
     {
-        $novoStatus = $this->request->getPost('inputStatus');
+        $nomeUser = $this->request->getPost('inputNomeUsuario');
+        $nomeAcesso = $this->request->getPost('inputAcessoUsuario');
+        $senhaUser = $this->request->getPost('inputSenhaUsuario');
+        $tipoUser = $this->request->getPost('inputTipoUsuario');
 
         $dados = [
-            'nome' => $novoStatus,
+            'nome' => $nomeUser,
+            'usuario' => $nomeAcesso,
+            'senha' => $senhaUser,
+            'codnivelusuario' => $tipoUser
         ];
 
         $this->cadUsuarios->save($dados);
 
-        return redirect()->to(base_url('/Cadastros/Status'));
+        return redirect()->to(site_url('Cadastros/Usuarios'));
     }
 
     public function delStatus($cod)
     {
         $this->cadUsuarios->where('cod', $cod)->delete();
 
-        return redirect()->to(base_url('/Cadastros/Status'));
+        return redirect()->to(site_url('/Cadastros/Status'));
     }
 
     public function editStatus()
@@ -57,7 +63,7 @@ class Usuarios extends BaseController
         $this->cadUsuarios->where('cod', $codEditStatus);
         $this->cadUsuarios->update();
 
-        return redirect()->to(base_url('/Cadastros/Status'));
+        return redirect()->to(site_url('/Cadastros/Status'));
     }
 
     public function editSenha()
@@ -72,13 +78,13 @@ class Usuarios extends BaseController
             
             session()->setFlashdata('msg', 'Senhas não Correspondem');
 
-            //return redirect()->to(base_url('/Home'));
+            //return redirect()->to(site_url('/Home'));
             
         } else {
 
             $this->cadUsuarios->set('senha', $senhaNova)->where('cod', $usuarioCodigo)->update();
 
-            return redirect()->to(base_url('/Home'));
+            return redirect()->to(site_url('/Home'));
         }
 
     }

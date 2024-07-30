@@ -6,12 +6,12 @@ use App\Controllers\BaseController;
 use App\Models\tbclientesModel;
 use App\Models\tbempresasModel;
 use App\Models\tbenvolvidosModel;
-use App\Models\TbprocessosdetalhesModel;
-use App\Models\TbprocessosModel;
+use App\Models\tbprocessosdetalhesModel;
+use App\Models\tbprocessosModel;
 use App\Models\tbprocessosservicosModel;
 use App\Models\tbstatusModel;
 use App\Models\tbusuariosModel;
-use App\Models\TbprocessosdocumentosModel; 
+use App\Models\tbprocessosdocumentosModel; 
 use CodeIgniter\Commands\Utilities\Routes\FilterFinder;
 use CodeIgniter\Database\BaseUtils;
 use DateTime;
@@ -30,15 +30,15 @@ class Legalizacao extends BaseController
 
     public function __construct()
     {
-        $this->tbprocessos = new TbprocessosModel();
+        $this->tbprocessos = new tbprocessosModel();
         $this->tbempresas = new tbempresasModel();
         $this->tbclientes = new tbclientesModel();
         $this->tbprocessosservicos = new tbprocessosservicosModel();
         $this->tbenvolvidos = new tbenvolvidosModel();
         $this->tbstatus = new tbstatusModel();
-        $this->tbprocessosdetalhes = new TbprocessosdetalhesModel();
+        $this->tbprocessosdetalhes = new tbprocessosdetalhesModel();
         $this->tbusuarios = new tbusuariosModel();
-        $this->tbprocessosdocumentos = new TbprocessosdocumentosModel();
+        $this->tbprocessosdocumentos = new tbprocessosdocumentosModel();
     }
 
     public function codNovoProcesso()
@@ -161,7 +161,7 @@ class Legalizacao extends BaseController
         //dd($dadosTramite);
         $this->tbprocessosdetalhes->save($dadosTramite);        
 
-        return redirect()->to(base_url('/Legalizacao/Processos'));
+        return redirect()->to(site_url('/Legalizacao/Processos'));
     }
 
     public function editProcesso()
@@ -193,8 +193,8 @@ class Legalizacao extends BaseController
         $this->tbprocessos->where('cod', $codProcesso);
         $this->tbprocessos->update();
 
-        //return redirect()->to(base_url('/Legalizacao/Processos'));
-        return redirect()->to(base_url('Legalizacao/processosDetalhes') . '/' . $codProcesso);
+        //return redirect()->to(site_url('/Legalizacao/Processos'));
+        return redirect()->to(site_url('Legalizacao/processosDetalhes') . '/' . $codProcesso);
 
     }
 
@@ -202,20 +202,40 @@ class Legalizacao extends BaseController
     {
 
         $codProcesso = $this->request->getPost('codEditProcesso');
+
+        $codStatusOld = $this->tbprocessos->where('cod', $codProcesso)->findColumn('codstatus');
+        $nomeStatusOld = $this->tbstatus->where('cod', $codStatusOld)->findColumn('nome');
+
         $statusProcesso = $this->request->getPost('inputEditStatus');
+        $nomeStatusNew = $this->tbstatus->where('cod', $statusProcesso)->findColumn('nome');
 
         $this->tbprocessos->set('codstatus', $statusProcesso);
         $this->tbprocessos->where('cod', $codProcesso);
         $this->tbprocessos->update();
 
-        return redirect()->to(base_url('Legalizacao/processosDetalhes') . '/' . $codProcesso);
+        $tituloTramite = "Mudança de Status em: " . date("d/m/y");
+        $dataTramite = date("y-m-d");
+        $descTramite = "De: " . $nomeStatusOld[0] . " | Para: " . $nomeStatusNew[0] . "." ;
+        $codUsuario = $this->request->getPost('codUsuario');
+
+        $dadosTramite = [
+            'codprocesso'       => intval($codProcesso),
+            'titulotramite'     => $tituloTramite,
+            'datatramite'       => $dataTramite,
+            'desctramite'       => $descTramite,
+            'codusuariotramite' => $codUsuario
+        ];
+
+        $this->tbprocessosdetalhes->save($dadosTramite);
+
+        return redirect()->to(site_url('Legalizacao/processosDetalhes') . '/' . $codProcesso);
     }
 
     public function delProcesso($cod)
     {
         $this->tbprocessos->where('cod', $cod)->delete();
 
-        return redirect()->to(base_url('/Legalizacao/Processos'));
+        return redirect()->to(site_url('/Legalizacao/Processos'));
     }
 
     public function tempoDecorrido($data1, $data2)
@@ -246,7 +266,7 @@ class Legalizacao extends BaseController
         //dd($dadosTramite);
         $this->tbprocessosdetalhes->save($dadosTramite);
 
-        return redirect()->to(base_url('/Legalizacao/processosDetalhes/' . $codProcesso));
+        return redirect()->to(site_url('/Legalizacao/processosDetalhes/' . $codProcesso));
     }
 
     public function delTramiteProcesso($cod)
@@ -256,7 +276,7 @@ class Legalizacao extends BaseController
 
         $this->tbprocessosdetalhes->where('cod', $cod)->delete();
 
-        return redirect()->to(base_url('/Legalizacao/processosDetalhes/' . $codProcesso[0]));
+        return redirect()->to(site_url('/Legalizacao/processosDetalhes/' . $codProcesso[0]));
     }
 
     public function addDocProcesso()
@@ -286,18 +306,24 @@ class Legalizacao extends BaseController
 
         $this->tbprocessosdocumentos->save($documentosProcesso);
         
-        return redirect()->to(base_url('Legalizacao/processosDetalhes') . '/' . $codProcesso);
+        return redirect()->to(site_url('Legalizacao/processosDetalhes') . '/' . $codProcesso);
     }
 
-    public function delArqProcesso($cod)
+    public function delArqProcesso($codDoc, $codProcesso)
     {
-        $this->tbprocessos->set('nomedocprocesso', '');
-        $this->tbprocessos->set('caminhodocprocesso', '');
-        $this->tbprocessos->where('cod', $cod);
-        $this->tbprocessos->update();
+        $this->tbprocessosdocumentos->where('cod', $codDoc)->delete();
+        
+        $qtdDocumentos = $this->tbprocessosdocumentos->where('codprocesso', $codProcesso)->countAllResults();
 
-        $this->tbprocessosdocumentos->where('cod', $cod)->delete();
-        //return redirect()->to(base_url('/Legalizacao/Processos'));
-        return redirect()->to(base_url('Legalizacao/processosDetalhes') . '/' . $cod);
+        if ($qtdDocumentos > 0) {
+            $this->tbprocessos->set('nomedocprocesso', $qtdDocumentos);
+        } else {
+            $this->tbprocessos->set('nomedocprocesso', '');
+        }
+        $this->tbprocessos->where('cod', $codProcesso);
+        $this->tbprocessos->update();
+        
+        return redirect()->to(site_url('/Legalizacao/Processos'));
+        //return redirect()->to(site_url('Legalizacao/processosDetalhes') . '/' . $cod);
     }
 }

@@ -82,68 +82,68 @@ include 'app/Helpers/legalizacao_helper.php';
                                         </div>
                                         <div class="modal-body">
 
-                                            <form action="<?php echo base_url('Legalizacao/addProcesso') ?>" method="post">
+                                            <?= form_open('Legalizacao/addProcesso'); ?>
 
-                                                <input type="hidden" name="codProcesso" id="codProcesso" value='<?php echo $codnovoprocesso; ?>'>
-                                                <input type="hidden" name="codUsuario" id="codUsuario" value='<?php echo session()->get('codigousuario'); ?>'>
+                                            <input type="hidden" name="codProcesso" id="codProcesso" value='<?php echo $codnovoprocesso; ?>'>
+                                            <input type="hidden" name="codUsuario" id="codUsuario" value='<?php echo session()->get('codigousuario'); ?>'>
 
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6">
-                                                        <label for="inputDataInicio">Data Inicio</label>
-                                                        <input type="date" class="form-control" id="inputDataInicio" name="inputDataInicio" placeholder="Email">
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="inputServico">Serviço</label>
-                                                        <select id="inputServico" name="inputServico" class="form-control" required>
-                                                            <option value="">Selecione...</option>
-                                                            <?php foreach ($servicos as $servico) : ?>
-                                                                <option value='<?php echo (int)$servico['cod']; ?>'><?php echo $servico['nome']; ?></option>
-                                                            <?php endforeach; ?>
-                                                        </select>
-                                                    </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputDataInicio">Data Inicio</label>
+                                                    <input type="date" class="form-control" id="inputDataInicio" name="inputDataInicio" placeholder="Email">
                                                 </div>
-
-                                                <div class="form-group">
-                                                    <label for="inputCliente">Cliente</label>
-                                                    <select id="inputCliente" name="inputCliente" class="form-control" required>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputServico">Serviço</label>
+                                                    <select id="inputServico" name="inputServico" class="form-control" required>
                                                         <option value="">Selecione...</option>
-                                                        <?php foreach ($clientes as $cliente) : ?>
-                                                            <option value='<?php echo $cliente['cod']; ?>'><?php echo $cliente['nome']; ?></option>
+                                                        <?php foreach ($servicos as $servico) : ?>
+                                                            <option value='<?php echo (int)$servico['cod']; ?>'><?php echo $servico['nome']; ?></option>
                                                         <?php endforeach; ?>
                                                     </select>
                                                 </div>
+                                            </div>
 
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-3">
-                                                        <label for="inputContato">Contato</label>
-                                                        <input type="text" class="form-control" id="inputContato" name="inputContato" placeholder="Nome">
-                                                    </div>
-                                                    <div class="form-group col-md-3">
-                                                        <label for="inputFone">Fone</label>
-                                                        <input type="text" class="form-control" id="inputFone" name="inputFone" placeholder="Nº Telefone">
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="inputResponsavel">Origem Demanda</label>
-                                                        <select id="inputResponsavel" name="inputResponsavel" class="form-control">
-                                                            <option selected>Selecione...</option>
-                                                            <?php foreach ($envolvidos as $envolvido) : ?>
-                                                                <option value='<?php echo $envolvido['cod']; ?>'><?php echo $envolvido['nome']; ?></option>
-                                                            <?php endforeach; ?>
-                                                        </select>
-                                                    </div>
+                                            <div class="form-group">
+                                                <label for="inputCliente">Cliente</label>
+                                                <select id="inputCliente" name="inputCliente" class="form-control" required>
+                                                    <option value="">Selecione...</option>
+                                                    <?php foreach ($clientes as $cliente) : ?>
+                                                        <option value='<?php echo $cliente['cod']; ?>'><?php echo $cliente['nome']; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="form-group col-md-3">
+                                                    <label for="inputContato">Contato</label>
+                                                    <input type="text" class="form-control" id="inputContato" name="inputContato" placeholder="Nome">
                                                 </div>
-
-                                                <div class="form-group">
-                                                    <label for="inputTramite">Trâmite</label>
-                                                    <textarea class="form-control" id="inputTramite" name="inputTramite" rows="3" placeholder="Descrever trâmite."></textarea>
+                                                <div class="form-group col-md-3">
+                                                    <label for="inputFone">Fone</label>
+                                                    <input type="text" class="form-control" id="inputFone" name="inputFone" placeholder="Nº Telefone">
                                                 </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputResponsavel">Origem Demanda</label>
+                                                    <select id="inputResponsavel" name="inputResponsavel" class="form-control">
+                                                        <option selected>Selecione...</option>
+                                                        <?php foreach ($envolvidos as $envolvido) : ?>
+                                                            <option value='<?php echo $envolvido['cod']; ?>'><?php echo $envolvido['nome']; ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
                                                 </div>
+                                            </div>
 
-                                            </form>
+                                            <div class="form-group">
+                                                <label for="inputTramite">Trâmite</label>
+                                                <textarea class="form-control" id="inputTramite" name="inputTramite" rows="3" placeholder="Descrever trâmite."></textarea>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                <button type="submit" class="btn btn-primary">Salvar</button>
+                                            </div>
+
+                                            <?= form_close(); ?>
 
                                         </div>
                                     </div>
@@ -267,16 +267,12 @@ include 'app/Helpers/legalizacao_helper.php';
                                                         <i class="fas fa-pen"></i>
                                                     </a> -->
 
-                                                    <a href='<?php echo base_url('Legalizacao/processosDetalhes') . '/' . $processo['cod']; ?>' class="btn btn-primary btn-circle btn-sm">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
+                                                    <?php echo anchor('Legalizacao/processosDetalhes/' . $processo['cod'], '<i class="fas fa-search"></i>', ['class' => "btn btn-primary btn-circle btn-sm"]); ?>
 
                                                     <?php if (session()->get('nivel') <> 3) :  ?>
-                                                        <a href='<?php echo base_url('Legalizacao/delProcesso') . '/' . $processo['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
-                                                            <i class="fas fa-trash"></i>
-                                                        </a>
+                                                        <?php echo anchor('Legalizacao/delProcesso/' . $processo['cod'], '<i class="fas fa-trash"></i>', ['class' => "btn btn-danger btn-circle btn-sm"]); ?>
                                                     <?php endif; ?>
-
+                                                    
                                                     <?php if (strlen($processo['nomedocprocesso']) > 0) : ?>
                                                         <a title="Documentos" data-toggle="modal" data-target="#docsProcessoModal-<?php echo $processo['cod']; ?>" class="btn btn-info btn-circle btn-sm">
                                                             <i class="fas fa-file-alt"></i>
@@ -291,55 +287,55 @@ include 'app/Helpers/legalizacao_helper.php';
                                                         <div class="modal-content">
                                                             <div class="modal-body">
 
-                                                                <form action='<?php echo base_url('Legalizacao/editProcesso') . '/' . $processo['cod']; ?>' method="post" enctype="multipart/form-data">
+                                                                <?= form_open('Legalizacao/editProcesso/' . $processo['cod'], ['enctype' => 'multipart/form-data']); ?>
 
-                                                                    <input type="hidden" name="codEditProcesso" id="codEditProcesso" value='<?php echo $processo['cod']; ?>'>
+                                                                <input type="hidden" name="codEditProcesso" id="codEditProcesso" value='<?php echo $processo['cod']; ?>'>
 
-                                                                    <div class="">
+                                                                <div class="">
 
-                                                                        <div class="form-group">
-                                                                            <label for="inputEditStatus">Status</label>
-                                                                            <select id="inputEditStatus" name="inputEditStatus" class="form-control" required>
-                                                                                <option value="">Selecione...</option>
-                                                                                <option value="2">Em Andamento</option>
-                                                                                <option value="12">Pendente com Cliente</option>
-                                                                                <option value="1">Finalizado</option>
-                                                                                <option value="13">Tramitando no Órgão</option>
-                                                                                <option value="14">Cliente Não deu Retorno</option>
-                                                                            </select>
-                                                                        </div>
-
-                                                                        <div class="form-group">
-                                                                            <label for="inputEditNProcesso">Nº Processo</label>
-                                                                            <input type="text" class="form-control" id="inputEditNProcesso" name="inputEditNProcesso" value="<?php echo $processo['numeroprocesso']; ?>">
-                                                                        </div>
-
-                                                                        <div class="form-group">
-                                                                            <label for="inputServico">Serviço</label>
-                                                                            <select id="inputServico" name="inputServico" class="form-control" required>
-                                                                                <option value="">Selecione...</option>
-                                                                                <?php foreach ($servicos as $servico) : ?>
-                                                                                    <option value='<?php echo (int)$servico['cod']; ?>'><?php echo $servico['nome']; ?></option>
-                                                                                <?php endforeach; ?>
-                                                                            </select>
-                                                                        </div>
-
-                                                                        <div class="form-group">
-                                                                            <label for="">Caminho do arquivo:</label>
-                                                                            <div class="custom-file">
-                                                                                <input type="file" class="custom-file-input" id="customFile" name="arqcaminho">
-                                                                                <label class="custom-file-label" for="customFile" data-browse="Procurar">Selecione o Arquivo</label>
-                                                                            </div>
-                                                                        </div>
-
+                                                                    <div class="form-group">
+                                                                        <label for="inputEditStatus">Status</label>
+                                                                        <select id="inputEditStatus" name="inputEditStatus" class="form-control" required>
+                                                                            <option value="">Selecione...</option>
+                                                                            <option value="2">Em Andamento</option>
+                                                                            <option value="12">Pendente com Cliente</option>
+                                                                            <option value="1">Finalizado</option>
+                                                                            <option value="13">Tramitando no Órgão</option>
+                                                                            <option value="14">Cliente Não deu Retorno</option>
+                                                                        </select>
                                                                     </div>
 
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                                                    <div class="form-group">
+                                                                        <label for="inputEditNProcesso">Nº Processo</label>
+                                                                        <input type="text" class="form-control" id="inputEditNProcesso" name="inputEditNProcesso" value="<?php echo $processo['numeroprocesso']; ?>">
                                                                     </div>
 
-                                                                </form>
+                                                                    <div class="form-group">
+                                                                        <label for="inputServico">Serviço</label>
+                                                                        <select id="inputServico" name="inputServico" class="form-control" required>
+                                                                            <option value="">Selecione...</option>
+                                                                            <?php foreach ($servicos as $servico) : ?>
+                                                                                <option value='<?php echo (int)$servico['cod']; ?>'><?php echo $servico['nome']; ?></option>
+                                                                            <?php endforeach; ?>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label for="">Caminho do arquivo:</label>
+                                                                        <div class="custom-file">
+                                                                            <input type="file" class="custom-file-input" id="customFile" name="arqcaminho">
+                                                                            <label class="custom-file-label" for="customFile" data-browse="Procurar">Selecione o Arquivo</label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                                                </div>
+
+                                                                <?= form_close(); ?>
 
                                                             </div>
                                                         </div>
@@ -350,10 +346,10 @@ include 'app/Helpers/legalizacao_helper.php';
 
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
-                                                            <div class="modal-body">
+                                                            <div class="modal-body">                                                               
 
-                                                                <?php foreach ($processodocumentos as $documentos) if ($documentos['codprocesso'] == $processo['cod']) : ?>
-
+                                                                <?php foreach ($processodocumentos as $documentos) if ($documentos['codprocesso'] == $processo['cod']) : ?>                                                                    
+                                                                    
                                                                     <div class="container">
                                                                         <div class="row">
                                                                             <div class="col">
@@ -365,11 +361,11 @@ include 'app/Helpers/legalizacao_helper.php';
                                                                             <div class="col-md-auto">
                                                                                 <label for=""><strong>Opções:</strong></label>
                                                                                 <p>
-                                                                                    <a href='<?php echo base_url() . '/' . $documentos['caminhodocprocesso']; ?>' class="btn btn-info btn-circle btn-sm">
+                                                                                    <a href='<?php echo site_url() . '/' . $documentos['caminhodocprocesso']; ?>' class="btn btn-info btn-circle btn-sm">
                                                                                         <i class="fas fa-download"></i>
                                                                                     </a>
 
-                                                                                    <a href='<?php echo base_url('Legalizacao/delArqProcesso') . '/' . $documentos['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
+                                                                                    <a href='<?php echo site_url('Legalizacao/delArqProcesso') . '/' . $documentos['cod'] . '/' . $processo['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
                                                                                         <i class="fas fa-trash"></i>
                                                                                     </a>
                                                                                 </p>

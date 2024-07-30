@@ -22,9 +22,10 @@ class App extends BaseConfig
      * explicitly and never rely on auto-guessing, especially in production
      * environments.
      */
-    # public string $baseURL = 'http://localhost:8080/';
+    //public string $baseURL = 'http://localhost:8080/';
     //public string $baseURL = 'http://192.168.110.11/intramet/';
-    public string $baseURL = 'http://localhost/intramet/';
+    //public string $baseURL = 'http://localhost/intramet/';
+    public string $baseURL = 'http://77.37.41.136/intrametodos/';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.

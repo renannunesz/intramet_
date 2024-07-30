@@ -146,13 +146,13 @@ include 'app/Helpers/legalizacao_helper.php';
                                                 <div class="modal-content">
                                                     <div class="modal-body">
 
-                                                        <form action='<?php echo base_url('Legalizacao/editProcesso') . '/' . $processo['cod']; ?>' method="post" enctype="multipart/form-data">
+                                                        <?= form_open('Legalizacao/editProcesso/' . $processo['cod'], ['enctype' => 'multipart/form-data']); ?>
 
-                                                            <input type="hidden" name="codEditProcesso" id="codEditProcesso" value='<?php echo $processo['cod']; ?>'>
+                                                        <input type="hidden" name="codEditProcesso" id="codEditProcesso" value='<?php echo $processo['cod']; ?>'>
 
-                                                            <div class="">
+                                                        <div class="">
 
-                                                                <!--
+                                                            <!--
                                                                 <div class="form-group">
                                                                     <label for="inputEditStatus">Status</label>
                                                                     <select id="inputEditStatus" name="inputEditStatus" class="form-control" required>
@@ -166,29 +166,29 @@ include 'app/Helpers/legalizacao_helper.php';
                                                                 </div>
                                                                 -->
 
-                                                                <div class="form-group">
-                                                                    <label for="inputEditNProcesso">Nº Processo</label>
-                                                                    <input type="text" class="form-control" id="inputEditNProcesso" name="inputEditNProcesso" value="<?php echo $processo['numeroprocesso']; ?>">
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label for="inputServico">Serviço</label>
-                                                                    <select id="inputServico" name="inputServico" class="form-control" required>
-                                                                        <option value="">Selecione...</option>
-                                                                        <?php foreach ($servicos as $servico) : ?>
-                                                                            <option value='<?php echo (int)$servico['cod']; ?>'><?php echo $servico['nome']; ?></option>
-                                                                        <?php endforeach; ?>
-                                                                    </select>
-                                                                </div>
-
+                                                            <div class="form-group">
+                                                                <label for="inputEditNProcesso">Nº Processo</label>
+                                                                <input type="text" class="form-control" id="inputEditNProcesso" name="inputEditNProcesso" value="<?php echo $processo['numeroprocesso']; ?>">
                                                             </div>
 
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                                <button type="submit" class="btn btn-primary">Salvar</button>
+                                                            <div class="form-group">
+                                                                <label for="inputServico">Serviço</label>
+                                                                <select id="inputServico" name="inputServico" class="form-control" required>
+                                                                    <option value="">Selecione...</option>
+                                                                    <?php foreach ($servicos as $servico) : ?>
+                                                                        <option value='<?php echo (int)$servico['cod']; ?>'><?php echo $servico['nome']; ?></option>
+                                                                    <?php endforeach; ?>
+                                                                </select>
                                                             </div>
 
-                                                        </form>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                            <button type="submit" class="btn btn-primary">Salvar</button>
+                                                        </div>
+
+                                                        <?= form_close(); ?>
 
                                                     </div>
                                                 </div>
@@ -201,28 +201,28 @@ include 'app/Helpers/legalizacao_helper.php';
                                                 <div class="modal-content">
                                                     <div class="modal-body">
 
-                                                        <form action='<?php echo base_url('Legalizacao/addDocProcesso') . '/' . $processo['cod']; ?>' method="post" enctype="multipart/form-data">
+                                                        <?= form_open('Legalizacao/addDocProcesso/' . $processo['cod'], ['enctype' => 'multipart/form-data']); ?>
 
-                                                            <input type="hidden" name="codEditProcesso" id="codEditProcesso" value='<?php echo $processo['cod']; ?>'>
+                                                        <input type="hidden" name="codEditProcesso" id="codEditProcesso" value='<?php echo $processo['cod']; ?>'>
 
-                                                            <div class="">
+                                                        <div class="">
 
-                                                                <div class="form-group">
-                                                                    <label for="">Caminho do arquivo:</label>
-                                                                    <div class="custom-file">
-                                                                        <input type="file" class="custom-file-input" id="customFile" name="arqcaminho">
-                                                                        <label class="custom-file-label" for="customFile" data-browse="Procurar">Selecione o Arquivo</label>
-                                                                    </div>
+                                                            <div class="form-group">
+                                                                <label for="">Caminho do arquivo:</label>
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="customFile" name="arqcaminho">
+                                                                    <label class="custom-file-label" for="customFile" data-browse="Procurar">Selecione o Arquivo</label>
                                                                 </div>
-
                                                             </div>
 
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                                <button type="submit" class="btn btn-primary">Salvar</button>
-                                                            </div>
+                                                        </div>
 
-                                                        </form>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                            <button type="submit" class="btn btn-primary">Salvar</button>
+                                                        </div>
+
+                                                        <?= form_close(); ?>
 
                                                     </div>
                                                 </div>
@@ -248,11 +248,11 @@ include 'app/Helpers/legalizacao_helper.php';
                                                                     <div class="col-md-auto">
                                                                         <label for=""><strong>Opções:</strong></label>
                                                                         <p>
-                                                                            <a href='<?php echo base_url() . '/' . $documentos['caminhodocprocesso']; ?>' class="btn btn-info btn-circle btn-sm">
+                                                                            <a href='<?php echo site_url() . '/' . $documentos['caminhodocprocesso']; ?>' class="btn btn-info btn-circle btn-sm">
                                                                                 <i class="fas fa-download"></i>
                                                                             </a>
 
-                                                                            <a href='<?php echo base_url('Legalizacao/delArqProcesso') . '/' . $documentos['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
+                                                                            <a href='<?php echo site_url('Legalizacao/delArqProcesso') . '/' . $documentos['cod'] . '/' . $processo['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
                                                                                 <i class="fas fa-trash"></i>
                                                                             </a>
                                                                         </p>
@@ -295,9 +295,8 @@ include 'app/Helpers/legalizacao_helper.php';
                         <i class="fas fa-pen"></i> Mudar Status
                     </button>
 
-                    <a href='<?php echo base_url('Legalizacao/Processos'); ?>' class="btn btn-info mb-4">
-                        <i class="fas fa-reply"></i> Voltar
-                    </a>
+                    <?php echo anchor('Legalizacao/Processos', '<i class="fas fa-reply"></i> Voltar', ['class' => "btn btn-info mb-4"]); ?>
+
 
                     <!-- Modal Trâmite do Processo-->
                     <div class="modal fade" id="processoModal" tabindex="-1" role="dialog" aria-labelledby="processoModalLabel" aria-hidden="true">
@@ -311,24 +310,24 @@ include 'app/Helpers/legalizacao_helper.php';
                                 </div>
                                 <div class="modal-body">
 
-                                    <form action='<?php echo base_url('Legalizacao/addTramiteProcesso'); ?>' method="post">
+                                    <?= form_open('Legalizacao/addTramiteProcesso'); ?>
 
-                                        <input type="hidden" name="codProcesso" id="codProcesso" value='<?php echo $processo['cod']; ?>'>
-                                        <input type="hidden" name="codUsuario" id="codUsuario" value='<?php echo session()->get('codigousuario'); ?>'>
+                                    <input type="hidden" name="codProcesso" id="codProcesso" value='<?php echo $processo['cod']; ?>'>
+                                    <input type="hidden" name="codUsuario" id="codUsuario" value='<?php echo session()->get('codigousuario'); ?>'>
 
-                                        <div class="form-row">
-                                            <div class="form-group col-12">
-                                                <label for="inputTramite">Trâmite:</label>
-                                                <textarea class="form-control" id="inputTramite" name="inputTramite" rows="3" placeholder="Descreva o novo trâmite."></textarea>
-                                            </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label for="inputTramite">Trâmite:</label>
+                                            <textarea class="form-control" id="inputTramite" name="inputTramite" rows="3" placeholder="Descreva o novo trâmite."></textarea>
                                         </div>
+                                    </div>
 
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                            <button type="submit" class="btn btn-primary">Salvar</button>
-                                        </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                    </div>
 
-                                    </form>
+                                    <?= form_close(); ?>
 
                                 </div>
 
@@ -348,9 +347,10 @@ include 'app/Helpers/legalizacao_helper.php';
                                 </div>
                                 <div class="modal-body">
 
-                                    <form action='<?php echo base_url('Legalizacao/editStatusProcesso') . '/' . $processo['cod']; ?>' method="post" enctype="multipart/form-data">
+                                    <form action='<?php echo site_url('Legalizacao/editStatusProcesso') . '/' . $processo['cod']; ?>' method="post" enctype="multipart/form-data">
 
                                         <input type="hidden" name="codEditProcesso" id="codEditProcesso" value='<?php echo $processo['cod']; ?>'>
+                                        <input type="hidden" name="codUsuario" id="codUsuario" value='<?php echo session()->get('codigousuario'); ?>'>
 
                                         <div class="">
 
@@ -381,8 +381,6 @@ include 'app/Helpers/legalizacao_helper.php';
                         </div>
                     </div>
 
-
-
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h2 mb-1 text-dark"><strong>Trâmites: </strong></h1>
                     </div>
@@ -405,7 +403,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                                     Usuário: <?php foreach ($usuarios as $usuario) if ($usuario['cod'] == $processodetalhe['codusuariotramite']) : echo $usuario['nome'];
                                                                 endif; ?></small>
                                                 <?php if (session()->get('nivel') <> 3) :  ?>
-                                                    <a href='<?php echo base_url('Legalizacao/delTramiteProcesso') . '/' . $processodetalhe['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
+                                                    <a href='<?php echo site_url('Legalizacao/delTramiteProcesso') . '/' . $processodetalhe['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 <?php endif; ?>

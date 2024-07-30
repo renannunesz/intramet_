@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\TbatasModel;
-use App\Models\TbenvolvidosModel;
+use App\Models\tbatasModel;
+use App\Models\tbenvolvidosModel;
 use App\Models\tbsetoresModel;
 use App\Models\tbstatusModel;
 use App\Models\tbtopicosdetalhesModel;
@@ -34,7 +34,7 @@ class Topicos extends BaseController
 
         $this->setorModel = new tbsetoresModel();
 
-        $this->atasModel = new TbatasModel();
+        $this->atasModel = new tbatasModel();
 
         $this->topicosDetalhesModel = new tbtopicosdetalhesModel();
     }

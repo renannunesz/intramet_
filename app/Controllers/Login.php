@@ -22,6 +22,7 @@ class Login extends BaseController
 
     public function signIn()
     {
+        ///dd(base_url('Login/signIn'));
         $usuario = $this->request->getPost('nomeUsuario');
         $senha = $this->request->getPost('senhaUsuario');
         $user = $this->usuariosModel->where('usuario', $usuario)->first();
@@ -59,6 +60,6 @@ class Login extends BaseController
         session()->set('user' , '');    
         session_unset();
         session_destroy();
-        return redirect('Login');
+        return redirect('/');
     }
 }

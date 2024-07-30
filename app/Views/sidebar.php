@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href='<?php echo base_url('Home'); ?>'>
+        <a class="nav-link" href='<?php echo site_url('Home'); ?>'>
             <i class="fas fa-fw fa-bookmark"></i>
             <span> Inicio </span></a>
     </li>
@@ -36,12 +36,12 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Cadastros Gerais:</h6>
-                <a class="collapse-item" href='<?php echo base_url('Cadastros/Usuarios'); ?>'>Usuários</a>
-                <a class="collapse-item" href='<?php echo base_url('Cadastros/Clientes'); ?>'>Clientes</a>                
+                <a class="collapse-item" href='<?php echo site_url('Cadastros/Usuarios'); ?>'>Usuários</a>
+                <a class="collapse-item" href='<?php echo site_url('Cadastros/Clientes'); ?>'>Clientes</a>                
                 <a class="collapse-item" href="#">Envolvidos</a>
                 <a class="collapse-item" href="#">Setores</a>
-                <a class="collapse-item" href='<?php echo base_url('Cadastros/Status'); ?>'>Status</a>
-                <a class="collapse-item" href='<?php echo base_url('Cadastros/Servicos'); ?>'>Serviços Processos</a>
+                <a class="collapse-item" href='<?php echo site_url('Cadastros/Status'); ?>'>Status</a>
+                <a class="collapse-item" href='<?php echo site_url('Cadastros/Servicos'); ?>'>Serviços Processos</a>
             </div>
         </div>
     </li>
@@ -58,6 +58,22 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTecnologia" aria-expanded="true" aria-controls="collapseTecnologia">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Tecnologia (TI)</span>
+        </a>
+        <div id="collapseTecnologia" class="collapse" aria-labelledby="headingFisCon" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Solicitações:</h6>
+                <a class="collapse-item" href='<?php echo site_url('TI/Solicitacoes'); ?>'>Acompanhamento</a>
+                <a class="collapse-item" href='<?php echo site_url('TI/Finalizados'); ?>'>Finalizados</a>
+            </div>
+        </div>
+    </li>
+
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFisCon" aria-expanded="true" aria-controls="collapseFisCon">
             <i class="fas fa-fw fa-folder"></i>
             <span>FisCon</span>
@@ -65,13 +81,13 @@
         <div id="collapseFisCon" class="collapse" aria-labelledby="headingFisCon" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Cronogramas:</h6>
-                <a class="collapse-item" href='<?php echo base_url('Fiscon/Empresas'); ?>'>Empresas (Cronograma)</a>
+                <a class="collapse-item" href='<?php echo site_url('Fiscon/Empresas'); ?>'>Empresas (Cronograma)</a>
                 <a class="collapse-item" href="#">Contábil</a>
-                <a class="collapse-item" href='<?php echo base_url('Fiscon/CronoFiscal'); ?>'>Fiscal</a>
+                <a class="collapse-item" href='<?php echo site_url('#'); //Fiscon/CronoFiscal?>'>Fiscal</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Acompanhamentos:</h6>
                 <a class="collapse-item" href="#">Cronograma Contábil</a>
-                <a class="collapse-item" href='<?php echo base_url('/Fiscon/Acompanhamentos/CronoFiscal'); ?>'>Cronograma Fiscal</a>        
+                <a class="collapse-item" href='<?php echo site_url('#'); ///Fiscon/Acompanhamentos/CronoFiscal?>'>Cronograma Fiscal</a>        
                 <a class="collapse-item" href="#">RDA</a>
             </div>
         </div>
@@ -113,8 +129,8 @@
         <div id="collapseLegalização" class="collapse" aria-labelledby="headingLegalização" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Processos:</h6>
-                <a class="collapse-item" href='<?php echo base_url('Legalizacao/Processos'); ?>'>Controle</a>
-                <a class="collapse-item" href='<?php echo base_url('Legalizacao/Finalizados'); ?>'>Finalizados</a>
+                <?php echo anchor('Legalizacao/Processos', "Controle", ['class' => "collapse-item"]); ?>
+                <?php echo anchor('Legalizacao/Finalizados', "Finalizados", ['class' => "collapse-item"]); ?>
             </div>
         </div>
     </li>
@@ -142,8 +158,11 @@
         <div id="collapseUtil" class="collapse" aria-labelledby="headingCRM" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Arquivos:</h6>
-                <a class="collapse-item" href='<?php echo base_url('/Utilitarios/arqAntaqMensais'); ?>'>ANTAQ - BP/DRE Mensal</a>
-                <a class="collapse-item" href='<?php echo base_url('/Utilitarios/arqAntaqAnuais'); ?>'>ANTAQ - BP/DRE Anual</a>
+                <a class="collapse-item" href='<?php echo site_url('/Utilitarios/arqAntaqMensais'); ?>'>ANTAQ - BP/DRE Mensal</a>
+                <a class="collapse-item" href='<?php echo site_url('/Utilitarios/arqAntaqAnuais'); ?>'>ANTAQ - BP/DRE Anual</a>
+                <h6 class="collapse-header">Leitor XML/NF:</h6>
+                <a class="collapse-item" href='<?php echo site_url('#'); ?>'>XML NFe Comércio</a>
+                <a class="collapse-item" href='<?php echo site_url('#'); ?>'>XML NFSe Serviço</a>
             </div>
         </div>
     </li> 

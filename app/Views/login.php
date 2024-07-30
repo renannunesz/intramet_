@@ -59,7 +59,7 @@
 
                                         <h1 class="h4 text-gray-900 mb-4">Intranet Grupo Métodos</h1>
                                     </div>
-                                    <form class="user" action="<?php echo base_url('Login/signIn') ?>" method="POST">
+                                    <?= form_open('Login/signIn',['class' => 'user']); ?>
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="nomeUsuario" name="nomeUsuario" aria-describedby="UsuarioHelp" placeholder="Usuário">
                                         </div>
@@ -75,11 +75,12 @@
 
                                         <input type="submit" class="btn btn-primary btn-user btn-block" value="Login">
 
-                                    </form>
+                                    <?= form_close(); ?>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Esqueceu sua Senha?</a>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -93,21 +94,21 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="assets/theme/vendor/jquery/jquery.min.js"></script>
-    <script src="assets/theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src='assets/theme/vendor/jquery/jquery.min.js'></script>
+    <script src='assets/theme/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="assets/theme/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src='assets/theme/vendor/jquery-easing/jquery.easing.min.js'></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="assets/theme/js/sb-admin-2.min.js"></script>
+    <script src='assets/theme/js/sb-admin-2.min.js'></script>
 
     <!-- Page level plugins -->
-    <script src="assets/theme/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="assets/theme/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src='assets/theme/vendor/datatables/jquery.dataTables.min.js'></script>
+    <script src='assets/theme/vendor/datatables/dataTables.bootstrap4.min.js'></script>
 
     <!-- Page level custom scripts -->
-    <script src="assets/theme/js/demo/datatables-demo.js"></script>
+    <script src='assets/theme/js/demo/datatables-demo.js'></script>
 </body>
 
 </html>

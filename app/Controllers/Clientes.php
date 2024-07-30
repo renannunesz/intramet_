@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\TbclientesModel;
+use App\Models\tbclientesModel;
 
 class Clientes extends BaseController
 {

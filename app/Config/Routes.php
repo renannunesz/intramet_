@@ -114,7 +114,7 @@ $routes->post('/Legalizacao/addDocProcesso/(:num)',     'Legalizacao::addDocProc
 $routes->post('/Legalizacao/editStatusProcesso/(:num)', 'Legalizacao::editStatusProcesso/$1');
 $routes->post('/Legalizacao/addTramiteProcesso',        'Legalizacao::addTramiteProcesso');
 $routes->get('/Legalizacao/delTramiteProcesso/(:num)',  'Legalizacao::delTramiteProcesso/$1');
-$routes->get('/Legalizacao/delArqProcesso/(:num)',      'Legalizacao::delArqProcesso/$1');
+$routes->get('/Legalizacao/delArqProcesso/(:num)/(:num)',      'Legalizacao::delArqProcesso/$1/$2');
 
 //Cadastro - Clientes
 $routes->get('/Cadastros/Clientes', 'Clientes::index');
@@ -146,9 +146,18 @@ $routes->post('/Utilitarios/arqAntaqAnuais', 'Utilitarios::arqAntaqAnuais');
 $routes->post('/Utilitarios/expAntaqAnuais', 'Utilitarios::expAntaqAnuais');
 
 //Usuários
-$routes->get('/Cadastros/Usuarios',            'Usuarios::index');
-$routes->post('/Usuarios/AlterarSenha',         'Usuarios::editSenha');
+$routes->get('/Cadastros/Usuarios',        'Usuarios::index');
+$routes->post('/Usuarios/AlterarSenha',    'Usuarios::editSenha');
+$routes->post('/Usuarios/addUser',         'Usuarios::addUser');
 
+//T.I.
+$routes->get('/TI/Solicitacoes',                'TI::index');
+$routes->post('/TI/Novo',                       'TI::novoChamado');
+$routes->post('/TI/definirResponsavel',         'TI::definirResponsavel'); 
+$routes->post('/TI/editarChamado',              'TI::editarChamado');
+$routes->get('/TI/deletarChamado/(:num)',       'TI::deletarChamado/$1');
+$routes->get('/TI/finalizarChamado/(:num)',     'TI::finalizarChamado/$1');
+$routes->get('/TI/Finalizados',                 'TI::chamadosFinalizados');
 
 /*
  * --------------------------------------------------------------------
