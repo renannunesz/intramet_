@@ -34,12 +34,12 @@ class Utilitarios extends BaseController
     {
 
         $arquivo = $this->request->getFile('arqcaminho');
-        $caminhoPasta = ROOTPATH . 'assets\uploads';
+        $caminhoPasta = ROOTPATH . "assets" . "/" . "uploads";
 
         if (isset($arquivo)) {
 
             $arquivo->move(ROOTPATH . 'assets/uploads');
-            $caminho_arquivo = $caminhoPasta . '/' . $arquivo->getName();
+            $caminho_arquivo = $caminhoPasta . "/" . $arquivo->getName();
 
             return view('antaqmensais', [
                 'dadosexcel' => $this->ler_excel($caminho_arquivo),
@@ -60,7 +60,7 @@ class Utilitarios extends BaseController
         $anoReferencia = $this->request->getPost('inputAno');
         $mesReferencia = $this->request->getPost('inputMes');
         $caminhoArquivo = $this->request->getPost('arqcaminho');
-        $nomeArquivo = "BPM_CODERN_" . $anoReferencia . "_" . $mesReferencia .  ".xml";
+        $nomeArquivo = "ARQ_CODERN_" . $anoReferencia . "_" . $mesReferencia .  ".xml";
         $arqExcel = $this->ler_excel($caminhoArquivo);
         $indiceCampo = 0;
         $arrayContasValores = [];
@@ -73,7 +73,7 @@ class Utilitarios extends BaseController
         $contas = $xml->addChild('contas');
 
         foreach ($arqExcel as $dados) {
-            if (strlen($dados[0]) <= 7) {
+            if (strlen($dados[0]) <= 15) {
                 $classConta = $dados[0];
                 $valorConta = str_replace(",", "", $dados[2]);
                 $conta = $contas->addChild('conta');
@@ -106,12 +106,12 @@ class Utilitarios extends BaseController
     {
 
         $arquivo = $this->request->getFile('arqcaminho');
-        $caminhoPasta = ROOTPATH . 'assets\uploads';
+        $caminhoPasta = ROOTPATH . "assets" . "/" . "uploads";
 
         if (isset($arquivo)) {
 
             $arquivo->move(ROOTPATH . 'assets/uploads');
-            $caminho_arquivo = $caminhoPasta . '/' . $arquivo->getName();
+            $caminho_arquivo = $caminhoPasta . "/" . $arquivo->getName();
 
             return view('antaqanuais', [
                 'dadosexcel' => $this->ler_excel($caminho_arquivo),
@@ -142,7 +142,7 @@ class Utilitarios extends BaseController
         $contas = $xml->addChild('contas');
 
         foreach ($arqExcel as $dados) {
-            if (strlen($dados[0]) <= 10) {
+            if (strlen($dados[0]) <= 15) {
                 $classConta = $dados[0];
                 $valorConta = str_replace(",", "", $dados[2]);
                 $conta = $contas->addChild('conta');

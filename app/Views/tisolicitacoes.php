@@ -92,7 +92,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                                         <input type="date" class="form-control" id="inputDataInicio" name="inputDataInicio" placeholder="Email">
                                                     </div>
                                                     <div class="form-group col-md-6">
-                                                        <label for="inputTipoChamado">Tipo</label>
+                                                        <label for="inputTipoChamado">Ferramenta</label>
                                                         <select id="inputTipoChamado" name="inputTipoChamado" class="form-control" required>
                                                             <option value="">Selecione...</option>
                                                             <?php foreach ($tiposolicitacao as $tipo) : ?>
@@ -156,6 +156,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                             <th>Responsável</th>
                                             <th>Ord. Prioridade</th>
                                             <th>Status</th>
+                                            <th>Tempo Tarefa</th>
                                             <th>Opções</th>
                                         </tr>
                                     </thead>
@@ -169,6 +170,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                             <th>Responsável</th>
                                             <th>Ord. Prioridade</th>
                                             <th>Status</th>
+                                            <th>Tempo Tarefa</th>
                                             <th>Opções</th>
                                         </tr>
                                     </tfoot>
@@ -184,6 +186,9 @@ include 'app/Helpers/legalizacao_helper.php';
                                                 case 9:
                                                     $bgtx = "bg-primary text-white";
                                                     break;
+                                                case 15:
+                                                    $bgtx = "bg-warning text-dark";
+                                                    break;                                                    
                                             }
                                             ?>
                                             <tr>
@@ -196,22 +201,29 @@ include 'app/Helpers/legalizacao_helper.php';
                                                     endif; ?></td>
                                                 <td><?php foreach ($usuarios as $usuario) if ($usuario['cod'] == $chamado['codresponsavel']) : echo $usuario['nome'];
                                                     endif; ?></td>
-                                                <td><?php echo $chamado['ordemprioridade'] == 0 ? 'Normal' : $chamado['ordemprioridade']; ?></td>
-                                                <td class="<?php echo $bgtx; ?>"><?php foreach ($status as $stato) if ($stato['cod'] == $chamado['codstatus']) : echo $stato['nome'];
-                                                                                    endif; ?></td>
                                                 <td>
-                                                    <a title="Definir Responsável" data-toggle="modal" data-target="#defResponsavel-<?php echo $chamado['cod']; ?>" class="btn btn-info btn-circle btn-sm">
-                                                        <i class="fas fa-user-check"></i>
-                                                    </a>
-                                                    <a title="Editar" data-toggle="modal" data-target="#editarChamado-<?php echo $chamado['cod']; ?>" class="btn btn-warning btn-circle btn-sm">
-                                                        <i class="fas fa-pen"></i>
-                                                    </a>
-                                                    <a title="Deletar" href='<?php echo site_url('TI/deletarChamado') . '/' . $chamado['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
-                                                    <a title="Finalizar" href='<?php echo site_url('TI/finalizarChamado') . '/' . $chamado['cod']; ?>' class="btn btn-success btn-circle btn-sm">
-                                                        <i class="fas fa-check"></i>
-                                                    </a>
+                                                    <?php echo $chamado['ordemprioridade'] == 0 ? 'Normal' : $chamado['ordemprioridade']; ?>
+                                                </td>
+                                                <td class="<?php echo $bgtx; ?>"><?php foreach ($status as $stato) if ($stato['cod'] == $chamado['codstatus']) : echo $stato['nome'];
+                                                                                    endif; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo tempoDecorrido($chamado['datainicio'], date('Y-m-d')) . " Dia(s)"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php if (session()->get('nivel') <> 3) :  ?>
+                                                        
+                                                        <a title="Definir Responsável" data-toggle="modal" data-target="#defResponsavel-<?php echo $chamado['cod']; ?>" href="#"><i class="fas fa-user-check"></i></a>                                                    
+                                                        <a title="Prioridade" data-toggle="modal" data-target="#mudarPrioridade-<?php echo $chamado['cod']; ?>" href="#"><i class="fas fa-sync"></i></i></a>
+                                                        <a title="Status" data-toggle="modal" data-target="#mudarStatus-<?php echo $chamado['cod']; ?>" href="#"><i class="fas fa-forward"></i></i></a>
+                                                        <a title="Finalizar" href='<?php echo site_url('TI/finalizarChamado') . '/' . $chamado['cod']; ?>'><i class="fas fa-check"></i></i></a>
+                                                        <a title="Deletar" href='<?php echo site_url('TI/deletarChamado') . '/' . $chamado['cod']; ?>'><i class="fas fa-trash"></i></a>
+
+                                                    <?php endif; ?>
+
+                                                    <a title="Editar" data-toggle="modal" data-target="#editarChamado-<?php echo $chamado['cod']; ?>" href="#"><i class="fas fa-pen"></i></a>
+
+
                                                 </td>
 
                                                 <div class="modal fade" id="defResponsavel-<?php echo $chamado['cod']; ?>" tabindex="-1" role="dialog" aria-labelledby="defResponsavelModalLabel" aria-hidden="true">
@@ -285,6 +297,73 @@ include 'app/Helpers/legalizacao_helper.php';
                                                                         <div class="form-group">
                                                                             <label for="inputDescricao">Descrição</label>
                                                                             <textarea class="form-control" id="inputDescricao" name="inputDescricao" rows="3"><?php echo $chamado['descricao']; ?></textarea>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                                                    </div>
+
+                                                                </form>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal fade" id="mudarPrioridade-<?php echo $chamado['cod']; ?>" tabindex="-1" role="dialog" aria-labelledby="mudarPrioridadeModalLabel" aria-hidden="true">
+
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+
+                                                                <form action='<?php echo site_url('TI/mudarPrioridade'); ?>' method="post" enctype="multipart/form-data">
+
+                                                                    <input type="hidden" name="codChamado" id="codChamado" value='<?php echo $chamado['cod']; ?>'>
+
+                                                                    <div class="">
+
+                                                                        <div class="form-group">
+                                                                            <label for="inputTipoChamado">Definir Prioridade</label>
+                                                                            <input type="text" class="form-control" id="inputOrdemPrioridade" name="inputOrdemPrioridade" placeholder="0 (Zero) para prioridade Normal">
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                                                    </div>
+
+                                                                </form>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal fade" id="mudarStatus-<?php echo $chamado['cod']; ?>" tabindex="-1" role="dialog" aria-labelledby="mudarStatusModalLabel" aria-hidden="true">
+
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+
+                                                                <form action='<?php echo site_url('TI/mudarStatus'); ?>' method="post" enctype="multipart/form-data">
+
+                                                                    <input type="hidden" name="codChamado" id="codChamado" value='<?php echo $chamado['cod']; ?>'>
+
+                                                                    <div class="">
+
+                                                                        <div class="form-group">
+                                                                            <label for="inputCodStatus">Status</label>
+                                                                            <select id="inputCodStatus" name="inputCodStatus" class="form-control" required>
+                                                                                <option value="">Selecione...</option>
+                                                                                <?php foreach ($status as $stato) : ?>
+                                                                                    <option value='<?php echo (int)$stato['cod']; ?>'><?php echo $stato['nome']; ?></option>
+                                                                                <?php endforeach; ?>
+                                                                            </select>
                                                                         </div>
 
                                                                     </div>

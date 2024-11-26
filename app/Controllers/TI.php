@@ -33,7 +33,7 @@ class TI extends BaseController
         } else {
             return view('tisolicitacoes', [
                     'chamados' => $this->tisolicitacoesModel->whereNotIn('codstatus', [1])->find(),
-                    'status' => $this->statusModel->find(),
+                    'status' => $this->statusModel->orderBy('nome','ASC')->find(),
                     'usuarios' => $this->usuariosModel->orderBy('nome','ASC')->find(),
                     'tiposolicitacao' => $this->tipoSolicitacaoModel->find()
                 ]);
@@ -113,5 +113,27 @@ class TI extends BaseController
             'tiposolicitacao' => $this->tipoSolicitacaoModel->find()
         ]);
     }
+
+    public function mudarPrioridade()
+    {
+        $codChamado = $this->request->getPost('codChamado');
+        $numeroOrdemPrioridade = $this->request->getPost('inputOrdemPrioridade');
+
+        $this->tisolicitacoesModel->set('ordemprioridade', $numeroOrdemPrioridade)->where('cod', $codChamado)->update();
+
+        return redirect()->to(site_url('TI/Solicitacoes'));
+    }
+
+    public function mudarStatus()
+    {
+        $codChamado = $this->request->getPost('codChamado');
+        $codStatus = $this->request->getPost('inputCodStatus');
+
+        $this->tisolicitacoesModel->set('codstatus', $codStatus)->where('cod', $codChamado)->update();
+
+        return redirect()->to(site_url('TI/Solicitacoes'));
+    }
+
+    
 
 }

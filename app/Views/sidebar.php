@@ -37,7 +37,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Cadastros Gerais:</h6>
                 <a class="collapse-item" href='<?php echo site_url('Cadastros/Usuarios'); ?>'>Usuários</a>
-                <a class="collapse-item" href='<?php echo site_url('Cadastros/Clientes'); ?>'>Clientes</a>                
+                <a class="collapse-item" href='<?php echo site_url('Cadastros/Clientes'); ?>'>Clientes</a>
                 <a class="collapse-item" href="#">Envolvidos</a>
                 <a class="collapse-item" href="#">Setores</a>
                 <a class="collapse-item" href='<?php echo site_url('Cadastros/Status'); ?>'>Status</a>
@@ -59,7 +59,7 @@
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTecnologia" aria-expanded="true" aria-controls="collapseTecnologia">
-            <i class="fas fa-fw fa-folder"></i>
+            <i class="fas fa-fw fa-play"></i>
             <span>Tecnologia (TI)</span>
         </a>
         <div id="collapseTecnologia" class="collapse" aria-labelledby="headingFisCon" data-parent="#accordionSidebar">
@@ -71,11 +71,10 @@
         </div>
     </li>
 
-
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFisCon" aria-expanded="true" aria-controls="collapseFisCon">
-            <i class="fas fa-fw fa-folder"></i>
+            <i class="fas fa-fw fa-play"></i>
             <span>FisCon</span>
         </a>
         <div id="collapseFisCon" class="collapse" aria-labelledby="headingFisCon" data-parent="#accordionSidebar">
@@ -83,11 +82,13 @@
                 <h6 class="collapse-header">Cronogramas:</h6>
                 <a class="collapse-item" href='<?php echo site_url('Fiscon/Empresas'); ?>'>Empresas (Cronograma)</a>
                 <a class="collapse-item" href="#">Contábil</a>
-                <a class="collapse-item" href='<?php echo site_url('#'); //Fiscon/CronoFiscal?>'>Fiscal</a>
+                <a class="collapse-item" href='<?php echo site_url('#'); //Fiscon/CronoFiscal
+                                                ?>'>Fiscal</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Acompanhamentos:</h6>
                 <a class="collapse-item" href="#">Cronograma Contábil</a>
-                <a class="collapse-item" href='<?php echo site_url('#'); ///Fiscon/Acompanhamentos/CronoFiscal?>'>Cronograma Fiscal</a>        
+                <a class="collapse-item" href='<?php echo site_url('#'); ///Fiscon/Acompanhamentos/CronoFiscal
+                                                ?>'>Cronograma Fiscal</a>
                 <a class="collapse-item" href="#">RDA</a>
             </div>
         </div>
@@ -96,12 +97,12 @@
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministrativo" aria-expanded="true" aria-controls="collapseAdministrativo">
-            <i class="fas fa-fw fa-folder"></i>
+            <i class="fas fa-fw fa-play"></i>
             <span>Administrativo</span>
         </a>
         <div id="collapseAdministrativo" class="collapse" aria-labelledby="headingAdministrativo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Reuniões:</h6>
+                <h6 class="collapse-header">Reuniões:</h6>
                 <a class="collapse-item" href="#">Atas</a>
                 <a class="collapse-item" href="#">Topicos</a>
                 <div class="collapse-divider"></div>
@@ -123,7 +124,7 @@
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLegalização" aria-expanded="true" aria-controls="collapseLegalização">
-            <i class="fas fa-fw fa-folder"></i>
+            <i class="fas fa-fw fa-play"></i>
             <span>Legalização</span>
         </a>
         <div id="collapseLegalização" class="collapse" aria-labelledby="headingLegalização" data-parent="#accordionSidebar">
@@ -138,7 +139,7 @@
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCRM" aria-expanded="true" aria-controls="collapseCRM">
-            <i class="fas fa-fw fa-folder"></i>
+            <i class="fas fa-fw fa-play"></i>
             <span>CRM</span>
         </a>
         <div id="collapseCRM" class="collapse" aria-labelledby="headingCRM" data-parent="#accordionSidebar">
@@ -147,12 +148,12 @@
                 <a class="collapse-item" href="#">Propostas</a>
             </div>
         </div>
-    </li> 
-    
+    </li>
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtil" aria-expanded="true" aria-controls="collapseUtil">
-            <i class="fas fa-fw fa-folder"></i>
+            <i class="fas fa-fw fa-play"></i>
             <span>Utilitários</span>
         </a>
         <div id="collapseUtil" class="collapse" aria-labelledby="headingCRM" data-parent="#accordionSidebar">
@@ -165,7 +166,49 @@
                 <a class="collapse-item" href='<?php echo site_url('#'); ?>'>XML NFSe Serviço</a>
             </div>
         </div>
-    </li> 
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        GPI - Gest. Proces. Internos
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#GPI_collapseModelos" aria-expanded="true" aria-controls="GPI_collapseModelos">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Modelos</span>
+        </a>
+        <div id="GPI_collapseModelos" class="collapse" aria-labelledby="headingFisCon" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Arquivos:</h6>
+                <a class="collapse-item" href='<?php echo site_url('/GPI/Modelos/Fiscon'); ?>'>Fiscon</a>
+                <a class="collapse-item" href='<?php echo site_url('/GPI/Modelos/SetorPessoal'); ?>'>Setor Pessoal</a>
+                <a class="collapse-item" href='<?php echo site_url('/GPI/Modelos/Administrativo'); ?>'>Admininstrativo</a>
+                <a class="collapse-item" href='<?php echo site_url('/GPI/Modelos/Publico'); ?>'>Publico</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#GPI_collapseDocumentos" aria-expanded="true" aria-controls="GPI_collapseDocumentos">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Documentos</span>
+        </a>
+        <div id="GPI_collapseDocumentos" class="collapse" aria-labelledby="headingFisCon" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Arquivos:</h6>
+                <a class="collapse-item" href='<?php echo site_url('/GPI/Documentos/Fiscon'); ?>'>Fiscon</a>
+                <a class="collapse-item" href='<?php echo site_url('/GPI/Documentos/SetorPessoal'); ?>'>Setor Pessoal</a>
+                <a class="collapse-item" href='<?php echo site_url('/GPI/Documentos/Administrativo'); ?>'>Admininstrativo</a>
+                <a class="collapse-item" href='<?php echo site_url('/GPI/Documentos/Publico'); ?>'>Publico</a>
+            </div>
+        </div>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

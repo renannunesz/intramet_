@@ -79,7 +79,7 @@
                                             </div>
                                             <div class="modal-body">
 
-                                                <form action="<?php echo base_url('Clientes/addCliente') ?>" method="post">
+                                                <form action="<?php echo site_url('Clientes/addCliente') ?>" method="post">
 
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
@@ -142,7 +142,7 @@
                                                     <a data-toggle="modal" data-target="#editclienteModal-<?php echo $cliente['cod']; ?>" class="btn btn-warning btn-circle btn-sm">
                                                         <i class="fas fa-pen"></i>
                                                     </a>
-                                                    <a href='<?php echo base_url('Clientes/delCliente') . '/' . $cliente['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
+                                                    <a href='<?php echo site_url('Clientes/delCliente') . '/' . $cliente['cod']; ?>' class="btn btn-danger btn-circle btn-sm">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 </td>
@@ -153,7 +153,7 @@
                                                         <div class="modal-content">
                                                             <div class="modal-body">
 
-                                                                <form action='<?php echo base_url('Clientes/editCliente') . '/' . $cliente['cod']; ?>' method="post">
+                                                                <form action='<?php echo site_url('Clientes/editCliente') . '/' . $cliente['cod']; ?>' method="post">
 
                                                                     <input type="hidden" name="codEditcliente" id="codEditcliente" value='<?php echo $cliente['cod']; ?>'>
 

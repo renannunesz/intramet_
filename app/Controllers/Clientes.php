@@ -40,7 +40,7 @@ class Clientes extends BaseController
 
         $this->tbclientes->save($dadosCliente);
 
-        return redirect()->to(base_url('/Cadastros/Clientes'));
+        return redirect()->to(site_url('/Cadastros/Clientes'));
     }
 
     public function editCliente()
@@ -54,13 +54,13 @@ class Clientes extends BaseController
         $this->tbclientes->where('cod', $codEditCliente);
         $this->tbclientes->update();
 
-        return redirect()->to(base_url('/Cadastros/Clientes'));
+        return redirect()->to(site_url('/Cadastros/Clientes'));
     }
 
     public function delCliente($cod)
     {
         $this->tbclientes->where('cod', $cod)->delete();
 
-        return redirect()->to(base_url('/Cadastros/Clientes'));
+        return redirect()->to(site_url('/Cadastros/Clientes'));
     }
 }

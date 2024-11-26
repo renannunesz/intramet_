@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\tbusuariosModel;
+use CodeIgniter\Database\Exceptions\DatabaseException;
 
 class Login extends BaseController
 {
@@ -19,6 +20,22 @@ class Login extends BaseController
     {
         return view('login');
     }
+
+
+    /* TESTE DE CONEXÃO COM O BANCO
+    public function signIn()
+    {
+        $db = \Config\Database::connect();
+        
+        try {
+            if ($db->connect()) {
+                echo "Conexão com o banco de dados foi bem-sucedida!";
+            }
+        } catch (DatabaseException $e) {
+            echo "Falha na conexão com o banco de dados: " . $e->getMessage();
+        }
+    }
+    */
 
     public function signIn()
     {
@@ -53,7 +70,7 @@ class Login extends BaseController
             
         }
 
-    }
+    }        
 
     public function signOut()
     {

@@ -80,7 +80,7 @@
                                             </div>
                                             <div class="modal-body">
 
-                                                <form action='<?php echo base_url('Utilitarios/arqAntaqMensais') ?>' method="post" enctype="multipart/form-data">
+                                                <form action='<?php echo site_url('Utilitarios/arqAntaqMensais') ?>' method="post" enctype="multipart/form-data">
 
                                                     <div class="form-group">
                                                         <label for="">Caminho do arquivo:</label>
@@ -134,7 +134,7 @@
                                                 </div>
                                                 <div class="modal-body">
 
-                                                    <form action='<?php echo base_url('Utilitarios/expAntaqMensais') ?>' method="post" enctype="multipart/form-data">
+                                                    <form action='<?php echo site_url('Utilitarios/expAntaqMensais') ?>' method="post" enctype="multipart/form-data">
 
                                                         <div class="form-row">
                                                             <div class="form-group col-md-6">

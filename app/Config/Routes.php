@@ -158,6 +158,12 @@ $routes->post('/TI/editarChamado',              'TI::editarChamado');
 $routes->get('/TI/deletarChamado/(:num)',       'TI::deletarChamado/$1');
 $routes->get('/TI/finalizarChamado/(:num)',     'TI::finalizarChamado/$1');
 $routes->get('/TI/Finalizados',                 'TI::chamadosFinalizados');
+$routes->post('/TI/mudarPrioridade',            'TI::mudarPrioridade');
+$routes->post('/TI/mudarStatus',                'TI::mudarStatus');
+
+//GPI
+$routes->get('/GPI/Documentos/Fiscon',              'GPI::gpiDocsFiscon');
+$routes->post('/GPI/Documentos/Fiscon/addDocumento', 'GPI::addDocumento');
 
 /*
  * --------------------------------------------------------------------
