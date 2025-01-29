@@ -35,7 +35,7 @@ class TI extends BaseController
                     'chamados' => $this->tisolicitacoesModel->whereNotIn('codstatus', [1])->find(),
                     'status' => $this->statusModel->orderBy('nome','ASC')->find(),
                     'usuarios' => $this->usuariosModel->orderBy('nome','ASC')->find(),
-                    'tiposolicitacao' => $this->tipoSolicitacaoModel->find()
+                    'tiposolicitacao' => $this->tipoSolicitacaoModel->orderBy('nome','ASC')->find()
                 ]);
         }
     }

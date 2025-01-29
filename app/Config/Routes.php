@@ -145,6 +145,10 @@ $routes->get('/Utilitarios/arqAntaqAnuais', 'Utilitarios::arqAntaqAnuais');
 $routes->post('/Utilitarios/arqAntaqAnuais', 'Utilitarios::arqAntaqAnuais');
 $routes->post('/Utilitarios/expAntaqAnuais', 'Utilitarios::expAntaqAnuais');
 
+$routes->get('/Utilitarios/leitorXMLComercio', 'Utilitarios::leitorXMLComercio');
+$routes->post('/Utilitarios/leitorXMLComercio', 'Utilitarios::leitorXMLComercio');
+$routes->post('/Utilitarios/expXMLComercio', 'Utilitarios::expXMLComercio');
+
 //Usuários
 $routes->get('/Cadastros/Usuarios',        'Usuarios::index');
 $routes->post('/Usuarios/AlterarSenha',    'Usuarios::editSenha');

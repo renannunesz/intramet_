@@ -150,7 +150,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                         <tr>
                                             <th>Cod.</th>
                                             <th>Data Inicio</th>
-                                            <th>Tipo</th>
+                                            <th>Ferramenta</th>
                                             <th>Descrição</th>
                                             <th>Solicitante</th>
                                             <th>Responsável</th>
@@ -164,7 +164,7 @@ include 'app/Helpers/legalizacao_helper.php';
                                         <tr>
                                             <th>Cod.</th>
                                             <th>Data Inicio</th>
-                                            <th>Tipo</th>
+                                            <th>Ferramenta</th>
                                             <th>Descrição</th>
                                             <th>Solicitante</th>
                                             <th>Responsável</th>

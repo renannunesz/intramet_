@@ -117,8 +117,11 @@ class Utilitarios extends BaseController
                 'dadosexcel' => $this->ler_excel($caminho_arquivo),
                 'caminho_arquivo' => $caminho_arquivo
             ]);
+
         } else {
+
             return view('antaqanuais');
+            
         }
 
     }
@@ -169,5 +172,44 @@ class Utilitarios extends BaseController
 
         // Retorna a resposta
         return $this->response;
+    }
+
+    public function leitorXMLComercio()
+    {
+
+        $arquivosXML = $this->request->getFiles('arquivo');
+
+        if(empty($arquivosXML)) {
+
+            return view('leitorxmlcomercio');
+
+        } else {
+
+            foreach ($arquivosXML['arquivo'] as $arquivo) {
+
+                $arquivo->move(ROOTPATH . 'assets/uploads/xmlcomercio/'. date("YmdHis"));
+            }
+
+            return view('leitorxmlcomercio',[
+                'pastaXML' => ROOTPATH . 'assets/uploads/xmlcomercio/' . date("YmdHis") . "/*.xml",
+            ]);
+
+        }        
+
+    }
+
+    // Depois, açção do botão exportar salva o xls
+    
+    public function expXMLComercio()
+    {
+        $arquivosXML = $this->request->getFiles();
+        $caminhoPasta = ROOTPATH . "assets" . "/" . "uploads" . "/" . "xmlcomercio";
+
+        foreach ($arquivosXML['arquivo'] as $arquivo) {
+
+            $arquivo->move(ROOTPATH . 'assets/uploads/xmlcomercio');
+            //$arqVo = simplexml_load_file(ROOTPATH . 'assets/uploads/xmlcomercio/' . $arquivo->getName());
+        }
+
     }
 }

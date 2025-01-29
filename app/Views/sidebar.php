@@ -162,7 +162,7 @@
                 <a class="collapse-item" href='<?php echo site_url('/Utilitarios/arqAntaqMensais'); ?>'>ANTAQ - BP/DRE Mensal</a>
                 <a class="collapse-item" href='<?php echo site_url('/Utilitarios/arqAntaqAnuais'); ?>'>ANTAQ - BP/DRE Anual</a>
                 <h6 class="collapse-header">Leitor XML/NF:</h6>
-                <a class="collapse-item" href='<?php echo site_url('#'); ?>'>XML NFe Comércio</a>
+                <a class="collapse-item" href='<?php echo site_url('/Utilitarios/leitorXMLComercio'); ?>'>XML NFe Comércio</a>
                 <a class="collapse-item" href='<?php echo site_url('#'); ?>'>XML NFSe Serviço</a>
             </div>
         </div>
