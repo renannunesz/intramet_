@@ -45,13 +45,10 @@ class Utilitarios extends BaseController
                 'dadosexcel' => $this->ler_excel($caminho_arquivo),
                 'caminho_arquivo' => $caminho_arquivo
             ]);
-
         } else {
-            
-            return view('antaqmensais');
-            
-        }
 
+            return view('antaqmensais');
+        }
     }
 
     public function expAntaqMensais()
@@ -117,13 +114,10 @@ class Utilitarios extends BaseController
                 'dadosexcel' => $this->ler_excel($caminho_arquivo),
                 'caminho_arquivo' => $caminho_arquivo
             ]);
-
         } else {
 
             return view('antaqanuais');
-            
         }
-
     }
 
     public function expAntaqAnuais()
@@ -179,7 +173,7 @@ class Utilitarios extends BaseController
 
         $arquivosXML = $this->request->getFiles('arquivo');
 
-        if(empty($arquivosXML)) {
+        if (empty($arquivosXML)) {
 
             return view('leitorxmlcomercio');
 
@@ -187,29 +181,81 @@ class Utilitarios extends BaseController
 
             foreach ($arquivosXML['arquivo'] as $arquivo) {
 
-                $arquivo->move(ROOTPATH . 'assets/uploads/xmlcomercio/'. date("YmdHis"));
+                $arquivo->move(ROOTPATH . 'assets/uploads/xmlcomercio/' . date("YmdHis"));
             }
 
-            return view('leitorxmlcomercio',[
+            return view('leitorxmlcomercio', [
                 'pastaXML' => ROOTPATH . 'assets/uploads/xmlcomercio/' . date("YmdHis") . "/*.xml",
             ]);
-
-        }        
-
+        }
     }
 
-    // Depois, açção do botão exportar salva o xls
-    
     public function expXMLComercio()
     {
-        $arquivosXML = $this->request->getFiles();
-        $caminhoPasta = ROOTPATH . "assets" . "/" . "uploads" . "/" . "xmlcomercio";
 
-        foreach ($arquivosXML['arquivo'] as $arquivo) {
+        $pastaXML = $this->request->getPost('pastaXML');
+        $i = 2;
 
-            $arquivo->move(ROOTPATH . 'assets/uploads/xmlcomercio');
-            //$arqVo = simplexml_load_file(ROOTPATH . 'assets/uploads/xmlcomercio/' . $arquivo->getName());
+        $spreadsheet = new Spreadsheet();
+
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $sheet->setCellValue('A1', 'Status');
+        $sheet->setCellValue('B1', 'Nº Nota');
+        $sheet->setCellValue('C1', 'Emissão');
+        $sheet->setCellValue('D1', 'Fornecedor CNPJ');
+        $sheet->setCellValue('E1', 'Fornecedor');
+        $sheet->setCellValue('F1', 'Cliente CNPJ');
+        $sheet->setCellValue('G1', 'Cliente');
+        $sheet->setCellValue('H1', 'Produto');
+        $sheet->setCellValue('I1', 'CFOP');
+        $sheet->setCellValue('J1', 'NCM');
+        $sheet->setCellValue('K1', 'Quantidade');
+        $sheet->setCellValue('L1', 'Valor UND');
+        $sheet->setCellValue('M1', 'Valor Total');
+
+        $sheet->getStyle('A1:M1')->getFont()->setBold(true);
+
+        foreach (glob($pastaXML) as $arquivo) {
+            $notaXML = simplexml_load_file($arquivo);
+            foreach ($notaXML->NFe->infNFe->det as $nfItens) {
+
+                $sheet->setCellValue('A'.$i, "Normal" );
+                $sheet->setCellValue('B'.$i, $notaXML->NFe->infNFe->ide->nNF);
+                $sheet->setCellValue('C'.$i, $notaXML->NFe->infNFe->ide->dhEmi);
+                $sheet->setCellValue('D'.$i, $notaXML->NFe->infNFe->emit->CNPJ);
+                $sheet->setCellValue('E'.$i, $notaXML->NFe->infNFe->emit->xNome);
+                $sheet->setCellValue('F'.$i, $notaXML->NFe->infNFe->dest->CNPJ);
+                $sheet->setCellValue('G'.$i, $notaXML->NFe->infNFe->dest->xNome);
+                $sheet->setCellValue('H'.$i, $nfItens->prod->xProd);
+                $sheet->setCellValue('I'.$i, $nfItens->prod->CFOP);
+                $sheet->setCellValue('J'.$i, $nfItens->prod->NCM);
+                $sheet->setCellValue('K'.$i, $nfItens->prod->qCom);                
+                $sheet->setCellValue('L'.$i, (float)$nfItens->prod->vUnCom);              
+                $sheet->setCellValue('M'.$i, (float)$nfItens->prod->vProd);
+                $i++;
+                
+            }
         }
+
+        // Rename worksheet
+        $sheet->setTitle('dados_nfe');
+
+        // Redirect output to a client’s web browser (Xls)
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="dados_nfe.xls"');
+        header('Cache-Control: max-age=0');
+        // If you're serving to IE 9, then the following may be needed
+        header('Cache-Control: max-age=1');
+
+        // If you're serving to IE over SSL, then the following may be needed
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
+        header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+        header('Pragma: public'); // HTTP/1.0
+
+        $writer = IOFactory::createWriter($spreadsheet, 'Xls');
+        $writer->save('php://output');
 
     }
 }

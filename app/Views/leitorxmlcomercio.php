@@ -117,26 +117,13 @@
                             <?php if (isset($pastaXML)) : ?>
                                 <div class="mb-1">
 
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#salvarxml">
-                                        <i class="fas fa-file-excel"></i>
-                                        Salvar ".xls"
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="salvarxml" tabindex="-1" role="dialog" aria-labelledby="salvarxmlLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title text-primary" id="salvarxmlLabel">Dados XML</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    <form action='<?php echo site_url('Utilitarios/expXMLComercio'); ?>' method="post">
+                                        <input type="hidden" name="pastaXML" id="pastaXML" value='<?php echo $pastaXML; ?>'>
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-file-excel"></i> Salvar ".xls"
+                                        </button>
+                                    </form>
+                                    
                                 </div>
 
                                 <div class="table-responsive">
