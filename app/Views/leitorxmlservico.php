@@ -80,7 +80,7 @@
                                             </div>
                                             <div class="modal-body">
 
-                                                <form action='<?php echo site_url('/Utilitarios/leitorXMLComercio') ?>' method="post" enctype="multipart/form-data">
+                                                <form action='<?php echo site_url('/Utilitarios/leitorXMLServico') ?>' method="post" enctype="multipart/form-data">
 
                                                     <div class="form-group">
                                                         <label for="">Caminho dos arquivos:</label>
@@ -117,13 +117,13 @@
                             <?php if (isset($pastaXML)) : ?>
                                 <div class="mb-1">
 
-                                    <form action='<?php echo site_url('Utilitarios/expXMLComercio'); ?>' method="post">
+                                    <form action='<?php echo site_url('Utilitarios/expXMLServico'); ?>' method="post">
                                         <input type="hidden" name="pastaXML" id="pastaXML" value='<?php echo $pastaXML; ?>'>
                                         <button type="submit" class="btn btn-success">
                                             <i class="fas fa-file-excel"></i> Salvar ".xls"
                                         </button>
                                     </form>
-                                    
+
                                 </div>
 
                                 <div class="table-responsive">
@@ -132,29 +132,13 @@
                                             <tr>
                                                 <th>Status</th>
                                                 <th>Nº Nota</th>
-                                                <th>Dt Emissão</th>
-                                                <th>Fornecedor CNPJ</th>
-                                                <th>Fornecedor</th>
-                                                <th>Cliente CNPJ</th>
-                                                <th>Cliente</th>
-                                                <th>Produto</th>
-                                                <th>CFOP</th>
-                                                <th>NCM</th>
-                                                <th>Quantidade</th>
-                                                <th>Valor Und</th>
-                                                <th>Valor Total</th>
                                                 <th>Razão Social Prestador</th>
                                                 <th>Razão Social Tomador</th>
-                                                <th>Doc. Identificação Tomador</th>
                                                 <th>CNPJ/CPF Tomador</th>
-                                                <th>Municipio</th>
+                                                <th>Cod. Municipio</th>
                                                 <th>UF</th>
-                                                <th>Nota Corrigida</th>
-                                                <th>Dedução</th>
                                                 <th>Cod. Serviço</th>
                                                 <th>Discriminação</th>
-                                                <th>Quantidade</th>
-                                                <th>Vlr Unitário</th>
                                                 <th>Vlr Total</th>
                                                 <th>Vlr Deduções</th>
                                                 <th>Base de Cálculo</th>
@@ -166,13 +150,7 @@
                                                 <th>Vlr COFINS</th>
                                                 <th>Vlr PIS</th>
                                                 <th>ISS Ret.</th>
-                                                <th>Emit. Part. Simples</th>
-                                                <th>Valid ISS</th>
-                                                <th>Valid INSS</th>
-                                                <th>Valid IRPJ</th>
-                                                <th>Valid CSLL</th>
-                                                <th>Valid COFINS</th>
-                                                <th>Valid PIS</th>
+                                                <th>Vlr Outras Retenções</th>
                                                 <th>Hora Emissao</th>
                                                 <th>Data Prestação</th>
                                             </tr>
@@ -181,21 +159,31 @@
                                         <tbody>
                                             <?php foreach (glob($pastaXML) as $arquivo) : ?>
                                                 <?php $notaXML = simplexml_load_file($arquivo); ?>
-                                                <?php foreach ($notaXML->NFe->infNFe->det as $nfItens) : ?>
+                                                <?php foreach ($notaXML->Nfse->InfNfse->Servico as $nfItens) : ?>
                                                     <tr>
-                                                        <td><?php echo "Normal" ?></td>
-                                                        <td><?php echo $notaXML->NFe->infNFe->ide->nNF; ?></td>
-                                                        <td><?php echo $notaXML->NFe->infNFe->ide->dhEmi; ?></td>
-                                                        <td><?php echo $notaXML->NFe->infNFe->emit->CNPJ; ?></td>
-                                                        <td><?php echo $notaXML->NFe->infNFe->emit->xNome; ?></td>
-                                                        <td><?php echo $notaXML->NFe->infNFe->dest->CNPJ; ?></td>
-                                                        <td><?php echo $notaXML->NFe->infNFe->dest->xNome; ?></td>
-                                                        <td><?php echo $nfItens->prod->xProd; ?></td>
-                                                        <td><?php echo $nfItens->prod->CFOP; ?></td>
-                                                        <td><?php echo $nfItens->prod->NCM; ?></td>
-                                                        <td><?php echo $nfItens->prod->qCom; ?></td>
-                                                        <td><?php echo number_format((float)$nfItens->prod->vUnCom, 2, ',', ''); ?></td>
-                                                        <td><?php echo number_format((float)$nfItens->prod->vProd, 2, ',', ''); ?></td>
+                                                        <td><?php echo isset($notaXML->NfseCancelamento) ? 'CANCELADA' : 'ATIVA'; ?></td>
+                                                        <td><?php echo $notaXML->Nfse->InfNfse->Numero; ?></td>
+                                                        <td><?php echo $notaXML->Nfse->InfNfse->PrestadorServico->NomeFantasia; ?></td>
+                                                        <td><?php echo $notaXML->Nfse->InfNfse->TomadorServico->RazaoSocial; ?></td>
+                                                        <td><?php echo $notaXML->Nfse->InfNfse->TomadorServico->IdentificacaoTomador->CpfCnpj->Cnpj . $notaXML->Nfse->InfNfse->TomadorServico->IdentificacaoTomador->CpfCnpj->Cpf; ?></td>
+                                                        <td><?php echo $notaXML->Nfse->InfNfse->Servico->CodigoMunicipio; ?></td>
+                                                        <td><?php echo $notaXML->Nfse->InfNfse->TomadorServico->Endereco->Uf; ?></td>                                                        
+                                                        <td><?php echo $notaXML->Nfse->InfNfse->Servico->ItemListaServico; ?></td>
+                                                        <td><?php echo $notaXML->Nfse->InfNfse->Servico->Discriminacao; ?></td>
+                                                        <td><?php echo number_format((float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorServicos, 2, ',', '');?></td>
+                                                        <td><?php echo number_format((float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorDeducoes, 2, ',', ''); ?></td>
+                                                        <td><?php echo number_format((float) $notaXML->Nfse->InfNfse->Servico->Valores->BaseCalculo, 2, ',', '');?></td>
+                                                        <td><?php echo (((float) $notaXML->Nfse->InfNfse->Servico->Valores->Aliquota) * 100); ?></td>
+                                                        <td><?php echo number_format((float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorIss, 2, ',', ''); ?></td>
+                                                        <td><?php echo number_format((float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorInss, 2, ',', ''); ?></td>
+                                                        <td><?php echo number_format((float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorIr, 2, ',', ''); ?></td>
+                                                        <td><?php echo number_format((float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorCsll, 2, ',', ''); ?></td>
+                                                        <td><?php echo number_format((float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorCofins, 2, ',', ''); ?></td>
+                                                        <td><?php echo number_format((float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorPis, 2, ',', ''); ?></td>
+                                                        <td><?php echo $notaXML->Nfse->InfNfse->Servico->Valores->IssRetido = 1 ? "Sim" : "Não" ;?></td>
+                                                        <td><?php echo number_format((float) $notaXML->Nfse->InfNfse->Servico->Valores->OutrasRetencoes, 2, ',', ''); ?></td>
+                                                        <td><?php echo date('d/m/Y H:i:s', strtotime($notaXML->Nfse->InfNfse->DataEmissao)); ?></td>
+                                                        <td><?php echo date('d/m/Y', strtotime($notaXML->Nfse->InfNfse->Competencia)); ?></td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             <?php endforeach; ?>

@@ -293,44 +293,64 @@ class Utilitarios extends BaseController
 
         $sheet->setCellValue('A1', 'Status');
         $sheet->setCellValue('B1', 'Nº Nota');
-        $sheet->setCellValue('C1', 'Emissão');
-        $sheet->setCellValue('D1', 'Fornecedor CNPJ');
-        $sheet->setCellValue('E1', 'Fornecedor');
-        $sheet->setCellValue('F1', 'Cliente CNPJ');
-        $sheet->setCellValue('G1', 'Cliente');
-        $sheet->setCellValue('H1', 'Produto');
-        $sheet->setCellValue('I1', 'CFOP');
-        $sheet->setCellValue('J1', 'NCM');
-        $sheet->setCellValue('K1', 'Quantidade');
-        $sheet->setCellValue('L1', 'Valor UND');
-        $sheet->setCellValue('M1', 'Valor Total');
+        $sheet->setCellValue('C1', 'Razão Social Prestador');
+        $sheet->setCellValue('D1', 'Razão Social Tomador');
+        $sheet->setCellValue('E1', 'CNPJ/CPF Tomador');
+        $sheet->setCellValue('F1', 'Cod. Municipio');
+        $sheet->setCellValue('G1', 'UF');
+        $sheet->setCellValue('H1', 'Cod. Serviço');
+        $sheet->setCellValue('I1', 'Discriminação');
+        $sheet->setCellValue('J1', 'Vlr Total');
+        $sheet->setCellValue('K1', 'Vlr Deduções');
+        $sheet->setCellValue('L1', 'Base de Cálculo');
+        $sheet->setCellValue('M1', 'Aliquota %');
+        $sheet->setCellValue('N1', 'Vlr ISS');
+        $sheet->setCellValue('O1', 'Vlr INSS');
+        $sheet->setCellValue('P1', 'Vlr IR');
+        $sheet->setCellValue('Q1', 'Vlr CSLL');
+        $sheet->setCellValue('R1', 'Vlr COFINS');
+        $sheet->setCellValue('S1', 'Vlr PIS');
+        $sheet->setCellValue('T1', 'ISS Ret.');
+        $sheet->setCellValue('U1', 'Vlr Outras Retenções');
+        $sheet->setCellValue('V1', 'Hora Emissao');
+        $sheet->setCellValue('w1', 'Data Prestação');
 
-        $sheet->getStyle('A1:M1')->getFont()->setBold(true);
+        $sheet->getStyle('A1:W1')->getFont()->setBold(true);
 
         foreach (glob($pastaXML) as $arquivo) {
             $notaXML = simplexml_load_file($arquivo);
-            foreach ($notaXML->NFe->infNFe->det as $nfItens) {
+            foreach ($notaXML->Nfse->InfNfse->Servico as $nfItens) {
 
-                $sheet->setCellValue('A'.$i, "Normal" );
-                $sheet->setCellValue('B'.$i, $notaXML->NFe->infNFe->ide->nNF);
-                $sheet->setCellValue('C'.$i, $notaXML->NFe->infNFe->ide->dhEmi);
-                $sheet->setCellValue('D'.$i, $notaXML->NFe->infNFe->emit->CNPJ);
-                $sheet->setCellValue('E'.$i, $notaXML->NFe->infNFe->emit->xNome);
-                $sheet->setCellValue('F'.$i, $notaXML->NFe->infNFe->dest->CNPJ);
-                $sheet->setCellValue('G'.$i, $notaXML->NFe->infNFe->dest->xNome);
-                $sheet->setCellValue('H'.$i, $nfItens->prod->xProd);
-                $sheet->setCellValue('I'.$i, $nfItens->prod->CFOP);
-                $sheet->setCellValue('J'.$i, $nfItens->prod->NCM);
-                $sheet->setCellValue('K'.$i, $nfItens->prod->qCom);                
-                $sheet->setCellValue('L'.$i, (float)$nfItens->prod->vUnCom);              
-                $sheet->setCellValue('M'.$i, (float)$nfItens->prod->vProd);
+                $sheet->setCellValue('A'.$i, isset($notaXML->NfseCancelamento) ? 'CANCELADA' : 'ATIVA' );
+                $sheet->setCellValue('B'.$i, $notaXML->Nfse->InfNfse->Numero);
+                $sheet->setCellValue('C'.$i, $notaXML->Nfse->InfNfse->PrestadorServico->NomeFantasia);
+                $sheet->setCellValue('D'.$i, $notaXML->Nfse->InfNfse->TomadorServico->RazaoSocial);
+                $sheet->setCellValue('E'.$i, (string) $notaXML->Nfse->InfNfse->TomadorServico->IdentificacaoTomador->CpfCnpj->Cnpj . $notaXML->Nfse->InfNfse->TomadorServico->IdentificacaoTomador->CpfCnpj->Cpf);
+                $sheet->setCellValue('F'.$i, $notaXML->Nfse->InfNfse->Servico->CodigoMunicipio);
+                $sheet->setCellValue('G'.$i, $notaXML->Nfse->InfNfse->TomadorServico->Endereco->Uf);
+                $sheet->setCellValue('H'.$i, $notaXML->Nfse->InfNfse->Servico->ItemListaServico);
+                $sheet->setCellValue('I'.$i, $notaXML->Nfse->InfNfse->Servico->Discriminacao);
+                $sheet->setCellValue('J'.$i, (float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorServicos);
+                $sheet->setCellValue('K'.$i, (float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorDeducoes);  
+                $sheet->setCellValue('L'.$i, (float) $notaXML->Nfse->InfNfse->Servico->Valores->BaseCalculo);              
+                $sheet->setCellValue('M'.$i, (((float) $notaXML->Nfse->InfNfse->Servico->Valores->Aliquota) * 100));
+                $sheet->setCellValue('N'.$i, (float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorIss);
+                $sheet->setCellValue('O'.$i, (float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorInss);
+                $sheet->setCellValue('P'.$i, (float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorIr);
+                $sheet->setCellValue('Q'.$i, (float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorCsll);
+                $sheet->setCellValue('R'.$i, (float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorCofins);
+                $sheet->setCellValue('S'.$i, (float) $notaXML->Nfse->InfNfse->Servico->Valores->ValorPis);
+                $sheet->setCellValue('T'.$i, $notaXML->Nfse->InfNfse->Servico->Valores->IssRetido = 1 ? "Sim" : "Não");
+                $sheet->setCellValue('U'.$i, (float) $notaXML->Nfse->InfNfse->Servico->Valores->OutrasRetencoes);
+                $sheet->setCellValue('V'.$i, date('d/m/Y H:i:s', strtotime($notaXML->Nfse->InfNfse->DataEmissao)));
+                $sheet->setCellValue('W'.$i, date('d/m/Y', strtotime($notaXML->Nfse->InfNfse->Competencia)));
                 $i++;
-                
+
             }
         }
 
         // Rename worksheet
-        $sheet->setTitle('dados_nfe');
+        $sheet->setTitle('dados_nfse');
 
         // Redirect output to a client’s web browser (Xls)
         header('Content-Type: application/vnd.ms-excel');
