@@ -57,19 +57,6 @@ include 'app/Helpers/legalizacao_helper.php';
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800"> Chamados Finalizados </h1>
 
-
-                    <!-- Basic Card -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Opções</h6>
-                        </div>
-                        <div class="card-body">
-
-
-
-                        </div>
-                    </div>
-
                     <!-- Tab Chamados -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">

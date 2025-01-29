@@ -163,7 +163,7 @@
                 <a class="collapse-item" href='<?php echo site_url('/Utilitarios/arqAntaqAnuais'); ?>'>ANTAQ - BP/DRE Anual</a>
                 <h6 class="collapse-header">Leitor XML/NF:</h6>
                 <a class="collapse-item" href='<?php echo site_url('/Utilitarios/leitorXMLComercio'); ?>'>XML NFe Comércio</a>
-                <!-- <a class="collapse-item" href='<?php echo site_url('/Utilitarios/leitorXMLServico'); ?>'>XML NFSe Serviço</a> -->
+                <a class="collapse-item" href='<?php echo site_url('/Utilitarios/leitorXMLServico'); ?>'>XML NFSe Serviço</a>
             </div>
         </div>
     </li>
