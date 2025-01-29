@@ -149,6 +149,10 @@ $routes->get('/Utilitarios/leitorXMLComercio', 'Utilitarios::leitorXMLComercio')
 $routes->post('/Utilitarios/leitorXMLComercio', 'Utilitarios::leitorXMLComercio');
 $routes->post('/Utilitarios/expXMLComercio', 'Utilitarios::expXMLComercio');
 
+$routes->get('/Utilitarios/leitorXMLServico', 'Utilitarios::leitorXMLServico');
+$routes->post('/Utilitarios/leitorXMLServico', 'Utilitarios::leitorXMLServico');
+$routes->post('/Utilitarios/expXMLServico', 'Utilitarios::expXMLServico');
+
 //Usuários
 $routes->get('/Cadastros/Usuarios',        'Usuarios::index');
 $routes->post('/Usuarios/AlterarSenha',    'Usuarios::editSenha');
