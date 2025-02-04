@@ -182,13 +182,10 @@
             <i class="fas fa-fw fa-folder"></i>
             <span>Modelos</span>
         </a>
-        <div id="GPI_collapseModelos" class="collapse" aria-labelledby="headingFisCon" data-parent="#accordionSidebar">
+        <div id="GPI_collapseModelos" class="collapse" aria-labelledby="headingModelos" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Arquivos:</h6>
-                <a class="collapse-item" href='<?php echo site_url('/GPI/Modelos/Fiscon'); ?>'>Fiscon</a>
-                <a class="collapse-item" href='<?php echo site_url('/GPI/Modelos/SetorPessoal'); ?>'>Setor Pessoal</a>
-                <a class="collapse-item" href='<?php echo site_url('/GPI/Modelos/Administrativo'); ?>'>Admininstrativo</a>
-                <a class="collapse-item" href='<?php echo site_url('/GPI/Modelos/Publico'); ?>'>Publico</a>
+                <a class="collapse-item" href='<?php echo site_url('/GPI/Modelos/Arquivos'); ?>'>Arquivos</a>
             </div>
         </div>
     </li>
@@ -199,13 +196,10 @@
             <i class="fas fa-fw fa-folder"></i>
             <span>Documentos</span>
         </a>
-        <div id="GPI_collapseDocumentos" class="collapse" aria-labelledby="headingFisCon" data-parent="#accordionSidebar">
+        <div id="GPI_collapseDocumentos" class="collapse" aria-labelledby="headingDocumentos" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Arquivos:</h6>
-                <a class="collapse-item" href='<?php echo site_url('/GPI/Documentos/Fiscon'); ?>'>Fiscon</a>
-                <a class="collapse-item" href='<?php echo site_url('/GPI/Documentos/SetorPessoal'); ?>'>Setor Pessoal</a>
-                <a class="collapse-item" href='<?php echo site_url('/GPI/Documentos/Administrativo'); ?>'>Admininstrativo</a>
-                <a class="collapse-item" href='<?php echo site_url('/GPI/Documentos/Publico'); ?>'>Publico</a>
+                <a class="collapse-item" href='<?php echo site_url('/GPI/Documentos/Arquivos'); ?>'>Arquivos</a>
             </div>
         </div>
     </li>

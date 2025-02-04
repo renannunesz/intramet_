@@ -121,6 +121,10 @@
                                             <th>Cod.</th>
                                             <th>Nome</th>
                                             <th>CPF/CNPJ</th>
+                                            <th>Tipo</th>
+                                            <th>Status</th>
+                                            <th>Inicio de Contrato</th>
+                                            <th>Termino de Contrato</th>
                                             <th>Opções</th>
                                         </tr>
                                     </thead>
@@ -129,15 +133,32 @@
                                             <th>Cod.</th>
                                             <th>Nome</th>
                                             <th>CPF/CNPJ</th>
+                                            <th>Tipo</th>
+                                            <th>Status</th>
+                                            <th>Inicio de Contrato</th>
+                                            <th>Termino de Contrato</th>
                                             <th>Opções</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <?php foreach ($clientes as $cliente) : ?>
+                                            <?php switch ($cliente['status']) {
+                                                case 0:
+                                                    $bgtx = "bg-success text-white";
+                                                    break;
+                                                case 1:
+                                                    $bgtx = "bg-warning text-dark";
+                                                    break;                                                  
+                                            }
+                                            ?>
                                             <tr>
                                                 <td><?php echo $cliente['cod']; ?></td>
                                                 <td><?php echo $cliente['nome']; ?></td>
-                                                <td><?php echo $cliente['cpfcnpj']; ?></td>
+                                                <td><?php echo strlen($cliente['cpfcnpj']) == 14 ? formatarCNPJ($cliente['cpfcnpj']) : formatarCPF($cliente['cpfcnpj']); ?></td>
+                                                <td><?php echo $cliente['tipo'] == 'A' ? 'Avulso' : 'Empresa'; ?></td>
+                                                <td class="<?php echo $bgtx; ?>"><?php echo $cliente['status'] == 1 ? 'Inativo' : 'Ativo' ; ?></td>
+                                                <td><?php echo isset($cliente['iniciocontrato']) ? date("d/m/Y", strtotime($cliente['iniciocontrato'])) : "" ; ?></td>
+                                                <td><?php echo isset($cliente['fimcontrato']) ? date("d/m/Y", strtotime($cliente['fimcontrato'])) : "" ; ?></td>
                                                 <td>
                                                     <a data-toggle="modal" data-target="#editclienteModal-<?php echo $cliente['cod']; ?>" class="btn btn-warning btn-circle btn-sm">
                                                         <i class="fas fa-pen"></i>

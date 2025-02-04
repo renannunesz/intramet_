@@ -18,6 +18,10 @@ class tbclientesModel extends Model
         'cod',
         'nome',
         'cpfcnpj',
+        'tipo',
+        'status',
+        'iniciocontrato',
+        'fimcontrato'
     ];
 
     // Dates
