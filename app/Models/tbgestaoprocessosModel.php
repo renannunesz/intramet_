@@ -17,9 +17,12 @@ class tbgestaoprocessosModel extends Model
     protected $allowedFields    = [
         'cod',
         'codsetor',
+        'descricao',
         'codtipodocumento',
-        'nomedocumento',
-        'nomearquivo'
+        'nomearquivo',
+        'revisao',
+        'versao',
+        'caminhoarquivo'
     ];
 
     // Dates

@@ -4,48 +4,62 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\tbgestaoprocessosModel;
+use App\Models\tbsetoresModel;
 
 class GPI extends BaseController
 {
 
-    private $gestaoProcessosDocumentos;
+    private $gestaoProcessosArquivos;
+    private $setoresModel;
 
     public function __construct() {
-        $this->gestaoProcessosDocumentos = new tbgestaoprocessosModel();
+        $this->gestaoProcessosArquivos = new tbgestaoprocessosModel();
+        $this->setoresModel = new tbsetoresModel();
     }
 
-    public function index()
+    public function gpiDocumentos()
     {
-        //
-    }
+        $status = session()->get('Logado');
 
-    public function gpiDocsFiscon()
-    {
-        return view('gpifiscon',[
-            'docsFiscon' => $this->gestaoProcessosDocumentos->where('codsetor', 4)->find()
-        ]);
+        if (is_null($status)) {
+            return view('login');
+        } else {
+            return view('gpi_documentos', [
+                    'gpidocumentos' => $this->gestaoProcessosArquivos->where('codtipodocumento', [1])->find(),
+                    'setores' => $this->setoresModel->find()
+                ]);
+        }
     }
 
     public function addDocumento()
     {
-        $codSetor = intval($this->request->getPost('codSetorFiscon'));
-        $codTipoDocumento = 1;
-        $nomeDocumento = $this->request->getPost('inputNomeDocumento');
+        $codDocumento = intval($this->request->getPost('inputCodDocumento'));
+        $codSetor = intval($this->request->getPost('inputSetor'));
+        $descricaoDocumento = $this->request->getPost('inputDescricao');
+        $codTipoDocumento = 1;        
+        $revisaoDocumento = $this->request->getPost('inputRevisao');
+        $versaoDocumento = intval($this->request->getPost('inputVersao'));
         $arquivo = $this->request->getFile('arqcaminho');
-        $caminhoPasta = ROOTPATH . "assets" . "/" . "uploads";
-        $arquivo->move(ROOTPATH . 'assets/uploads');
+        $arquivo->move(ROOTPATH . 'assets/uploads/documentosgpi');
+        $caminhoPasta = ROOTPATH . 'assets/uploads/documentosgpi';        
         $caminho_arquivo = $caminhoPasta . "/" . $arquivo->getName();  
-        $nomeArquivo = $arquivo->getName();
+        $nomeDocumento = $arquivo->getName();   
 
         $dadosDocumento = [
-            'codsetor' => $codSetor,
-            'nomedocumento' => $nomeDocumento,
-            'codtipodocumento' => $codTipoDocumento,
-            'nomearquivo' => $nomeArquivo
+            'cod' => 1, //$codDocumento,
+            'codsetor' => 1, //$codSetor,
+            'descricao' => 'descicao aqui', //$descricaoDocumento,
+            'codtipodocumento' => 1, //$codTipoDocumento,
+            'nomearquivo' => 'nomeaqui', //$nomeDocumento,
+            'revisao' =>  '2025-02-04', //$revisaoDocumento,
+            'versao' => 1, //$versaoDocumento,
+            'caminhoarquivo' => 'caminhoaqui' //$caminho_arquivo
         ];
 
-        $this->gestaoProcessosDocumentos->save($dadosDocumento);
+        var_dump($dadosDocumento);
 
-        return redirect()->to(site_url('/GPI/Documentos/Fiscon'));
+        $this->gestaoProcessosArquivos->insert($dadosDocumento);
+
+        return redirect()->to(site_url('/GPI/Documentos/Arquivos'));
     }
 }

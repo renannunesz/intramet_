@@ -170,8 +170,11 @@ $routes->post('/TI/mudarPrioridade',            'TI::mudarPrioridade');
 $routes->post('/TI/mudarStatus',                'TI::mudarStatus');
 
 //GPI
-$routes->get('/GPI/Documentos/Fiscon',              'GPI::gpiDocsFiscon');
-$routes->post('/GPI/Documentos/Fiscon/addDocumento', 'GPI::addDocumento');
+$routes->get('/GPI/Modelos/Arquivos',              'GPI::gpiModelos');
+
+$routes->get('/GPI/Documentos/Arquivos',           'GPI::gpiDocumentos');
+$routes->post('/GPI/addDocumento',                 'GPI::addDocumento');
+
 
 /*
  * --------------------------------------------------------------------

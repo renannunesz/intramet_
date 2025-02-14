@@ -177,7 +177,7 @@ class Utilitarios extends BaseController
 
             return view('leitorxmlcomercio');
 
-        } else {
+        } else {            
 
             foreach ($arquivosXML['arquivo'] as $arquivo) {
 
@@ -185,7 +185,9 @@ class Utilitarios extends BaseController
             }
 
             return view('leitorxmlcomercio', [
+
                 'pastaXML' => ROOTPATH . 'assets/uploads/xmlcomercio/' . date("YmdHis") . "/*.xml",
+
             ]);
         }
     }
